@@ -50,7 +50,7 @@ fun DetailScreen(
     changes: List<BatchChangeEntity>,
     now: Long,
     onBack: () -> Unit,
-    onConsume: (Long) -> Unit,
+    onConsume: (quantityMilli: Long, consumeAll: Boolean) -> Unit,
     onOpen: () -> Unit,
     onDiscard: () -> Unit,
     onMove: (StorageLocation) -> Unit,
@@ -84,7 +84,13 @@ fun DetailScreen(
             }
         }
         Column(Modifier.padding(16.dp), verticalArrangement = Arrangement.spacedBy(8.dp)) {
-            Button(onClick = { onConsume(minOf(1000L, batch.quantityMilli)) }, modifier = Modifier.fillMaxWidth().height(52.dp)) { Text(if (batch.quantityMilli <= 1000L) "全部吃完" else "吃掉 1 ${batch.quantityUnit}") }
+            Button(
+                onClick = {
+                    val quantity = minOf(1000L, batch.quantityMilli)
+                    onConsume(quantity, quantity == batch.quantityMilli)
+                },
+                modifier = Modifier.fillMaxWidth().height(52.dp),
+            ) { Text(if (batch.quantityMilli <= 1000L) "全部吃完" else "吃掉 1 ${batch.quantityUnit}") }
             if (batch.packagingState != "OPENED") OutlinedButton(onClick = onOpen, modifier = Modifier.fillMaxWidth()) { Text("记录开封") }
             OutlinedButton(onClick = { onMove(moveTarget) }, modifier = Modifier.fillMaxWidth()) { Text(if (moveTarget == StorageLocation.FROZEN) "整批转冷冻" else "开始冷藏解冻") }
             if (batch.quantityMilli > 1L) {

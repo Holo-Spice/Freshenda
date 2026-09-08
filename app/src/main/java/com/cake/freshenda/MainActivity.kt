@@ -18,6 +18,7 @@ class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
+        preferSmoothDisplayMode()
         deepLink = intent.toDeepLink()
         setContent {
             FreshendaTheme {
@@ -42,7 +43,23 @@ class MainActivity : ComponentActivity() {
         return AppDeepLink(destination, batchId)
     }
 
+    @Suppress("DEPRECATION")
+    private fun preferSmoothDisplayMode() {
+        val display = windowManager.defaultDisplay
+        val currentMode = display.mode
+        val preferredMode = display.supportedModes
+            .asSequence()
+            .filter { it.physicalWidth == currentMode.physicalWidth && it.physicalHeight == currentMode.physicalHeight }
+            .filter { it.refreshRate >= MIN_REFRESH_RATE }
+            .maxByOrNull { it.refreshRate }
+            ?: return
+        window.attributes = window.attributes.apply {
+            preferredDisplayModeId = preferredMode.modeId
+        }
+    }
+
     companion object {
+        private const val MIN_REFRESH_RATE = 59.5f
         const val EXTRA_DESTINATION = "destination"
         const val EXTRA_BATCH_ID = "batch_id"
     }

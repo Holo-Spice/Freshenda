@@ -4,6 +4,12 @@ import android.Manifest
 import android.os.Build
 import androidx.activity.compose.rememberLauncherForActivityResult
 import androidx.activity.result.contract.ActivityResultContracts
+import androidx.compose.animation.core.tween
+import androidx.compose.animation.fadeIn
+import androidx.compose.animation.fadeOut
+import androidx.compose.animation.slideInHorizontally
+import androidx.compose.animation.slideOutHorizontally
+import androidx.compose.animation.togetherWith
 import androidx.compose.foundation.Canvas
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.RowScope
@@ -21,7 +27,6 @@ import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
-import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
@@ -32,6 +37,7 @@ import androidx.compose.ui.graphics.StrokeCap
 import androidx.compose.ui.graphics.drawscope.Stroke
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
+import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.navigation3.runtime.NavKey
 import androidx.navigation3.runtime.entryProvider
 import androidx.navigation3.runtime.rememberNavBackStack
@@ -64,11 +70,9 @@ data class AppDeepLink(val destination: String, val batchId: Long?)
 @Composable
 fun FreshendaApp(container: AppContainer, deepLink: AppDeepLink?, onDeepLinkConsumed: () -> Unit) {
     val viewModel: AppViewModel = viewModel(factory = AppViewModel.Factory(container))
-    val ui by viewModel.uiState.collectAsState()
-    val selectedBatch by viewModel.selectedBatch.collectAsState()
-    val recentChanges by viewModel.recentChanges.collectAsState()
-    val message by viewModel.snackbarMessage.collectAsState()
-    val pendingImport by viewModel.pendingImport.collectAsState()
+    val ui by viewModel.uiState.collectAsStateWithLifecycle()
+    val message by viewModel.snackbarMessage.collectAsStateWithLifecycle()
+    val pendingImport by viewModel.pendingImport.collectAsStateWithLifecycle()
     val backStack = rememberNavBackStack(FridgeRoute)
     val snackbarHost = remember { SnackbarHostState() }
     val now = remember { System.currentTimeMillis() }
@@ -121,6 +125,14 @@ fun FreshendaApp(container: AppContainer, deepLink: AppDeepLink?, onDeepLinkCons
             backStack = backStack,
             onBack = { pop(backStack) },
             modifier = Modifier.padding(padding),
+            transitionSpec = {
+                (fadeIn(tween(160)) + slideInHorizontally(tween(180)) { it / 12 }) togetherWith
+                    (fadeOut(tween(120)) + slideOutHorizontally(tween(160)) { -it / 16 })
+            },
+            popTransitionSpec = {
+                (fadeIn(tween(160)) + slideInHorizontally(tween(180)) { -it / 12 }) togetherWith
+                    (fadeOut(tween(120)) + slideOutHorizontally(tween(160)) { it / 16 })
+            },
             entryProvider = entryProvider {
                 entry<FridgeRoute> { FridgeScreen(ui.batches, now, { backStack.add(PickerRoute) }) { backStack.add(DetailRoute(it)) } }
                 entry<DueRoute> { DueScreen(ui.batches, now) { backStack.add(DetailRoute(it)) } }
@@ -146,18 +158,34 @@ fun FreshendaApp(container: AppContainer, deepLink: AppDeepLink?, onDeepLinkCons
                 entry<EditorRoute> { route ->
                     val savedCustom = ui.customFoods.firstOrNull { it.id == route.foodId }
                     val food = catalog.foods.firstOrNull { it.id == route.foodId } ?: savedCustom?.let(::customDefinition) ?: customDefinition(route.customName ?: "自定义食材")
-                    EditorScreen(food, catalog, savedCustom, { pop(backStack) }) { draft -> viewModel.addBatch(draft) { id -> backStack.add(DetailRoute(id)) } }
+                    EditorScreen(food, catalog, savedCustom, { pop(backStack) }) { draft ->
+                        viewModel.addBatch(draft) { showRoot(backStack, FridgeRoute) }
+                    }
                 }
                 entry<DetailRoute> { route ->
+                    val selectedBatch by viewModel.selectedBatch.collectAsStateWithLifecycle()
+                    val recentChanges by viewModel.recentChanges.collectAsStateWithLifecycle()
                     LaunchedEffect(route.batchId) { viewModel.selectBatch(route.batchId) }
                     DetailScreen(
-                        selectedBatch,
+                        selectedBatch?.takeIf { it.id == route.batchId },
                         recentChanges,
                         now,
                         { viewModel.selectBatch(null); pop(backStack) },
-                        { viewModel.consume(route.batchId, it) },
+                        { quantity, consumeAll ->
+                            viewModel.consume(route.batchId, quantity) {
+                                if (consumeAll) {
+                                    viewModel.selectBatch(null)
+                                    showRoot(backStack, FridgeRoute)
+                                }
+                            }
+                        },
                         { viewModel.markOpened(route.batchId) },
-                        { viewModel.discard(route.batchId); pop(backStack) },
+                        {
+                            viewModel.discard(route.batchId) {
+                                viewModel.selectBatch(null)
+                                showRoot(backStack, FridgeRoute)
+                            }
+                        },
                         { viewModel.moveBatch(route.batchId, it) },
                         { quantity, target -> viewModel.splitAndMove(route.batchId, quantity, target) { childId -> backStack.add(DetailRoute(childId)) } },
                         { viewModel.setCustomDate(route.batchId, it) },
@@ -180,6 +208,11 @@ fun FreshendaApp(container: AppContainer, deepLink: AppDeepLink?, onDeepLinkCons
 
 private fun pop(backStack: MutableList<NavKey>) {
     if (backStack.size > 1) backStack.removeAt(backStack.lastIndex)
+}
+
+private fun showRoot(backStack: MutableList<NavKey>, route: NavKey) {
+    backStack.clear()
+    backStack.add(route)
 }
 
 @Composable

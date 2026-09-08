@@ -83,7 +83,6 @@ class AppViewModel(private val container: AppContainer) : ViewModel() {
             try {
                 val id = container.foodRepository.addBatch(draft, currentCatalog)
                 container.settingsRepository.recordRecent(draft.food.id)
-                selectedId.value = id
                 onSaved(id)
             } catch (error: Exception) {
                 message.value = "保存失败：${error.message ?: "请检查输入"}"
@@ -91,12 +90,14 @@ class AppViewModel(private val container: AppContainer) : ViewModel() {
         }
     }
 
-    fun consume(id: Long, quantityMilli: Long) = launchAction("已更新剩余数量") { container.foodRepository.consume(id, quantityMilli) }
+    fun consume(id: Long, quantityMilli: Long, onSuccess: () -> Unit = {}) =
+        launchAction("已更新剩余数量", onSuccess) { container.foodRepository.consume(id, quantityMilli) }
     fun markOpened(id: Long) = launchAction("已记录开封") {
         val currentCatalog = catalog.value ?: error("食材目录尚未加载")
         container.foodRepository.markOpened(id, currentCatalog)
     }
-    fun discard(id: Long) = launchAction("已移出冰箱") { container.foodRepository.discard(id) }
+    fun discard(id: Long, onSuccess: () -> Unit = {}) =
+        launchAction("已移出冰箱", onSuccess) { container.foodRepository.discard(id) }
     fun moveBatch(id: Long, target: StorageLocation) = launchAction("已记录新的存放阶段") { container.foodRepository.moveBatch(id, target) }
     fun splitAndMove(id: Long, quantityMilli: Long, target: StorageLocation, onSaved: (Long) -> Unit) {
         viewModelScope.launch {
@@ -146,10 +147,11 @@ class AppViewModel(private val container: AppContainer) : ViewModel() {
 
     fun consumeMessage() { message.value = null }
 
-    private fun launchAction(success: String?, block: suspend () -> Unit) = viewModelScope.launch {
+    private fun launchAction(success: String?, onSuccess: () -> Unit = {}, block: suspend () -> Unit) = viewModelScope.launch {
         try {
             block()
             if (success != null) message.value = success
+            onSuccess()
         } catch (error: Exception) {
             message.value = error.message ?: "操作失败"
         }
