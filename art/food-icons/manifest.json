@@ -1,0 +1,5808 @@
+{
+  "schemaVersion": 2,
+  "revision": 2,
+  "catalogDataVersion": "2026.09.08-1",
+  "style": {
+    "viewBox": "0 0 96 96",
+    "outline": "#203F36",
+    "background": "transparent",
+    "method": "Explicit per-food vector designs; semantic shape families; no random or hash-based decorations"
+  },
+  "count": 322,
+  "items": [
+    {
+      "id": "spinach",
+      "name": "菠菜",
+      "categoryId": "leafy",
+      "iconKey": "food_spinach",
+      "iconBrief": "成束箭形叶片和红色短根",
+      "source": "art/food-icons/food_spinach.svg",
+      "drawable": "app/src/main/res/drawable/food_spinach.xml",
+      "revision": 2,
+      "family": "leafy",
+      "designParameters": {
+        "form": "arrow",
+        "w": 24,
+        "h": 44,
+        "root": true,
+        "color": "#688854"
+      },
+      "pathCount": 36,
+      "status": "AUTHORED_REQUIRES_USER_VISUAL_ACCEPTANCE",
+      "sha256": "a41f00a819907465f5636109bf5971113c580f16e3cfbac0974475e375016491"
+    },
+    {
+      "id": "bok_choy",
+      "name": "小白菜",
+      "categoryId": "leafy",
+      "iconKey": "food_bok_choy",
+      "iconBrief": "白色细叶柄与松散椭圆绿叶",
+      "source": "art/food-icons/food_bok_choy.svg",
+      "drawable": "app/src/main/res/drawable/food_bok_choy.xml",
+      "revision": 2,
+      "family": "leafy",
+      "designParameters": {
+        "w": 26,
+        "h": 33,
+        "stem": "#F5EFDC",
+        "thick": true,
+        "count": 4
+      },
+      "pathCount": 28,
+      "status": "AUTHORED_REQUIRES_USER_VISUAL_ACCEPTANCE",
+      "sha256": "39d9acf74733e712e9919e1832a9d11562e25fdb5b8ab0af478806698548da1f"
+    },
+    {
+      "id": "shanghai_bok_choy",
+      "name": "上海青",
+      "categoryId": "leafy",
+      "iconKey": "food_shanghai_bok_choy",
+      "iconBrief": "浅绿肥厚匙形叶柄与紧凑菜心",
+      "source": "art/food-icons/food_shanghai_bok_choy.svg",
+      "drawable": "app/src/main/res/drawable/food_shanghai_bok_choy.xml",
+      "revision": 2,
+      "family": "leafy",
+      "designParameters": {
+        "w": 28,
+        "h": 32,
+        "stem": "#BED299",
+        "thick": true,
+        "count": 5,
+        "low": true
+      },
+      "pathCount": 35,
+      "status": "AUTHORED_REQUIRES_USER_VISUAL_ACCEPTANCE",
+      "sha256": "3fb394cb0ef7a162993f8a5dccb459c7f0cea11d9868a96cf066c07df6aa6143"
+    },
+    {
+      "id": "choy_sum",
+      "name": "菜心",
+      "categoryId": "leafy",
+      "iconKey": "food_choy_sum",
+      "iconBrief": "细长嫩茎与少量黄色花蕾",
+      "source": "art/food-icons/food_choy_sum.svg",
+      "drawable": "app/src/main/res/drawable/food_choy_sum.xml",
+      "revision": 2,
+      "family": "leafy",
+      "designParameters": {
+        "layout": "vine",
+        "w": 21,
+        "h": 29,
+        "flowers": true
+      },
+      "pathCount": 38,
+      "status": "AUTHORED_REQUIRES_USER_VISUAL_ACCEPTANCE",
+      "sha256": "83710c97780ef68cd023ab6cdb52342dcaf4c3454c3fa594c1174fae53b1a76a"
+    },
+    {
+      "id": "baby_bok_choy",
+      "name": "奶白菜",
+      "categoryId": "leafy",
+      "iconKey": "food_baby_bok_choy",
+      "iconBrief": "矮胖白色菜梗与卷曲绿叶",
+      "source": "art/food-icons/food_baby_bok_choy.svg",
+      "drawable": "app/src/main/res/drawable/food_baby_bok_choy.xml",
+      "revision": 2,
+      "family": "leafy",
+      "designParameters": {
+        "w": 28,
+        "h": 29,
+        "form": "curly",
+        "stem": "#F5EFDC",
+        "thick": true,
+        "low": true,
+        "count": 4
+      },
+      "pathCount": 28,
+      "status": "AUTHORED_REQUIRES_USER_VISUAL_ACCEPTANCE",
+      "sha256": "6257ded1ab436b3c386229eee27e6182d317ecdc0ca88d8f5ee8d141677e635d"
+    },
+    {
+      "id": "tatsoi",
+      "name": "乌塌菜",
+      "categoryId": "leafy",
+      "iconKey": "food_tatsoi",
+      "iconBrief": "贴地放射状深绿叶簇",
+      "source": "art/food-icons/food_tatsoi.svg",
+      "drawable": "app/src/main/res/drawable/food_tatsoi.xml",
+      "revision": 2,
+      "family": "leafy",
+      "designParameters": {
+        "layout": "rosette",
+        "color": "#4E7053",
+        "w": 17,
+        "h": 32
+      },
+      "pathCount": 70,
+      "status": "AUTHORED_REQUIRES_USER_VISUAL_ACCEPTANCE",
+      "sha256": "cda5b68845ba7ab52d04d943158c63c059aa7cca1533766157396a5e9a61db96"
+    },
+    {
+      "id": "quick_choy",
+      "name": "快菜",
+      "categoryId": "leafy",
+      "iconKey": "food_quick_choy",
+      "iconBrief": "直立浅色长柄与嫩叶",
+      "source": "art/food-icons/food_quick_choy.svg",
+      "drawable": "app/src/main/res/drawable/food_quick_choy.xml",
+      "revision": 2,
+      "family": "leafy",
+      "designParameters": {
+        "w": 21,
+        "h": 39,
+        "stem": "#F5EFDC",
+        "thick": true,
+        "count": 4
+      },
+      "pathCount": 28,
+      "status": "AUTHORED_REQUIRES_USER_VISUAL_ACCEPTANCE",
+      "sha256": "9d015e8c14441d23731ab7becf07d8840b1d9bedd833d2921fe0c4c6954fe92a"
+    },
+    {
+      "id": "baby_greens",
+      "name": "鸡毛菜",
+      "categoryId": "leafy",
+      "iconKey": "food_baby_greens",
+      "iconBrief": "细嫩小叶与细密成束短茎",
+      "source": "art/food-icons/food_baby_greens.svg",
+      "drawable": "app/src/main/res/drawable/food_baby_greens.xml",
+      "revision": 2,
+      "family": "leafy",
+      "designParameters": {
+        "w": 13,
+        "h": 27,
+        "count": 8,
+        "stem": "#B5C78C"
+      },
+      "pathCount": 56,
+      "status": "AUTHORED_REQUIRES_USER_VISUAL_ACCEPTANCE",
+      "sha256": "5b65b275cc390c4e6f063f7b11c47c99b5f2f670f20eff9cb21a1c04088f057e"
+    },
+    {
+      "id": "napa_cabbage",
+      "name": "大白菜",
+      "categoryId": "leafy",
+      "iconKey": "food_napa_cabbage",
+      "iconBrief": "修长抱合的白梗黄绿叶",
+      "source": "art/food-icons/food_napa_cabbage.svg",
+      "drawable": "app/src/main/res/drawable/food_napa_cabbage.xml",
+      "revision": 2,
+      "family": "leafy",
+      "designParameters": {
+        "layout": "napa",
+        "color": "#A8BC80",
+        "h": 64,
+        "w": 53
+      },
+      "pathCount": 4,
+      "status": "AUTHORED_REQUIRES_USER_VISUAL_ACCEPTANCE",
+      "sha256": "1b6aa50942f6ec1fee6f8f46627f980fb5d2231f1981b4b9bc36d3728948f8df"
+    },
+    {
+      "id": "baby_napa",
+      "name": "娃娃菜",
+      "categoryId": "leafy",
+      "iconKey": "food_baby_napa",
+      "iconBrief": "小型浅黄抱合菜芯",
+      "source": "art/food-icons/food_baby_napa.svg",
+      "drawable": "app/src/main/res/drawable/food_baby_napa.xml",
+      "revision": 2,
+      "family": "leafy",
+      "designParameters": {
+        "layout": "napa",
+        "color": "#CACD8B",
+        "inner": "#E2DCA0",
+        "h": 53,
+        "w": 43
+      },
+      "pathCount": 4,
+      "status": "AUTHORED_REQUIRES_USER_VISUAL_ACCEPTANCE",
+      "sha256": "d69a08f82dfe131f14f1be326b4ee00f10740d57fe375f93e607f31d9172ce7e"
+    },
+    {
+      "id": "romaine",
+      "name": "罗马生菜",
+      "categoryId": "leafy",
+      "iconKey": "food_romaine",
+      "iconBrief": "直立长叶与明显中央叶脉",
+      "source": "art/food-icons/food_romaine.svg",
+      "drawable": "app/src/main/res/drawable/food_romaine.xml",
+      "revision": 2,
+      "family": "leafy",
+      "designParameters": {
+        "h": 53,
+        "w": 23,
+        "stem": "#F5EFDC",
+        "count": 4
+      },
+      "pathCount": 28,
+      "status": "AUTHORED_REQUIRES_USER_VISUAL_ACCEPTANCE",
+      "sha256": "4949d3e982b690dd495c2ec99397d5896bd2162054c974a1371deb7c38f6bda0"
+    },
+    {
+      "id": "iceberg_lettuce",
+      "name": "球生菜",
+      "categoryId": "leafy",
+      "iconKey": "food_iceberg_lettuce",
+      "iconBrief": "浅绿色紧密圆球叶层",
+      "source": "art/food-icons/food_iceberg_lettuce.svg",
+      "drawable": "app/src/main/res/drawable/food_iceberg_lettuce.xml",
+      "revision": 2,
+      "family": "leafy",
+      "designParameters": {
+        "layout": "head",
+        "color": "#A9C58B"
+      },
+      "pathCount": 3,
+      "status": "AUTHORED_REQUIRES_USER_VISUAL_ACCEPTANCE",
+      "sha256": "89b3e8fd0cb3207bf5beb9187195331952610bda6db106b144f5b7141d8f12f7"
+    },
+    {
+      "id": "green_leaf_lettuce",
+      "name": "绿叶生菜",
+      "categoryId": "leafy",
+      "iconKey": "food_green_leaf_lettuce",
+      "iconBrief": "松散宽大卷边叶",
+      "source": "art/food-icons/food_green_leaf_lettuce.svg",
+      "drawable": "app/src/main/res/drawable/food_green_leaf_lettuce.xml",
+      "revision": 2,
+      "family": "leafy",
+      "designParameters": {
+        "form": "curly",
+        "w": 33,
+        "h": 41,
+        "count": 4
+      },
+      "pathCount": 28,
+      "status": "AUTHORED_REQUIRES_USER_VISUAL_ACCEPTANCE",
+      "sha256": "c5e6af7545b0a5fe5987aaec58d8060d6f7cca38e8b8c26ad69c27df326bbbf3"
+    },
+    {
+      "id": "red_leaf_lettuce",
+      "name": "红叶生菜",
+      "categoryId": "leafy",
+      "iconKey": "food_red_leaf_lettuce",
+      "iconBrief": "红褐叶缘与绿色菜心",
+      "source": "art/food-icons/food_red_leaf_lettuce.svg",
+      "drawable": "app/src/main/res/drawable/food_red_leaf_lettuce.xml",
+      "revision": 2,
+      "family": "leafy",
+      "designParameters": {
+        "form": "curly",
+        "w": 33,
+        "h": 41,
+        "color": "#927568",
+        "stem": "#B5C78C",
+        "count": 4
+      },
+      "pathCount": 28,
+      "status": "AUTHORED_REQUIRES_USER_VISUAL_ACCEPTANCE",
+      "sha256": "89db0e5018274926a4f3fed238a7349099eb83b5a33a62f61f6bcf949e8f15b5"
+    },
+    {
+      "id": "butter_lettuce",
+      "name": "奶油生菜",
+      "categoryId": "leafy",
+      "iconKey": "food_butter_lettuce",
+      "iconBrief": "柔软圆叶围成松散杯状",
+      "source": "art/food-icons/food_butter_lettuce.svg",
+      "drawable": "app/src/main/res/drawable/food_butter_lettuce.xml",
+      "revision": 2,
+      "family": "leafy",
+      "designParameters": {
+        "layout": "rosette",
+        "w": 30,
+        "h": 33,
+        "color": "#9FBC82",
+        "inner": "#CED89D"
+      },
+      "pathCount": 70,
+      "status": "AUTHORED_REQUIRES_USER_VISUAL_ACCEPTANCE",
+      "sha256": "fc9d2c7191b0d67d23cbae1263ab10d1cf9e10b3d902cf9529115b68e3078032"
+    },
+    {
+      "id": "youmai",
+      "name": "油麦菜",
+      "categoryId": "leafy",
+      "iconKey": "food_youmai",
+      "iconBrief": "成束窄长浅绿叶",
+      "source": "art/food-icons/food_youmai.svg",
+      "drawable": "app/src/main/res/drawable/food_youmai.xml",
+      "revision": 2,
+      "family": "leafy",
+      "designParameters": {
+        "w": 12,
+        "h": 57,
+        "count": 7
+      },
+      "pathCount": 49,
+      "status": "AUTHORED_REQUIRES_USER_VISUAL_ACCEPTANCE",
+      "sha256": "f23d25c95dfc2ea274a27b7aaf32e75cee8bf09446ba9f74e86b5584b80ccca6"
+    },
+    {
+      "id": "mustard_greens",
+      "name": "芥菜",
+      "categoryId": "leafy",
+      "iconKey": "food_mustard_greens",
+      "iconBrief": "宽大锯齿叶与粗叶脉",
+      "source": "art/food-icons/food_mustard_greens.svg",
+      "drawable": "app/src/main/res/drawable/food_mustard_greens.xml",
+      "revision": 2,
+      "family": "leafy",
+      "designParameters": {
+        "form": "serrated",
+        "w": 34,
+        "h": 47,
+        "count": 3,
+        "vein": "#F5EFDC"
+      },
+      "pathCount": 21,
+      "status": "AUTHORED_REQUIRES_USER_VISUAL_ACCEPTANCE",
+      "sha256": "4836721d2cc898372dca6c7a6a2117397724f29d9f2ee36fa387daafcf019ba9"
+    },
+    {
+      "id": "chinese_kale",
+      "name": "芥蓝",
+      "categoryId": "leafy",
+      "iconKey": "food_chinese_kale",
+      "iconBrief": "粗直绿茎与圆润蓝绿叶",
+      "source": "art/food-icons/food_chinese_kale.svg",
+      "drawable": "app/src/main/res/drawable/food_chinese_kale.xml",
+      "revision": 2,
+      "family": "leafy",
+      "designParameters": {
+        "layout": "vine",
+        "w": 30,
+        "h": 28,
+        "stem": "#99B77D",
+        "color": "#61806B"
+      },
+      "pathCount": 34,
+      "status": "AUTHORED_REQUIRES_USER_VISUAL_ACCEPTANCE",
+      "sha256": "92f364087c9f41a743cea6e145900cb366f8c61c8df6af36b946af45caaa9469"
+    },
+    {
+      "id": "gai_lan_tips",
+      "name": "芥蓝苗",
+      "categoryId": "leafy",
+      "iconKey": "food_gai_lan_tips",
+      "iconBrief": "细嫩直茎与小片圆叶",
+      "source": "art/food-icons/food_gai_lan_tips.svg",
+      "drawable": "app/src/main/res/drawable/food_gai_lan_tips.xml",
+      "revision": 2,
+      "family": "leafy",
+      "designParameters": {
+        "layout": "vine",
+        "w": 17,
+        "h": 22,
+        "count": 3
+      },
+      "pathCount": 51,
+      "status": "AUTHORED_REQUIRES_USER_VISUAL_ACCEPTANCE",
+      "sha256": "badd1a41273d1dcacce271875322ce1f6cc35786b40e9027b255001b1f5012c4"
+    },
+    {
+      "id": "chrysanthemum_greens",
+      "name": "茼蒿",
+      "categoryId": "leafy",
+      "iconKey": "food_chrysanthemum_greens",
+      "iconBrief": "羽状裂叶与细长茎",
+      "source": "art/food-icons/food_chrysanthemum_greens.svg",
+      "drawable": "app/src/main/res/drawable/food_chrysanthemum_greens.xml",
+      "revision": 2,
+      "family": "leafy",
+      "designParameters": {
+        "form": "lobed",
+        "w": 28,
+        "h": 50,
+        "count": 4
+      },
+      "pathCount": 28,
+      "status": "AUTHORED_REQUIRES_USER_VISUAL_ACCEPTANCE",
+      "sha256": "86e3fcfaa8b7df62fca8f2a7ea8ff156d6365caeada2ebf9b0eee82acab9902e"
+    },
+    {
+      "id": "water_spinach",
+      "name": "空心菜",
+      "categoryId": "leafy",
+      "iconKey": "food_water_spinach",
+      "iconBrief": "长茎切口中空与狭长叶",
+      "source": "art/food-icons/food_water_spinach.svg",
+      "drawable": "app/src/main/res/drawable/food_water_spinach.xml",
+      "revision": 2,
+      "family": "leafy",
+      "designParameters": {
+        "layout": "vine",
+        "form": "arrow",
+        "w": 17,
+        "h": 31,
+        "hollow": true
+      },
+      "pathCount": 35,
+      "status": "AUTHORED_REQUIRES_USER_VISUAL_ACCEPTANCE",
+      "sha256": "ecb2556945a175f04fc580360559c327939f88ee432693bf89b70785a81c271e"
+    },
+    {
+      "id": "red_amaranth",
+      "name": "红苋菜",
+      "categoryId": "leafy",
+      "iconKey": "food_red_amaranth",
+      "iconBrief": "叶心紫红的宽椭圆叶",
+      "source": "art/food-icons/food_red_amaranth.svg",
+      "drawable": "app/src/main/res/drawable/food_red_amaranth.xml",
+      "revision": 2,
+      "family": "leafy",
+      "designParameters": {
+        "layout": "vine",
+        "w": 26,
+        "h": 29,
+        "color": "#866A78",
+        "stem": "#C77459"
+      },
+      "pathCount": 34,
+      "status": "AUTHORED_REQUIRES_USER_VISUAL_ACCEPTANCE",
+      "sha256": "0c499aff021a979a2fbf1dd415fa5ad3694b90be3caa35b63aa69f12da07a0c3"
+    },
+    {
+      "id": "green_amaranth",
+      "name": "青苋菜",
+      "categoryId": "leafy",
+      "iconKey": "food_green_amaranth",
+      "iconBrief": "成束纯绿椭圆嫩叶",
+      "source": "art/food-icons/food_green_amaranth.svg",
+      "drawable": "app/src/main/res/drawable/food_green_amaranth.xml",
+      "revision": 2,
+      "family": "leafy",
+      "designParameters": {
+        "layout": "vine",
+        "w": 24,
+        "h": 29,
+        "count": 3
+      },
+      "pathCount": 51,
+      "status": "AUTHORED_REQUIRES_USER_VISUAL_ACCEPTANCE",
+      "sha256": "0cbc73ab65d5179938cd3d01bf5ae31889e3daaecd32db0f7c0a15176ecfbd2b"
+    },
+    {
+      "id": "sweet_potato_leaves",
+      "name": "红薯叶",
+      "categoryId": "leafy",
+      "iconKey": "food_sweet_potato_leaves",
+      "iconBrief": "心形叶与卷曲藤梢",
+      "source": "art/food-icons/food_sweet_potato_leaves.svg",
+      "drawable": "app/src/main/res/drawable/food_sweet_potato_leaves.xml",
+      "revision": 2,
+      "family": "leafy",
+      "designParameters": {
+        "layout": "vine",
+        "form": "heart",
+        "w": 24,
+        "h": 26,
+        "tendril": true
+      },
+      "pathCount": 29,
+      "status": "AUTHORED_REQUIRES_USER_VISUAL_ACCEPTANCE",
+      "sha256": "52e3284ed2719c226b2348541f16a5e828dc6042fc4be18d11e0df1e4538eb18"
+    },
+    {
+      "id": "malabar_spinach",
+      "name": "木耳菜",
+      "categoryId": "leafy",
+      "iconKey": "food_malabar_spinach",
+      "iconBrief": "厚实心形叶与弯曲嫩茎",
+      "source": "art/food-icons/food_malabar_spinach.svg",
+      "drawable": "app/src/main/res/drawable/food_malabar_spinach.xml",
+      "revision": 2,
+      "family": "leafy",
+      "designParameters": {
+        "layout": "vine",
+        "form": "heart",
+        "w": 29,
+        "h": 25,
+        "color": "#557B58",
+        "count": 2
+      },
+      "pathCount": 28,
+      "status": "AUTHORED_REQUIRES_USER_VISUAL_ACCEPTANCE",
+      "sha256": "25e6e71a1ed9f14ea6716532ddfa483e00b7498d9f5d19c6d0a3561696eeb68b"
+    },
+    {
+      "id": "celtuce_leaves",
+      "name": "莴笋叶",
+      "categoryId": "leafy",
+      "iconKey": "food_celtuce_leaves",
+      "iconBrief": "细长皱褶叶与莴笋嫩梢",
+      "source": "art/food-icons/food_celtuce_leaves.svg",
+      "drawable": "app/src/main/res/drawable/food_celtuce_leaves.xml",
+      "revision": 2,
+      "family": "leafy",
+      "designParameters": {
+        "form": "curly",
+        "w": 16,
+        "h": 55,
+        "count": 5
+      },
+      "pathCount": 35,
+      "status": "AUTHORED_REQUIRES_USER_VISUAL_ACCEPTANCE",
+      "sha256": "8670162daa86df887f05008663cac2595f4c60d0cc255a6a8b3951cc4adf4bff"
+    },
+    {
+      "id": "turnip_greens",
+      "name": "萝卜缨",
+      "categoryId": "leafy",
+      "iconKey": "food_turnip_greens",
+      "iconBrief": "裂片粗叶与短根头",
+      "source": "art/food-icons/food_turnip_greens.svg",
+      "drawable": "app/src/main/res/drawable/food_turnip_greens.xml",
+      "revision": 2,
+      "family": "leafy",
+      "designParameters": {
+        "form": "lobed",
+        "w": 30,
+        "h": 45,
+        "count": 4,
+        "root": true
+      },
+      "pathCount": 29,
+      "status": "AUTHORED_REQUIRES_USER_VISUAL_ACCEPTANCE",
+      "sha256": "6eabaf419c35b19b9ea234bedec4a06a119cb5ef226f95601e3b137bb68d4d20"
+    },
+    {
+      "id": "beet_greens",
+      "name": "甜菜叶",
+      "categoryId": "leafy",
+      "iconKey": "food_beet_greens",
+      "iconBrief": "宽绿叶及明显红色叶柄",
+      "source": "art/food-icons/food_beet_greens.svg",
+      "drawable": "app/src/main/res/drawable/food_beet_greens.xml",
+      "revision": 2,
+      "family": "leafy",
+      "designParameters": {
+        "w": 32,
+        "h": 42,
+        "stem": "#C77459",
+        "vein": "#BA7563",
+        "count": 3
+      },
+      "pathCount": 21,
+      "status": "AUTHORED_REQUIRES_USER_VISUAL_ACCEPTANCE",
+      "sha256": "3b20de6311da4795b93b4b874cefffe971dbd5286ceae902de112610abb66fc4"
+    },
+    {
+      "id": "kale",
+      "name": "羽衣甘蓝",
+      "categoryId": "leafy",
+      "iconKey": "food_kale",
+      "iconBrief": "密集卷曲深绿叶边",
+      "source": "art/food-icons/food_kale.svg",
+      "drawable": "app/src/main/res/drawable/food_kale.xml",
+      "revision": 2,
+      "family": "leafy",
+      "designParameters": {
+        "form": "curly",
+        "w": 33,
+        "h": 50,
+        "color": "#59795A",
+        "count": 3
+      },
+      "pathCount": 21,
+      "status": "AUTHORED_REQUIRES_USER_VISUAL_ACCEPTANCE",
+      "sha256": "d85d38785449c94671df8e4535a910e27ae580a6eb2b158fd678f6fbb62bbc3b"
+    },
+    {
+      "id": "swiss_chard",
+      "name": "瑞士甜菜",
+      "categoryId": "leafy",
+      "iconKey": "food_swiss_chard",
+      "iconBrief": "宽阔厚叶与彩色粗叶柄",
+      "source": "art/food-icons/food_swiss_chard.svg",
+      "drawable": "app/src/main/res/drawable/food_swiss_chard.xml",
+      "revision": 2,
+      "family": "leafy",
+      "designParameters": {
+        "w": 34,
+        "h": 46,
+        "stem": "#D99858",
+        "vein": "#DCB573",
+        "thick": true,
+        "count": 3
+      },
+      "pathCount": 21,
+      "status": "AUTHORED_REQUIRES_USER_VISUAL_ACCEPTANCE",
+      "sha256": "b5bd56651aea58da56d0795baf13321164e5be0cb2225e970f33f5a5c52e45f7"
+    },
+    {
+      "id": "collards",
+      "name": "散叶甘蓝",
+      "categoryId": "leafy",
+      "iconKey": "food_collards",
+      "iconBrief": "大型平整圆叶",
+      "source": "art/food-icons/food_collards.svg",
+      "drawable": "app/src/main/res/drawable/food_collards.xml",
+      "revision": 2,
+      "family": "leafy",
+      "designParameters": {
+        "w": 40,
+        "h": 45,
+        "color": "#789676",
+        "count": 3,
+        "vein": "#F5EFDC"
+      },
+      "pathCount": 21,
+      "status": "AUTHORED_REQUIRES_USER_VISUAL_ACCEPTANCE",
+      "sha256": "80ba33261c7453d78daed21c1c411a8e16fde140decc551754bc4e4dd3db0683"
+    },
+    {
+      "id": "shepherds_purse",
+      "name": "荠菜",
+      "categoryId": "leafy",
+      "iconKey": "food_shepherds_purse",
+      "iconBrief": "贴地锯齿小叶与细茎",
+      "source": "art/food-icons/food_shepherds_purse.svg",
+      "drawable": "app/src/main/res/drawable/food_shepherds_purse.xml",
+      "revision": 2,
+      "family": "leafy",
+      "designParameters": {
+        "layout": "rosette",
+        "form": "lobed",
+        "w": 14,
+        "h": 36
+      },
+      "pathCount": 70,
+      "status": "AUTHORED_REQUIRES_USER_VISUAL_ACCEPTANCE",
+      "sha256": "20cf3a92a01b68c4e2062f8447e4b1815642b3b43dfaabca49ef28e956758d0d"
+    },
+    {
+      "id": "purslane",
+      "name": "马齿苋",
+      "categoryId": "leafy",
+      "iconKey": "food_purslane",
+      "iconBrief": "红褐细茎与肉质小椭圆叶",
+      "source": "art/food-icons/food_purslane.svg",
+      "drawable": "app/src/main/res/drawable/food_purslane.xml",
+      "revision": 2,
+      "family": "leafy",
+      "designParameters": {
+        "layout": "vine",
+        "w": 13,
+        "h": 13,
+        "count": 3,
+        "stem": "#C77459"
+      },
+      "pathCount": 51,
+      "status": "AUTHORED_REQUIRES_USER_VISUAL_ACCEPTANCE",
+      "sha256": "efb18b4822b44978cb414ecdc762179441137f9cab3124ad429f421f788d35b9"
+    },
+    {
+      "id": "pea_shoots",
+      "name": "豌豆尖",
+      "categoryId": "leafy",
+      "iconKey": "food_pea_shoots",
+      "iconBrief": "卷须与成对小叶",
+      "source": "art/food-icons/food_pea_shoots.svg",
+      "drawable": "app/src/main/res/drawable/food_pea_shoots.xml",
+      "revision": 2,
+      "family": "leafy",
+      "designParameters": {
+        "layout": "vine",
+        "w": 18,
+        "h": 21,
+        "tendril": true
+      },
+      "pathCount": 35,
+      "status": "AUTHORED_REQUIRES_USER_VISUAL_ACCEPTANCE",
+      "sha256": "4bdc364f9039712a8fb97771972a456c4214e9a3d333f3992299aa9abd5f72fc"
+    },
+    {
+      "id": "goji_leaves",
+      "name": "枸杞叶",
+      "categoryId": "leafy",
+      "iconKey": "food_goji_leaves",
+      "iconBrief": "细长枝条与小椭圆绿叶",
+      "source": "art/food-icons/food_goji_leaves.svg",
+      "drawable": "app/src/main/res/drawable/food_goji_leaves.xml",
+      "revision": 2,
+      "family": "leafy",
+      "designParameters": {
+        "layout": "vine",
+        "w": 12,
+        "h": 24,
+        "count": 3
+      },
+      "pathCount": 51,
+      "status": "AUTHORED_REQUIRES_USER_VISUAL_ACCEPTANCE",
+      "sha256": "1eca6adb80e3184ad0d855538bd9435087e4fb9fff7a11c126e3f1e758dc2689"
+    },
+    {
+      "id": "toon_shoots",
+      "name": "香椿芽",
+      "categoryId": "leafy",
+      "iconKey": "food_toon_shoots",
+      "iconBrief": "紫红色羽状嫩芽",
+      "source": "art/food-icons/food_toon_shoots.svg",
+      "drawable": "app/src/main/res/drawable/food_toon_shoots.xml",
+      "revision": 2,
+      "family": "leafy",
+      "designParameters": {
+        "layout": "vine",
+        "form": "serrated",
+        "w": 15,
+        "h": 28,
+        "color": "#9E6870",
+        "stem": "#C77459",
+        "count": 3
+      },
+      "pathCount": 51,
+      "status": "AUTHORED_REQUIRES_USER_VISUAL_ACCEPTANCE",
+      "sha256": "5333fc4f48fee453119d6d98609e682a152bb3937b6c4733d769cd58113709eb"
+    },
+    {
+      "id": "watercress",
+      "name": "西洋菜",
+      "categoryId": "leafy",
+      "iconKey": "food_watercress",
+      "iconBrief": "细茎与圆形小叶簇",
+      "source": "art/food-icons/food_watercress.svg",
+      "drawable": "app/src/main/res/drawable/food_watercress.xml",
+      "revision": 2,
+      "family": "leafy",
+      "designParameters": {
+        "layout": "vine",
+        "w": 19,
+        "h": 17,
+        "count": 3
+      },
+      "pathCount": 51,
+      "status": "AUTHORED_REQUIRES_USER_VISUAL_ACCEPTANCE",
+      "sha256": "edbee2c7e3559de32cafc53f6c0edc0d4527d3303b721d208928da2b09485bd2"
+    },
+    {
+      "id": "endive",
+      "name": "苦菊",
+      "categoryId": "leafy",
+      "iconKey": "food_endive",
+      "iconBrief": "密集细裂锯齿叶",
+      "source": "art/food-icons/food_endive.svg",
+      "drawable": "app/src/main/res/drawable/food_endive.xml",
+      "revision": 2,
+      "family": "leafy",
+      "designParameters": {
+        "layout": "rosette",
+        "form": "lobed",
+        "w": 14,
+        "h": 37
+      },
+      "pathCount": 70,
+      "status": "AUTHORED_REQUIRES_USER_VISUAL_ACCEPTANCE",
+      "sha256": "eb46e4e68d712ee1b074348b3aefd7007406c014d1828898976ce2ddf9ed4452"
+    },
+    {
+      "id": "chicory",
+      "name": "苦苣",
+      "categoryId": "leafy",
+      "iconKey": "food_chicory",
+      "iconBrief": "松散细长浅绿叶",
+      "source": "art/food-icons/food_chicory.svg",
+      "drawable": "app/src/main/res/drawable/food_chicory.xml",
+      "revision": 2,
+      "family": "leafy",
+      "designParameters": {
+        "form": "serrated",
+        "w": 19,
+        "h": 49,
+        "count": 5
+      },
+      "pathCount": 35,
+      "status": "AUTHORED_REQUIRES_USER_VISUAL_ACCEPTANCE",
+      "sha256": "2180e6b00c7f5f5117155223124061969324f2f94318e678ffd9603ab4c7a100"
+    },
+    {
+      "id": "radicchio",
+      "name": "红菊苣",
+      "categoryId": "leafy",
+      "iconKey": "food_radicchio",
+      "iconBrief": "紫红圆球与白色叶脉",
+      "source": "art/food-icons/food_radicchio.svg",
+      "drawable": "app/src/main/res/drawable/food_radicchio.xml",
+      "revision": 2,
+      "family": "leafy",
+      "designParameters": {
+        "layout": "head",
+        "color": "#815B76",
+        "inner": "#AB7C90",
+        "vein": "#F5EFDC"
+      },
+      "pathCount": 3,
+      "status": "AUTHORED_REQUIRES_USER_VISUAL_ACCEPTANCE",
+      "sha256": "bb86a39d7c80669701cfdb5d72c34023e7dc6d75d8e30dfc1b781e77f0eee6f8"
+    },
+    {
+      "id": "carrot",
+      "name": "胡萝卜",
+      "categoryId": "roots",
+      "iconKey": "food_carrot",
+      "iconBrief": "橙色锥形根与短绿叶",
+      "source": "art/food-icons/food_carrot.svg",
+      "drawable": "app/src/main/res/drawable/food_carrot.xml",
+      "revision": 2,
+      "family": "rootVegetable",
+      "designParameters": {
+        "type": "carrot"
+      },
+      "pathCount": 18,
+      "status": "AUTHORED_REQUIRES_USER_VISUAL_ACCEPTANCE",
+      "sha256": "e7b1a77c0ca884695d3ae434b20420009372d3ab5450bcc8f961cef142cf58a4"
+    },
+    {
+      "id": "white_radish",
+      "name": "白萝卜",
+      "categoryId": "roots",
+      "iconKey": "food_white_radish",
+      "iconBrief": "白色长根与短叶簇",
+      "source": "art/food-icons/food_white_radish.svg",
+      "drawable": "app/src/main/res/drawable/food_white_radish.xml",
+      "revision": 2,
+      "family": "rootVegetable",
+      "designParameters": {
+        "color": "#F5EFDC"
+      },
+      "pathCount": 18,
+      "status": "AUTHORED_REQUIRES_USER_VISUAL_ACCEPTANCE",
+      "sha256": "be75ec326546848db2cd8dfc22273fe8f4c42e41a969ec4b3d7c745148190a96"
+    },
+    {
+      "id": "green_radish",
+      "name": "青萝卜",
+      "categoryId": "roots",
+      "iconKey": "food_green_radish",
+      "iconBrief": "青绿短粗根",
+      "source": "art/food-icons/food_green_radish.svg",
+      "drawable": "app/src/main/res/drawable/food_green_radish.xml",
+      "revision": 2,
+      "family": "rootVegetable",
+      "designParameters": {
+        "color": "#B5C78C"
+      },
+      "pathCount": 18,
+      "status": "AUTHORED_REQUIRES_USER_VISUAL_ACCEPTANCE",
+      "sha256": "55db916aa26439feca358976c3912c03e15793e5fc6d66e91cc2e69f091d2693"
+    },
+    {
+      "id": "watermelon_radish",
+      "name": "心里美萝卜",
+      "categoryId": "roots",
+      "iconKey": "food_watermelon_radish",
+      "iconBrief": "绿白表皮与玫红切面",
+      "source": "art/food-icons/food_watermelon_radish.svg",
+      "drawable": "app/src/main/res/drawable/food_watermelon_radish.xml",
+      "revision": 2,
+      "family": "rootVegetable",
+      "designParameters": {
+        "type": "round",
+        "color": "#B5C78C",
+        "inside": "#C2677E"
+      },
+      "pathCount": 27,
+      "status": "AUTHORED_REQUIRES_USER_VISUAL_ACCEPTANCE",
+      "sha256": "27f88193f92539f8ce4e1fe39484fd45a7acb7b5f50859548fec2597155fbda7"
+    },
+    {
+      "id": "cherry_radish",
+      "name": "樱桃萝卜",
+      "categoryId": "roots",
+      "iconKey": "food_cherry_radish",
+      "iconBrief": "红色小圆根和白色细根须",
+      "source": "art/food-icons/food_cherry_radish.svg",
+      "drawable": "app/src/main/res/drawable/food_cherry_radish.xml",
+      "revision": 2,
+      "family": "rootVegetable",
+      "designParameters": {
+        "type": "round",
+        "color": "#C77459"
+      },
+      "pathCount": 18,
+      "status": "AUTHORED_REQUIRES_USER_VISUAL_ACCEPTANCE",
+      "sha256": "18aaaf64377858a797f5ecc31287f8fc8daf449065c864420f960f5410c04b84"
+    },
+    {
+      "id": "beetroot",
+      "name": "甜菜根",
+      "categoryId": "roots",
+      "iconKey": "food_beetroot",
+      "iconBrief": "深红圆根与红色叶梗",
+      "source": "art/food-icons/food_beetroot.svg",
+      "drawable": "app/src/main/res/drawable/food_beetroot.xml",
+      "revision": 2,
+      "family": "rootVegetable",
+      "designParameters": {
+        "type": "round",
+        "color": "#9D5B61",
+        "vein": "#D79B88"
+      },
+      "pathCount": 18,
+      "status": "AUTHORED_REQUIRES_USER_VISUAL_ACCEPTANCE",
+      "sha256": "9b1dfaea13f5fcc65282f9e9763bb590fcfa1caaccd9ef01c5bfc7791241e999"
+    },
+    {
+      "id": "potato",
+      "name": "土豆",
+      "categoryId": "roots",
+      "iconKey": "food_potato",
+      "iconBrief": "不规则土黄色块茎与浅芽眼",
+      "source": "art/food-icons/food_potato.svg",
+      "drawable": "app/src/main/res/drawable/food_potato.xml",
+      "revision": 2,
+      "family": "rootVegetable",
+      "designParameters": {
+        "type": "potato",
+        "color": "#D5B67E"
+      },
+      "pathCount": 6,
+      "status": "AUTHORED_REQUIRES_USER_VISUAL_ACCEPTANCE",
+      "sha256": "f9e512e36963cac61a3aa7ac577caa10df9eaa5bcecb5a75c66315807efb21fe"
+    },
+    {
+      "id": "sweet_potato",
+      "name": "红薯",
+      "categoryId": "roots",
+      "iconKey": "food_sweet_potato",
+      "iconBrief": "红褐长根与橙黄切面",
+      "source": "art/food-icons/food_sweet_potato.svg",
+      "drawable": "app/src/main/res/drawable/food_sweet_potato.xml",
+      "revision": 2,
+      "family": "rootVegetable",
+      "designParameters": {
+        "type": "sweet",
+        "color": "#AD7565",
+        "inside": "#DF9B59"
+      },
+      "pathCount": 5,
+      "status": "AUTHORED_REQUIRES_USER_VISUAL_ACCEPTANCE",
+      "sha256": "dc51d4c69a80d98aeede5601e7309aed6172509a3a6670aebc1224c51fefd30a"
+    },
+    {
+      "id": "purple_sweet_potato",
+      "name": "紫薯",
+      "categoryId": "roots",
+      "iconKey": "food_purple_sweet_potato",
+      "iconBrief": "紫皮长根与紫色切面",
+      "source": "art/food-icons/food_purple_sweet_potato.svg",
+      "drawable": "app/src/main/res/drawable/food_purple_sweet_potato.xml",
+      "revision": 2,
+      "family": "rootVegetable",
+      "designParameters": {
+        "type": "sweet",
+        "color": "#77546E",
+        "inside": "#876681"
+      },
+      "pathCount": 5,
+      "status": "AUTHORED_REQUIRES_USER_VISUAL_ACCEPTANCE",
+      "sha256": "ed4e0699ae7122e223842357058db8dca71cc22937bcfac36b12d4c5cdbaa4fd"
+    },
+    {
+      "id": "yam",
+      "name": "山药",
+      "categoryId": "roots",
+      "iconKey": "food_yam",
+      "iconBrief": "细长褐色带须根与白切面",
+      "source": "art/food-icons/food_yam.svg",
+      "drawable": "app/src/main/res/drawable/food_yam.xml",
+      "revision": 2,
+      "family": "rootVegetable",
+      "designParameters": {
+        "type": "yam"
+      },
+      "pathCount": 12,
+      "status": "AUTHORED_REQUIRES_USER_VISUAL_ACCEPTANCE",
+      "sha256": "f9164528a3af5788e2acebf4b1736db6e314b7a7a5abab18d6d9e9c40b15b446"
+    },
+    {
+      "id": "taro",
+      "name": "芋头",
+      "categoryId": "roots",
+      "iconKey": "food_taro",
+      "iconBrief": "棕色环纹小块茎与紫点切面",
+      "source": "art/food-icons/food_taro.svg",
+      "drawable": "app/src/main/res/drawable/food_taro.xml",
+      "revision": 2,
+      "family": "rootVegetable",
+      "designParameters": {
+        "type": "taro"
+      },
+      "pathCount": 19,
+      "status": "AUTHORED_REQUIRES_USER_VISUAL_ACCEPTANCE",
+      "sha256": "5cd86bd5ef9a4fe520f527046ae9257e75c59733bd0613cca7cdcff36f6c1356"
+    },
+    {
+      "id": "lotus_root",
+      "name": "莲藕",
+      "categoryId": "roots",
+      "iconKey": "food_lotus_root",
+      "iconBrief": "藕节和带孔圆形切面",
+      "source": "art/food-icons/food_lotus_root.svg",
+      "drawable": "app/src/main/res/drawable/food_lotus_root.xml",
+      "revision": 2,
+      "family": "rootVegetable",
+      "designParameters": {
+        "type": "lotus"
+      },
+      "pathCount": 11,
+      "status": "AUTHORED_REQUIRES_USER_VISUAL_ACCEPTANCE",
+      "sha256": "5286b607f034cdb24327f8672e47a909035885e1401409fec2a442b64adfe372"
+    },
+    {
+      "id": "celtuce",
+      "name": "莴笋",
+      "categoryId": "roots",
+      "iconKey": "food_celtuce",
+      "iconBrief": "浅绿粗茎与顶端小叶",
+      "source": "art/food-icons/food_celtuce.svg",
+      "drawable": "app/src/main/res/drawable/food_celtuce.xml",
+      "revision": 2,
+      "family": "rootVegetable",
+      "designParameters": {
+        "type": "celtuce"
+      },
+      "pathCount": 12,
+      "status": "AUTHORED_REQUIRES_USER_VISUAL_ACCEPTANCE",
+      "sha256": "e6e7d809e0f4df8e0b2781817228358484bd2d0eb0f5f1ed5900460ef9f553d3"
+    },
+    {
+      "id": "kohlrabi",
+      "name": "苤蓝",
+      "categoryId": "roots",
+      "iconKey": "food_kohlrabi",
+      "iconBrief": "浅绿圆球茎与伸出的长叶柄",
+      "source": "art/food-icons/food_kohlrabi.svg",
+      "drawable": "app/src/main/res/drawable/food_kohlrabi.xml",
+      "revision": 2,
+      "family": "rootVegetable",
+      "designParameters": {
+        "type": "kohlrabi"
+      },
+      "pathCount": 17,
+      "status": "AUTHORED_REQUIRES_USER_VISUAL_ACCEPTANCE",
+      "sha256": "ece6e1e8f05fc736dac5f65adea5c2796e0c182e2d0b8c4a8a58a8ffafa3d442"
+    },
+    {
+      "id": "asparagus",
+      "name": "芦笋",
+      "categoryId": "roots",
+      "iconKey": "food_asparagus",
+      "iconBrief": "成束细长茎与尖头鳞片",
+      "source": "art/food-icons/food_asparagus.svg",
+      "drawable": "app/src/main/res/drawable/food_asparagus.xml",
+      "revision": 2,
+      "family": "stalks",
+      "designParameters": {
+        "type": "asparagus"
+      },
+      "pathCount": 21,
+      "status": "AUTHORED_REQUIRES_USER_VISUAL_ACCEPTANCE",
+      "sha256": "38c9f7f918a77228fb754e5333ad9e95737b3f62d0117c1b5681d079bf1aa761"
+    },
+    {
+      "id": "celery",
+      "name": "西芹",
+      "categoryId": "roots",
+      "iconKey": "food_celery",
+      "iconBrief": "粗浅绿芹菜梗与扇形叶",
+      "source": "art/food-icons/food_celery.svg",
+      "drawable": "app/src/main/res/drawable/food_celery.xml",
+      "revision": 2,
+      "family": "stalks",
+      "designParameters": {
+        "type": "celery",
+        "count": 4
+      },
+      "pathCount": 29,
+      "status": "AUTHORED_REQUIRES_USER_VISUAL_ACCEPTANCE",
+      "sha256": "24778769729c33833f7f99e102fead2f4789310741c0f597ec39e6c6a6b9def1"
+    },
+    {
+      "id": "chinese_celery",
+      "name": "香芹",
+      "categoryId": "roots",
+      "iconKey": "food_chinese_celery",
+      "iconBrief": "细茎成束与小片芹叶",
+      "source": "art/food-icons/food_chinese_celery.svg",
+      "drawable": "app/src/main/res/drawable/food_chinese_celery.xml",
+      "revision": 2,
+      "family": "leafy",
+      "designParameters": {
+        "layout": "vine",
+        "form": "lobed",
+        "w": 20,
+        "h": 23,
+        "count": 3
+      },
+      "pathCount": 51,
+      "status": "AUTHORED_REQUIRES_USER_VISUAL_ACCEPTANCE",
+      "sha256": "a50bca696255dd3a959ff0e6e19610804ef78598167f9c9b13cc590f0a7902f7"
+    },
+    {
+      "id": "broccoli",
+      "name": "西兰花",
+      "categoryId": "roots",
+      "iconKey": "food_broccoli",
+      "iconBrief": "深绿花球与粗短茎",
+      "source": "art/food-icons/food_broccoli.svg",
+      "drawable": "app/src/main/res/drawable/food_broccoli.xml",
+      "revision": 2,
+      "family": "broccoli",
+      "designParameters": {},
+      "pathCount": 42,
+      "status": "AUTHORED_REQUIRES_USER_VISUAL_ACCEPTANCE",
+      "sha256": "396c74b43039277fdd37ce150057edb64153c4b0fbaac14140efca488ebbebb9"
+    },
+    {
+      "id": "cauliflower",
+      "name": "菜花",
+      "categoryId": "roots",
+      "iconKey": "food_cauliflower",
+      "iconBrief": "白色花球与包覆绿叶",
+      "source": "art/food-icons/food_cauliflower.svg",
+      "drawable": "app/src/main/res/drawable/food_cauliflower.xml",
+      "revision": 2,
+      "family": "broccoli",
+      "designParameters": {
+        "white": true
+      },
+      "pathCount": 52,
+      "status": "AUTHORED_REQUIRES_USER_VISUAL_ACCEPTANCE",
+      "sha256": "bbdb446b61b960d80b5dd2c554d1885f219c56ca8dd6fb3fbcbb190d3be21aab"
+    },
+    {
+      "id": "loose_cauliflower",
+      "name": "松花菜",
+      "categoryId": "roots",
+      "iconKey": "food_loose_cauliflower",
+      "iconBrief": "松散长梗白色花枝",
+      "source": "art/food-icons/food_loose_cauliflower.svg",
+      "drawable": "app/src/main/res/drawable/food_loose_cauliflower.xml",
+      "revision": 2,
+      "family": "broccoli",
+      "designParameters": {
+        "white": true,
+        "loose": true
+      },
+      "pathCount": 57,
+      "status": "AUTHORED_REQUIRES_USER_VISUAL_ACCEPTANCE",
+      "sha256": "8bb71cb2f18bda9198044fa7050ab3fd50dd2a7b9cdffef9cbc57a104dc33f10"
+    },
+    {
+      "id": "romanesco",
+      "name": "宝塔花菜",
+      "categoryId": "roots",
+      "iconKey": "food_romanesco",
+      "iconBrief": "绿色螺旋锥状花球",
+      "source": "art/food-icons/food_romanesco.svg",
+      "drawable": "app/src/main/res/drawable/food_romanesco.xml",
+      "revision": 2,
+      "family": "broccoli",
+      "designParameters": {
+        "romanesco": true
+      },
+      "pathCount": 21,
+      "status": "AUTHORED_REQUIRES_USER_VISUAL_ACCEPTANCE",
+      "sha256": "30bb0146f2aa106e8038be968dbd56cd6a0309001534c2cd20a540c9ecfae2f2"
+    },
+    {
+      "id": "green_cabbage",
+      "name": "圆白菜",
+      "categoryId": "roots",
+      "iconKey": "food_green_cabbage",
+      "iconBrief": "绿色层叠圆球",
+      "source": "art/food-icons/food_green_cabbage.svg",
+      "drawable": "app/src/main/res/drawable/food_green_cabbage.xml",
+      "revision": 2,
+      "family": "leafy",
+      "designParameters": {
+        "layout": "head",
+        "color": "#7D9C67",
+        "inner": "#B5C78C"
+      },
+      "pathCount": 3,
+      "status": "AUTHORED_REQUIRES_USER_VISUAL_ACCEPTANCE",
+      "sha256": "b45fad5488b69b8af4909c8e70d4f9eaaba3dda30411d7ef0c83f80987ad1370"
+    },
+    {
+      "id": "red_cabbage",
+      "name": "紫甘蓝",
+      "categoryId": "roots",
+      "iconKey": "food_red_cabbage",
+      "iconBrief": "紫色圆球与切面纹理",
+      "source": "art/food-icons/food_red_cabbage.svg",
+      "drawable": "app/src/main/res/drawable/food_red_cabbage.xml",
+      "revision": 2,
+      "family": "leafy",
+      "designParameters": {
+        "layout": "head",
+        "color": "#795973",
+        "inner": "#AC7D9C",
+        "vein": "#F5EFDC"
+      },
+      "pathCount": 3,
+      "status": "AUTHORED_REQUIRES_USER_VISUAL_ACCEPTANCE",
+      "sha256": "233d1dd23dd41657b66ac7de500bb81cedfee07b512b9630d3927ff8290fe8d9"
+    },
+    {
+      "id": "brussels_sprouts",
+      "name": "抱子甘蓝",
+      "categoryId": "roots",
+      "iconKey": "food_brussels_sprouts",
+      "iconBrief": "数颗小甘蓝球",
+      "source": "art/food-icons/food_brussels_sprouts.svg",
+      "drawable": "app/src/main/res/drawable/food_brussels_sprouts.xml",
+      "revision": 2,
+      "family": "sproutsCabbage",
+      "designParameters": {},
+      "pathCount": 9,
+      "status": "AUTHORED_REQUIRES_USER_VISUAL_ACCEPTANCE",
+      "sha256": "818ceb6eef61c7e913dd536afd367b22c32ba5111af2f27f40d83dc814e21e56"
+    },
+    {
+      "id": "bamboo_shoot",
+      "name": "鲜竹笋",
+      "categoryId": "roots",
+      "iconKey": "food_bamboo_shoot",
+      "iconBrief": "层叠棕色笋壳和乳白切面",
+      "source": "art/food-icons/food_bamboo_shoot.svg",
+      "drawable": "app/src/main/res/drawable/food_bamboo_shoot.xml",
+      "revision": 2,
+      "family": "rootVegetable",
+      "designParameters": {
+        "type": "bamboo"
+      },
+      "pathCount": 7,
+      "status": "AUTHORED_REQUIRES_USER_VISUAL_ACCEPTANCE",
+      "sha256": "0c21e103f7e9c73e4c55920d92bb64733bf5b2d661bde352ec2d104fc1aacdc2"
+    },
+    {
+      "id": "water_bamboo",
+      "name": "茭白",
+      "categoryId": "roots",
+      "iconKey": "food_water_bamboo",
+      "iconBrief": "白色纺锤茎与长绿叶鞘",
+      "source": "art/food-icons/food_water_bamboo.svg",
+      "drawable": "app/src/main/res/drawable/food_water_bamboo.xml",
+      "revision": 2,
+      "family": "rootVegetable",
+      "designParameters": {
+        "type": "water_bamboo"
+      },
+      "pathCount": 12,
+      "status": "AUTHORED_REQUIRES_USER_VISUAL_ACCEPTANCE",
+      "sha256": "4ed8d7596c1c80badc43197f7cb49d3d5f2f3ed869223932075e90f10767f6fa"
+    },
+    {
+      "id": "water_chestnut",
+      "name": "荸荠",
+      "categoryId": "roots",
+      "iconKey": "food_water_chestnut",
+      "iconBrief": "扁圆褐球和白切面",
+      "source": "art/food-icons/food_water_chestnut.svg",
+      "drawable": "app/src/main/res/drawable/food_water_chestnut.xml",
+      "revision": 2,
+      "family": "rootVegetable",
+      "designParameters": {
+        "type": "chestnut"
+      },
+      "pathCount": 7,
+      "status": "AUTHORED_REQUIRES_USER_VISUAL_ACCEPTANCE",
+      "sha256": "c93a4dbf040a5ea432dd1f964898926d4f2ddacbbaac7b9e721d6d3cefc88a1f"
+    },
+    {
+      "id": "burdock",
+      "name": "牛蒡",
+      "categoryId": "roots",
+      "iconKey": "food_burdock",
+      "iconBrief": "细长褐根与斜切白片",
+      "source": "art/food-icons/food_burdock.svg",
+      "drawable": "app/src/main/res/drawable/food_burdock.xml",
+      "revision": 2,
+      "family": "rootVegetable",
+      "designParameters": {
+        "type": "burdock"
+      },
+      "pathCount": 8,
+      "status": "AUTHORED_REQUIRES_USER_VISUAL_ACCEPTANCE",
+      "sha256": "596a4c791cab265a7601af75521e437af6a0efc747fb33dfea721ecc4cd62070"
+    },
+    {
+      "id": "tomato",
+      "name": "番茄",
+      "categoryId": "gourds",
+      "iconKey": "food_tomato",
+      "iconBrief": "红色扁圆果与星形萼片",
+      "source": "art/food-icons/food_tomato.svg",
+      "drawable": "app/src/main/res/drawable/food_tomato.xml",
+      "revision": 2,
+      "family": "tomato",
+      "designParameters": {},
+      "pathCount": 10,
+      "status": "AUTHORED_REQUIRES_USER_VISUAL_ACCEPTANCE",
+      "sha256": "dcf48e6a18b21802b46321ffa91e1bc6676053e8e1a342b954bd35434bcbc7a9"
+    },
+    {
+      "id": "cherry_tomato",
+      "name": "圣女果",
+      "categoryId": "gourds",
+      "iconKey": "food_cherry_tomato",
+      "iconBrief": "数颗小椭圆红果",
+      "source": "art/food-icons/food_cherry_tomato.svg",
+      "drawable": "app/src/main/res/drawable/food_cherry_tomato.xml",
+      "revision": 2,
+      "family": "tomato",
+      "designParameters": {
+        "small": true
+      },
+      "pathCount": 15,
+      "status": "AUTHORED_REQUIRES_USER_VISUAL_ACCEPTANCE",
+      "sha256": "b7463f3cf6aa4bdf1ec29af0fe484ba034a113dece314a4a325f9e7f0bf32936"
+    },
+    {
+      "id": "cucumber",
+      "name": "黄瓜",
+      "categoryId": "gourds",
+      "iconKey": "food_cucumber",
+      "iconBrief": "细长绿色果与浅色圆切片",
+      "source": "art/food-icons/food_cucumber.svg",
+      "drawable": "app/src/main/res/drawable/food_cucumber.xml",
+      "revision": 2,
+      "family": "elongated",
+      "designParameters": {
+        "ridges": true,
+        "bumpy": true,
+        "slice": true,
+        "color": "#628453"
+      },
+      "pathCount": 34,
+      "status": "AUTHORED_REQUIRES_USER_VISUAL_ACCEPTANCE",
+      "sha256": "f5ffcf7046c34b84cbc3abeb902aac0b0e92b67b3eb6c9ab105d97fc90d31982"
+    },
+    {
+      "id": "mini_cucumber",
+      "name": "水果黄瓜",
+      "categoryId": "gourds",
+      "iconKey": "food_mini_cucumber",
+      "iconBrief": "短小光滑黄瓜与半切面",
+      "source": "art/food-icons/food_mini_cucumber.svg",
+      "drawable": "app/src/main/res/drawable/food_mini_cucumber.xml",
+      "revision": 2,
+      "family": "elongated",
+      "designParameters": {
+        "slice": true,
+        "color": "#7D9C67"
+      },
+      "pathCount": 9,
+      "status": "AUTHORED_REQUIRES_USER_VISUAL_ACCEPTANCE",
+      "sha256": "448f26757715a66c8a0edf6a776548e4aca6b8e8306ac3f548872246b321c25c"
+    },
+    {
+      "id": "long_eggplant",
+      "name": "长茄子",
+      "categoryId": "gourds",
+      "iconKey": "food_long_eggplant",
+      "iconBrief": "紫色弯曲长果与绿色萼片",
+      "source": "art/food-icons/food_long_eggplant.svg",
+      "drawable": "app/src/main/res/drawable/food_long_eggplant.xml",
+      "revision": 2,
+      "family": "elongated",
+      "designParameters": {
+        "type": "eggplant",
+        "color": "#76567B"
+      },
+      "pathCount": 4,
+      "status": "AUTHORED_REQUIRES_USER_VISUAL_ACCEPTANCE",
+      "sha256": "b02b0e56f6dca484f05e2599e1dcf649facbe7d37b40743bf4529a5ccc0ae5cc"
+    },
+    {
+      "id": "round_eggplant",
+      "name": "圆茄子",
+      "categoryId": "gourds",
+      "iconKey": "food_round_eggplant",
+      "iconBrief": "紫色圆果与宽萼片",
+      "source": "art/food-icons/food_round_eggplant.svg",
+      "drawable": "app/src/main/res/drawable/food_round_eggplant.xml",
+      "revision": 2,
+      "family": "elongated",
+      "designParameters": {
+        "type": "eggplant",
+        "round": true,
+        "color": "#735674"
+      },
+      "pathCount": 4,
+      "status": "AUTHORED_REQUIRES_USER_VISUAL_ACCEPTANCE",
+      "sha256": "900798939f34a35ec607789f334e641aaf447500a85c8685d8d0d3c1265cb45e"
+    },
+    {
+      "id": "green_eggplant",
+      "name": "青茄子",
+      "categoryId": "gourds",
+      "iconKey": "food_green_eggplant",
+      "iconBrief": "浅绿圆长果与白切面",
+      "source": "art/food-icons/food_green_eggplant.svg",
+      "drawable": "app/src/main/res/drawable/food_green_eggplant.xml",
+      "revision": 2,
+      "family": "elongated",
+      "designParameters": {
+        "type": "eggplant",
+        "round": true,
+        "color": "#B5C78C",
+        "highlight": "#D0DCAA"
+      },
+      "pathCount": 4,
+      "status": "AUTHORED_REQUIRES_USER_VISUAL_ACCEPTANCE",
+      "sha256": "f845ea77bace48bc3d94c3f9bfaa0dec03b8790ed2afb866127451217ff59939"
+    },
+    {
+      "id": "green_pepper",
+      "name": "青椒",
+      "categoryId": "gourds",
+      "iconKey": "food_green_pepper",
+      "iconBrief": "宽肩中空绿色果",
+      "source": "art/food-icons/food_green_pepper.svg",
+      "drawable": "app/src/main/res/drawable/food_green_pepper.xml",
+      "revision": 2,
+      "family": "elongated",
+      "designParameters": {
+        "type": "pepper",
+        "bell": true
+      },
+      "pathCount": 4,
+      "status": "AUTHORED_REQUIRES_USER_VISUAL_ACCEPTANCE",
+      "sha256": "bfd2b1ff19649a7ade0280d23a77b1937cae334a50b82a71d0a8829c53c652bb"
+    },
+    {
+      "id": "red_bell_pepper",
+      "name": "红甜椒",
+      "categoryId": "gourds",
+      "iconKey": "food_red_bell_pepper",
+      "iconBrief": "红色分瓣灯笼果",
+      "source": "art/food-icons/food_red_bell_pepper.svg",
+      "drawable": "app/src/main/res/drawable/food_red_bell_pepper.xml",
+      "revision": 2,
+      "family": "elongated",
+      "designParameters": {
+        "type": "pepper",
+        "bell": true,
+        "color": "#C77459",
+        "highlight": "#E4A28A"
+      },
+      "pathCount": 4,
+      "status": "AUTHORED_REQUIRES_USER_VISUAL_ACCEPTANCE",
+      "sha256": "436b9bc51f020fea1a60d19d7707568f07ab835f82e6e0ac34d5da0796f5fcd3"
+    },
+    {
+      "id": "yellow_bell_pepper",
+      "name": "黄甜椒",
+      "categoryId": "gourds",
+      "iconKey": "food_yellow_bell_pepper",
+      "iconBrief": "黄色分瓣灯笼果",
+      "source": "art/food-icons/food_yellow_bell_pepper.svg",
+      "drawable": "app/src/main/res/drawable/food_yellow_bell_pepper.xml",
+      "revision": 2,
+      "family": "elongated",
+      "designParameters": {
+        "type": "pepper",
+        "bell": true,
+        "color": "#E2BE68",
+        "highlight": "#F2D493"
+      },
+      "pathCount": 4,
+      "status": "AUTHORED_REQUIRES_USER_VISUAL_ACCEPTANCE",
+      "sha256": "c6689cc18414862976ee456f146a314831c93eacd16ebbd530741b9006bc80bc"
+    },
+    {
+      "id": "hot_green_pepper",
+      "name": "尖椒",
+      "categoryId": "gourds",
+      "iconKey": "food_hot_green_pepper",
+      "iconBrief": "窄长带尖绿椒",
+      "source": "art/food-icons/food_hot_green_pepper.svg",
+      "drawable": "app/src/main/res/drawable/food_hot_green_pepper.xml",
+      "revision": 2,
+      "family": "elongated",
+      "designParameters": {
+        "type": "pepper"
+      },
+      "pathCount": 3,
+      "status": "AUTHORED_REQUIRES_USER_VISUAL_ACCEPTANCE",
+      "sha256": "be879818268b3a1c60423f7a25e127979bd52a0355ce5b259f3585b85341428d"
+    },
+    {
+      "id": "xiaomila",
+      "name": "小米椒",
+      "categoryId": "gourds",
+      "iconKey": "food_xiaomila",
+      "iconBrief": "一簇短细红辣椒",
+      "source": "art/food-icons/food_xiaomila.svg",
+      "drawable": "app/src/main/res/drawable/food_xiaomila.xml",
+      "revision": 2,
+      "family": "chilies",
+      "designParameters": {},
+      "pathCount": 9,
+      "status": "AUTHORED_REQUIRES_USER_VISUAL_ACCEPTANCE",
+      "sha256": "61113b51ea33b31746485287d095ecfbcf5e541cb8c563b8927311acfff1c6c6"
+    },
+    {
+      "id": "hang_pepper",
+      "name": "杭椒",
+      "categoryId": "gourds",
+      "iconKey": "food_hang_pepper",
+      "iconBrief": "弯曲细长青椒",
+      "source": "art/food-icons/food_hang_pepper.svg",
+      "drawable": "app/src/main/res/drawable/food_hang_pepper.xml",
+      "revision": 2,
+      "family": "elongated",
+      "designParameters": {
+        "type": "pepper",
+        "color": "#9DB475"
+      },
+      "pathCount": 3,
+      "status": "AUTHORED_REQUIRES_USER_VISUAL_ACCEPTANCE",
+      "sha256": "306013db5bef65d5a2d1abcff1accf06b4f542655e57b3947d70cd3c0277936e"
+    },
+    {
+      "id": "screw_pepper",
+      "name": "螺丝椒",
+      "categoryId": "gourds",
+      "iconKey": "food_screw_pepper",
+      "iconBrief": "扭曲褶皱青椒",
+      "source": "art/food-icons/food_screw_pepper.svg",
+      "drawable": "app/src/main/res/drawable/food_screw_pepper.xml",
+      "revision": 2,
+      "family": "elongated",
+      "designParameters": {
+        "type": "pepper",
+        "twist": true
+      },
+      "pathCount": 3,
+      "status": "AUTHORED_REQUIRES_USER_VISUAL_ACCEPTANCE",
+      "sha256": "9a0e33b745796e8f1bf2da595ba7c172c1be86e0e655e0e3d3da7864cedca297"
+    },
+    {
+      "id": "okra",
+      "name": "秋葵",
+      "categoryId": "gourds",
+      "iconKey": "food_okra",
+      "iconBrief": "尖长棱角果与星形切面",
+      "source": "art/food-icons/food_okra.svg",
+      "drawable": "app/src/main/res/drawable/food_okra.xml",
+      "revision": 2,
+      "family": "elongated",
+      "designParameters": {
+        "ridges": true,
+        "slice": true,
+        "star": true
+      },
+      "pathCount": 12,
+      "status": "AUTHORED_REQUIRES_USER_VISUAL_ACCEPTANCE",
+      "sha256": "170a646c124c979bf39f86493cb2f95a951caa70736f31c235505e7a08dc9fb0"
+    },
+    {
+      "id": "zucchini",
+      "name": "西葫芦",
+      "categoryId": "gourds",
+      "iconKey": "food_zucchini",
+      "iconBrief": "浅绿短粗果和淡色切片",
+      "source": "art/food-icons/food_zucchini.svg",
+      "drawable": "app/src/main/res/drawable/food_zucchini.xml",
+      "revision": 2,
+      "family": "elongated",
+      "designParameters": {
+        "ridges": true,
+        "slice": true,
+        "color": "#B5C78C"
+      },
+      "pathCount": 12,
+      "status": "AUTHORED_REQUIRES_USER_VISUAL_ACCEPTANCE",
+      "sha256": "4af2b96a881ff84d2adf1c49e9d37ec93b5bcda41a4e8acc9ecf6d156d7b627b"
+    },
+    {
+      "id": "winter_squash",
+      "name": "老南瓜",
+      "categoryId": "gourds",
+      "iconKey": "food_winter_squash",
+      "iconBrief": "橙色硬皮分瓣瓜与短梗",
+      "source": "art/food-icons/food_winter_squash.svg",
+      "drawable": "app/src/main/res/drawable/food_winter_squash.xml",
+      "revision": 2,
+      "family": "pumpkin",
+      "designParameters": {},
+      "pathCount": 7,
+      "status": "AUTHORED_REQUIRES_USER_VISUAL_ACCEPTANCE",
+      "sha256": "d3147e1c6816731b1ce7b39f7277dfa9c232e2592b24f8c63d301a4b4b888068"
+    },
+    {
+      "id": "butternut",
+      "name": "奶油南瓜",
+      "categoryId": "gourds",
+      "iconKey": "food_butternut",
+      "iconBrief": "浅褐葫芦形瓜和橙切面",
+      "source": "art/food-icons/food_butternut.svg",
+      "drawable": "app/src/main/res/drawable/food_butternut.xml",
+      "revision": 2,
+      "family": "elongated",
+      "designParameters": {
+        "type": "butternut",
+        "color": "#CDA571"
+      },
+      "pathCount": 3,
+      "status": "AUTHORED_REQUIRES_USER_VISUAL_ACCEPTANCE",
+      "sha256": "7751e1b515cf58be4af360902d8f1cd9aea67c826fe1b35aa42a257796aa2554"
+    },
+    {
+      "id": "kabocha",
+      "name": "贝贝南瓜",
+      "categoryId": "gourds",
+      "iconKey": "food_kabocha",
+      "iconBrief": "小型深绿硬皮扁瓜",
+      "source": "art/food-icons/food_kabocha.svg",
+      "drawable": "app/src/main/res/drawable/food_kabocha.xml",
+      "revision": 2,
+      "family": "pumpkin",
+      "designParameters": {
+        "color": "#597A5C",
+        "highlight": "#B5C78C"
+      },
+      "pathCount": 7,
+      "status": "AUTHORED_REQUIRES_USER_VISUAL_ACCEPTANCE",
+      "sha256": "d0a6d0506efab6a11fe6a9168fdc6a34133f0e3a04ca9fea2dedd45e8d86f47e"
+    },
+    {
+      "id": "winter_melon",
+      "name": "冬瓜",
+      "categoryId": "gourds",
+      "iconKey": "food_winter_melon",
+      "iconBrief": "深绿长瓜与厚白切面",
+      "source": "art/food-icons/food_winter_melon.svg",
+      "drawable": "app/src/main/res/drawable/food_winter_melon.xml",
+      "revision": 2,
+      "family": "elongated",
+      "designParameters": {
+        "ridges": true,
+        "slice": true,
+        "color": "#628D76",
+        "inside": "#F5EFDC"
+      },
+      "pathCount": 12,
+      "status": "AUTHORED_REQUIRES_USER_VISUAL_ACCEPTANCE",
+      "sha256": "324dabe9f9833b3c410a1b6ed9a72676c4dba4a48e61f555bf912005c370d54b"
+    },
+    {
+      "id": "loofah",
+      "name": "丝瓜",
+      "categoryId": "gourds",
+      "iconKey": "food_loofah",
+      "iconBrief": "细长带棱绿瓜",
+      "source": "art/food-icons/food_loofah.svg",
+      "drawable": "app/src/main/res/drawable/food_loofah.xml",
+      "revision": 2,
+      "family": "elongated",
+      "designParameters": {
+        "ridges": true,
+        "color": "#98AE73"
+      },
+      "pathCount": 4,
+      "status": "AUTHORED_REQUIRES_USER_VISUAL_ACCEPTANCE",
+      "sha256": "68ccace51ccedd4534d7d803e156d5b656ec66b2c3a48309e0f08e531f188ce0"
+    },
+    {
+      "id": "bitter_melon",
+      "name": "苦瓜",
+      "categoryId": "gourds",
+      "iconKey": "food_bitter_melon",
+      "iconBrief": "表面凸点的弯曲绿瓜",
+      "source": "art/food-icons/food_bitter_melon.svg",
+      "drawable": "app/src/main/res/drawable/food_bitter_melon.xml",
+      "revision": 2,
+      "family": "elongated",
+      "designParameters": {
+        "bumpy": true,
+        "color": "#B5C78C"
+      },
+      "pathCount": 23,
+      "status": "AUTHORED_REQUIRES_USER_VISUAL_ACCEPTANCE",
+      "sha256": "831a18327a619db56e944097c3e57b4525b296461a86575c33c70963408bb7c1"
+    },
+    {
+      "id": "bottle_gourd",
+      "name": "瓠瓜",
+      "categoryId": "gourds",
+      "iconKey": "food_bottle_gourd",
+      "iconBrief": "浅绿长颈圆尾果",
+      "source": "art/food-icons/food_bottle_gourd.svg",
+      "drawable": "app/src/main/res/drawable/food_bottle_gourd.xml",
+      "revision": 2,
+      "family": "elongated",
+      "designParameters": {
+        "type": "bottle",
+        "color": "#B5C78C"
+      },
+      "pathCount": 3,
+      "status": "AUTHORED_REQUIRES_USER_VISUAL_ACCEPTANCE",
+      "sha256": "b57916fd2bc126ca3196374b143c4fc7728993a837b91a1ab10e115de7e3babd"
+    },
+    {
+      "id": "chayote",
+      "name": "佛手瓜",
+      "categoryId": "gourds",
+      "iconKey": "food_chayote",
+      "iconBrief": "浅绿合掌形果与纵沟",
+      "source": "art/food-icons/food_chayote.svg",
+      "drawable": "app/src/main/res/drawable/food_chayote.xml",
+      "revision": 2,
+      "family": "elongated",
+      "designParameters": {
+        "type": "chayote"
+      },
+      "pathCount": 2,
+      "status": "AUTHORED_REQUIRES_USER_VISUAL_ACCEPTANCE",
+      "sha256": "93db2368cfb2f535738f2ed751bce12f05b4e778b24ab6b6f0490ebf4ef3bd90"
+    },
+    {
+      "id": "green_bean",
+      "name": "四季豆",
+      "categoryId": "beans",
+      "iconKey": "food_green_bean",
+      "iconBrief": "短直豆荚和小豆粒",
+      "source": "art/food-icons/food_green_bean.svg",
+      "drawable": "app/src/main/res/drawable/food_green_bean.xml",
+      "revision": 2,
+      "family": "beans",
+      "designParameters": {},
+      "pathCount": 4,
+      "status": "AUTHORED_REQUIRES_USER_VISUAL_ACCEPTANCE",
+      "sha256": "adf3c0789b861c63c49629ea6404e12b93761e362a899af5d2ab882655ef2ece"
+    },
+    {
+      "id": "wax_bean",
+      "name": "黄油豆角",
+      "categoryId": "beans",
+      "iconKey": "food_wax_bean",
+      "iconBrief": "黄色短豆荚与浅色豆粒",
+      "source": "art/food-icons/food_wax_bean.svg",
+      "drawable": "app/src/main/res/drawable/food_wax_bean.xml",
+      "revision": 2,
+      "family": "beans",
+      "designParameters": {
+        "color": "#E2BE68"
+      },
+      "pathCount": 4,
+      "status": "AUTHORED_REQUIRES_USER_VISUAL_ACCEPTANCE",
+      "sha256": "8fc34ee1b58fa7ef8813bf2876fe0e98ffaf666a76525ca8fa472ee614179d76"
+    },
+    {
+      "id": "yardlong_bean",
+      "name": "豇豆",
+      "categoryId": "beans",
+      "iconKey": "food_yardlong_bean",
+      "iconBrief": "盘绕的细长绿色豆荚",
+      "source": "art/food-icons/food_yardlong_bean.svg",
+      "drawable": "app/src/main/res/drawable/food_yardlong_bean.xml",
+      "revision": 2,
+      "family": "beans",
+      "designParameters": {
+        "type": "long"
+      },
+      "pathCount": 6,
+      "status": "AUTHORED_REQUIRES_USER_VISUAL_ACCEPTANCE",
+      "sha256": "62a1de15c89a5ebf18c90db4150e0c558e8f355fbe5c0f687856262cc534f75a"
+    },
+    {
+      "id": "snow_pea",
+      "name": "荷兰豆",
+      "categoryId": "beans",
+      "iconKey": "food_snow_pea",
+      "iconBrief": "扁平宽豆荚与小凸豆粒",
+      "source": "art/food-icons/food_snow_pea.svg",
+      "drawable": "app/src/main/res/drawable/food_snow_pea.xml",
+      "revision": 2,
+      "family": "beans",
+      "designParameters": {
+        "flat": true
+      },
+      "pathCount": 9,
+      "status": "AUTHORED_REQUIRES_USER_VISUAL_ACCEPTANCE",
+      "sha256": "38d8b515dd4b1914175877af7941e910004ad22fd973e0c1ebc346ebb7dc3688"
+    },
+    {
+      "id": "sugar_snap_pea",
+      "name": "甜豆",
+      "categoryId": "beans",
+      "iconKey": "food_sugar_snap_pea",
+      "iconBrief": "厚实饱满弯豆荚",
+      "source": "art/food-icons/food_sugar_snap_pea.svg",
+      "drawable": "app/src/main/res/drawable/food_sugar_snap_pea.xml",
+      "revision": 2,
+      "family": "beans",
+      "designParameters": {
+        "color": "#99B772"
+      },
+      "pathCount": 4,
+      "status": "AUTHORED_REQUIRES_USER_VISUAL_ACCEPTANCE",
+      "sha256": "3025cdb2b71f88d2e0d40ae0fbd1be502101c78aa33af6f3cd80e641514bf8e5"
+    },
+    {
+      "id": "green_pea",
+      "name": "青豌豆",
+      "categoryId": "beans",
+      "iconKey": "food_green_pea",
+      "iconBrief": "开裂豆荚与圆绿豆粒",
+      "source": "art/food-icons/food_green_pea.svg",
+      "drawable": "app/src/main/res/drawable/food_green_pea.xml",
+      "revision": 2,
+      "family": "beans",
+      "designParameters": {
+        "open": true
+      },
+      "pathCount": 7,
+      "status": "AUTHORED_REQUIRES_USER_VISUAL_ACCEPTANCE",
+      "sha256": "0f4892ae2c67d5406290c63777ef97cd00f70bac745a762e1aa612892935a676"
+    },
+    {
+      "id": "edamame",
+      "name": "毛豆",
+      "categoryId": "beans",
+      "iconKey": "food_edamame",
+      "iconBrief": "带绒毛的短荚与椭圆豆粒",
+      "source": "art/food-icons/food_edamame.svg",
+      "drawable": "app/src/main/res/drawable/food_edamame.xml",
+      "revision": 2,
+      "family": "beans",
+      "designParameters": {
+        "hairy": true,
+        "open": true
+      },
+      "pathCount": 15,
+      "status": "AUTHORED_REQUIRES_USER_VISUAL_ACCEPTANCE",
+      "sha256": "5f8d900ec5747b6f105aae0aa9470a34f61b80b147365280b41e09431e7414c1"
+    },
+    {
+      "id": "fava_bean",
+      "name": "鲜蚕豆",
+      "categoryId": "beans",
+      "iconKey": "food_fava_bean",
+      "iconBrief": "厚豆荚与扁宽浅绿豆",
+      "source": "art/food-icons/food_fava_bean.svg",
+      "drawable": "app/src/main/res/drawable/food_fava_bean.xml",
+      "revision": 2,
+      "family": "beans",
+      "designParameters": {
+        "open": true,
+        "big": true
+      },
+      "pathCount": 10,
+      "status": "AUTHORED_REQUIRES_USER_VISUAL_ACCEPTANCE",
+      "sha256": "95a2a5bb349021bca0402f09238a1ce26c4ed868f5e5cbd4b64cf11acc4f527c"
+    },
+    {
+      "id": "lima_bean",
+      "name": "利马豆",
+      "categoryId": "beans",
+      "iconKey": "food_lima_bean",
+      "iconBrief": "扁宽浅绿豆粒与短荚",
+      "source": "art/food-icons/food_lima_bean.svg",
+      "drawable": "app/src/main/res/drawable/food_lima_bean.xml",
+      "revision": 2,
+      "family": "beans",
+      "designParameters": {
+        "flat": true,
+        "big": true
+      },
+      "pathCount": 12,
+      "status": "AUTHORED_REQUIRES_USER_VISUAL_ACCEPTANCE",
+      "sha256": "f2f73c7818cf633c8dfcbdb160b791ac5d344d1857df1ff484cecd2dee9501dc"
+    },
+    {
+      "id": "hyacinth_bean",
+      "name": "扁豆",
+      "categoryId": "beans",
+      "iconKey": "food_hyacinth_bean",
+      "iconBrief": "宽扁弯荚与紫色边",
+      "source": "art/food-icons/food_hyacinth_bean.svg",
+      "drawable": "app/src/main/res/drawable/food_hyacinth_bean.xml",
+      "revision": 2,
+      "family": "beans",
+      "designParameters": {
+        "flat": true,
+        "color": "#A58BA0"
+      },
+      "pathCount": 9,
+      "status": "AUTHORED_REQUIRES_USER_VISUAL_ACCEPTANCE",
+      "sha256": "152b91cf4cb74a2b717fa0dbed7b69e39699c3be12cd4cd099b39e1124fc5df0"
+    },
+    {
+      "id": "corn",
+      "name": "鲜玉米",
+      "categoryId": "beans",
+      "iconKey": "food_corn",
+      "iconBrief": "苞叶包裹的金黄玉米棒",
+      "source": "art/food-icons/food_corn.svg",
+      "drawable": "app/src/main/res/drawable/food_corn.xml",
+      "revision": 2,
+      "family": "beans",
+      "designParameters": {
+        "type": "corn"
+      },
+      "pathCount": 25,
+      "status": "AUTHORED_REQUIRES_USER_VISUAL_ACCEPTANCE",
+      "sha256": "3c640ea7f7a8ad9cede5d30c8c7db3dd827dfcf903e09dbc682b70a18510ff0b"
+    },
+    {
+      "id": "mung_sprout",
+      "name": "绿豆芽",
+      "categoryId": "beans",
+      "iconKey": "food_mung_sprout",
+      "iconBrief": "细白芽茎与小黄绿豆头",
+      "source": "art/food-icons/food_mung_sprout.svg",
+      "drawable": "app/src/main/res/drawable/food_mung_sprout.xml",
+      "revision": 2,
+      "family": "beans",
+      "designParameters": {
+        "type": "sprout"
+      },
+      "pathCount": 21,
+      "status": "AUTHORED_REQUIRES_USER_VISUAL_ACCEPTANCE",
+      "sha256": "3f603629338fe98611e4843127cea90cd04b857573640a94900e190a68493936"
+    },
+    {
+      "id": "soy_sprout",
+      "name": "黄豆芽",
+      "categoryId": "beans",
+      "iconKey": "food_soy_sprout",
+      "iconBrief": "粗白芽茎与大黄豆头",
+      "source": "art/food-icons/food_soy_sprout.svg",
+      "drawable": "app/src/main/res/drawable/food_soy_sprout.xml",
+      "revision": 2,
+      "family": "beans",
+      "designParameters": {
+        "type": "sprout",
+        "thick": true,
+        "big": true
+      },
+      "pathCount": 21,
+      "status": "AUTHORED_REQUIRES_USER_VISUAL_ACCEPTANCE",
+      "sha256": "002eef9dcaaef563a3d0b55b7908fdeeb19faa8333a363cc3f680c8d142ffb3d"
+    },
+    {
+      "id": "alfalfa_sprout",
+      "name": "苜蓿芽",
+      "categoryId": "beans",
+      "iconKey": "food_alfalfa_sprout",
+      "iconBrief": "细密白茎和小双叶",
+      "source": "art/food-icons/food_alfalfa_sprout.svg",
+      "drawable": "app/src/main/res/drawable/food_alfalfa_sprout.xml",
+      "revision": 2,
+      "family": "beans",
+      "designParameters": {
+        "type": "sprout",
+        "leaves": true
+      },
+      "pathCount": 84,
+      "status": "AUTHORED_REQUIRES_USER_VISUAL_ACCEPTANCE",
+      "sha256": "b70665bd9936449172a286473da0d14502d57b46d339080f8e931082e2600585"
+    },
+    {
+      "id": "sunflower_shoot",
+      "name": "向日葵苗",
+      "categoryId": "beans",
+      "iconKey": "food_sunflower_shoot",
+      "iconBrief": "粗白茎与肥厚双叶",
+      "source": "art/food-icons/food_sunflower_shoot.svg",
+      "drawable": "app/src/main/res/drawable/food_sunflower_shoot.xml",
+      "revision": 2,
+      "family": "beans",
+      "designParameters": {
+        "type": "sprout",
+        "leaves": true,
+        "thick": true,
+        "big": true
+      },
+      "pathCount": 84,
+      "status": "AUTHORED_REQUIRES_USER_VISUAL_ACCEPTANCE",
+      "sha256": "bfe64ff8608ab36b9d3ae952ca56e7e12212a640d37c670cd55390cd4a58ec70"
+    },
+    {
+      "id": "yellow_onion",
+      "name": "黄洋葱",
+      "categoryId": "herbs",
+      "iconKey": "food_yellow_onion",
+      "iconBrief": "黄褐纸皮圆球和浅色切面",
+      "source": "art/food-icons/food_yellow_onion.svg",
+      "drawable": "app/src/main/res/drawable/food_yellow_onion.xml",
+      "revision": 2,
+      "family": "allium",
+      "designParameters": {
+        "type": "onion",
+        "color": "#CFAC74"
+      },
+      "pathCount": 7,
+      "status": "AUTHORED_REQUIRES_USER_VISUAL_ACCEPTANCE",
+      "sha256": "fbc87a6d7ee3114f259af7cb63cf6ce21eb4c0aab2b0e9360ff1c5e7d9a8b916"
+    },
+    {
+      "id": "red_onion",
+      "name": "紫洋葱",
+      "categoryId": "herbs",
+      "iconKey": "food_red_onion",
+      "iconBrief": "紫皮圆球与紫白同心切面",
+      "source": "art/food-icons/food_red_onion.svg",
+      "drawable": "app/src/main/res/drawable/food_red_onion.xml",
+      "revision": 2,
+      "family": "allium",
+      "designParameters": {
+        "type": "onion",
+        "color": "#876681",
+        "vein": "#F5EFDC"
+      },
+      "pathCount": 7,
+      "status": "AUTHORED_REQUIRES_USER_VISUAL_ACCEPTANCE",
+      "sha256": "dff41f792b79328ac34ddfdedc2b1b87a3ac20bd28deb0707569c25916a06d11"
+    },
+    {
+      "id": "white_onion",
+      "name": "白洋葱",
+      "categoryId": "herbs",
+      "iconKey": "food_white_onion",
+      "iconBrief": "白色层叠鳞茎",
+      "source": "art/food-icons/food_white_onion.svg",
+      "drawable": "app/src/main/res/drawable/food_white_onion.xml",
+      "revision": 2,
+      "family": "allium",
+      "designParameters": {
+        "type": "onion",
+        "color": "#F5EFDC"
+      },
+      "pathCount": 7,
+      "status": "AUTHORED_REQUIRES_USER_VISUAL_ACCEPTANCE",
+      "sha256": "15205a8e46b7aed61e6a70391a7c3013c08149faeb926c6c812829561a00e426"
+    },
+    {
+      "id": "scallion",
+      "name": "小葱",
+      "categoryId": "herbs",
+      "iconKey": "food_scallion",
+      "iconBrief": "细白葱根与长绿中空叶",
+      "source": "art/food-icons/food_scallion.svg",
+      "drawable": "app/src/main/res/drawable/food_scallion.xml",
+      "revision": 2,
+      "family": "allium",
+      "designParameters": {
+        "white": true,
+        "roots": true,
+        "count": 6
+      },
+      "pathCount": 18,
+      "status": "AUTHORED_REQUIRES_USER_VISUAL_ACCEPTANCE",
+      "sha256": "10aaa7621259e28174d2323331b78bfda3c85dc3692709391b3c0025fed69689"
+    },
+    {
+      "id": "welsh_onion",
+      "name": "大葱",
+      "categoryId": "herbs",
+      "iconKey": "food_welsh_onion",
+      "iconBrief": "粗白长葱段与厚绿叶",
+      "source": "art/food-icons/food_welsh_onion.svg",
+      "drawable": "app/src/main/res/drawable/food_welsh_onion.xml",
+      "revision": 2,
+      "family": "allium",
+      "designParameters": {
+        "white": true,
+        "roots": true,
+        "count": 3
+      },
+      "pathCount": 9,
+      "status": "AUTHORED_REQUIRES_USER_VISUAL_ACCEPTANCE",
+      "sha256": "d0f1724003e717d4fbdaa5cd26f77482e8d20042f720124c565cf5790d36b9a7"
+    },
+    {
+      "id": "leek",
+      "name": "韭葱",
+      "categoryId": "herbs",
+      "iconKey": "food_leek",
+      "iconBrief": "粗白圆柱茎和宽扁绿叶",
+      "source": "art/food-icons/food_leek.svg",
+      "drawable": "app/src/main/res/drawable/food_leek.xml",
+      "revision": 2,
+      "family": "allium",
+      "designParameters": {
+        "type": "leek"
+      },
+      "pathCount": 4,
+      "status": "AUTHORED_REQUIRES_USER_VISUAL_ACCEPTANCE",
+      "sha256": "8bee9afe952f42f30a52abf8846611bcfa5fdc6d7f9585d5415b06ae09dc8d6e"
+    },
+    {
+      "id": "chive",
+      "name": "韭菜",
+      "categoryId": "herbs",
+      "iconKey": "food_chive",
+      "iconBrief": "成束细长扁叶",
+      "source": "art/food-icons/food_chive.svg",
+      "drawable": "app/src/main/res/drawable/food_chive.xml",
+      "revision": 2,
+      "family": "allium",
+      "designParameters": {
+        "count": 7
+      },
+      "pathCount": 7,
+      "status": "AUTHORED_REQUIRES_USER_VISUAL_ACCEPTANCE",
+      "sha256": "81aa79488ba9e1f83ca50aaaedf6795e29ce7f18ec99197d7fd2c4d99fc0d324"
+    },
+    {
+      "id": "yellow_chive",
+      "name": "韭黄",
+      "categoryId": "herbs",
+      "iconKey": "food_yellow_chive",
+      "iconBrief": "成束浅黄色细扁叶",
+      "source": "art/food-icons/food_yellow_chive.svg",
+      "drawable": "app/src/main/res/drawable/food_yellow_chive.xml",
+      "revision": 2,
+      "family": "allium",
+      "designParameters": {
+        "count": 7,
+        "color": "#DAD19C"
+      },
+      "pathCount": 7,
+      "status": "AUTHORED_REQUIRES_USER_VISUAL_ACCEPTANCE",
+      "sha256": "40f06d93e55d90cbdfeeba3d11c794c5cc091ac017be2e88705bb3fd2b3876f9"
+    },
+    {
+      "id": "garlic_chive_flower",
+      "name": "韭菜花",
+      "categoryId": "herbs",
+      "iconKey": "food_garlic_chive_flower",
+      "iconBrief": "细长茎顶端闭合花苞",
+      "source": "art/food-icons/food_garlic_chive_flower.svg",
+      "drawable": "app/src/main/res/drawable/food_garlic_chive_flower.xml",
+      "revision": 2,
+      "family": "allium",
+      "designParameters": {
+        "count": 5,
+        "flower": true
+      },
+      "pathCount": 10,
+      "status": "AUTHORED_REQUIRES_USER_VISUAL_ACCEPTANCE",
+      "sha256": "a8e4ba046680fdd8a1897163873f87b3babc38495a9a846d9984230abeaa57dc"
+    },
+    {
+      "id": "garlic",
+      "name": "大蒜",
+      "categoryId": "herbs",
+      "iconKey": "food_garlic",
+      "iconBrief": "白色瓣状蒜头及一瓣蒜",
+      "source": "art/food-icons/food_garlic.svg",
+      "drawable": "app/src/main/res/drawable/food_garlic.xml",
+      "revision": 2,
+      "family": "allium",
+      "designParameters": {
+        "type": "garlic"
+      },
+      "pathCount": 4,
+      "status": "AUTHORED_REQUIRES_USER_VISUAL_ACCEPTANCE",
+      "sha256": "d744ed3bf61bab0d99ba77a4272ef9774801b94e0aefb0a848d18b3327032cf0"
+    },
+    {
+      "id": "garlic_shoot",
+      "name": "蒜薹",
+      "categoryId": "herbs",
+      "iconKey": "food_garlic_shoot",
+      "iconBrief": "长圆绿茎与弯钩尖端",
+      "source": "art/food-icons/food_garlic_shoot.svg",
+      "drawable": "app/src/main/res/drawable/food_garlic_shoot.xml",
+      "revision": 2,
+      "family": "allium",
+      "designParameters": {
+        "type": "scapes"
+      },
+      "pathCount": 8,
+      "status": "AUTHORED_REQUIRES_USER_VISUAL_ACCEPTANCE",
+      "sha256": "88855e57db344de3a31dfa8320989eca65c773204747e4e9d0928f2c1f8c102a"
+    },
+    {
+      "id": "green_garlic",
+      "name": "蒜苗",
+      "categoryId": "herbs",
+      "iconKey": "food_green_garlic",
+      "iconBrief": "白色细茎与宽长绿叶",
+      "source": "art/food-icons/food_green_garlic.svg",
+      "drawable": "app/src/main/res/drawable/food_green_garlic.xml",
+      "revision": 2,
+      "family": "allium",
+      "designParameters": {
+        "white": true,
+        "count": 4
+      },
+      "pathCount": 8,
+      "status": "AUTHORED_REQUIRES_USER_VISUAL_ACCEPTANCE",
+      "sha256": "3390d761a4af8ecfc4d732c3881032ecbbd3706aac4d2fc4a5bf49f185d0ed3d"
+    },
+    {
+      "id": "ginger",
+      "name": "生姜",
+      "categoryId": "herbs",
+      "iconKey": "food_ginger",
+      "iconBrief": "浅褐分叉块茎",
+      "source": "art/food-icons/food_ginger.svg",
+      "drawable": "app/src/main/res/drawable/food_ginger.xml",
+      "revision": 2,
+      "family": "allium",
+      "designParameters": {
+        "type": "ginger"
+      },
+      "pathCount": 2,
+      "status": "AUTHORED_REQUIRES_USER_VISUAL_ACCEPTANCE",
+      "sha256": "3292d1c2fb78eab828f3a553e1b6b3ded4df04e3cf1d676e4cd4ab562b8ba232"
+    },
+    {
+      "id": "cilantro",
+      "name": "香菜",
+      "categoryId": "herbs",
+      "iconKey": "food_cilantro",
+      "iconBrief": "细茎和圆齿扇形小叶",
+      "source": "art/food-icons/food_cilantro.svg",
+      "drawable": "app/src/main/res/drawable/food_cilantro.xml",
+      "revision": 2,
+      "family": "leafy",
+      "designParameters": {
+        "layout": "vine",
+        "form": "lobed",
+        "w": 23,
+        "h": 22,
+        "count": 3
+      },
+      "pathCount": 51,
+      "status": "AUTHORED_REQUIRES_USER_VISUAL_ACCEPTANCE",
+      "sha256": "b31482806498f52549999a90fb5509680fdfb7bb8fb450eaf6a6eb0835fd8393"
+    },
+    {
+      "id": "parsley",
+      "name": "欧芹",
+      "categoryId": "herbs",
+      "iconKey": "food_parsley",
+      "iconBrief": "三裂叶与细长叶柄",
+      "source": "art/food-icons/food_parsley.svg",
+      "drawable": "app/src/main/res/drawable/food_parsley.xml",
+      "revision": 2,
+      "family": "leafy",
+      "designParameters": {
+        "layout": "vine",
+        "form": "lobed",
+        "w": 23,
+        "h": 30,
+        "count": 2
+      },
+      "pathCount": 34,
+      "status": "AUTHORED_REQUIRES_USER_VISUAL_ACCEPTANCE",
+      "sha256": "b2da0e0794e23c79d19e6afa820a0c10f536965c6a8dfe9d30e9dd130cbb6dc0"
+    },
+    {
+      "id": "basil",
+      "name": "罗勒",
+      "categoryId": "herbs",
+      "iconKey": "food_basil",
+      "iconBrief": "成对光滑椭圆叶",
+      "source": "art/food-icons/food_basil.svg",
+      "drawable": "app/src/main/res/drawable/food_basil.xml",
+      "revision": 2,
+      "family": "leafy",
+      "designParameters": {
+        "layout": "vine",
+        "form": "oval",
+        "w": 25,
+        "h": 29,
+        "count": 2
+      },
+      "pathCount": 34,
+      "status": "AUTHORED_REQUIRES_USER_VISUAL_ACCEPTANCE",
+      "sha256": "9de7d8b8a1ae56ce4b70f69ab5237a1b14ef022a3c5f740405ec1871871a02b0"
+    },
+    {
+      "id": "mint",
+      "name": "薄荷",
+      "categoryId": "herbs",
+      "iconKey": "food_mint",
+      "iconBrief": "对生锯齿叶与明显叶脉",
+      "source": "art/food-icons/food_mint.svg",
+      "drawable": "app/src/main/res/drawable/food_mint.xml",
+      "revision": 2,
+      "family": "leafy",
+      "designParameters": {
+        "layout": "vine",
+        "form": "serrated",
+        "w": 25,
+        "h": 28,
+        "count": 2
+      },
+      "pathCount": 34,
+      "status": "AUTHORED_REQUIRES_USER_VISUAL_ACCEPTANCE",
+      "sha256": "0b9d44688dfe48e280e6d18bc289857e7ea3aa318694ab68fe41ec18df691bce"
+    },
+    {
+      "id": "perilla",
+      "name": "紫苏",
+      "categoryId": "herbs",
+      "iconKey": "food_perilla",
+      "iconBrief": "紫色锯齿心形叶",
+      "source": "art/food-icons/food_perilla.svg",
+      "drawable": "app/src/main/res/drawable/food_perilla.xml",
+      "revision": 2,
+      "family": "leafy",
+      "designParameters": {
+        "form": "serrated",
+        "w": 37,
+        "h": 44,
+        "count": 3,
+        "color": "#876681",
+        "stem": "#9D7C8F"
+      },
+      "pathCount": 21,
+      "status": "AUTHORED_REQUIRES_USER_VISUAL_ACCEPTANCE",
+      "sha256": "23eefaf43aefd7799195da0c9343165f1bc447ba2a0eab67e02d47d31524041d"
+    },
+    {
+      "id": "rosemary",
+      "name": "迷迭香",
+      "categoryId": "herbs",
+      "iconKey": "food_rosemary",
+      "iconBrief": "木质小枝与密集针形叶",
+      "source": "art/food-icons/food_rosemary.svg",
+      "drawable": "app/src/main/res/drawable/food_rosemary.xml",
+      "revision": 2,
+      "family": "wispyHerb",
+      "designParameters": {
+        "wood": true
+      },
+      "pathCount": 45,
+      "status": "AUTHORED_REQUIRES_USER_VISUAL_ACCEPTANCE",
+      "sha256": "2329d2f4eb4747a45a6fb6e502c8080a5638133aacc82b1976f31ecf336a6bbf"
+    },
+    {
+      "id": "dill",
+      "name": "莳萝",
+      "categoryId": "herbs",
+      "iconKey": "food_dill",
+      "iconBrief": "纤细羽毛状叶",
+      "source": "art/food-icons/food_dill.svg",
+      "drawable": "app/src/main/res/drawable/food_dill.xml",
+      "revision": 2,
+      "family": "wispyHerb",
+      "designParameters": {},
+      "pathCount": 87,
+      "status": "AUTHORED_REQUIRES_USER_VISUAL_ACCEPTANCE",
+      "sha256": "9d400dcf6a2c79751ead4e930085972825525c161526a0549ea103305ad186e9"
+    },
+    {
+      "id": "button_mushroom",
+      "name": "口蘑",
+      "categoryId": "mushrooms",
+      "iconKey": "food_button_mushroom",
+      "iconBrief": "白色圆帽和短粗柄",
+      "source": "art/food-icons/food_button_mushroom.svg",
+      "drawable": "app/src/main/res/drawable/food_button_mushroom.xml",
+      "revision": 2,
+      "family": "capMushroom",
+      "designParameters": {
+        "color": "#F5EFDC",
+        "round": true,
+        "highlight": "#FFF9E9"
+      },
+      "pathCount": 34,
+      "status": "AUTHORED_REQUIRES_USER_VISUAL_ACCEPTANCE",
+      "sha256": "5de1ee17136d78b6e9e1f1c066801a54ccc20e4e009889e093cfdd8cdfed5088"
+    },
+    {
+      "id": "cremini",
+      "name": "褐蘑菇",
+      "categoryId": "mushrooms",
+      "iconKey": "food_cremini",
+      "iconBrief": "褐色圆帽与短柄",
+      "source": "art/food-icons/food_cremini.svg",
+      "drawable": "app/src/main/res/drawable/food_cremini.xml",
+      "revision": 2,
+      "family": "capMushroom",
+      "designParameters": {
+        "color": "#A5896A",
+        "round": true
+      },
+      "pathCount": 34,
+      "status": "AUTHORED_REQUIRES_USER_VISUAL_ACCEPTANCE",
+      "sha256": "73903ed35087efbc570c02ad0e5fcd82597339c02f148667c5ebaaa2bbb9737e"
+    },
+    {
+      "id": "shiitake",
+      "name": "鲜香菇",
+      "categoryId": "mushrooms",
+      "iconKey": "food_shiitake",
+      "iconBrief": "褐色伞帽与浅色裂纹",
+      "source": "art/food-icons/food_shiitake.svg",
+      "drawable": "app/src/main/res/drawable/food_shiitake.xml",
+      "revision": 2,
+      "family": "capMushroom",
+      "designParameters": {
+        "crack": true,
+        "color": "#9C795B"
+      },
+      "pathCount": 35,
+      "status": "AUTHORED_REQUIRES_USER_VISUAL_ACCEPTANCE",
+      "sha256": "041e3f84ad3078716cd50ee13ebe8d6431763113275a71f3c515bb395580cbe3"
+    },
+    {
+      "id": "oyster_mushroom",
+      "name": "平菇",
+      "categoryId": "mushrooms",
+      "iconKey": "food_oyster_mushroom",
+      "iconBrief": "层叠灰色扇形菌盖",
+      "source": "art/food-icons/food_oyster_mushroom.svg",
+      "drawable": "app/src/main/res/drawable/food_oyster_mushroom.xml",
+      "revision": 2,
+      "family": "fan",
+      "designParameters": {
+        "color": "#ADB2A6"
+      },
+      "pathCount": 27,
+      "status": "AUTHORED_REQUIRES_USER_VISUAL_ACCEPTANCE",
+      "sha256": "bcd8deeaa5bc8f14e0c8cd99fc797416e82fa0bcdbbdfade4ced92ff71c8544e"
+    },
+    {
+      "id": "baby_oyster",
+      "name": "秀珍菇",
+      "categoryId": "mushrooms",
+      "iconKey": "food_baby_oyster",
+      "iconBrief": "小型浅灰扇形菌盖簇",
+      "source": "art/food-icons/food_baby_oyster.svg",
+      "drawable": "app/src/main/res/drawable/food_baby_oyster.xml",
+      "revision": 2,
+      "family": "fan",
+      "designParameters": {
+        "small": true,
+        "color": "#C9CEC2"
+      },
+      "pathCount": 45,
+      "status": "AUTHORED_REQUIRES_USER_VISUAL_ACCEPTANCE",
+      "sha256": "4abfbdea9ccf3ad16fb445ff7a1fd2999cfbaefd458c2edfca75a2d2557c525b"
+    },
+    {
+      "id": "king_oyster",
+      "name": "杏鲍菇",
+      "categoryId": "mushrooms",
+      "iconKey": "food_king_oyster",
+      "iconBrief": "粗白长柄和小褐帽",
+      "source": "art/food-icons/food_king_oyster.svg",
+      "drawable": "app/src/main/res/drawable/food_king_oyster.xml",
+      "revision": 2,
+      "family": "king",
+      "designParameters": {},
+      "pathCount": 6,
+      "status": "AUTHORED_REQUIRES_USER_VISUAL_ACCEPTANCE",
+      "sha256": "fe1ab1fd1c0811f616971002ca51ff115a46acf75fe08cf971bc9623cf370669"
+    },
+    {
+      "id": "enoki",
+      "name": "金针菇",
+      "categoryId": "mushrooms",
+      "iconKey": "food_enoki",
+      "iconBrief": "密集细白长柄和小圆帽",
+      "source": "art/food-icons/food_enoki.svg",
+      "drawable": "app/src/main/res/drawable/food_enoki.xml",
+      "revision": 2,
+      "family": "cluster",
+      "designParameters": {
+        "count": 11,
+        "cap": 4,
+        "color": "#F5EFDC"
+      },
+      "pathCount": 34,
+      "status": "AUTHORED_REQUIRES_USER_VISUAL_ACCEPTANCE",
+      "sha256": "4be1a8134b73883ee96dd04ea83d87ab19e134a709d57776de014b560dd0f03d"
+    },
+    {
+      "id": "brown_beech",
+      "name": "蟹味菇",
+      "categoryId": "mushrooms",
+      "iconKey": "food_brown_beech",
+      "iconBrief": "成簇细柄与褐斑小帽",
+      "source": "art/food-icons/food_brown_beech.svg",
+      "drawable": "app/src/main/res/drawable/food_brown_beech.xml",
+      "revision": 2,
+      "family": "cluster",
+      "designParameters": {
+        "count": 6,
+        "cap": 9,
+        "color": "#BCAB8A",
+        "spots": true,
+        "short": true
+      },
+      "pathCount": 31,
+      "status": "AUTHORED_REQUIRES_USER_VISUAL_ACCEPTANCE",
+      "sha256": "a4fae68bafce73cf17653a760628e93e1dcf46044c7883903f41a8905c6c0047"
+    },
+    {
+      "id": "white_beech",
+      "name": "白玉菇",
+      "categoryId": "mushrooms",
+      "iconKey": "food_white_beech",
+      "iconBrief": "成簇白色圆帽短柄",
+      "source": "art/food-icons/food_white_beech.svg",
+      "drawable": "app/src/main/res/drawable/food_white_beech.xml",
+      "revision": 2,
+      "family": "cluster",
+      "designParameters": {
+        "count": 6,
+        "cap": 9,
+        "color": "#F5EFDC",
+        "short": true
+      },
+      "pathCount": 19,
+      "status": "AUTHORED_REQUIRES_USER_VISUAL_ACCEPTANCE",
+      "sha256": "dddae925f9a5bf7828b1e4a5ed50fcd0f3aeac80e05a06e0fb20f6541a64d750"
+    },
+    {
+      "id": "tea_tree_mushroom",
+      "name": "鲜茶树菇",
+      "categoryId": "mushrooms",
+      "iconKey": "food_tea_tree_mushroom",
+      "iconBrief": "细长褐柄与小伞帽",
+      "source": "art/food-icons/food_tea_tree_mushroom.svg",
+      "drawable": "app/src/main/res/drawable/food_tea_tree_mushroom.xml",
+      "revision": 2,
+      "family": "cluster",
+      "designParameters": {
+        "count": 6,
+        "cap": 7,
+        "color": "#9F7A57",
+        "stem": "#C3AE8B"
+      },
+      "pathCount": 19,
+      "status": "AUTHORED_REQUIRES_USER_VISUAL_ACCEPTANCE",
+      "sha256": "8a6d51d23b3008cdcfd7ed6ee82a1cdd4180ebf5458fb6c2022ee521b40ef8b4"
+    },
+    {
+      "id": "shaggy_mane",
+      "name": "鸡腿菇",
+      "categoryId": "mushrooms",
+      "iconKey": "food_shaggy_mane",
+      "iconBrief": "修长蛋形白帽与细小鳞片",
+      "source": "art/food-icons/food_shaggy_mane.svg",
+      "drawable": "app/src/main/res/drawable/food_shaggy_mane.xml",
+      "revision": 2,
+      "family": "shaggy",
+      "designParameters": {},
+      "pathCount": 22,
+      "status": "AUTHORED_REQUIRES_USER_VISUAL_ACCEPTANCE",
+      "sha256": "d4787ebd5b7cab3b5dfe57b88027ac885bc2fe42174c2f2cda60d9f9296dfaae"
+    },
+    {
+      "id": "lions_mane",
+      "name": "猴头菇",
+      "categoryId": "mushrooms",
+      "iconKey": "food_lions_mane",
+      "iconBrief": "乳白圆球与垂下短刺",
+      "source": "art/food-icons/food_lions_mane.svg",
+      "drawable": "app/src/main/res/drawable/food_lions_mane.xml",
+      "revision": 2,
+      "family": "shaggy",
+      "designParameters": {
+        "lion": true
+      },
+      "pathCount": 51,
+      "status": "AUTHORED_REQUIRES_USER_VISUAL_ACCEPTANCE",
+      "sha256": "8771f6414915756be9602a48e98934f0a8e45173b979cf139dc75ecc643a419d"
+    },
+    {
+      "id": "white_ferula",
+      "name": "白灵菇",
+      "categoryId": "mushrooms",
+      "iconKey": "food_white_ferula",
+      "iconBrief": "白色扇形厚帽与粗柄",
+      "source": "art/food-icons/food_white_ferula.svg",
+      "drawable": "app/src/main/res/drawable/food_white_ferula.xml",
+      "revision": 2,
+      "family": "fan",
+      "designParameters": {
+        "color": "#F5EFDC",
+        "vein": "#D9CFAD"
+      },
+      "pathCount": 27,
+      "status": "AUTHORED_REQUIRES_USER_VISUAL_ACCEPTANCE",
+      "sha256": "01a0580a117ad6c097871050e4809b4b207503923abe9dae034198a2114f079a"
+    },
+    {
+      "id": "maitake",
+      "name": "舞茸",
+      "categoryId": "mushrooms",
+      "iconKey": "food_maitake",
+      "iconBrief": "褐灰层叠小扇叶菌盖",
+      "source": "art/food-icons/food_maitake.svg",
+      "drawable": "app/src/main/res/drawable/food_maitake.xml",
+      "revision": 2,
+      "family": "fan",
+      "designParameters": {
+        "small": true,
+        "color": "#9B9481"
+      },
+      "pathCount": 45,
+      "status": "AUTHORED_REQUIRES_USER_VISUAL_ACCEPTANCE",
+      "sha256": "e72d3a512ac893820562c2b9adf370b02836f37b6d5c96c15e8e8b98752f1349"
+    },
+    {
+      "id": "straw_mushroom",
+      "name": "鲜草菇",
+      "categoryId": "mushrooms",
+      "iconKey": "food_straw_mushroom",
+      "iconBrief": "灰褐卵形未开伞菌体",
+      "source": "art/food-icons/food_straw_mushroom.svg",
+      "drawable": "app/src/main/res/drawable/food_straw_mushroom.xml",
+      "revision": 2,
+      "family": "shaggy",
+      "designParameters": {
+        "straw": true
+      },
+      "pathCount": 6,
+      "status": "AUTHORED_REQUIRES_USER_VISUAL_ACCEPTANCE",
+      "sha256": "ee0901aad67bb77264f5f8303aad3fd949236b1c9789173765d1649dd527ada7"
+    },
+    {
+      "id": "fresh_wood_ear",
+      "name": "鲜木耳",
+      "categoryId": "mushrooms",
+      "iconKey": "food_fresh_wood_ear",
+      "iconBrief": "褐黑色耳状波浪薄片",
+      "source": "art/food-icons/food_fresh_wood_ear.svg",
+      "drawable": "app/src/main/res/drawable/food_fresh_wood_ear.xml",
+      "revision": 2,
+      "family": "frilly",
+      "designParameters": {
+        "ear": true,
+        "color": "#756657",
+        "vein": "#B1A38B"
+      },
+      "pathCount": 8,
+      "status": "AUTHORED_REQUIRES_USER_VISUAL_ACCEPTANCE",
+      "sha256": "c17e3b9b565d857e548b91d3bf8d002d698eac9a3b9c6e335a3540278d24844d"
+    },
+    {
+      "id": "fresh_snow_fungus",
+      "name": "鲜银耳",
+      "categoryId": "mushrooms",
+      "iconKey": "food_fresh_snow_fungus",
+      "iconBrief": "乳白半透明层叠皱褶",
+      "source": "art/food-icons/food_fresh_snow_fungus.svg",
+      "drawable": "app/src/main/res/drawable/food_fresh_snow_fungus.xml",
+      "revision": 2,
+      "family": "frilly",
+      "designParameters": {
+        "color": "#F5EFDC",
+        "vein": "#BCB69B"
+      },
+      "pathCount": 28,
+      "status": "AUTHORED_REQUIRES_USER_VISUAL_ACCEPTANCE",
+      "sha256": "c1d47a3f95e3aedfc119f27f0a3be709e6c5be7d0f4928f94d3200e35d0800d1"
+    },
+    {
+      "id": "soaked_wood_ear",
+      "name": "泡发木耳",
+      "categoryId": "mushrooms",
+      "iconKey": "food_soaked_wood_ear",
+      "iconBrief": "深色展开耳片与小水滴标记",
+      "source": "art/food-icons/food_soaked_wood_ear.svg",
+      "drawable": "app/src/main/res/drawable/food_soaked_wood_ear.xml",
+      "revision": 2,
+      "family": "frilly",
+      "designParameters": {
+        "ear": true,
+        "color": "#504C44",
+        "vein": "#A79E8B",
+        "water": true
+      },
+      "pathCount": 10,
+      "status": "AUTHORED_REQUIRES_USER_VISUAL_ACCEPTANCE",
+      "sha256": "8ac1f2bdedf68a2b7c1ce3ed4f1a736b789f866d14ef71d5d2e06334196666dd"
+    },
+    {
+      "id": "soaked_shiitake",
+      "name": "泡发香菇",
+      "categoryId": "mushrooms",
+      "iconKey": "food_soaked_shiitake",
+      "iconBrief": "深褐伞盖与小水滴标记",
+      "source": "art/food-icons/food_soaked_shiitake.svg",
+      "drawable": "app/src/main/res/drawable/food_soaked_shiitake.xml",
+      "revision": 2,
+      "family": "capMushroom",
+      "designParameters": {
+        "crack": true,
+        "color": "#6E5745",
+        "highlight": "#A59077",
+        "water": true
+      },
+      "pathCount": 37,
+      "status": "AUTHORED_REQUIRES_USER_VISUAL_ACCEPTANCE",
+      "sha256": "9eb0e2a0b11c22bbe26e66081421eb89e093ac915094ec0e0b957bcf0157d132"
+    },
+    {
+      "id": "morel",
+      "name": "鲜羊肚菌",
+      "categoryId": "mushrooms",
+      "iconKey": "food_morel",
+      "iconBrief": "锥形蜂窝菌帽",
+      "source": "art/food-icons/food_morel.svg",
+      "drawable": "app/src/main/res/drawable/food_morel.xml",
+      "revision": 2,
+      "family": "shaggy",
+      "designParameters": {
+        "morel": true
+      },
+      "pathCount": 22,
+      "status": "AUTHORED_REQUIRES_USER_VISUAL_ACCEPTANCE",
+      "sha256": "c97191c802c4b854b6df338e8a78c0940543d41c08e0b4541df11766724db567"
+    },
+    {
+      "id": "apple",
+      "name": "苹果",
+      "categoryId": "fruit",
+      "iconKey": "food_apple",
+      "iconBrief": "圆润红果与凹口短柄",
+      "source": "art/food-icons/food_apple.svg",
+      "drawable": "app/src/main/res/drawable/food_apple.xml",
+      "revision": 2,
+      "family": "pome",
+      "designParameters": {
+        "shape": "apple"
+      },
+      "pathCount": 8,
+      "status": "AUTHORED_REQUIRES_USER_VISUAL_ACCEPTANCE",
+      "sha256": "49c17c1b8c9fa3ead18370ab4a6731d9ffa80ad8cac444870d9d3b1bdae1551b"
+    },
+    {
+      "id": "green_apple",
+      "name": "青苹果",
+      "categoryId": "fruit",
+      "iconKey": "food_green_apple",
+      "iconBrief": "绿色圆果与浅色半切面",
+      "source": "art/food-icons/food_green_apple.svg",
+      "drawable": "app/src/main/res/drawable/food_green_apple.xml",
+      "revision": 2,
+      "family": "pome",
+      "designParameters": {
+        "shape": "apple",
+        "color": "#9CB57C",
+        "highlight": "#CCD899",
+        "slice": true
+      },
+      "pathCount": 11,
+      "status": "AUTHORED_REQUIRES_USER_VISUAL_ACCEPTANCE",
+      "sha256": "aecf04c16813a5e6b556cb949f1bcdb25ebb0ba36b68e20f459ee2bc78e405f8"
+    },
+    {
+      "id": "pear",
+      "name": "梨",
+      "categoryId": "fruit",
+      "iconKey": "food_pear",
+      "iconBrief": "浅黄梨形果与白色切面",
+      "source": "art/food-icons/food_pear.svg",
+      "drawable": "app/src/main/res/drawable/food_pear.xml",
+      "revision": 2,
+      "family": "pome",
+      "designParameters": {
+        "shape": "pear",
+        "color": "#D8CA8D",
+        "highlight": "#F5EFDC",
+        "slice": true
+      },
+      "pathCount": 11,
+      "status": "AUTHORED_REQUIRES_USER_VISUAL_ACCEPTANCE",
+      "sha256": "e4f98c2fe585ab67190b8694621ec41119b1359aea7e1cf9920ee29329ad4604"
+    },
+    {
+      "id": "asian_pear",
+      "name": "砂梨",
+      "categoryId": "fruit",
+      "iconKey": "food_asian_pear",
+      "iconBrief": "黄褐斑点圆果",
+      "source": "art/food-icons/food_asian_pear.svg",
+      "drawable": "app/src/main/res/drawable/food_asian_pear.xml",
+      "revision": 2,
+      "family": "pome",
+      "designParameters": {
+        "color": "#C5AE79",
+        "highlight": "#E9D9AA",
+        "dots": true
+      },
+      "pathCount": 35,
+      "status": "AUTHORED_REQUIRES_USER_VISUAL_ACCEPTANCE",
+      "sha256": "6d6dc1c9ab7fc0492a5de7c3fa151d6055fb47c2ac99983f625e50bcc995efef"
+    },
+    {
+      "id": "peach",
+      "name": "桃子",
+      "categoryId": "fruit",
+      "iconKey": "food_peach",
+      "iconBrief": "粉红心形果与缝合线",
+      "source": "art/food-icons/food_peach.svg",
+      "drawable": "app/src/main/res/drawable/food_peach.xml",
+      "revision": 2,
+      "family": "stoneFruit",
+      "designParameters": {
+        "shape": "peach",
+        "color": "#D79B88",
+        "seam": "#A96664"
+      },
+      "pathCount": 9,
+      "status": "AUTHORED_REQUIRES_USER_VISUAL_ACCEPTANCE",
+      "sha256": "4ba5a1836903cc6da85709765b575db99102996f90c4fcf4864318720a28bc94"
+    },
+    {
+      "id": "flat_peach",
+      "name": "蟠桃",
+      "categoryId": "fruit",
+      "iconKey": "food_flat_peach",
+      "iconBrief": "扁平桃形果与中部凹槽",
+      "source": "art/food-icons/food_flat_peach.svg",
+      "drawable": "app/src/main/res/drawable/food_flat_peach.xml",
+      "revision": 2,
+      "family": "stoneFruit",
+      "designParameters": {
+        "shape": "flat",
+        "color": "#D79B88",
+        "seam": "#A96664"
+      },
+      "pathCount": 9,
+      "status": "AUTHORED_REQUIRES_USER_VISUAL_ACCEPTANCE",
+      "sha256": "9d2ab5f459f757220655a8fc7a4b25b4e6a46920d6f16f39a6bc326f3ab267b2"
+    },
+    {
+      "id": "yellow_peach",
+      "name": "黄桃",
+      "categoryId": "fruit",
+      "iconKey": "food_yellow_peach",
+      "iconBrief": "金黄桃形果和深色果核",
+      "source": "art/food-icons/food_yellow_peach.svg",
+      "drawable": "app/src/main/res/drawable/food_yellow_peach.xml",
+      "revision": 2,
+      "family": "stoneFruit",
+      "designParameters": {
+        "shape": "peach",
+        "color": "#E2BE68",
+        "highlight": "#F0D497",
+        "seam": "#9B7758",
+        "cut": true
+      },
+      "pathCount": 13,
+      "status": "AUTHORED_REQUIRES_USER_VISUAL_ACCEPTANCE",
+      "sha256": "75cacb6045aa75436fb6727e65b7c20ca66f0d79f22d99ecb94f892040e24abd"
+    },
+    {
+      "id": "nectarine",
+      "name": "油桃",
+      "categoryId": "fruit",
+      "iconKey": "food_nectarine",
+      "iconBrief": "光滑红黄果与明显缝合线",
+      "source": "art/food-icons/food_nectarine.svg",
+      "drawable": "app/src/main/res/drawable/food_nectarine.xml",
+      "revision": 2,
+      "family": "stoneFruit",
+      "designParameters": {
+        "shape": "peach",
+        "color": "#CF805E",
+        "highlight": "#E2BE68",
+        "seam": "#AC5F4D"
+      },
+      "pathCount": 9,
+      "status": "AUTHORED_REQUIRES_USER_VISUAL_ACCEPTANCE",
+      "sha256": "32b3aabb92ac101b74135806e1896324146de90dea6224f34462128175da59a5"
+    },
+    {
+      "id": "plum",
+      "name": "李子",
+      "categoryId": "fruit",
+      "iconKey": "food_plum",
+      "iconBrief": "紫红小圆果和浅黄切面",
+      "source": "art/food-icons/food_plum.svg",
+      "drawable": "app/src/main/res/drawable/food_plum.xml",
+      "revision": 2,
+      "family": "stoneFruit",
+      "designParameters": {
+        "color": "#876681",
+        "highlight": "#B897B2",
+        "cut": true
+      },
+      "pathCount": 12,
+      "status": "AUTHORED_REQUIRES_USER_VISUAL_ACCEPTANCE",
+      "sha256": "26e534a104e52278c29926f680073d3616aece284b7aeeb2e7536a25c90640ae"
+    },
+    {
+      "id": "prune",
+      "name": "西梅",
+      "categoryId": "fruit",
+      "iconKey": "food_prune",
+      "iconBrief": "深紫椭圆果与长核",
+      "source": "art/food-icons/food_prune.svg",
+      "drawable": "app/src/main/res/drawable/food_prune.xml",
+      "revision": 2,
+      "family": "stoneFruit",
+      "designParameters": {
+        "shape": "oval",
+        "color": "#6D526D",
+        "highlight": "#A38AA3",
+        "cut": true
+      },
+      "pathCount": 12,
+      "status": "AUTHORED_REQUIRES_USER_VISUAL_ACCEPTANCE",
+      "sha256": "75f1a0e76400377b60a1580b2f521d5c967ee219e9dbe66c174f7709049d9eaa"
+    },
+    {
+      "id": "apricot",
+      "name": "杏",
+      "categoryId": "fruit",
+      "iconKey": "food_apricot",
+      "iconBrief": "橙黄小圆果和缝合线",
+      "source": "art/food-icons/food_apricot.svg",
+      "drawable": "app/src/main/res/drawable/food_apricot.xml",
+      "revision": 2,
+      "family": "stoneFruit",
+      "designParameters": {
+        "color": "#DF9B59",
+        "highlight": "#E2BE68",
+        "seam": "#9B7758"
+      },
+      "pathCount": 9,
+      "status": "AUTHORED_REQUIRES_USER_VISUAL_ACCEPTANCE",
+      "sha256": "c444d463181e57211099b03b08e9cf3768a3794f7cfbc88c17d2110eabcdf79e"
+    },
+    {
+      "id": "strawberry",
+      "name": "草莓",
+      "categoryId": "fruit",
+      "iconKey": "food_strawberry",
+      "iconBrief": "带小籽的红色心形果",
+      "source": "art/food-icons/food_strawberry.svg",
+      "drawable": "app/src/main/res/drawable/food_strawberry.xml",
+      "revision": 2,
+      "family": "strawberry",
+      "designParameters": {},
+      "pathCount": 23,
+      "status": "AUTHORED_REQUIRES_USER_VISUAL_ACCEPTANCE",
+      "sha256": "cbca9d6454066a3d5daefb46ba894381410c88670ada7e6e034e8437f07dbbdd"
+    },
+    {
+      "id": "blueberry",
+      "name": "蓝莓",
+      "categoryId": "fruit",
+      "iconKey": "food_blueberry",
+      "iconBrief": "蓝灰小圆果与星形果脐",
+      "source": "art/food-icons/food_blueberry.svg",
+      "drawable": "app/src/main/res/drawable/food_blueberry.xml",
+      "revision": 2,
+      "family": "berry",
+      "designParameters": {
+        "blue": true,
+        "color": "#8894AC"
+      },
+      "pathCount": 14,
+      "status": "AUTHORED_REQUIRES_USER_VISUAL_ACCEPTANCE",
+      "sha256": "e9b9e59a3d948f809d906b9620f825d1746c06e27e141dbf6849fe0904d3df8a"
+    },
+    {
+      "id": "raspberry",
+      "name": "树莓",
+      "categoryId": "fruit",
+      "iconKey": "food_raspberry",
+      "iconBrief": "由小颗粒组成的红色空心果",
+      "source": "art/food-icons/food_raspberry.svg",
+      "drawable": "app/src/main/res/drawable/food_raspberry.xml",
+      "revision": 2,
+      "family": "berry",
+      "designParameters": {
+        "color": "#BD6B68",
+        "hollow": true
+      },
+      "pathCount": 38,
+      "status": "AUTHORED_REQUIRES_USER_VISUAL_ACCEPTANCE",
+      "sha256": "2e2e3ec4c617d947025aa731dfe7b50c44e17d255c78fb3578847c62b167a95f"
+    },
+    {
+      "id": "blackberry",
+      "name": "黑莓",
+      "categoryId": "fruit",
+      "iconKey": "food_blackberry",
+      "iconBrief": "深紫色聚合颗粒果",
+      "source": "art/food-icons/food_blackberry.svg",
+      "drawable": "app/src/main/res/drawable/food_blackberry.xml",
+      "revision": 2,
+      "family": "berry",
+      "designParameters": {
+        "color": "#705B73",
+        "highlight": "#AF96A7"
+      },
+      "pathCount": 37,
+      "status": "AUTHORED_REQUIRES_USER_VISUAL_ACCEPTANCE",
+      "sha256": "847e93d412972ebddfe7c0586f3decadd58899714ae50ece5b98aeec2fbe74e4"
+    },
+    {
+      "id": "cherry",
+      "name": "樱桃",
+      "categoryId": "fruit",
+      "iconKey": "food_cherry",
+      "iconBrief": "成对红色小圆果与长柄",
+      "source": "art/food-icons/food_cherry.svg",
+      "drawable": "app/src/main/res/drawable/food_cherry.xml",
+      "revision": 2,
+      "family": "cherry",
+      "designParameters": {},
+      "pathCount": 12,
+      "status": "AUTHORED_REQUIRES_USER_VISUAL_ACCEPTANCE",
+      "sha256": "bf97f03cb997270cf6d1ef5640138940841babcb7448e83becd1332904d4b393"
+    },
+    {
+      "id": "grape",
+      "name": "紫葡萄",
+      "categoryId": "fruit",
+      "iconKey": "food_grape",
+      "iconBrief": "紫色葡萄串",
+      "source": "art/food-icons/food_grape.svg",
+      "drawable": "app/src/main/res/drawable/food_grape.xml",
+      "revision": 2,
+      "family": "grapes",
+      "designParameters": {
+        "color": "#886487",
+        "highlight": "#C0A2BA"
+      },
+      "pathCount": 32,
+      "status": "AUTHORED_REQUIRES_USER_VISUAL_ACCEPTANCE",
+      "sha256": "ad1e8262ea39c4060788943b6f1426f9609d87712129b5378e57ac044a3214c9"
+    },
+    {
+      "id": "green_grape",
+      "name": "青提",
+      "categoryId": "fruit",
+      "iconKey": "food_green_grape",
+      "iconBrief": "浅绿长圆葡萄串",
+      "source": "art/food-icons/food_green_grape.svg",
+      "drawable": "app/src/main/res/drawable/food_green_grape.xml",
+      "revision": 2,
+      "family": "grapes",
+      "designParameters": {
+        "color": "#AABD7F",
+        "highlight": "#DFE3AE",
+        "long": true
+      },
+      "pathCount": 32,
+      "status": "AUTHORED_REQUIRES_USER_VISUAL_ACCEPTANCE",
+      "sha256": "eee91ee2622041dc3833538489cc7cbd7376fa2bc8a6486adad79888f18d0145"
+    },
+    {
+      "id": "red_grape",
+      "name": "红提",
+      "categoryId": "fruit",
+      "iconKey": "food_red_grape",
+      "iconBrief": "红色椭圆葡萄串",
+      "source": "art/food-icons/food_red_grape.svg",
+      "drawable": "app/src/main/res/drawable/food_red_grape.xml",
+      "revision": 2,
+      "family": "grapes",
+      "designParameters": {
+        "color": "#B8797E",
+        "highlight": "#DCB1A5",
+        "long": true
+      },
+      "pathCount": 32,
+      "status": "AUTHORED_REQUIRES_USER_VISUAL_ACCEPTANCE",
+      "sha256": "52334ce1ceae35cb4b5ae60267517121822ad648e0b83fa3d37d7214acd46e6a"
+    },
+    {
+      "id": "orange",
+      "name": "橙子",
+      "categoryId": "fruit",
+      "iconKey": "food_orange",
+      "iconBrief": "橙色圆果与分瓣切面",
+      "source": "art/food-icons/food_orange.svg",
+      "drawable": "app/src/main/res/drawable/food_orange.xml",
+      "revision": 2,
+      "family": "citrus",
+      "designParameters": {
+        "slice": true
+      },
+      "pathCount": 21,
+      "status": "AUTHORED_REQUIRES_USER_VISUAL_ACCEPTANCE",
+      "sha256": "2236a116f7fd21840a1a781a9685b9fdf0e253cee5c2c6efb24b4e7f0f521df3"
+    },
+    {
+      "id": "mandarin",
+      "name": "橘子",
+      "categoryId": "fruit",
+      "iconKey": "food_mandarin",
+      "iconBrief": "扁圆橙果和可剥外皮",
+      "source": "art/food-icons/food_mandarin.svg",
+      "drawable": "app/src/main/res/drawable/food_mandarin.xml",
+      "revision": 2,
+      "family": "citrus",
+      "designParameters": {
+        "flat": true,
+        "peel": true
+      },
+      "pathCount": 9,
+      "status": "AUTHORED_REQUIRES_USER_VISUAL_ACCEPTANCE",
+      "sha256": "be8e827045f39dfda99eb44fd4ab61a4d22d367993fba4cfed49c1521b105460"
+    },
+    {
+      "id": "tangerine",
+      "name": "柑",
+      "categoryId": "fruit",
+      "iconKey": "food_tangerine",
+      "iconBrief": "小扁圆柑橘与短绿叶",
+      "source": "art/food-icons/food_tangerine.svg",
+      "drawable": "app/src/main/res/drawable/food_tangerine.xml",
+      "revision": 2,
+      "family": "citrus",
+      "designParameters": {
+        "flat": true
+      },
+      "pathCount": 8,
+      "status": "AUTHORED_REQUIRES_USER_VISUAL_ACCEPTANCE",
+      "sha256": "fffbffad4fcd371b3beec433ace87aeb2e4ee64909605c8b2b2e2d63c9632502"
+    },
+    {
+      "id": "pomelo",
+      "name": "柚子",
+      "categoryId": "fruit",
+      "iconKey": "food_pomelo",
+      "iconBrief": "大型梨形黄果与厚白皮",
+      "source": "art/food-icons/food_pomelo.svg",
+      "drawable": "app/src/main/res/drawable/food_pomelo.xml",
+      "revision": 2,
+      "family": "citrus",
+      "designParameters": {
+        "pomelo": true,
+        "color": "#D2C787",
+        "slice": true,
+        "flesh": "#D9A39C"
+      },
+      "pathCount": 21,
+      "status": "AUTHORED_REQUIRES_USER_VISUAL_ACCEPTANCE",
+      "sha256": "89cf4ed89224e45361592f73cf47b7671667d5c32d97305f36c07e3917a15e35"
+    },
+    {
+      "id": "grapefruit",
+      "name": "西柚",
+      "categoryId": "fruit",
+      "iconKey": "food_grapefruit",
+      "iconBrief": "黄色圆果与粉红放射切面",
+      "source": "art/food-icons/food_grapefruit.svg",
+      "drawable": "app/src/main/res/drawable/food_grapefruit.xml",
+      "revision": 2,
+      "family": "citrus",
+      "designParameters": {
+        "color": "#E2BE68",
+        "slice": true,
+        "flesh": "#D8857B"
+      },
+      "pathCount": 21,
+      "status": "AUTHORED_REQUIRES_USER_VISUAL_ACCEPTANCE",
+      "sha256": "99178f6b9119d4636dcd4a64815e981e5dbcbb4f0e1889cad4c6390aa3ce49ba"
+    },
+    {
+      "id": "lemon",
+      "name": "柠檬",
+      "categoryId": "fruit",
+      "iconKey": "food_lemon",
+      "iconBrief": "两端尖的黄色椭圆果",
+      "source": "art/food-icons/food_lemon.svg",
+      "drawable": "app/src/main/res/drawable/food_lemon.xml",
+      "revision": 2,
+      "family": "citrus",
+      "designParameters": {
+        "lemon": true,
+        "color": "#E2BE68",
+        "highlight": "#F5EFDC"
+      },
+      "pathCount": 8,
+      "status": "AUTHORED_REQUIRES_USER_VISUAL_ACCEPTANCE",
+      "sha256": "e3f8bd21b09e7f03f0911af7d58a89116a898b0ef3a964dac72fffbb9a9fa770"
+    },
+    {
+      "id": "lime",
+      "name": "青柠",
+      "categoryId": "fruit",
+      "iconKey": "food_lime",
+      "iconBrief": "绿色圆果与浅绿切面",
+      "source": "art/food-icons/food_lime.svg",
+      "drawable": "app/src/main/res/drawable/food_lime.xml",
+      "revision": 2,
+      "family": "citrus",
+      "designParameters": {
+        "color": "#7D9C67",
+        "highlight": "#B5C78C",
+        "slice": true,
+        "flesh": "#B5C78C"
+      },
+      "pathCount": 21,
+      "status": "AUTHORED_REQUIRES_USER_VISUAL_ACCEPTANCE",
+      "sha256": "e6e854f8b77a1b74cd1e57f1a5da8a5531343b53f05647ca9a48a11674676c32"
+    },
+    {
+      "id": "kumquat",
+      "name": "金桔",
+      "categoryId": "fruit",
+      "iconKey": "food_kumquat",
+      "iconBrief": "一簇小橙色椭圆果",
+      "source": "art/food-icons/food_kumquat.svg",
+      "drawable": "app/src/main/res/drawable/food_kumquat.xml",
+      "revision": 2,
+      "family": "smallFruit",
+      "designParameters": {},
+      "pathCount": 11,
+      "status": "AUTHORED_REQUIRES_USER_VISUAL_ACCEPTANCE",
+      "sha256": "8e5dbc20ab1ba6deb6bb779b6d01d404b32f13dec6142b7f25c362f5a573dff4"
+    },
+    {
+      "id": "kiwi",
+      "name": "猕猴桃",
+      "categoryId": "fruit",
+      "iconKey": "food_kiwi",
+      "iconBrief": "褐色绒皮果与绿籽切面",
+      "source": "art/food-icons/food_kiwi.svg",
+      "drawable": "app/src/main/res/drawable/food_kiwi.xml",
+      "revision": 2,
+      "family": "kiwi",
+      "designParameters": {},
+      "pathCount": 57,
+      "status": "AUTHORED_REQUIRES_USER_VISUAL_ACCEPTANCE",
+      "sha256": "198f08aefc11854c05591d0d8a0962b15728a8348623f8f6e56b1188adb86d42"
+    },
+    {
+      "id": "gold_kiwi",
+      "name": "黄心猕猴桃",
+      "categoryId": "fruit",
+      "iconKey": "food_gold_kiwi",
+      "iconBrief": "褐皮果与金黄放射切面",
+      "source": "art/food-icons/food_gold_kiwi.svg",
+      "drawable": "app/src/main/res/drawable/food_gold_kiwi.xml",
+      "revision": 2,
+      "family": "kiwi",
+      "designParameters": {
+        "gold": true
+      },
+      "pathCount": 57,
+      "status": "AUTHORED_REQUIRES_USER_VISUAL_ACCEPTANCE",
+      "sha256": "e09eb756ef01d70a672bb3c58fa4766173efc12015098fa6c8032c63658583ea"
+    },
+    {
+      "id": "banana",
+      "name": "香蕉",
+      "categoryId": "fruit",
+      "iconKey": "food_banana",
+      "iconBrief": "弯曲黄色香蕉束",
+      "source": "art/food-icons/food_banana.svg",
+      "drawable": "app/src/main/res/drawable/food_banana.xml",
+      "revision": 2,
+      "family": "banana",
+      "designParameters": {},
+      "pathCount": 10,
+      "status": "AUTHORED_REQUIRES_USER_VISUAL_ACCEPTANCE",
+      "sha256": "a6608dd52a125d83440684b6ec4134ab252da515252de0b848111984a20ae8d1"
+    },
+    {
+      "id": "mango",
+      "name": "芒果",
+      "categoryId": "fruit",
+      "iconKey": "food_mango",
+      "iconBrief": "红黄肾形果与橙色切面",
+      "source": "art/food-icons/food_mango.svg",
+      "drawable": "app/src/main/res/drawable/food_mango.xml",
+      "revision": 2,
+      "family": "mango",
+      "designParameters": {},
+      "pathCount": 12,
+      "status": "AUTHORED_REQUIRES_USER_VISUAL_ACCEPTANCE",
+      "sha256": "a0ea25b1fa346641cc2adb5b7b2a756f80839bdbc407b3c1f37c928846fbaea7"
+    },
+    {
+      "id": "papaya",
+      "name": "木瓜",
+      "categoryId": "fruit",
+      "iconKey": "food_papaya",
+      "iconBrief": "长椭圆橙果与黑籽切面",
+      "source": "art/food-icons/food_papaya.svg",
+      "drawable": "app/src/main/res/drawable/food_papaya.xml",
+      "revision": 2,
+      "family": "cutLongFruit",
+      "designParameters": {
+        "skin": "#DF9B59",
+        "flesh": "#EAA573",
+        "papaya": true
+      },
+      "pathCount": 28,
+      "status": "AUTHORED_REQUIRES_USER_VISUAL_ACCEPTANCE",
+      "sha256": "dedbabcba15f6ce4921b63ec39fac8b8f5ff2263a2d68c0fd64f91ebcd966b85"
+    },
+    {
+      "id": "pineapple",
+      "name": "菠萝",
+      "categoryId": "fruit",
+      "iconKey": "food_pineapple",
+      "iconBrief": "菱格黄果皮与尖叶冠",
+      "source": "art/food-icons/food_pineapple.svg",
+      "drawable": "app/src/main/res/drawable/food_pineapple.xml",
+      "revision": 2,
+      "family": "pineapple",
+      "designParameters": {},
+      "pathCount": 42,
+      "status": "AUTHORED_REQUIRES_USER_VISUAL_ACCEPTANCE",
+      "sha256": "38393586ed5a768eaffd5b35f2c0c03f20ad584736efc3778f072f1959b8b460"
+    },
+    {
+      "id": "avocado",
+      "name": "牛油果",
+      "categoryId": "fruit",
+      "iconKey": "food_avocado",
+      "iconBrief": "绿梨形果与大褐核切面",
+      "source": "art/food-icons/food_avocado.svg",
+      "drawable": "app/src/main/res/drawable/food_avocado.xml",
+      "revision": 2,
+      "family": "cutLongFruit",
+      "designParameters": {
+        "skin": "#57794E",
+        "flesh": "#CED89B"
+      },
+      "pathCount": 12,
+      "status": "AUTHORED_REQUIRES_USER_VISUAL_ACCEPTANCE",
+      "sha256": "33bf9ac8e67c4fa07030c9d77415764d22604755ba855931a443180857aedf67"
+    },
+    {
+      "id": "cantaloupe",
+      "name": "哈密瓜",
+      "categoryId": "fruit",
+      "iconKey": "food_cantaloupe",
+      "iconBrief": "网纹长圆果与橙色切面",
+      "source": "art/food-icons/food_cantaloupe.svg",
+      "drawable": "app/src/main/res/drawable/food_cantaloupe.xml",
+      "revision": 2,
+      "family": "melon",
+      "designParameters": {
+        "skin": "#C5B789",
+        "flesh": "#DF9B59",
+        "net": true,
+        "long": true
+      },
+      "pathCount": 28,
+      "status": "AUTHORED_REQUIRES_USER_VISUAL_ACCEPTANCE",
+      "sha256": "a0710b63cf7e314bee319c61a84af74dbbc94855a8a9618e38e82a0bffcd16bf"
+    },
+    {
+      "id": "honeydew",
+      "name": "蜜瓜",
+      "categoryId": "fruit",
+      "iconKey": "food_honeydew",
+      "iconBrief": "浅绿光滑圆果和淡绿切面",
+      "source": "art/food-icons/food_honeydew.svg",
+      "drawable": "app/src/main/res/drawable/food_honeydew.xml",
+      "revision": 2,
+      "family": "melon",
+      "designParameters": {
+        "skin": "#C8D49C",
+        "flesh": "#E0E4B2"
+      },
+      "pathCount": 10,
+      "status": "AUTHORED_REQUIRES_USER_VISUAL_ACCEPTANCE",
+      "sha256": "156cc1e276181fbf2fd679b18edc16193f439e7c1b3f0d654a9af971e56e56a4"
+    },
+    {
+      "id": "muskmelon",
+      "name": "香瓜",
+      "categoryId": "fruit",
+      "iconKey": "food_muskmelon",
+      "iconBrief": "带条纹小圆瓜",
+      "source": "art/food-icons/food_muskmelon.svg",
+      "drawable": "app/src/main/res/drawable/food_muskmelon.xml",
+      "revision": 2,
+      "family": "melon",
+      "designParameters": {
+        "skin": "#B5C78C",
+        "flesh": "#F5EFDC",
+        "stripes": true
+      },
+      "pathCount": 14,
+      "status": "AUTHORED_REQUIRES_USER_VISUAL_ACCEPTANCE",
+      "sha256": "be69f7e49c9fce3ebe3e8224bb93a4198a09e4d20b11fcf3fe34f248bcc50617"
+    },
+    {
+      "id": "watermelon",
+      "name": "西瓜",
+      "categoryId": "fruit",
+      "iconKey": "food_watermelon",
+      "iconBrief": "绿条纹圆瓜与红籽三角切片",
+      "source": "art/food-icons/food_watermelon.svg",
+      "drawable": "app/src/main/res/drawable/food_watermelon.xml",
+      "revision": 2,
+      "family": "melon",
+      "designParameters": {
+        "skin": "#7D9C67",
+        "stripes": true,
+        "triangle": true
+      },
+      "pathCount": 12,
+      "status": "AUTHORED_REQUIRES_USER_VISUAL_ACCEPTANCE",
+      "sha256": "43d112d9a1bc6d24eb7c526b373926ff46273879c5e897636ae115fd144d0842"
+    },
+    {
+      "id": "guava",
+      "name": "番石榴",
+      "categoryId": "fruit",
+      "iconKey": "food_guava",
+      "iconBrief": "绿色球果与粉白籽切面",
+      "source": "art/food-icons/food_guava.svg",
+      "drawable": "app/src/main/res/drawable/food_guava.xml",
+      "revision": 2,
+      "family": "tropical",
+      "designParameters": {
+        "type": "guava",
+        "color": "#B5C78C",
+        "flesh": "#E7C0B3",
+        "pulp": true
+      },
+      "pathCount": 35,
+      "status": "AUTHORED_REQUIRES_USER_VISUAL_ACCEPTANCE",
+      "sha256": "a406e9e775f3999419820064964fa0f9c490cd0631b23d32fdc5834443be2f47"
+    },
+    {
+      "id": "dragon_fruit",
+      "name": "火龙果",
+      "categoryId": "fruit",
+      "iconKey": "food_dragon_fruit",
+      "iconBrief": "粉红鳞片果皮与黑籽白切面",
+      "source": "art/food-icons/food_dragon_fruit.svg",
+      "drawable": "app/src/main/res/drawable/food_dragon_fruit.xml",
+      "revision": 2,
+      "family": "tropical",
+      "designParameters": {
+        "type": "dragon"
+      },
+      "pathCount": 29,
+      "status": "AUTHORED_REQUIRES_USER_VISUAL_ACCEPTANCE",
+      "sha256": "23ea94b915c0cc3fd4577c2080d4929076e740b62b4dab63cc5bb0481ef5d832"
+    },
+    {
+      "id": "lychee",
+      "name": "荔枝",
+      "categoryId": "fruit",
+      "iconKey": "food_lychee",
+      "iconBrief": "粗糙红壳与白色半剥果肉",
+      "source": "art/food-icons/food_lychee.svg",
+      "drawable": "app/src/main/res/drawable/food_lychee.xml",
+      "revision": 2,
+      "family": "tropical",
+      "designParameters": {
+        "type": "lychee",
+        "color": "#C77459",
+        "rough": true
+      },
+      "pathCount": 36,
+      "status": "AUTHORED_REQUIRES_USER_VISUAL_ACCEPTANCE",
+      "sha256": "6dfe31cf0e3fd68ccde5bba33d6e72659d631359f6f303d2a8ca0a7f8617b517"
+    },
+    {
+      "id": "longan",
+      "name": "龙眼",
+      "categoryId": "fruit",
+      "iconKey": "food_longan",
+      "iconBrief": "褐色小圆果与黑核白肉",
+      "source": "art/food-icons/food_longan.svg",
+      "drawable": "app/src/main/res/drawable/food_longan.xml",
+      "revision": 2,
+      "family": "tropical",
+      "designParameters": {
+        "type": "longan",
+        "color": "#9B7758",
+        "blackPit": true,
+        "highlight": "#D9CFAD"
+      },
+      "pathCount": 12,
+      "status": "AUTHORED_REQUIRES_USER_VISUAL_ACCEPTANCE",
+      "sha256": "bc29ab3e04d30d1038dd49b64bcec255bb21254d3dffe568911b786ef0668e91"
+    },
+    {
+      "id": "rambutan",
+      "name": "红毛丹",
+      "categoryId": "fruit",
+      "iconKey": "food_rambutan",
+      "iconBrief": "红色毛刺果皮与白果肉",
+      "source": "art/food-icons/food_rambutan.svg",
+      "drawable": "app/src/main/res/drawable/food_rambutan.xml",
+      "revision": 2,
+      "family": "tropical",
+      "designParameters": {
+        "type": "rambutan",
+        "color": "#C77459",
+        "rough": true
+      },
+      "pathCount": 56,
+      "status": "AUTHORED_REQUIRES_USER_VISUAL_ACCEPTANCE",
+      "sha256": "7934e76c962e151ec359c6a745d13d3396f113f3518d4ca65be4901e01204372"
+    },
+    {
+      "id": "mangosteen",
+      "name": "山竹",
+      "categoryId": "fruit",
+      "iconKey": "food_mangosteen",
+      "iconBrief": "紫色圆壳与白色分瓣果肉",
+      "source": "art/food-icons/food_mangosteen.svg",
+      "drawable": "app/src/main/res/drawable/food_mangosteen.xml",
+      "revision": 2,
+      "family": "tropical",
+      "designParameters": {
+        "type": "mangosteen",
+        "color": "#765570"
+      },
+      "pathCount": 17,
+      "status": "AUTHORED_REQUIRES_USER_VISUAL_ACCEPTANCE",
+      "sha256": "363c014bf2fb256f67fcd5237b3d94c9fc0d2ac7c29f66e9e0dcde23043e9b20"
+    },
+    {
+      "id": "durian",
+      "name": "榴莲",
+      "categoryId": "fruit",
+      "iconKey": "food_durian",
+      "iconBrief": "绿色尖刺果壳与淡黄果肉",
+      "source": "art/food-icons/food_durian.svg",
+      "drawable": "app/src/main/res/drawable/food_durian.xml",
+      "revision": 2,
+      "family": "tropical",
+      "designParameters": {
+        "type": "durian"
+      },
+      "pathCount": 29,
+      "status": "AUTHORED_REQUIRES_USER_VISUAL_ACCEPTANCE",
+      "sha256": "a3a414df846523fc77ece9f1342f0c1daac22cf59c0952eb5a14535297e3f477"
+    },
+    {
+      "id": "jackfruit",
+      "name": "菠萝蜜",
+      "categoryId": "fruit",
+      "iconKey": "food_jackfruit",
+      "iconBrief": "绿色粗粒果皮与黄色果苞",
+      "source": "art/food-icons/food_jackfruit.svg",
+      "drawable": "app/src/main/res/drawable/food_jackfruit.xml",
+      "revision": 2,
+      "family": "pineapple",
+      "designParameters": {
+        "jack": true
+      },
+      "pathCount": 45,
+      "status": "AUTHORED_REQUIRES_USER_VISUAL_ACCEPTANCE",
+      "sha256": "8b52fb847014bbf1aef5275ae8e24e19be17fd6eb03d773b730b283524d4dbaf"
+    },
+    {
+      "id": "passionfruit",
+      "name": "百香果",
+      "categoryId": "fruit",
+      "iconKey": "food_passionfruit",
+      "iconBrief": "紫色圆果与黄色籽浆切面",
+      "source": "art/food-icons/food_passionfruit.svg",
+      "drawable": "app/src/main/res/drawable/food_passionfruit.xml",
+      "revision": 2,
+      "family": "tropical",
+      "designParameters": {
+        "type": "passionfruit",
+        "color": "#876681",
+        "flesh": "#E2BE68",
+        "pulp": true
+      },
+      "pathCount": 35,
+      "status": "AUTHORED_REQUIRES_USER_VISUAL_ACCEPTANCE",
+      "sha256": "2220231cfb67877a4c7ae6376a1f74342f2f53be72b10be80a8b11b9a9a537ee"
+    },
+    {
+      "id": "persimmon",
+      "name": "柿子",
+      "categoryId": "fruit",
+      "iconKey": "food_persimmon",
+      "iconBrief": "橙色扁圆果与宽绿萼",
+      "source": "art/food-icons/food_persimmon.svg",
+      "drawable": "app/src/main/res/drawable/food_persimmon.xml",
+      "revision": 2,
+      "family": "persimmon",
+      "designParameters": {},
+      "pathCount": 10,
+      "status": "AUTHORED_REQUIRES_USER_VISUAL_ACCEPTANCE",
+      "sha256": "91c8c38083a7c98949225d5dad19f4f351217a08a6938a0ad137bb4541142ecc"
+    },
+    {
+      "id": "pomegranate",
+      "name": "石榴",
+      "categoryId": "fruit",
+      "iconKey": "food_pomegranate",
+      "iconBrief": "红色圆果与晶莹果籽切面",
+      "source": "art/food-icons/food_pomegranate.svg",
+      "drawable": "app/src/main/res/drawable/food_pomegranate.xml",
+      "revision": 2,
+      "family": "tropical",
+      "designParameters": {
+        "type": "pomegranate",
+        "color": "#C77459",
+        "pulp": true
+      },
+      "pathCount": 36,
+      "status": "AUTHORED_REQUIRES_USER_VISUAL_ACCEPTANCE",
+      "sha256": "e8470d436a16e503ccbe2a01172f31daa8131782b78492be0700a684d2921d97"
+    },
+    {
+      "id": "jujube",
+      "name": "鲜枣",
+      "categoryId": "fruit",
+      "iconKey": "food_jujube",
+      "iconBrief": "红绿小椭圆果",
+      "source": "art/food-icons/food_jujube.svg",
+      "drawable": "app/src/main/res/drawable/food_jujube.xml",
+      "revision": 2,
+      "family": "smallFruit",
+      "designParameters": {
+        "color": "#B5C78C",
+        "redPatch": true
+      },
+      "pathCount": 14,
+      "status": "AUTHORED_REQUIRES_USER_VISUAL_ACCEPTANCE",
+      "sha256": "092a0f618db80ed537f984b2f079a5fe6007e0d4470257d94fbe89fe7851493e"
+    },
+    {
+      "id": "loquat",
+      "name": "枇杷",
+      "categoryId": "fruit",
+      "iconKey": "food_loquat",
+      "iconBrief": "橙黄小果与大褐核切面",
+      "source": "art/food-icons/food_loquat.svg",
+      "drawable": "app/src/main/res/drawable/food_loquat.xml",
+      "revision": 2,
+      "family": "smallFruit",
+      "designParameters": {
+        "color": "#DF9B59",
+        "pit": true
+      },
+      "pathCount": 13,
+      "status": "AUTHORED_REQUIRES_USER_VISUAL_ACCEPTANCE",
+      "sha256": "54ef34a221b6ab151ad25d2385249b9bc5d46c5e7a8fd85083a92bfb6ec64d00"
+    },
+    {
+      "id": "fig",
+      "name": "无花果",
+      "categoryId": "fruit",
+      "iconKey": "food_fig",
+      "iconBrief": "紫色梨形果与红色细籽切面",
+      "source": "art/food-icons/food_fig.svg",
+      "drawable": "app/src/main/res/drawable/food_fig.xml",
+      "revision": 2,
+      "family": "tropical",
+      "designParameters": {
+        "type": "fig",
+        "color": "#876681",
+        "flesh": "#C37C81",
+        "pulp": true
+      },
+      "pathCount": 35,
+      "status": "AUTHORED_REQUIRES_USER_VISUAL_ACCEPTANCE",
+      "sha256": "6a6674f86b6e176062b8795c21a4072de7de4e9c2cdd0f5b89ce8b3dcd8eb218"
+    },
+    {
+      "id": "mulberry",
+      "name": "桑葚",
+      "categoryId": "fruit",
+      "iconKey": "food_mulberry",
+      "iconBrief": "细长深紫聚合小果",
+      "source": "art/food-icons/food_mulberry.svg",
+      "drawable": "app/src/main/res/drawable/food_mulberry.xml",
+      "revision": 2,
+      "family": "berry",
+      "designParameters": {
+        "color": "#6C596F",
+        "highlight": "#A78D9F",
+        "long": true
+      },
+      "pathCount": 33,
+      "status": "AUTHORED_REQUIRES_USER_VISUAL_ACCEPTANCE",
+      "sha256": "21c967c65f191613d20f2d837ad99dd38eb82dd63bd48796cb692656dc01d896"
+    },
+    {
+      "id": "wax_apple",
+      "name": "莲雾",
+      "categoryId": "fruit",
+      "iconKey": "food_wax_apple",
+      "iconBrief": "红色钟形果与白肉切面",
+      "source": "art/food-icons/food_wax_apple.svg",
+      "drawable": "app/src/main/res/drawable/food_wax_apple.xml",
+      "revision": 2,
+      "family": "tropical",
+      "designParameters": {
+        "type": "wax"
+      },
+      "pathCount": 4,
+      "status": "AUTHORED_REQUIRES_USER_VISUAL_ACCEPTANCE",
+      "sha256": "d34ba9603db17cbea781f282742f2b1ad03392b39ff89e0243b70b553ff87947"
+    },
+    {
+      "id": "starfruit",
+      "name": "杨桃",
+      "categoryId": "fruit",
+      "iconKey": "food_starfruit",
+      "iconBrief": "黄绿色棱形果与星形切片",
+      "source": "art/food-icons/food_starfruit.svg",
+      "drawable": "app/src/main/res/drawable/food_starfruit.xml",
+      "revision": 2,
+      "family": "tropical",
+      "designParameters": {
+        "type": "star"
+      },
+      "pathCount": 4,
+      "status": "AUTHORED_REQUIRES_USER_VISUAL_ACCEPTANCE",
+      "sha256": "d95b3ad6a285098e2924867f575d571fbb0def897244824fb3810fc823416c55"
+    },
+    {
+      "id": "pork_loin",
+      "name": "猪里脊",
+      "categoryId": "meat",
+      "iconKey": "food_pork_loin",
+      "iconBrief": "浅粉色长肉条",
+      "source": "art/food-icons/food_pork_loin.svg",
+      "drawable": "app/src/main/res/drawable/food_pork_loin.xml",
+      "revision": 2,
+      "family": "steak",
+      "designParameters": {
+        "long": true,
+        "color": "#D79B88"
+      },
+      "pathCount": 2,
+      "status": "AUTHORED_REQUIRES_USER_VISUAL_ACCEPTANCE",
+      "sha256": "fa16ba89566b0fa64c6d12d70db7811d396f099e8829d1533b17b505df5123f1"
+    },
+    {
+      "id": "pork_belly",
+      "name": "五花肉",
+      "categoryId": "meat",
+      "iconKey": "food_pork_belly",
+      "iconBrief": "粉白相间的多层肉片",
+      "source": "art/food-icons/food_pork_belly.svg",
+      "drawable": "app/src/main/res/drawable/food_pork_belly.xml",
+      "revision": 2,
+      "family": "belly",
+      "designParameters": {},
+      "pathCount": 4,
+      "status": "AUTHORED_REQUIRES_USER_VISUAL_ACCEPTANCE",
+      "sha256": "1c0ff105992aa5594e20bed6989d67cb1243bd307b2794fa581489de2a63acd8"
+    },
+    {
+      "id": "pork_shoulder",
+      "name": "猪肩肉",
+      "categoryId": "meat",
+      "iconKey": "food_pork_shoulder",
+      "iconBrief": "粉色大肉块与脂肪纹理",
+      "source": "art/food-icons/food_pork_shoulder.svg",
+      "drawable": "app/src/main/res/drawable/food_pork_shoulder.xml",
+      "revision": 2,
+      "family": "meatChunks",
+      "designParameters": {
+        "large": true
+      },
+      "pathCount": 3,
+      "status": "AUTHORED_REQUIRES_USER_VISUAL_ACCEPTANCE",
+      "sha256": "8bd0978106a4daddfc521c33d860ea1045a1a1783bfcf2231f299f9db1aaa835"
+    },
+    {
+      "id": "pork_chop",
+      "name": "猪排",
+      "categoryId": "meat",
+      "iconKey": "food_pork_chop",
+      "iconBrief": "带白色肋骨的粉色肉排",
+      "source": "art/food-icons/food_pork_chop.svg",
+      "drawable": "app/src/main/res/drawable/food_pork_chop.xml",
+      "revision": 2,
+      "family": "steak",
+      "designParameters": {
+        "color": "#D79B88",
+        "bone": true,
+        "side": "#BD8778"
+      },
+      "pathCount": 7,
+      "status": "AUTHORED_REQUIRES_USER_VISUAL_ACCEPTANCE",
+      "sha256": "c07c1d144ec641bf8d5783642be976604b8eef2959e5a81bfdff61fed087f7bd"
+    },
+    {
+      "id": "pork_ribs",
+      "name": "猪肋排",
+      "categoryId": "meat",
+      "iconKey": "food_pork_ribs",
+      "iconBrief": "多根短肋骨连排肉",
+      "source": "art/food-icons/food_pork_ribs.svg",
+      "drawable": "app/src/main/res/drawable/food_pork_ribs.xml",
+      "revision": 2,
+      "family": "ribs",
+      "designParameters": {},
+      "pathCount": 12,
+      "status": "AUTHORED_REQUIRES_USER_VISUAL_ACCEPTANCE",
+      "sha256": "c6c83b9f91c172d247460daadb4336d17dc015a8da059e2abcdc13a6f35414be"
+    },
+    {
+      "id": "pork_cubes",
+      "name": "猪肉丁",
+      "categoryId": "meat",
+      "iconKey": "food_pork_cubes",
+      "iconBrief": "数块粉色小肉丁",
+      "source": "art/food-icons/food_pork_cubes.svg",
+      "drawable": "app/src/main/res/drawable/food_pork_cubes.xml",
+      "revision": 2,
+      "family": "meatChunks",
+      "designParameters": {},
+      "pathCount": 9,
+      "status": "AUTHORED_REQUIRES_USER_VISUAL_ACCEPTANCE",
+      "sha256": "04b16d8c885fee4457f777d7af22b50033986b310ebb9aad895a57a8ec0d2ea3"
+    },
+    {
+      "id": "pork_strips",
+      "name": "猪肉丝",
+      "categoryId": "meat",
+      "iconKey": "food_pork_strips",
+      "iconBrief": "细长粉色肉丝",
+      "source": "art/food-icons/food_pork_strips.svg",
+      "drawable": "app/src/main/res/drawable/food_pork_strips.xml",
+      "revision": 2,
+      "family": "strips",
+      "designParameters": {},
+      "pathCount": 10,
+      "status": "AUTHORED_REQUIRES_USER_VISUAL_ACCEPTANCE",
+      "sha256": "48380ecf3bcc2edc8243aad72cb507d86a2a0413b9e4cf4e01a5e8875cd77771"
+    },
+    {
+      "id": "pork_mince",
+      "name": "猪肉馅",
+      "categoryId": "meat",
+      "iconKey": "food_pork_mince",
+      "iconBrief": "盘绕细肉末",
+      "source": "art/food-icons/food_pork_mince.svg",
+      "drawable": "app/src/main/res/drawable/food_pork_mince.xml",
+      "revision": 2,
+      "family": "mince",
+      "designParameters": {
+        "color": "#D79B88",
+        "texture": "#ECC4AD"
+      },
+      "pathCount": 19,
+      "status": "AUTHORED_REQUIRES_USER_VISUAL_ACCEPTANCE",
+      "sha256": "096dca9084da491d6c9439dc7eb9d2eac35a3883a38622edb263bebbbfe49203"
+    },
+    {
+      "id": "beef_steak",
+      "name": "牛排",
+      "categoryId": "meat",
+      "iconKey": "food_beef_steak",
+      "iconBrief": "红色厚肉排与白色脂肪边",
+      "source": "art/food-icons/food_beef_steak.svg",
+      "drawable": "app/src/main/res/drawable/food_beef_steak.xml",
+      "revision": 2,
+      "family": "steak",
+      "designParameters": {
+        "color": "#B76353"
+      },
+      "pathCount": 6,
+      "status": "AUTHORED_REQUIRES_USER_VISUAL_ACCEPTANCE",
+      "sha256": "bac28e4d23be3f483a8c38e96057d7fa6ec0cc9ff8d87c020fcb45ae373678e2"
+    },
+    {
+      "id": "beef_tenderloin",
+      "name": "牛里脊",
+      "categoryId": "meat",
+      "iconKey": "food_beef_tenderloin",
+      "iconBrief": "深红色细长肉块",
+      "source": "art/food-icons/food_beef_tenderloin.svg",
+      "drawable": "app/src/main/res/drawable/food_beef_tenderloin.xml",
+      "revision": 2,
+      "family": "steak",
+      "designParameters": {
+        "long": true,
+        "color": "#A55750"
+      },
+      "pathCount": 2,
+      "status": "AUTHORED_REQUIRES_USER_VISUAL_ACCEPTANCE",
+      "sha256": "39bbb77273239825e1fa5da62759510b34e481af8444d70955178ec880ca9d55"
+    },
+    {
+      "id": "beef_brisket",
+      "name": "牛腩",
+      "categoryId": "meat",
+      "iconKey": "food_beef_brisket",
+      "iconBrief": "深红块肉与筋膜条纹",
+      "source": "art/food-icons/food_beef_brisket.svg",
+      "drawable": "app/src/main/res/drawable/food_beef_brisket.xml",
+      "revision": 2,
+      "family": "meatChunks",
+      "designParameters": {
+        "large": true,
+        "color": "#AC5E51",
+        "side": "#864B42"
+      },
+      "pathCount": 3,
+      "status": "AUTHORED_REQUIRES_USER_VISUAL_ACCEPTANCE",
+      "sha256": "0af98a74644c463ceae42c201f42411f70deb6f291fe6cc171f1fbb1661e1262"
+    },
+    {
+      "id": "beef_shank",
+      "name": "牛腱",
+      "categoryId": "meat",
+      "iconKey": "food_beef_shank",
+      "iconBrief": "圆柱红肉与白色筋花",
+      "source": "art/food-icons/food_beef_shank.svg",
+      "drawable": "app/src/main/res/drawable/food_beef_shank.xml",
+      "revision": 2,
+      "family": "shank",
+      "designParameters": {},
+      "pathCount": 9,
+      "status": "AUTHORED_REQUIRES_USER_VISUAL_ACCEPTANCE",
+      "sha256": "d028a0841f81e76b05635b6b5ef07e21bedd00c284457799f8ea981b26e6d375"
+    },
+    {
+      "id": "beef_cubes",
+      "name": "牛肉块",
+      "categoryId": "meat",
+      "iconKey": "food_beef_cubes",
+      "iconBrief": "数块深红小肉块",
+      "source": "art/food-icons/food_beef_cubes.svg",
+      "drawable": "app/src/main/res/drawable/food_beef_cubes.xml",
+      "revision": 2,
+      "family": "meatChunks",
+      "designParameters": {
+        "color": "#AC5E51",
+        "side": "#864B42"
+      },
+      "pathCount": 9,
+      "status": "AUTHORED_REQUIRES_USER_VISUAL_ACCEPTANCE",
+      "sha256": "6504dc5c89869a0bb2c833120dd6063fd00a24b3c05683312f57e43611d8945d"
+    },
+    {
+      "id": "beef_mince",
+      "name": "牛肉馅",
+      "categoryId": "meat",
+      "iconKey": "food_beef_mince",
+      "iconBrief": "深红色肉末堆",
+      "source": "art/food-icons/food_beef_mince.svg",
+      "drawable": "app/src/main/res/drawable/food_beef_mince.xml",
+      "revision": 2,
+      "family": "mince",
+      "designParameters": {
+        "color": "#AC6357",
+        "texture": "#D79882"
+      },
+      "pathCount": 19,
+      "status": "AUTHORED_REQUIRES_USER_VISUAL_ACCEPTANCE",
+      "sha256": "39e6e6133d2f0ac83252758682141029fb256d325bb02e8f0ac777704f3bee68"
+    },
+    {
+      "id": "beef_hotpot",
+      "name": "鲜牛肉片",
+      "categoryId": "meat",
+      "iconKey": "food_beef_hotpot",
+      "iconBrief": "叠放的薄红肉片",
+      "source": "art/food-icons/food_beef_hotpot.svg",
+      "drawable": "app/src/main/res/drawable/food_beef_hotpot.xml",
+      "revision": 2,
+      "family": "slices",
+      "designParameters": {},
+      "pathCount": 6,
+      "status": "AUTHORED_REQUIRES_USER_VISUAL_ACCEPTANCE",
+      "sha256": "be005855301da2fb44f0cd976c68c885010141a8ec287e886a9be96d74419855"
+    },
+    {
+      "id": "lamb_chop",
+      "name": "羊排",
+      "categoryId": "meat",
+      "iconKey": "food_lamb_chop",
+      "iconBrief": "小型弯骨红肉排",
+      "source": "art/food-icons/food_lamb_chop.svg",
+      "drawable": "app/src/main/res/drawable/food_lamb_chop.xml",
+      "revision": 2,
+      "family": "ribs",
+      "designParameters": {
+        "lamb": true
+      },
+      "pathCount": 6,
+      "status": "AUTHORED_REQUIRES_USER_VISUAL_ACCEPTANCE",
+      "sha256": "882a9bc818144c218f10bbffc381e08c12f4b0ce6190f114dc65189bd994e537"
+    },
+    {
+      "id": "lamb_leg",
+      "name": "羊腿肉",
+      "categoryId": "meat",
+      "iconKey": "food_lamb_leg",
+      "iconBrief": "长骨连接的红色肉块",
+      "source": "art/food-icons/food_lamb_leg.svg",
+      "drawable": "app/src/main/res/drawable/food_lamb_leg.xml",
+      "revision": 2,
+      "family": "drumstick",
+      "designParameters": {
+        "color": "#B36654",
+        "shadow": "#8E4F47"
+      },
+      "pathCount": 8,
+      "status": "AUTHORED_REQUIRES_USER_VISUAL_ACCEPTANCE",
+      "sha256": "7ce0936977258ae1659260be5f10a72229635e99a22157577e7b36a516292289"
+    },
+    {
+      "id": "lamb_cubes",
+      "name": "羊肉块",
+      "categoryId": "meat",
+      "iconKey": "food_lamb_cubes",
+      "iconBrief": "红色小肉块与白脂肪",
+      "source": "art/food-icons/food_lamb_cubes.svg",
+      "drawable": "app/src/main/res/drawable/food_lamb_cubes.xml",
+      "revision": 2,
+      "family": "meatChunks",
+      "designParameters": {
+        "color": "#BB7765",
+        "side": "#A26655"
+      },
+      "pathCount": 9,
+      "status": "AUTHORED_REQUIRES_USER_VISUAL_ACCEPTANCE",
+      "sha256": "30135878db6e30fff39745a7fc33ab8967de71eb6ad18ef903c84284fba63f56"
+    },
+    {
+      "id": "lamb_mince",
+      "name": "羊肉馅",
+      "categoryId": "meat",
+      "iconKey": "food_lamb_mince",
+      "iconBrief": "偏红的细肉末",
+      "source": "art/food-icons/food_lamb_mince.svg",
+      "drawable": "app/src/main/res/drawable/food_lamb_mince.xml",
+      "revision": 2,
+      "family": "mince",
+      "designParameters": {
+        "color": "#B57C68",
+        "texture": "#E6C3A5"
+      },
+      "pathCount": 19,
+      "status": "AUTHORED_REQUIRES_USER_VISUAL_ACCEPTANCE",
+      "sha256": "f9145032a3d028a2171abe2aaff06dc2681ff227505aac4332a2eca301ad5df7"
+    },
+    {
+      "id": "lamb_hotpot",
+      "name": "鲜羊肉片",
+      "categoryId": "meat",
+      "iconKey": "food_lamb_hotpot",
+      "iconBrief": "卷起的红白薄肉片",
+      "source": "art/food-icons/food_lamb_hotpot.svg",
+      "drawable": "app/src/main/res/drawable/food_lamb_hotpot.xml",
+      "revision": 2,
+      "family": "slices",
+      "designParameters": {
+        "rolled": true
+      },
+      "pathCount": 12,
+      "status": "AUTHORED_REQUIRES_USER_VISUAL_ACCEPTANCE",
+      "sha256": "cf62145667b1011201d89cb539fd6717a427466559272af9d9724792abdb057a"
+    },
+    {
+      "id": "whole_chicken",
+      "name": "整鸡",
+      "categoryId": "meat",
+      "iconKey": "food_whole_chicken",
+      "iconBrief": "浅黄色去毛整鸡轮廓",
+      "source": "art/food-icons/food_whole_chicken.svg",
+      "drawable": "app/src/main/res/drawable/food_whole_chicken.xml",
+      "revision": 2,
+      "family": "poultry",
+      "designParameters": {},
+      "pathCount": 5,
+      "status": "AUTHORED_REQUIRES_USER_VISUAL_ACCEPTANCE",
+      "sha256": "b70a46bdabc37da74d663b1e79bc8628ff976c1e4587a805f80bc01797628633"
+    },
+    {
+      "id": "chicken_breast",
+      "name": "鸡胸肉",
+      "categoryId": "meat",
+      "iconKey": "food_chicken_breast",
+      "iconBrief": "浅粉双瓣鸡胸",
+      "source": "art/food-icons/food_chicken_breast.svg",
+      "drawable": "app/src/main/res/drawable/food_chicken_breast.xml",
+      "revision": 2,
+      "family": "breast",
+      "designParameters": {},
+      "pathCount": 6,
+      "status": "AUTHORED_REQUIRES_USER_VISUAL_ACCEPTANCE",
+      "sha256": "d10d629b4142ce559c191ccf149e1b82dae44740892a4c518c098217eff9ba60"
+    },
+    {
+      "id": "chicken_thigh",
+      "name": "鸡腿肉",
+      "categoryId": "meat",
+      "iconKey": "food_chicken_thigh",
+      "iconBrief": "较宽的鸡腿上段",
+      "source": "art/food-icons/food_chicken_thigh.svg",
+      "drawable": "app/src/main/res/drawable/food_chicken_thigh.xml",
+      "revision": 2,
+      "family": "drumstick",
+      "designParameters": {
+        "color": "#D9AF99",
+        "shadow": "#C49A83"
+      },
+      "pathCount": 8,
+      "status": "AUTHORED_REQUIRES_USER_VISUAL_ACCEPTANCE",
+      "sha256": "7cfea1da0e9228ef6c63d614c3e3db897dad53e33048db990f2998fcbf2d3d74"
+    },
+    {
+      "id": "chicken_drumstick",
+      "name": "鸡小腿",
+      "categoryId": "meat",
+      "iconKey": "food_chicken_drumstick",
+      "iconBrief": "单根鼓槌形鸡腿",
+      "source": "art/food-icons/food_chicken_drumstick.svg",
+      "drawable": "app/src/main/res/drawable/food_chicken_drumstick.xml",
+      "revision": 2,
+      "family": "drumstick",
+      "designParameters": {},
+      "pathCount": 8,
+      "status": "AUTHORED_REQUIRES_USER_VISUAL_ACCEPTANCE",
+      "sha256": "c3f57b14f561b2d6a02b6aee692b0b2d92f61990ea566855ca97d959e75a826f"
+    },
+    {
+      "id": "chicken_wing",
+      "name": "鸡翅",
+      "categoryId": "meat",
+      "iconKey": "food_chicken_wing",
+      "iconBrief": "弯折的双节小翅",
+      "source": "art/food-icons/food_chicken_wing.svg",
+      "drawable": "app/src/main/res/drawable/food_chicken_wing.xml",
+      "revision": 2,
+      "family": "wing",
+      "designParameters": {},
+      "pathCount": 3,
+      "status": "AUTHORED_REQUIRES_USER_VISUAL_ACCEPTANCE",
+      "sha256": "5e0c05837c1f8edd92756b958c39b0051cadc24f10f37aed43a7a3a56fd7546f"
+    },
+    {
+      "id": "chicken_tender",
+      "name": "鸡里脊",
+      "categoryId": "meat",
+      "iconKey": "food_chicken_tender",
+      "iconBrief": "数条细长浅粉鸡肉",
+      "source": "art/food-icons/food_chicken_tender.svg",
+      "drawable": "app/src/main/res/drawable/food_chicken_tender.xml",
+      "revision": 2,
+      "family": "strips",
+      "designParameters": {
+        "color": "#E7C0AB"
+      },
+      "pathCount": 10,
+      "status": "AUTHORED_REQUIRES_USER_VISUAL_ACCEPTANCE",
+      "sha256": "ab930c2af6ba529ebe73273ec153b95cf398a7e76386672cb50cb242744abe3d"
+    },
+    {
+      "id": "chicken_mince",
+      "name": "鸡肉馅",
+      "categoryId": "meat",
+      "iconKey": "food_chicken_mince",
+      "iconBrief": "浅粉色肉末堆",
+      "source": "art/food-icons/food_chicken_mince.svg",
+      "drawable": "app/src/main/res/drawable/food_chicken_mince.xml",
+      "revision": 2,
+      "family": "mince",
+      "designParameters": {
+        "color": "#DFB29C",
+        "texture": "#F5EFDC"
+      },
+      "pathCount": 19,
+      "status": "AUTHORED_REQUIRES_USER_VISUAL_ACCEPTANCE",
+      "sha256": "43dd1229a532a98c27b156bd0cb90831b71f83a05b483f582736e99a04320920"
+    },
+    {
+      "id": "whole_turkey",
+      "name": "整火鸡",
+      "categoryId": "meat",
+      "iconKey": "food_whole_turkey",
+      "iconBrief": "较大型去毛禽体",
+      "source": "art/food-icons/food_whole_turkey.svg",
+      "drawable": "app/src/main/res/drawable/food_whole_turkey.xml",
+      "revision": 2,
+      "family": "poultry",
+      "designParameters": {
+        "color": "#D2AC8A"
+      },
+      "pathCount": 5,
+      "status": "AUTHORED_REQUIRES_USER_VISUAL_ACCEPTANCE",
+      "sha256": "31446a27fc38ad7596cafc3e4d2b73a1ab38e5febee2da3bcc79ca58dd6f19d5"
+    },
+    {
+      "id": "turkey_breast",
+      "name": "火鸡胸肉",
+      "categoryId": "meat",
+      "iconKey": "food_turkey_breast",
+      "iconBrief": "宽厚浅色胸肉",
+      "source": "art/food-icons/food_turkey_breast.svg",
+      "drawable": "app/src/main/res/drawable/food_turkey_breast.xml",
+      "revision": 2,
+      "family": "breast",
+      "designParameters": {
+        "single": true,
+        "color": "#E4C3AB"
+      },
+      "pathCount": 3,
+      "status": "AUTHORED_REQUIRES_USER_VISUAL_ACCEPTANCE",
+      "sha256": "53e4a1ca0490e545d4c1c7aeb633ecf3792661b7e2f1504a12bec45702861ddb"
+    },
+    {
+      "id": "whole_duck",
+      "name": "整鸭",
+      "categoryId": "meat",
+      "iconKey": "food_whole_duck",
+      "iconBrief": "修长去毛鸭体",
+      "source": "art/food-icons/food_whole_duck.svg",
+      "drawable": "app/src/main/res/drawable/food_whole_duck.xml",
+      "revision": 2,
+      "family": "poultry",
+      "designParameters": {
+        "long": true,
+        "neck": true,
+        "color": "#D3BE95"
+      },
+      "pathCount": 6,
+      "status": "AUTHORED_REQUIRES_USER_VISUAL_ACCEPTANCE",
+      "sha256": "1c89d22a8969365a637c08295fc4bffa3f4b2890fee320422dc3c7daca842795"
+    },
+    {
+      "id": "duck_breast",
+      "name": "鸭胸肉",
+      "categoryId": "meat",
+      "iconKey": "food_duck_breast",
+      "iconBrief": "暗红胸肉与浅色脂肪皮",
+      "source": "art/food-icons/food_duck_breast.svg",
+      "drawable": "app/src/main/res/drawable/food_duck_breast.xml",
+      "revision": 2,
+      "family": "breast",
+      "designParameters": {
+        "single": true,
+        "color": "#A36756",
+        "skin": "#F5EFDC"
+      },
+      "pathCount": 3,
+      "status": "AUTHORED_REQUIRES_USER_VISUAL_ACCEPTANCE",
+      "sha256": "9ec616586b4a0db7f9a31910c735b9cec0dc934214fc6ca097818d77e6721433"
+    },
+    {
+      "id": "duck_leg",
+      "name": "鸭腿",
+      "categoryId": "meat",
+      "iconKey": "food_duck_leg",
+      "iconBrief": "较细长的深色禽腿",
+      "source": "art/food-icons/food_duck_leg.svg",
+      "drawable": "app/src/main/res/drawable/food_duck_leg.xml",
+      "revision": 2,
+      "family": "drumstick",
+      "designParameters": {
+        "color": "#B47F64",
+        "shadow": "#92624E"
+      },
+      "pathCount": 8,
+      "status": "AUTHORED_REQUIRES_USER_VISUAL_ACCEPTANCE",
+      "sha256": "9dc30a9091b0a6d764dc8f17a4f41f7883c2059147f796d226f9a4d78b53e933"
+    },
+    {
+      "id": "duck_wing",
+      "name": "鸭翅",
+      "categoryId": "meat",
+      "iconKey": "food_duck_wing",
+      "iconBrief": "修长弯折禽翅",
+      "source": "art/food-icons/food_duck_wing.svg",
+      "drawable": "app/src/main/res/drawable/food_duck_wing.xml",
+      "revision": 2,
+      "family": "wing",
+      "designParameters": {
+        "color": "#BA9175",
+        "inner": "#CEAE8B"
+      },
+      "pathCount": 3,
+      "status": "AUTHORED_REQUIRES_USER_VISUAL_ACCEPTANCE",
+      "sha256": "ebfe017e6d615469d06810fd3d9b47b576019e3b9988e1230fb40c91d54eefef"
+    },
+    {
+      "id": "goose",
+      "name": "鹅肉",
+      "categoryId": "meat",
+      "iconKey": "food_goose",
+      "iconBrief": "大型去毛禽体与粗长颈",
+      "source": "art/food-icons/food_goose.svg",
+      "drawable": "app/src/main/res/drawable/food_goose.xml",
+      "revision": 2,
+      "family": "poultry",
+      "designParameters": {
+        "neck": true,
+        "color": "#E0CAA5",
+        "long": true
+      },
+      "pathCount": 6,
+      "status": "AUTHORED_REQUIRES_USER_VISUAL_ACCEPTANCE",
+      "sha256": "6120ed86c1f6a97cc43245e046917fa7799f69a37ff9404ba3adaabbebeb137d"
+    },
+    {
+      "id": "pork_liver",
+      "name": "猪肝",
+      "categoryId": "meat",
+      "iconKey": "food_pork_liver",
+      "iconBrief": "深红褐色分叶肝",
+      "source": "art/food-icons/food_pork_liver.svg",
+      "drawable": "app/src/main/res/drawable/food_pork_liver.xml",
+      "revision": 2,
+      "family": "offal",
+      "designParameters": {
+        "type": "liver"
+      },
+      "pathCount": 2,
+      "status": "AUTHORED_REQUIRES_USER_VISUAL_ACCEPTANCE",
+      "sha256": "6468fa85272b73b37cdb3ca2fb8c09bf52fcd70c6db0b55f157da607afc4311a"
+    },
+    {
+      "id": "pork_kidney",
+      "name": "猪腰",
+      "categoryId": "meat",
+      "iconKey": "food_pork_kidney",
+      "iconBrief": "红褐豆形内脏",
+      "source": "art/food-icons/food_pork_kidney.svg",
+      "drawable": "app/src/main/res/drawable/food_pork_kidney.xml",
+      "revision": 2,
+      "family": "offal",
+      "designParameters": {
+        "type": "kidney"
+      },
+      "pathCount": 2,
+      "status": "AUTHORED_REQUIRES_USER_VISUAL_ACCEPTANCE",
+      "sha256": "96dfeb61e700db4aecab5e917fd0b55318744d1f4f81bfaaa74b571889b2f0a0"
+    },
+    {
+      "id": "pork_heart",
+      "name": "猪心",
+      "categoryId": "meat",
+      "iconKey": "food_pork_heart",
+      "iconBrief": "深红心形内脏",
+      "source": "art/food-icons/food_pork_heart.svg",
+      "drawable": "app/src/main/res/drawable/food_pork_heart.xml",
+      "revision": 2,
+      "family": "offal",
+      "designParameters": {
+        "type": "heart"
+      },
+      "pathCount": 2,
+      "status": "AUTHORED_REQUIRES_USER_VISUAL_ACCEPTANCE",
+      "sha256": "f76751b85c1d53c71d1eacc08907a28424b00ba12d1341b1e59e0622f3dd15bf"
+    },
+    {
+      "id": "pork_tripe",
+      "name": "猪肚",
+      "categoryId": "meat",
+      "iconKey": "food_pork_tripe",
+      "iconBrief": "浅粉褶皱袋状内脏",
+      "source": "art/food-icons/food_pork_tripe.svg",
+      "drawable": "app/src/main/res/drawable/food_pork_tripe.xml",
+      "revision": 2,
+      "family": "offal",
+      "designParameters": {
+        "type": "stomach",
+        "color": "#DBC3AA"
+      },
+      "pathCount": 7,
+      "status": "AUTHORED_REQUIRES_USER_VISUAL_ACCEPTANCE",
+      "sha256": "08fbbd309eb6e28c0a94d755da937b9ca76267ab01800d695f36c92e2ecbf15b"
+    },
+    {
+      "id": "pork_intestine",
+      "name": "猪大肠",
+      "categoryId": "meat",
+      "iconKey": "food_pork_intestine",
+      "iconBrief": "浅粉弯曲管状圈",
+      "source": "art/food-icons/food_pork_intestine.svg",
+      "drawable": "app/src/main/res/drawable/food_pork_intestine.xml",
+      "revision": 2,
+      "family": "offal",
+      "designParameters": {
+        "type": "intestine"
+      },
+      "pathCount": 6,
+      "status": "AUTHORED_REQUIRES_USER_VISUAL_ACCEPTANCE",
+      "sha256": "f98bc310f150699af7b0bb4187fe7372fe78dc2aebcb51ecd197a15ff560fb8b"
+    },
+    {
+      "id": "beef_tripe",
+      "name": "牛肚",
+      "categoryId": "meat",
+      "iconKey": "food_beef_tripe",
+      "iconBrief": "乳白蜂窝纹理片",
+      "source": "art/food-icons/food_beef_tripe.svg",
+      "drawable": "app/src/main/res/drawable/food_beef_tripe.xml",
+      "revision": 2,
+      "family": "offal",
+      "designParameters": {
+        "type": "tripe",
+        "color": "#F5EFDC"
+      },
+      "pathCount": 21,
+      "status": "AUTHORED_REQUIRES_USER_VISUAL_ACCEPTANCE",
+      "sha256": "c59522d20540b741f3ac3a81e891777d091896b388058b6662df28e0665c5d52"
+    },
+    {
+      "id": "chicken_liver",
+      "name": "鸡肝",
+      "categoryId": "meat",
+      "iconKey": "food_chicken_liver",
+      "iconBrief": "小型红褐肝叶",
+      "source": "art/food-icons/food_chicken_liver.svg",
+      "drawable": "app/src/main/res/drawable/food_chicken_liver.xml",
+      "revision": 2,
+      "family": "offal",
+      "designParameters": {
+        "type": "liver",
+        "color": "#AA7664"
+      },
+      "pathCount": 2,
+      "status": "AUTHORED_REQUIRES_USER_VISUAL_ACCEPTANCE",
+      "sha256": "b67aaf1af50c8d3e586576484871ad9b1020621de30b2fda170e4c272f17e1ed"
+    },
+    {
+      "id": "chicken_gizzard",
+      "name": "鸡胗",
+      "categoryId": "meat",
+      "iconKey": "food_chicken_gizzard",
+      "iconBrief": "两瓣深红圆肌肉",
+      "source": "art/food-icons/food_chicken_gizzard.svg",
+      "drawable": "app/src/main/res/drawable/food_chicken_gizzard.xml",
+      "revision": 2,
+      "family": "offal",
+      "designParameters": {
+        "type": "gizzard"
+      },
+      "pathCount": 2,
+      "status": "AUTHORED_REQUIRES_USER_VISUAL_ACCEPTANCE",
+      "sha256": "78664c5f39a603ad7ee8377573c22ffbc1dee88758199ed9500bcd0702e6dbe9"
+    },
+    {
+      "id": "duck_gizzard",
+      "name": "鸭胗",
+      "categoryId": "meat",
+      "iconKey": "food_duck_gizzard",
+      "iconBrief": "稍长的深红双瓣肌肉",
+      "source": "art/food-icons/food_duck_gizzard.svg",
+      "drawable": "app/src/main/res/drawable/food_duck_gizzard.xml",
+      "revision": 2,
+      "family": "offal",
+      "designParameters": {
+        "type": "gizzard",
+        "color": "#8C645C"
+      },
+      "pathCount": 2,
+      "status": "AUTHORED_REQUIRES_USER_VISUAL_ACCEPTANCE",
+      "sha256": "4e30313058a134499e113f9d83fbc17e5257d2e76bf936580e296bdf4e5b01f8"
+    },
+    {
+      "id": "fresh_sausage",
+      "name": "生鲜香肠",
+      "categoryId": "meat",
+      "iconKey": "food_fresh_sausage",
+      "iconBrief": "连节粉色生香肠",
+      "source": "art/food-icons/food_fresh_sausage.svg",
+      "drawable": "app/src/main/res/drawable/food_fresh_sausage.xml",
+      "revision": 2,
+      "family": "sausage",
+      "designParameters": {},
+      "pathCount": 9,
+      "status": "AUTHORED_REQUIRES_USER_VISUAL_ACCEPTANCE",
+      "sha256": "bef653ba8431678436993bc078f285eb1866da437760ec9ec4b6a850e390a4d1"
+    },
+    {
+      "id": "bacon",
+      "name": "培根",
+      "categoryId": "meat",
+      "iconKey": "food_bacon",
+      "iconBrief": "红白波浪条纹薄片",
+      "source": "art/food-icons/food_bacon.svg",
+      "drawable": "app/src/main/res/drawable/food_bacon.xml",
+      "revision": 2,
+      "family": "belly",
+      "designParameters": {
+        "bacon": true
+      },
+      "pathCount": 12,
+      "status": "AUTHORED_REQUIRES_USER_VISUAL_ACCEPTANCE",
+      "sha256": "1b0bb1775804fd5b9fbdaec3390431d2d3d9e005cd03bf03bdc7a6cc5772092b"
+    },
+    {
+      "id": "salmon",
+      "name": "三文鱼",
+      "categoryId": "seafood",
+      "iconKey": "food_salmon",
+      "iconBrief": "橙色鱼排与白色弧纹",
+      "source": "art/food-icons/food_salmon.svg",
+      "drawable": "app/src/main/res/drawable/food_salmon.xml",
+      "revision": 2,
+      "family": "fillet",
+      "designParameters": {},
+      "pathCount": 17,
+      "status": "AUTHORED_REQUIRES_USER_VISUAL_ACCEPTANCE",
+      "sha256": "8c78bf626d0fc82a7d80f8cee6756fa80e64faa06642bda3f585c4a7cb69493a"
+    },
+    {
+      "id": "tuna",
+      "name": "金枪鱼",
+      "categoryId": "seafood",
+      "iconKey": "food_tuna",
+      "iconBrief": "深红鱼肉厚切块",
+      "source": "art/food-icons/food_tuna.svg",
+      "drawable": "app/src/main/res/drawable/food_tuna.xml",
+      "revision": 2,
+      "family": "fillet",
+      "designParameters": {
+        "color": "#B76D68",
+        "tuna": true,
+        "skin": "#AB8984"
+      },
+      "pathCount": 13,
+      "status": "AUTHORED_REQUIRES_USER_VISUAL_ACCEPTANCE",
+      "sha256": "d81fccbf014124c9bd9dbaf3e3250dd9f7a41ec580fb050a30bccbd7b21bd4c8"
+    },
+    {
+      "id": "mackerel",
+      "name": "鲭鱼",
+      "categoryId": "seafood",
+      "iconKey": "food_mackerel",
+      "iconBrief": "有深色条纹的蓝灰鱼体",
+      "source": "art/food-icons/food_mackerel.svg",
+      "drawable": "app/src/main/res/drawable/food_mackerel.xml",
+      "revision": 2,
+      "family": "fish",
+      "designParameters": {
+        "stripes": true,
+        "long": true,
+        "color": "#8FA5A4"
+      },
+      "pathCount": 27,
+      "status": "AUTHORED_REQUIRES_USER_VISUAL_ACCEPTANCE",
+      "sha256": "5b2d4ff581a3ae4d9f03104c6ff0a23316807e9266128f7e93a5ca2d3654a84a"
+    },
+    {
+      "id": "cod",
+      "name": "鳕鱼",
+      "categoryId": "seafood",
+      "iconKey": "food_cod",
+      "iconBrief": "乳白鱼肉与银灰鱼皮",
+      "source": "art/food-icons/food_cod.svg",
+      "drawable": "app/src/main/res/drawable/food_cod.xml",
+      "revision": 2,
+      "family": "fillet",
+      "designParameters": {
+        "color": "#F5EFDC",
+        "white": true,
+        "skin": "#9BA9A1"
+      },
+      "pathCount": 13,
+      "status": "AUTHORED_REQUIRES_USER_VISUAL_ACCEPTANCE",
+      "sha256": "6690a792f349d0b5fabc9ec179b4ebfb92ab0b7446fa19f343d7c0f05c3787c8"
+    },
+    {
+      "id": "flounder",
+      "name": "比目鱼",
+      "categoryId": "seafood",
+      "iconKey": "food_flounder",
+      "iconBrief": "扁平菱形鱼体",
+      "source": "art/food-icons/food_flounder.svg",
+      "drawable": "app/src/main/res/drawable/food_flounder.xml",
+      "revision": 2,
+      "family": "fish",
+      "designParameters": {
+        "high": true,
+        "flat": true,
+        "color": "#AFB39B"
+      },
+      "pathCount": 24,
+      "status": "AUTHORED_REQUIRES_USER_VISUAL_ACCEPTANCE",
+      "sha256": "dd31e3694c6c74317dad4fc51ec58e5d5033b6a650f6c5ca40db3f2d144ed2e4"
+    },
+    {
+      "id": "grass_carp",
+      "name": "草鱼",
+      "categoryId": "seafood",
+      "iconKey": "food_grass_carp",
+      "iconBrief": "修长银灰鳞片鱼体",
+      "source": "art/food-icons/food_grass_carp.svg",
+      "drawable": "app/src/main/res/drawable/food_grass_carp.xml",
+      "revision": 2,
+      "family": "fish",
+      "designParameters": {
+        "long": true,
+        "color": "#99ABA0"
+      },
+      "pathCount": 22,
+      "status": "AUTHORED_REQUIRES_USER_VISUAL_ACCEPTANCE",
+      "sha256": "155f3fa5ac8a7480b26883d35dfe82b1a4b6b3b79d9342c8d1faaa3f4c3c6ad3"
+    },
+    {
+      "id": "crucian_carp",
+      "name": "鲫鱼",
+      "categoryId": "seafood",
+      "iconKey": "food_crucian_carp",
+      "iconBrief": "偏高银灰鱼体",
+      "source": "art/food-icons/food_crucian_carp.svg",
+      "drawable": "app/src/main/res/drawable/food_crucian_carp.xml",
+      "revision": 2,
+      "family": "fish",
+      "designParameters": {
+        "high": true,
+        "color": "#BCC4AD"
+      },
+      "pathCount": 22,
+      "status": "AUTHORED_REQUIRES_USER_VISUAL_ACCEPTANCE",
+      "sha256": "449a4a3e42065d6a4a72fdc8477b851efed1b2898b721a58d0806de249f72867"
+    },
+    {
+      "id": "carp",
+      "name": "鲤鱼",
+      "categoryId": "seafood",
+      "iconKey": "food_carp",
+      "iconBrief": "长须金灰鱼体",
+      "source": "art/food-icons/food_carp.svg",
+      "drawable": "app/src/main/res/drawable/food_carp.xml",
+      "revision": 2,
+      "family": "fish",
+      "designParameters": {
+        "color": "#C7B17F",
+        "whisker": true
+      },
+      "pathCount": 23,
+      "status": "AUTHORED_REQUIRES_USER_VISUAL_ACCEPTANCE",
+      "sha256": "e266d68e1d41ffaf91aca635b120c87c4b62cf231263111229f386e360f559b6"
+    },
+    {
+      "id": "sea_bass",
+      "name": "鲈鱼",
+      "categoryId": "seafood",
+      "iconKey": "food_sea_bass",
+      "iconBrief": "灰色尖背鳍鱼体",
+      "source": "art/food-icons/food_sea_bass.svg",
+      "drawable": "app/src/main/res/drawable/food_sea_bass.xml",
+      "revision": 2,
+      "family": "fish",
+      "designParameters": {
+        "spiny": true,
+        "long": true,
+        "color": "#A4B3A9"
+      },
+      "pathCount": 28,
+      "status": "AUTHORED_REQUIRES_USER_VISUAL_ACCEPTANCE",
+      "sha256": "580888a1b30be01b766aca4501febeeca1fc1f7049d4cf092353996751f73895"
+    },
+    {
+      "id": "tilapia",
+      "name": "罗非鱼",
+      "categoryId": "seafood",
+      "iconKey": "food_tilapia",
+      "iconBrief": "深色条纹扁鱼体",
+      "source": "art/food-icons/food_tilapia.svg",
+      "drawable": "app/src/main/res/drawable/food_tilapia.xml",
+      "revision": 2,
+      "family": "fish",
+      "designParameters": {
+        "high": true,
+        "stripes": true,
+        "color": "#9CAB98"
+      },
+      "pathCount": 27,
+      "status": "AUTHORED_REQUIRES_USER_VISUAL_ACCEPTANCE",
+      "sha256": "8d0cac13bc8f543b64b385714623827ddd334f10a8cb2b76053358954030a6f4"
+    },
+    {
+      "id": "pomfret",
+      "name": "鲳鱼",
+      "categoryId": "seafood",
+      "iconKey": "food_pomfret",
+      "iconBrief": "银色菱形鱼体",
+      "source": "art/food-icons/food_pomfret.svg",
+      "drawable": "app/src/main/res/drawable/food_pomfret.xml",
+      "revision": 2,
+      "family": "fish",
+      "designParameters": {
+        "high": true,
+        "color": "#C5CFBF",
+        "fin": "#92A6A0"
+      },
+      "pathCount": 22,
+      "status": "AUTHORED_REQUIRES_USER_VISUAL_ACCEPTANCE",
+      "sha256": "f0572fe2ac80a066fd31c07781689077c0809c81c6ae07fecf7fc7361dd719f4"
+    },
+    {
+      "id": "hairtail",
+      "name": "带鱼",
+      "categoryId": "seafood",
+      "iconKey": "food_hairtail",
+      "iconBrief": "长带状银色鱼体",
+      "source": "art/food-icons/food_hairtail.svg",
+      "drawable": "app/src/main/res/drawable/food_hairtail.xml",
+      "revision": 2,
+      "family": "fish",
+      "designParameters": {
+        "ribbon": true
+      },
+      "pathCount": 15,
+      "status": "AUTHORED_REQUIRES_USER_VISUAL_ACCEPTANCE",
+      "sha256": "b8e93844ce093ed6f9dffb34cd50864c07c5b3923375a8c877a033c696dfdfdf"
+    },
+    {
+      "id": "yellow_croaker",
+      "name": "黄花鱼",
+      "categoryId": "seafood",
+      "iconKey": "food_yellow_croaker",
+      "iconBrief": "银黄色修长鱼体",
+      "source": "art/food-icons/food_yellow_croaker.svg",
+      "drawable": "app/src/main/res/drawable/food_yellow_croaker.xml",
+      "revision": 2,
+      "family": "fish",
+      "designParameters": {
+        "long": true,
+        "color": "#D1C383",
+        "fin": "#BAAC70"
+      },
+      "pathCount": 22,
+      "status": "AUTHORED_REQUIRES_USER_VISUAL_ACCEPTANCE",
+      "sha256": "5e11ff47c3576230ed980162ea4770d2f5a9738f9ab885431573573da220c3ef"
+    },
+    {
+      "id": "shrimp",
+      "name": "鲜虾",
+      "categoryId": "seafood",
+      "iconKey": "food_shrimp",
+      "iconBrief": "弯曲虾身与长触须",
+      "source": "art/food-icons/food_shrimp.svg",
+      "drawable": "app/src/main/res/drawable/food_shrimp.xml",
+      "revision": 2,
+      "family": "shrimp",
+      "designParameters": {
+        "raw": true
+      },
+      "pathCount": 7,
+      "status": "AUTHORED_REQUIRES_USER_VISUAL_ACCEPTANCE",
+      "sha256": "5096095d25d341b8409d1024bab61872277392cbcef122b82f20ab4f03cdb0f9"
+    },
+    {
+      "id": "peeled_shrimp",
+      "name": "生虾仁",
+      "categoryId": "seafood",
+      "iconKey": "food_peeled_shrimp",
+      "iconBrief": "数颗去壳弯曲虾仁",
+      "source": "art/food-icons/food_peeled_shrimp.svg",
+      "drawable": "app/src/main/res/drawable/food_peeled_shrimp.xml",
+      "revision": 2,
+      "family": "peeled",
+      "designParameters": {},
+      "pathCount": 6,
+      "status": "AUTHORED_REQUIRES_USER_VISUAL_ACCEPTANCE",
+      "sha256": "8813a31dad4d3b4203a3b2763ccb1019c177e6761ad09919475106d670379cd4"
+    },
+    {
+      "id": "crayfish",
+      "name": "小龙虾",
+      "categoryId": "seafood",
+      "iconKey": "food_crayfish",
+      "iconBrief": "短粗虾身与双螯",
+      "source": "art/food-icons/food_crayfish.svg",
+      "drawable": "app/src/main/res/drawable/food_crayfish.xml",
+      "revision": 2,
+      "family": "crustacean",
+      "designParameters": {
+        "color": "#A8755C"
+      },
+      "pathCount": 16,
+      "status": "AUTHORED_REQUIRES_USER_VISUAL_ACCEPTANCE",
+      "sha256": "1d71c37b8afaca86aa952df9883c924ba53f3c878b7ebe2e9c1d23eb262ce823"
+    },
+    {
+      "id": "squid",
+      "name": "鱿鱼",
+      "categoryId": "seafood",
+      "iconKey": "food_squid",
+      "iconBrief": "三角鳍长筒身体与腕足",
+      "source": "art/food-icons/food_squid.svg",
+      "drawable": "app/src/main/res/drawable/food_squid.xml",
+      "revision": 2,
+      "family": "cephalopod",
+      "designParameters": {},
+      "pathCount": 15,
+      "status": "AUTHORED_REQUIRES_USER_VISUAL_ACCEPTANCE",
+      "sha256": "741551144e3c3bf32dbc9deb9d7a62aca35583ecd9233db5588dd0ab935b2869"
+    },
+    {
+      "id": "cuttlefish",
+      "name": "墨鱼",
+      "categoryId": "seafood",
+      "iconKey": "food_cuttlefish",
+      "iconBrief": "宽扁椭圆身体与短腕足",
+      "source": "art/food-icons/food_cuttlefish.svg",
+      "drawable": "app/src/main/res/drawable/food_cuttlefish.xml",
+      "revision": 2,
+      "family": "cephalopod",
+      "designParameters": {
+        "wide": true,
+        "color": "#C2C1AB"
+      },
+      "pathCount": 15,
+      "status": "AUTHORED_REQUIRES_USER_VISUAL_ACCEPTANCE",
+      "sha256": "30607a6b7c01888fedb373de388327b22c454ace8d529b42e5a2415437fc6a96"
+    },
+    {
+      "id": "octopus",
+      "name": "章鱼",
+      "categoryId": "seafood",
+      "iconKey": "food_octopus",
+      "iconBrief": "圆头和八条卷曲腕",
+      "source": "art/food-icons/food_octopus.svg",
+      "drawable": "app/src/main/res/drawable/food_octopus.xml",
+      "revision": 2,
+      "family": "cephalopod",
+      "designParameters": {
+        "octopus": true,
+        "color": "#BBA5A0"
+      },
+      "pathCount": 17,
+      "status": "AUTHORED_REQUIRES_USER_VISUAL_ACCEPTANCE",
+      "sha256": "bab87c930c4d1d4591f1dc470e8b4a2bc42a29c05411bcd2b714365bd91921e8"
+    },
+    {
+      "id": "crab_meat",
+      "name": "鲜蟹肉",
+      "categoryId": "seafood",
+      "iconKey": "food_crab_meat",
+      "iconBrief": "白色蟹肉块与少量红边",
+      "source": "art/food-icons/food_crab_meat.svg",
+      "drawable": "app/src/main/res/drawable/food_crab_meat.xml",
+      "revision": 2,
+      "family": "shellMeat",
+      "designParameters": {
+        "crab": true
+      },
+      "pathCount": 9,
+      "status": "AUTHORED_REQUIRES_USER_VISUAL_ACCEPTANCE",
+      "sha256": "54ea34214f7386349f5973ed8328e5ed562d7a26301c385edf74a3f60a6bc8ab"
+    },
+    {
+      "id": "live_crab",
+      "name": "活蟹",
+      "categoryId": "seafood",
+      "iconKey": "food_live_crab",
+      "iconBrief": "圆甲壳与双螯",
+      "source": "art/food-icons/food_live_crab.svg",
+      "drawable": "app/src/main/res/drawable/food_live_crab.xml",
+      "revision": 2,
+      "family": "crustacean",
+      "designParameters": {
+        "crab": true
+      },
+      "pathCount": 15,
+      "status": "AUTHORED_REQUIRES_USER_VISUAL_ACCEPTANCE",
+      "sha256": "014af6ef1d8fcecf88fc89f7b7fd44f3704fbb7e33d4d13379ea3a6ff7aa4c85"
+    },
+    {
+      "id": "lobster",
+      "name": "鲜龙虾肉",
+      "categoryId": "seafood",
+      "iconKey": "food_lobster",
+      "iconBrief": "分节白色虾尾肉",
+      "source": "art/food-icons/food_lobster.svg",
+      "drawable": "app/src/main/res/drawable/food_lobster.xml",
+      "revision": 2,
+      "family": "shellMeat",
+      "designParameters": {
+        "lobster": true
+      },
+      "pathCount": 6,
+      "status": "AUTHORED_REQUIRES_USER_VISUAL_ACCEPTANCE",
+      "sha256": "6b723e5d4d7963fa962475c01ea577e6e0c42d6ed18186fb35addc6c16dd0679"
+    },
+    {
+      "id": "live_lobster",
+      "name": "活龙虾",
+      "categoryId": "seafood",
+      "iconKey": "food_live_lobster",
+      "iconBrief": "长分节身体和双大螯",
+      "source": "art/food-icons/food_live_lobster.svg",
+      "drawable": "app/src/main/res/drawable/food_live_lobster.xml",
+      "revision": 2,
+      "family": "crustacean",
+      "designParameters": {
+        "color": "#807B65"
+      },
+      "pathCount": 16,
+      "status": "AUTHORED_REQUIRES_USER_VISUAL_ACCEPTANCE",
+      "sha256": "daa09884fec03b4ca4e02bb4935c438d291fcd6e4ae1c3c0d634ed2a181d1f40"
+    },
+    {
+      "id": "clam_meat",
+      "name": "蛤蜊肉",
+      "categoryId": "seafood",
+      "iconKey": "food_clam_meat",
+      "iconBrief": "小块浅黄贝肉",
+      "source": "art/food-icons/food_clam_meat.svg",
+      "drawable": "app/src/main/res/drawable/food_clam_meat.xml",
+      "revision": 2,
+      "family": "shellMeat",
+      "designParameters": {},
+      "pathCount": 9,
+      "status": "AUTHORED_REQUIRES_USER_VISUAL_ACCEPTANCE",
+      "sha256": "9f1c784ba697fd00589552378d32a0b7a88c9f125603a3618fbdae39c51f6d12"
+    },
+    {
+      "id": "oyster_meat",
+      "name": "生蚝肉",
+      "categoryId": "seafood",
+      "iconKey": "food_oyster_meat",
+      "iconBrief": "灰白软体与深色裙边",
+      "source": "art/food-icons/food_oyster_meat.svg",
+      "drawable": "app/src/main/res/drawable/food_oyster_meat.xml",
+      "revision": 2,
+      "family": "shellMeat",
+      "designParameters": {
+        "oyster": true
+      },
+      "pathCount": 9,
+      "status": "AUTHORED_REQUIRES_USER_VISUAL_ACCEPTANCE",
+      "sha256": "111d051de35aa468f28970fc528852160df2d80e6b902a4a6465d631a948d803"
+    },
+    {
+      "id": "scallop_meat",
+      "name": "扇贝肉",
+      "categoryId": "seafood",
+      "iconKey": "food_scallop_meat",
+      "iconBrief": "乳白圆柱贝柱",
+      "source": "art/food-icons/food_scallop_meat.svg",
+      "drawable": "app/src/main/res/drawable/food_scallop_meat.xml",
+      "revision": 2,
+      "family": "shellMeat",
+      "designParameters": {
+        "scallop": true
+      },
+      "pathCount": 6,
+      "status": "AUTHORED_REQUIRES_USER_VISUAL_ACCEPTANCE",
+      "sha256": "1d827ac38dcc8a3ccf883ae8cfa73039fc5b56bdbdb73e9e60157ce6fca387e0"
+    },
+    {
+      "id": "live_clam",
+      "name": "活蛤蜊",
+      "categoryId": "seafood",
+      "iconKey": "food_live_clam",
+      "iconBrief": "带纹路的双壳小贝",
+      "source": "art/food-icons/food_live_clam.svg",
+      "drawable": "app/src/main/res/drawable/food_live_clam.xml",
+      "revision": 2,
+      "family": "shell",
+      "designParameters": {},
+      "pathCount": 22,
+      "status": "AUTHORED_REQUIRES_USER_VISUAL_ACCEPTANCE",
+      "sha256": "75e91c12b56e07172b2d205f9c288c69885cd15728f81b1e03a30b2df745361f"
+    },
+    {
+      "id": "live_mussel",
+      "name": "活贻贝",
+      "categoryId": "seafood",
+      "iconKey": "food_live_mussel",
+      "iconBrief": "深蓝细长贝壳",
+      "source": "art/food-icons/food_live_mussel.svg",
+      "drawable": "app/src/main/res/drawable/food_live_mussel.xml",
+      "revision": 2,
+      "family": "shell",
+      "designParameters": {
+        "mussel": true
+      },
+      "pathCount": 6,
+      "status": "AUTHORED_REQUIRES_USER_VISUAL_ACCEPTANCE",
+      "sha256": "294ea0e3656542b825c12908f9c3052544c4058863fe567e5e9a745afa2f6bd7"
+    },
+    {
+      "id": "live_oyster",
+      "name": "活生蚝",
+      "categoryId": "seafood",
+      "iconKey": "food_live_oyster",
+      "iconBrief": "灰白粗糙不规则贝壳",
+      "source": "art/food-icons/food_live_oyster.svg",
+      "drawable": "app/src/main/res/drawable/food_live_oyster.xml",
+      "revision": 2,
+      "family": "shell",
+      "designParameters": {
+        "oyster": true
+      },
+      "pathCount": 4,
+      "status": "AUTHORED_REQUIRES_USER_VISUAL_ACCEPTANCE",
+      "sha256": "04447400ffba02eb754ee6bb087c653f5ce68ace15f154a60b1e31f2de0b7744"
+    },
+    {
+      "id": "milk",
+      "name": "巴氏鲜牛奶",
+      "categoryId": "dairy",
+      "iconKey": "food_milk",
+      "iconBrief": "简洁奶盒与小奶滴",
+      "source": "art/food-icons/food_milk.svg",
+      "drawable": "app/src/main/res/drawable/food_milk.xml",
+      "revision": 2,
+      "family": "carton",
+      "designParameters": {},
+      "pathCount": 9,
+      "status": "AUTHORED_REQUIRES_USER_VISUAL_ACCEPTANCE",
+      "sha256": "e6df238fcddd822b503e0510006952382d8af15ab120f1fe03c5766018ac490b"
+    },
+    {
+      "id": "uht_milk",
+      "name": "常温纯牛奶",
+      "categoryId": "dairy",
+      "iconKey": "food_uht_milk",
+      "iconBrief": "长方形奶盒",
+      "source": "art/food-icons/food_uht_milk.svg",
+      "drawable": "app/src/main/res/drawable/food_uht_milk.xml",
+      "revision": 2,
+      "family": "carton",
+      "designParameters": {
+        "uht": true
+      },
+      "pathCount": 5,
+      "status": "AUTHORED_REQUIRES_USER_VISUAL_ACCEPTANCE",
+      "sha256": "aba83ff06c299f45e0184800720471af8b554155b657c973d69efb6e3ad7d56f"
+    },
+    {
+      "id": "yogurt",
+      "name": "原味低温酸奶",
+      "categoryId": "dairy",
+      "iconKey": "food_yogurt",
+      "iconBrief": "无品牌酸奶杯和掀角封膜",
+      "source": "art/food-icons/food_yogurt.svg",
+      "drawable": "app/src/main/res/drawable/food_yogurt.xml",
+      "revision": 2,
+      "family": "yogurt",
+      "designParameters": {},
+      "pathCount": 11,
+      "status": "AUTHORED_REQUIRES_USER_VISUAL_ACCEPTANCE",
+      "sha256": "9f78577b2979262a62932bceea88d9377cfd46c802b6fabc38f47be78e0365af"
+    },
+    {
+      "id": "greek_yogurt",
+      "name": "希腊酸奶",
+      "categoryId": "dairy",
+      "iconKey": "food_greek_yogurt",
+      "iconBrief": "矮宽酸奶罐与勺",
+      "source": "art/food-icons/food_greek_yogurt.svg",
+      "drawable": "app/src/main/res/drawable/food_greek_yogurt.xml",
+      "revision": 2,
+      "family": "yogurt",
+      "designParameters": {
+        "greek": true
+      },
+      "pathCount": 12,
+      "status": "AUTHORED_REQUIRES_USER_VISUAL_ACCEPTANCE",
+      "sha256": "38da5f31ca4ad9f49efa28b7585b4c22d817096796f6e338e762d2fc9daf25cb"
+    },
+    {
+      "id": "drinkable_yogurt",
+      "name": "风味发酵乳",
+      "categoryId": "dairy",
+      "iconKey": "food_drinkable_yogurt",
+      "iconBrief": "细颈乳饮品瓶",
+      "source": "art/food-icons/food_drinkable_yogurt.svg",
+      "drawable": "app/src/main/res/drawable/food_drinkable_yogurt.xml",
+      "revision": 2,
+      "family": "carton",
+      "designParameters": {
+        "bottle": true
+      },
+      "pathCount": 6,
+      "status": "AUTHORED_REQUIRES_USER_VISUAL_ACCEPTANCE",
+      "sha256": "4c496584fb520fec2442b82fccb79f965f5d4a454566bf36d8053fb8becd94cd"
+    },
+    {
+      "id": "egg",
+      "name": "鸡蛋",
+      "categoryId": "dairy",
+      "iconKey": "food_egg",
+      "iconBrief": "两颗米白鸡蛋",
+      "source": "art/food-icons/food_egg.svg",
+      "drawable": "app/src/main/res/drawable/food_egg.xml",
+      "revision": 2,
+      "family": "eggs",
+      "designParameters": {},
+      "pathCount": 6,
+      "status": "AUTHORED_REQUIRES_USER_VISUAL_ACCEPTANCE",
+      "sha256": "c9dd333b8de0b600f67a6f24a7a40ea10d36ea77f002bfa137119bf8b1bd7ab0"
+    },
+    {
+      "id": "duck_egg",
+      "name": "鸭蛋",
+      "categoryId": "dairy",
+      "iconKey": "food_duck_egg",
+      "iconBrief": "略大淡青色蛋",
+      "source": "art/food-icons/food_duck_egg.svg",
+      "drawable": "app/src/main/res/drawable/food_duck_egg.xml",
+      "revision": 2,
+      "family": "eggs",
+      "designParameters": {
+        "duck": true,
+        "color": "#CBD9C1",
+        "shade": "#ACBEA6"
+      },
+      "pathCount": 6,
+      "status": "AUTHORED_REQUIRES_USER_VISUAL_ACCEPTANCE",
+      "sha256": "81f74e411cb5533324ce08364717e99bac828ba791837a3413c760962de4f159"
+    },
+    {
+      "id": "quail_egg",
+      "name": "鹌鹑蛋",
+      "categoryId": "dairy",
+      "iconKey": "food_quail_egg",
+      "iconBrief": "小型棕斑蛋",
+      "source": "art/food-icons/food_quail_egg.svg",
+      "drawable": "app/src/main/res/drawable/food_quail_egg.xml",
+      "revision": 2,
+      "family": "eggs",
+      "designParameters": {
+        "quail": true
+      },
+      "pathCount": 27,
+      "status": "AUTHORED_REQUIRES_USER_VISUAL_ACCEPTANCE",
+      "sha256": "aa458ac310403e9396871a3aceed5d64b22a2abbed02b8275e6a5393c911f304"
+    },
+    {
+      "id": "boiled_egg",
+      "name": "熟鸡蛋",
+      "categoryId": "dairy",
+      "iconKey": "food_boiled_egg",
+      "iconBrief": "白蛋与黄色蛋黄切面",
+      "source": "art/food-icons/food_boiled_egg.svg",
+      "drawable": "app/src/main/res/drawable/food_boiled_egg.xml",
+      "revision": 2,
+      "family": "eggs",
+      "designParameters": {
+        "boiled": true
+      },
+      "pathCount": 9,
+      "status": "AUTHORED_REQUIRES_USER_VISUAL_ACCEPTANCE",
+      "sha256": "b458ec35da3cabac78e2caf3ae25a555aa501242bf0378c0445621d917da50af"
+    },
+    {
+      "id": "butter",
+      "name": "黄油",
+      "categoryId": "dairy",
+      "iconKey": "food_butter",
+      "iconBrief": "浅黄色方块和折叠纸",
+      "source": "art/food-icons/food_butter.svg",
+      "drawable": "app/src/main/res/drawable/food_butter.xml",
+      "revision": 2,
+      "family": "cheese",
+      "designParameters": {
+        "type": "butter"
+      },
+      "pathCount": 5,
+      "status": "AUTHORED_REQUIRES_USER_VISUAL_ACCEPTANCE",
+      "sha256": "7cfde88231f3e1c18868edeb79dab28e17458db7154e76775d6411c9a32f3e90"
+    },
+    {
+      "id": "cheddar",
+      "name": "切达奶酪",
+      "categoryId": "dairy",
+      "iconKey": "food_cheddar",
+      "iconBrief": "橙黄色硬质奶酪块",
+      "source": "art/food-icons/food_cheddar.svg",
+      "drawable": "app/src/main/res/drawable/food_cheddar.xml",
+      "revision": 2,
+      "family": "cheese",
+      "designParameters": {
+        "holes": true,
+        "color": "#D7AD5D"
+      },
+      "pathCount": 8,
+      "status": "AUTHORED_REQUIRES_USER_VISUAL_ACCEPTANCE",
+      "sha256": "9bda84e4f59d2dd1efd8618d8e53fd776ad2f9ae0b6864b63ecb7da69e88a8ca"
+    },
+    {
+      "id": "parmesan",
+      "name": "帕尔玛奶酪",
+      "categoryId": "dairy",
+      "iconKey": "food_parmesan",
+      "iconBrief": "淡黄三角硬质奶酪",
+      "source": "art/food-icons/food_parmesan.svg",
+      "drawable": "app/src/main/res/drawable/food_parmesan.xml",
+      "revision": 2,
+      "family": "cheese",
+      "designParameters": {
+        "color": "#D6C593",
+        "light": "#F5EFDC"
+      },
+      "pathCount": 7,
+      "status": "AUTHORED_REQUIRES_USER_VISUAL_ACCEPTANCE",
+      "sha256": "5caf13cedf440a0b2719aa728ce84bc22ee242bde1ee48b604f8b357bcf9edb4"
+    },
+    {
+      "id": "ricotta",
+      "name": "里科塔奶酪",
+      "categoryId": "dairy",
+      "iconKey": "food_ricotta",
+      "iconBrief": "白色颗粒状鲜奶酪碗",
+      "source": "art/food-icons/food_ricotta.svg",
+      "drawable": "app/src/main/res/drawable/food_ricotta.xml",
+      "revision": 2,
+      "family": "cheese",
+      "designParameters": {
+        "type": "ricotta"
+      },
+      "pathCount": 25,
+      "status": "AUTHORED_REQUIRES_USER_VISUAL_ACCEPTANCE",
+      "sha256": "8fb25609998f6ea89eb0f52366bfc9102c3618916ad7f2b3f980f352e616b3f4"
+    },
+    {
+      "id": "brie",
+      "name": "布里奶酪",
+      "categoryId": "dairy",
+      "iconKey": "food_brie",
+      "iconBrief": "白皮圆奶酪和三角切块",
+      "source": "art/food-icons/food_brie.svg",
+      "drawable": "app/src/main/res/drawable/food_brie.xml",
+      "revision": 2,
+      "family": "cheese",
+      "designParameters": {
+        "type": "brie"
+      },
+      "pathCount": 5,
+      "status": "AUTHORED_REQUIRES_USER_VISUAL_ACCEPTANCE",
+      "sha256": "9b9110a8cdcb08a6a0a93d61d0af7ec40da4013633b6a8524b6179d08e9ea04e"
+    },
+    {
+      "id": "cream_cheese",
+      "name": "奶油奶酪",
+      "categoryId": "dairy",
+      "iconKey": "food_cream_cheese",
+      "iconBrief": "白色长方形软奶酪盒",
+      "source": "art/food-icons/food_cream_cheese.svg",
+      "drawable": "app/src/main/res/drawable/food_cream_cheese.xml",
+      "revision": 2,
+      "family": "cheese",
+      "designParameters": {
+        "type": "cream"
+      },
+      "pathCount": 5,
+      "status": "AUTHORED_REQUIRES_USER_VISUAL_ACCEPTANCE",
+      "sha256": "7899c56d967a93b1139172222488ffcf213e305d8f9906d721c7e3673dd11948"
+    },
+    {
+      "id": "mozzarella",
+      "name": "马苏里拉奶酪",
+      "categoryId": "dairy",
+      "iconKey": "food_mozzarella",
+      "iconBrief": "白色圆奶酪球",
+      "source": "art/food-icons/food_mozzarella.svg",
+      "drawable": "app/src/main/res/drawable/food_mozzarella.xml",
+      "revision": 2,
+      "family": "cheese",
+      "designParameters": {
+        "type": "mozzarella"
+      },
+      "pathCount": 7,
+      "status": "AUTHORED_REQUIRES_USER_VISUAL_ACCEPTANCE",
+      "sha256": "124d7101594eea813d784cd5d59eb369aa4bfa7df3714d2ebd188473e16c4fb8"
+    },
+    {
+      "id": "cream",
+      "name": "淡奶油",
+      "categoryId": "dairy",
+      "iconKey": "food_cream",
+      "iconBrief": "带奶油旋纹的小纸盒",
+      "source": "art/food-icons/food_cream.svg",
+      "drawable": "app/src/main/res/drawable/food_cream.xml",
+      "revision": 2,
+      "family": "carton",
+      "designParameters": {
+        "cream": true,
+        "color": "#B5AF8F"
+      },
+      "pathCount": 9,
+      "status": "AUTHORED_REQUIRES_USER_VISUAL_ACCEPTANCE",
+      "sha256": "8c8b31e00b7014a8a02e299c3fb67773195d8d9ce92dc9b2e3626eadd07bae4f"
+    },
+    {
+      "id": "firm_tofu",
+      "name": "北豆腐",
+      "categoryId": "soy",
+      "iconKey": "food_firm_tofu",
+      "iconBrief": "边角清晰的乳白豆腐块",
+      "source": "art/food-icons/food_firm_tofu.svg",
+      "drawable": "app/src/main/res/drawable/food_firm_tofu.xml",
+      "revision": 2,
+      "family": "tofu",
+      "designParameters": {},
+      "pathCount": 4,
+      "status": "AUTHORED_REQUIRES_USER_VISUAL_ACCEPTANCE",
+      "sha256": "53c658b247f3ae2e5d860b7ed0e3fe78cf931e8bd1fc068589775b16a959b5c9"
+    },
+    {
+      "id": "soft_tofu",
+      "name": "南豆腐",
+      "categoryId": "soy",
+      "iconKey": "food_soft_tofu",
+      "iconBrief": "光滑白色软豆腐块",
+      "source": "art/food-icons/food_soft_tofu.svg",
+      "drawable": "app/src/main/res/drawable/food_soft_tofu.xml",
+      "revision": 2,
+      "family": "tofu",
+      "designParameters": {
+        "smooth": true,
+        "color": "#F9F4E4"
+      },
+      "pathCount": 3,
+      "status": "AUTHORED_REQUIRES_USER_VISUAL_ACCEPTANCE",
+      "sha256": "c9ddd98f59e67e8b48bc494a419f5be6c0be0c9b6c40f04aef88986610bd3226"
+    },
+    {
+      "id": "silken_tofu",
+      "name": "内酯豆腐",
+      "categoryId": "soy",
+      "iconKey": "food_silken_tofu",
+      "iconBrief": "透明方盒内的嫩豆腐",
+      "source": "art/food-icons/food_silken_tofu.svg",
+      "drawable": "app/src/main/res/drawable/food_silken_tofu.xml",
+      "revision": 2,
+      "family": "tofu",
+      "designParameters": {
+        "container": true,
+        "smooth": true
+      },
+      "pathCount": 5,
+      "status": "AUTHORED_REQUIRES_USER_VISUAL_ACCEPTANCE",
+      "sha256": "e22ebb4bc1650ca6c0174f4c4ed979750eacb9853c3b08c008ab854e64955d93"
+    },
+    {
+      "id": "water_tofu_open",
+      "name": "已开封水浸豆腐",
+      "categoryId": "soy",
+      "iconKey": "food_water_tofu_open",
+      "iconBrief": "豆腐块置于清水容器",
+      "source": "art/food-icons/food_water_tofu_open.svg",
+      "drawable": "app/src/main/res/drawable/food_water_tofu_open.xml",
+      "revision": 2,
+      "family": "tofu",
+      "designParameters": {
+        "container": true,
+        "water": true,
+        "smooth": true
+      },
+      "pathCount": 6,
+      "status": "AUTHORED_REQUIRES_USER_VISUAL_ACCEPTANCE",
+      "sha256": "1539de10eaee3788968e5195a2de749c62c05e53fa57bbc2603f8843344c9825"
+    },
+    {
+      "id": "frozen_tofu",
+      "name": "冻豆腐",
+      "categoryId": "soy",
+      "iconKey": "food_frozen_tofu",
+      "iconBrief": "浅黄多孔豆腐块",
+      "source": "art/food-icons/food_frozen_tofu.svg",
+      "drawable": "app/src/main/res/drawable/food_frozen_tofu.xml",
+      "revision": 2,
+      "family": "tofu",
+      "designParameters": {
+        "color": "#E0CE96",
+        "pores": true
+      },
+      "pathCount": 15,
+      "status": "AUTHORED_REQUIRES_USER_VISUAL_ACCEPTANCE",
+      "sha256": "82e45534f0810949244f2de65be86c3a4b7c771257ed3b1395da2ce9d58d702e"
+    },
+    {
+      "id": "dried_tofu",
+      "name": "鲜豆干",
+      "categoryId": "soy",
+      "iconKey": "food_dried_tofu",
+      "iconBrief": "褐色方形薄豆干",
+      "source": "art/food-icons/food_dried_tofu.svg",
+      "drawable": "app/src/main/res/drawable/food_dried_tofu.xml",
+      "revision": 2,
+      "family": "tofu",
+      "designParameters": {
+        "color": "#A78156",
+        "side": "#806447",
+        "smooth": true
+      },
+      "pathCount": 3,
+      "status": "AUTHORED_REQUIRES_USER_VISUAL_ACCEPTANCE",
+      "sha256": "4a84dbd47f632c9ff5c85cb32847c8a23e905b937eebd9fe1e7cb7581746cc50"
+    },
+    {
+      "id": "tofu_skin",
+      "name": "鲜豆皮",
+      "categoryId": "soy",
+      "iconKey": "food_tofu_skin",
+      "iconBrief": "叠放浅黄色薄豆皮",
+      "source": "art/food-icons/food_tofu_skin.svg",
+      "drawable": "app/src/main/res/drawable/food_tofu_skin.xml",
+      "revision": 2,
+      "family": "tofu",
+      "designParameters": {
+        "type": "skin"
+      },
+      "pathCount": 5,
+      "status": "AUTHORED_REQUIRES_USER_VISUAL_ACCEPTANCE",
+      "sha256": "cab7e2800943233ad18b356afe0b0d9276467bd4c2aaa1c5c4cd0f3136ffc8b0"
+    },
+    {
+      "id": "tofu_puff",
+      "name": "油豆腐",
+      "categoryId": "soy",
+      "iconKey": "food_tofu_puff",
+      "iconBrief": "金黄色多孔豆腐泡",
+      "source": "art/food-icons/food_tofu_puff.svg",
+      "drawable": "app/src/main/res/drawable/food_tofu_puff.xml",
+      "revision": 2,
+      "family": "tofu",
+      "designParameters": {
+        "puffs": true,
+        "pores": true,
+        "color": "#D4AA61"
+      },
+      "pathCount": 36,
+      "status": "AUTHORED_REQUIRES_USER_VISUAL_ACCEPTANCE",
+      "sha256": "2128fa06db5e81551f3dd8ace99be53096f83e50d781430497db1e8cc2739911"
+    },
+    {
+      "id": "soy_milk",
+      "name": "鲜豆浆",
+      "categoryId": "soy",
+      "iconKey": "food_soy_milk",
+      "iconBrief": "豆浆杯与黄豆",
+      "source": "art/food-icons/food_soy_milk.svg",
+      "drawable": "app/src/main/res/drawable/food_soy_milk.xml",
+      "revision": 2,
+      "family": "tofu",
+      "designParameters": {
+        "type": "milk"
+      },
+      "pathCount": 9,
+      "status": "AUTHORED_REQUIRES_USER_VISUAL_ACCEPTANCE",
+      "sha256": "68c053d1071f67352bf4697552c37cafc0e4e6278565660e78f6aac3183a4146"
+    },
+    {
+      "id": "natto",
+      "name": "纳豆",
+      "categoryId": "soy",
+      "iconKey": "food_natto",
+      "iconBrief": "小盒黄褐豆粒",
+      "source": "art/food-icons/food_natto.svg",
+      "drawable": "app/src/main/res/drawable/food_natto.xml",
+      "revision": 2,
+      "family": "natto",
+      "designParameters": {},
+      "pathCount": 51,
+      "status": "AUTHORED_REQUIRES_USER_VISUAL_ACCEPTANCE",
+      "sha256": "29f6ca8f70afa9ade0acfd9e9d088161fbae29475e9655e34205c4b972c3e1ef"
+    },
+    {
+      "id": "tempeh",
+      "name": "天贝",
+      "categoryId": "soy",
+      "iconKey": "food_tempeh",
+      "iconBrief": "可见豆粒的白色块",
+      "source": "art/food-icons/food_tempeh.svg",
+      "drawable": "app/src/main/res/drawable/food_tempeh.xml",
+      "revision": 2,
+      "family": "tofu",
+      "designParameters": {
+        "beans": true,
+        "color": "#F5EFDC"
+      },
+      "pathCount": 15,
+      "status": "AUTHORED_REQUIRES_USER_VISUAL_ACCEPTANCE",
+      "sha256": "e664eb8492ebc63b1c4bbc5501b68159469c00b07ee48f8db16058fcdab19938"
+    },
+    {
+      "id": "egg_tofu",
+      "name": "玉子豆腐",
+      "categoryId": "soy",
+      "iconKey": "food_egg_tofu",
+      "iconBrief": "浅黄色圆柱切片",
+      "source": "art/food-icons/food_egg_tofu.svg",
+      "drawable": "app/src/main/res/drawable/food_egg_tofu.xml",
+      "revision": 2,
+      "family": "tofu",
+      "designParameters": {
+        "type": "egg"
+      },
+      "pathCount": 7,
+      "status": "AUTHORED_REQUIRES_USER_VISUAL_ACCEPTANCE",
+      "sha256": "01bbdf5949d4e0676d7f82b56a444d35627a714e282909b061662e1922eb2be8"
+    },
+    {
+      "id": "fresh_noodles",
+      "name": "鲜面条",
+      "categoryId": "prepared",
+      "iconKey": "food_fresh_noodles",
+      "iconBrief": "盘绕的白色细面",
+      "source": "art/food-icons/food_fresh_noodles.svg",
+      "drawable": "app/src/main/res/drawable/food_fresh_noodles.xml",
+      "revision": 2,
+      "family": "noodles",
+      "designParameters": {},
+      "pathCount": 23,
+      "status": "AUTHORED_REQUIRES_USER_VISUAL_ACCEPTANCE",
+      "sha256": "77a7ae133a5abccb06d0a3e7350bbf4b2928c1799a04f2596683089ff69bc8ad"
+    },
+    {
+      "id": "rice_noodles",
+      "name": "鲜米线",
+      "categoryId": "prepared",
+      "iconKey": "food_rice_noodles",
+      "iconBrief": "白色粗圆米线束",
+      "source": "art/food-icons/food_rice_noodles.svg",
+      "drawable": "app/src/main/res/drawable/food_rice_noodles.xml",
+      "revision": 2,
+      "family": "noodles",
+      "designParameters": {
+        "thick": true
+      },
+      "pathCount": 23,
+      "status": "AUTHORED_REQUIRES_USER_VISUAL_ACCEPTANCE",
+      "sha256": "166f47f9c9b6a309201cb070e8507e93464b8bffdedacaacd64f4ffbe1815ed6"
+    },
+    {
+      "id": "dumpling_wrapper",
+      "name": "饺子皮",
+      "categoryId": "prepared",
+      "iconKey": "food_dumpling_wrapper",
+      "iconBrief": "叠放的白色圆面皮",
+      "source": "art/food-icons/food_dumpling_wrapper.svg",
+      "drawable": "app/src/main/res/drawable/food_dumpling_wrapper.xml",
+      "revision": 2,
+      "family": "wrappers",
+      "designParameters": {},
+      "pathCount": 5,
+      "status": "AUTHORED_REQUIRES_USER_VISUAL_ACCEPTANCE",
+      "sha256": "3a070611aae2ac49bc254a85bcadaccf5429e8b7ce21f5cc06c9efc17fea3371"
+    },
+    {
+      "id": "wonton_wrapper",
+      "name": "馄饨皮",
+      "categoryId": "prepared",
+      "iconKey": "food_wonton_wrapper",
+      "iconBrief": "叠放的薄方形面皮",
+      "source": "art/food-icons/food_wonton_wrapper.svg",
+      "drawable": "app/src/main/res/drawable/food_wonton_wrapper.xml",
+      "revision": 2,
+      "family": "wrappers",
+      "designParameters": {
+        "square": true
+      },
+      "pathCount": 5,
+      "status": "AUTHORED_REQUIRES_USER_VISUAL_ACCEPTANCE",
+      "sha256": "ce10f72692149131cf758ee193d5ca85b1aa32cd27314c691844ef0fa9b23366"
+    },
+    {
+      "id": "frozen_dumpling",
+      "name": "速冻水饺",
+      "categoryId": "prepared",
+      "iconKey": "food_frozen_dumpling",
+      "iconBrief": "带褶半月饺子",
+      "source": "art/food-icons/food_frozen_dumpling.svg",
+      "drawable": "app/src/main/res/drawable/food_frozen_dumpling.xml",
+      "revision": 2,
+      "family": "dumpling",
+      "designParameters": {},
+      "pathCount": 24,
+      "status": "AUTHORED_REQUIRES_USER_VISUAL_ACCEPTANCE",
+      "sha256": "69c55e237df89e60ccd2241e671c4e9a1ef8be267feb1f76002539922e0d6c31"
+    },
+    {
+      "id": "frozen_wonton",
+      "name": "速冻馄饨",
+      "categoryId": "prepared",
+      "iconKey": "food_frozen_wonton",
+      "iconBrief": "折叠小馄饨",
+      "source": "art/food-icons/food_frozen_wonton.svg",
+      "drawable": "app/src/main/res/drawable/food_frozen_wonton.xml",
+      "revision": 2,
+      "family": "dumpling",
+      "designParameters": {
+        "wonton": true
+      },
+      "pathCount": 8,
+      "status": "AUTHORED_REQUIRES_USER_VISUAL_ACCEPTANCE",
+      "sha256": "6904a20d728686121c1451bb673681c9bf801f53d68338852bf2f63047566aaa"
+    },
+    {
+      "id": "frozen_bun",
+      "name": "速冻包子",
+      "categoryId": "prepared",
+      "iconKey": "food_frozen_bun",
+      "iconBrief": "白色圆包与顶端褶",
+      "source": "art/food-icons/food_frozen_bun.svg",
+      "drawable": "app/src/main/res/drawable/food_frozen_bun.xml",
+      "revision": 2,
+      "family": "buns",
+      "designParameters": {},
+      "pathCount": 11,
+      "status": "AUTHORED_REQUIRES_USER_VISUAL_ACCEPTANCE",
+      "sha256": "6433e49395a7c47046a63a6d038c40465668f28a66233e05b2c0eb6b36ab38f4"
+    },
+    {
+      "id": "frozen_tangyuan",
+      "name": "速冻汤圆",
+      "categoryId": "prepared",
+      "iconKey": "food_frozen_tangyuan",
+      "iconBrief": "白色圆汤圆和黑馅切面",
+      "source": "art/food-icons/food_frozen_tangyuan.svg",
+      "drawable": "app/src/main/res/drawable/food_frozen_tangyuan.xml",
+      "revision": 2,
+      "family": "buns",
+      "designParameters": {
+        "tangyuan": true
+      },
+      "pathCount": 9,
+      "status": "AUTHORED_REQUIRES_USER_VISUAL_ACCEPTANCE",
+      "sha256": "e4ebe2a307d1042873113912fe46d03bb1bedc4b923fa587759380cf288447ef"
+    },
+    {
+      "id": "bread",
+      "name": "面包",
+      "categoryId": "prepared",
+      "iconKey": "food_bread",
+      "iconBrief": "浅褐吐司与面包片",
+      "source": "art/food-icons/food_bread.svg",
+      "drawable": "app/src/main/res/drawable/food_bread.xml",
+      "revision": 2,
+      "family": "bread",
+      "designParameters": {},
+      "pathCount": 16,
+      "status": "AUTHORED_REQUIRES_USER_VISUAL_ACCEPTANCE",
+      "sha256": "9b9f3e58e478cb23fe6a3b2a6bb52f908c95aa3e93ae745c1f69c7dd21920aef"
+    },
+    {
+      "id": "steamed_bun",
+      "name": "馒头",
+      "categoryId": "prepared",
+      "iconKey": "food_steamed_bun",
+      "iconBrief": "白色半圆馒头",
+      "source": "art/food-icons/food_steamed_bun.svg",
+      "drawable": "app/src/main/res/drawable/food_steamed_bun.xml",
+      "revision": 2,
+      "family": "buns",
+      "designParameters": {
+        "smooth": true
+      },
+      "pathCount": 3,
+      "status": "AUTHORED_REQUIRES_USER_VISUAL_ACCEPTANCE",
+      "sha256": "76986f2cfe1eb9de9eee3b3ca019951a8bac40d534a3e34c3803d03783cfb5a5"
+    },
+    {
+      "id": "cooked_meat",
+      "name": "熟肉剩菜",
+      "categoryId": "prepared",
+      "iconKey": "food_cooked_meat",
+      "iconBrief": "简洁盘中熟肉片",
+      "source": "art/food-icons/food_cooked_meat.svg",
+      "drawable": "app/src/main/res/drawable/food_cooked_meat.xml",
+      "revision": 2,
+      "family": "leftovers",
+      "designParameters": {},
+      "pathCount": 11,
+      "status": "AUTHORED_REQUIRES_USER_VISUAL_ACCEPTANCE",
+      "sha256": "3ae3c5c0b6ae1ce9eb9a810e4abe92c5718987565ec6459115459d1353f04fa3"
+    },
+    {
+      "id": "chicken_leftover",
+      "name": "熟鸡肉剩菜",
+      "categoryId": "prepared",
+      "iconKey": "food_chicken_leftover",
+      "iconBrief": "盘中熟鸡块",
+      "source": "art/food-icons/food_chicken_leftover.svg",
+      "drawable": "app/src/main/res/drawable/food_chicken_leftover.xml",
+      "revision": 2,
+      "family": "leftovers",
+      "designParameters": {
+        "chicken": true
+      },
+      "pathCount": 11,
+      "status": "AUTHORED_REQUIRES_USER_VISUAL_ACCEPTANCE",
+      "sha256": "8f4d1dbe024832eba88dcbdc358b3c8b18ed680fdc219ff946a7784a8aff0fb7"
+    },
+    {
+      "id": "stew",
+      "name": "炖菜",
+      "categoryId": "prepared",
+      "iconKey": "food_stew",
+      "iconBrief": "小碗汤和食材块",
+      "source": "art/food-icons/food_stew.svg",
+      "drawable": "app/src/main/res/drawable/food_stew.xml",
+      "revision": 2,
+      "family": "leftovers",
+      "designParameters": {
+        "stew": true
+      },
+      "pathCount": 9,
+      "status": "AUTHORED_REQUIRES_USER_VISUAL_ACCEPTANCE",
+      "sha256": "a94b5bfdb0c37ecef9c5dc33d2fec0e6f6f33c556dab1080b908f2973012394f"
+    },
+    {
+      "id": "rice_leftover",
+      "name": "剩米饭",
+      "categoryId": "prepared",
+      "iconKey": "food_rice_leftover",
+      "iconBrief": "小碗白米饭",
+      "source": "art/food-icons/food_rice_leftover.svg",
+      "drawable": "app/src/main/res/drawable/food_rice_leftover.xml",
+      "revision": 2,
+      "family": "leftovers",
+      "designParameters": {
+        "rice": true
+      },
+      "pathCount": 35,
+      "status": "AUTHORED_REQUIRES_USER_VISUAL_ACCEPTANCE",
+      "sha256": "0ae70825c25ec181e8072e12ee98b166afe6daf80d24c9e362c8b9a2993aa1de"
+    },
+    {
+      "id": "cooked_vegetables",
+      "name": "熟蔬菜剩菜",
+      "categoryId": "prepared",
+      "iconKey": "food_cooked_vegetables",
+      "iconBrief": "盘中熟绿叶菜",
+      "source": "art/food-icons/food_cooked_vegetables.svg",
+      "drawable": "app/src/main/res/drawable/food_cooked_vegetables.xml",
+      "revision": 2,
+      "family": "leftovers",
+      "designParameters": {
+        "greens": true
+      },
+      "pathCount": 38,
+      "status": "AUTHORED_REQUIRES_USER_VISUAL_ACCEPTANCE",
+      "sha256": "dce1f417c98fde8f09f0a72ca2b6cff54756015fae9472dbfd03d3e9054788c6"
+    },
+    {
+      "id": "luncheon_meat",
+      "name": "午餐肉罐头",
+      "categoryId": "prepared",
+      "iconKey": "food_luncheon_meat",
+      "iconBrief": "长方罐和粉色肉片",
+      "source": "art/food-icons/food_luncheon_meat.svg",
+      "drawable": "app/src/main/res/drawable/food_luncheon_meat.xml",
+      "revision": 2,
+      "family": "lunchMeat",
+      "designParameters": {},
+      "pathCount": 8,
+      "status": "AUTHORED_REQUIRES_USER_VISUAL_ACCEPTANCE",
+      "sha256": "67a7325eb1d24c831c3dccb1af66852155304fee44fc377a3206d96e4e70880c"
+    },
+    {
+      "id": "ham_slices",
+      "name": "火腿片",
+      "categoryId": "prepared",
+      "iconKey": "food_ham_slices",
+      "iconBrief": "叠放粉色圆肉片",
+      "source": "art/food-icons/food_ham_slices.svg",
+      "drawable": "app/src/main/res/drawable/food_ham_slices.xml",
+      "revision": 2,
+      "family": "lunchMeat",
+      "designParameters": {
+        "ham": true
+      },
+      "pathCount": 36,
+      "status": "AUTHORED_REQUIRES_USER_VISUAL_ACCEPTANCE",
+      "sha256": "1be1b072e83dc935e1ec26e5fe644f21480efd96b39740f9d4f0bec7ce8bfc2a"
+    }
+  ]
+}

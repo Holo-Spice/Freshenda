@@ -1,0 +1,28 @@
+*.iml
+.gradle/
+.kotlin/
+**/build/
+/local.properties
+/.idea/caches
+/.idea/libraries
+/.idea/modules.xml
+/.idea/workspace.xml
+/.idea/navEditor.xml
+/.idea/assetWizardSettings.xml
+.DS_Store
+/captures
+.externalNativeBuild
+.cxx
+local.properties
+
+# The public source repository intentionally excludes project documentation.
+/docs/
+README.md
+**/README.md
+**/toolchain.md
+**/validation-report.md
+
+# Generated previews, validation output, and superseded icon sources.
+/art/food-icons/preview/
+/art/food-icons/validation-results.json
+/art/food-icons-backup-v1/

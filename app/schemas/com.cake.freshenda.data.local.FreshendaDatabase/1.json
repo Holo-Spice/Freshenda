@@ -1,0 +1,413 @@
+{
+  "formatVersion": 1,
+  "database": {
+    "version": 1,
+    "identityHash": "d519558c71f7097dfe736a82228f5f61",
+    "entities": [
+      {
+        "tableName": "food_batches",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `foodDefinitionId` TEXT NOT NULL, `displayName` TEXT NOT NULL, `iconKey` TEXT NOT NULL, `quantityMilli` INTEGER NOT NULL, `quantityUnit` TEXT NOT NULL, `status` TEXT NOT NULL, `storageLocation` TEXT NOT NULL, `storageSection` TEXT NOT NULL, `physicalState` TEXT NOT NULL, `packagingState` TEXT NOT NULL, `maturityState` TEXT NOT NULL, `preparation` TEXT NOT NULL, `purchasedAtEpochMillis` INTEGER NOT NULL, `stageStartedAtEpochMillis` INTEGER NOT NULL, `openedAtEpochMillis` INTEGER, `thawedAtEpochMillis` INTEGER, `datePrecision` TEXT NOT NULL, `businessZoneId` TEXT NOT NULL, `labelDateEpochDay` INTEGER, `labelStorageScope` TEXT, `customDeadlineEpochMillis` INTEGER, `suggestedDeadlineEpochMillis` INTEGER, `openedDeadlineEpochMillis` INTEGER, `thawedDeadlineEpochMillis` INTEGER, `effectiveDeadlineEpochMillis` INTEGER, `effectiveAnchorEpochMillis` INTEGER, `effectiveDeadlineKind` TEXT, `effectiveDisplayDateEpochDay` INTEGER, `ruleSnapshot` TEXT, `ruleDataVersion` TEXT NOT NULL, `deadlineRevision` INTEGER NOT NULL, `requiresDateReview` INTEGER NOT NULL, `preFreezeRemainingSeconds` INTEGER, `createdAtEpochMillis` INTEGER NOT NULL, `updatedAtEpochMillis` INTEGER NOT NULL)",
+        "fields": [
+          {
+            "fieldPath": "id",
+            "columnName": "id",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "foodDefinitionId",
+            "columnName": "foodDefinitionId",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "displayName",
+            "columnName": "displayName",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "iconKey",
+            "columnName": "iconKey",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "quantityMilli",
+            "columnName": "quantityMilli",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "quantityUnit",
+            "columnName": "quantityUnit",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "status",
+            "columnName": "status",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "storageLocation",
+            "columnName": "storageLocation",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "storageSection",
+            "columnName": "storageSection",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "physicalState",
+            "columnName": "physicalState",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "packagingState",
+            "columnName": "packagingState",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "maturityState",
+            "columnName": "maturityState",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "preparation",
+            "columnName": "preparation",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "purchasedAtEpochMillis",
+            "columnName": "purchasedAtEpochMillis",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "stageStartedAtEpochMillis",
+            "columnName": "stageStartedAtEpochMillis",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "openedAtEpochMillis",
+            "columnName": "openedAtEpochMillis",
+            "affinity": "INTEGER"
+          },
+          {
+            "fieldPath": "thawedAtEpochMillis",
+            "columnName": "thawedAtEpochMillis",
+            "affinity": "INTEGER"
+          },
+          {
+            "fieldPath": "datePrecision",
+            "columnName": "datePrecision",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "businessZoneId",
+            "columnName": "businessZoneId",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "labelDateEpochDay",
+            "columnName": "labelDateEpochDay",
+            "affinity": "INTEGER"
+          },
+          {
+            "fieldPath": "labelStorageScope",
+            "columnName": "labelStorageScope",
+            "affinity": "TEXT"
+          },
+          {
+            "fieldPath": "customDeadlineEpochMillis",
+            "columnName": "customDeadlineEpochMillis",
+            "affinity": "INTEGER"
+          },
+          {
+            "fieldPath": "suggestedDeadlineEpochMillis",
+            "columnName": "suggestedDeadlineEpochMillis",
+            "affinity": "INTEGER"
+          },
+          {
+            "fieldPath": "openedDeadlineEpochMillis",
+            "columnName": "openedDeadlineEpochMillis",
+            "affinity": "INTEGER"
+          },
+          {
+            "fieldPath": "thawedDeadlineEpochMillis",
+            "columnName": "thawedDeadlineEpochMillis",
+            "affinity": "INTEGER"
+          },
+          {
+            "fieldPath": "effectiveDeadlineEpochMillis",
+            "columnName": "effectiveDeadlineEpochMillis",
+            "affinity": "INTEGER"
+          },
+          {
+            "fieldPath": "effectiveAnchorEpochMillis",
+            "columnName": "effectiveAnchorEpochMillis",
+            "affinity": "INTEGER"
+          },
+          {
+            "fieldPath": "effectiveDeadlineKind",
+            "columnName": "effectiveDeadlineKind",
+            "affinity": "TEXT"
+          },
+          {
+            "fieldPath": "effectiveDisplayDateEpochDay",
+            "columnName": "effectiveDisplayDateEpochDay",
+            "affinity": "INTEGER"
+          },
+          {
+            "fieldPath": "ruleSnapshot",
+            "columnName": "ruleSnapshot",
+            "affinity": "TEXT"
+          },
+          {
+            "fieldPath": "ruleDataVersion",
+            "columnName": "ruleDataVersion",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "deadlineRevision",
+            "columnName": "deadlineRevision",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "requiresDateReview",
+            "columnName": "requiresDateReview",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "preFreezeRemainingSeconds",
+            "columnName": "preFreezeRemainingSeconds",
+            "affinity": "INTEGER"
+          },
+          {
+            "fieldPath": "createdAtEpochMillis",
+            "columnName": "createdAtEpochMillis",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "updatedAtEpochMillis",
+            "columnName": "updatedAtEpochMillis",
+            "affinity": "INTEGER",
+            "notNull": true
+          }
+        ],
+        "primaryKey": {
+          "autoGenerate": true,
+          "columnNames": [
+            "id"
+          ]
+        },
+        "indices": [
+          {
+            "name": "index_food_batches_status_effectiveDeadlineEpochMillis",
+            "unique": false,
+            "columnNames": [
+              "status",
+              "effectiveDeadlineEpochMillis"
+            ],
+            "orders": [],
+            "createSql": "CREATE INDEX IF NOT EXISTS `index_food_batches_status_effectiveDeadlineEpochMillis` ON `${TABLE_NAME}` (`status`, `effectiveDeadlineEpochMillis`)"
+          },
+          {
+            "name": "index_food_batches_foodDefinitionId",
+            "unique": false,
+            "columnNames": [
+              "foodDefinitionId"
+            ],
+            "orders": [],
+            "createSql": "CREATE INDEX IF NOT EXISTS `index_food_batches_foodDefinitionId` ON `${TABLE_NAME}` (`foodDefinitionId`)"
+          }
+        ]
+      },
+      {
+        "tableName": "batch_changes",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `batchId` INTEGER NOT NULL, `kind` TEXT NOT NULL, `quantityDeltaMilli` INTEGER NOT NULL, `note` TEXT NOT NULL, `changedAtEpochMillis` INTEGER NOT NULL)",
+        "fields": [
+          {
+            "fieldPath": "id",
+            "columnName": "id",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "batchId",
+            "columnName": "batchId",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "kind",
+            "columnName": "kind",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "quantityDeltaMilli",
+            "columnName": "quantityDeltaMilli",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "note",
+            "columnName": "note",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "changedAtEpochMillis",
+            "columnName": "changedAtEpochMillis",
+            "affinity": "INTEGER",
+            "notNull": true
+          }
+        ],
+        "primaryKey": {
+          "autoGenerate": true,
+          "columnNames": [
+            "id"
+          ]
+        },
+        "indices": [
+          {
+            "name": "index_batch_changes_batchId_changedAtEpochMillis",
+            "unique": false,
+            "columnNames": [
+              "batchId",
+              "changedAtEpochMillis"
+            ],
+            "orders": [],
+            "createSql": "CREATE INDEX IF NOT EXISTS `index_batch_changes_batchId_changedAtEpochMillis` ON `${TABLE_NAME}` (`batchId`, `changedAtEpochMillis`)"
+          }
+        ]
+      },
+      {
+        "tableName": "reminder_deliveries",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`deliveryKey` TEXT NOT NULL, `periodEpochDay` INTEGER NOT NULL, `summaryHash` TEXT NOT NULL, `deliveredAtEpochMillis` INTEGER NOT NULL, PRIMARY KEY(`deliveryKey`))",
+        "fields": [
+          {
+            "fieldPath": "deliveryKey",
+            "columnName": "deliveryKey",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "periodEpochDay",
+            "columnName": "periodEpochDay",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "summaryHash",
+            "columnName": "summaryHash",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "deliveredAtEpochMillis",
+            "columnName": "deliveredAtEpochMillis",
+            "affinity": "INTEGER",
+            "notNull": true
+          }
+        ],
+        "primaryKey": {
+          "autoGenerate": false,
+          "columnNames": [
+            "deliveryKey"
+          ]
+        }
+      },
+      {
+        "tableName": "custom_foods",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` TEXT NOT NULL, `name` TEXT NOT NULL, `categoryId` TEXT NOT NULL, `iconKey` TEXT NOT NULL, `defaultQuantityUnit` TEXT NOT NULL, `refrigeratedDays` INTEGER, `frozenDays` INTEGER, `pantryDays` INTEGER, `createdAtEpochMillis` INTEGER NOT NULL, `updatedAtEpochMillis` INTEGER NOT NULL, PRIMARY KEY(`id`))",
+        "fields": [
+          {
+            "fieldPath": "id",
+            "columnName": "id",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "name",
+            "columnName": "name",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "categoryId",
+            "columnName": "categoryId",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "iconKey",
+            "columnName": "iconKey",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "defaultQuantityUnit",
+            "columnName": "defaultQuantityUnit",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "refrigeratedDays",
+            "columnName": "refrigeratedDays",
+            "affinity": "INTEGER"
+          },
+          {
+            "fieldPath": "frozenDays",
+            "columnName": "frozenDays",
+            "affinity": "INTEGER"
+          },
+          {
+            "fieldPath": "pantryDays",
+            "columnName": "pantryDays",
+            "affinity": "INTEGER"
+          },
+          {
+            "fieldPath": "createdAtEpochMillis",
+            "columnName": "createdAtEpochMillis",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "updatedAtEpochMillis",
+            "columnName": "updatedAtEpochMillis",
+            "affinity": "INTEGER",
+            "notNull": true
+          }
+        ],
+        "primaryKey": {
+          "autoGenerate": false,
+          "columnNames": [
+            "id"
+          ]
+        }
+      }
+    ],
+    "setupQueries": [
+      "CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)",
+      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, 'd519558c71f7097dfe736a82228f5f61')"
+    ]
+  }
+}
