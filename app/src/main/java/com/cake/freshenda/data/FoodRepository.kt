@@ -90,6 +90,55 @@ class FoodRepository(
         }
     }
 
+    suspend fun updateBatch(batchId: Long, draft: AddBatchDraft, catalog: FoodCatalog) = database.withTransaction {
+        val current = dao.batch(batchId) ?: error("批次不存在")
+        val profile = catalog.profiles.first { it.id == draft.food.profileId }
+        val candidates = buildCandidates(draft, profile)
+        val now = Instant.now().toEpochMilli()
+        val keepsOpenedStage = draft.packagingState.name == "OPENED" && draft.storageLocation == StorageLocation.REFRIGERATED
+        val keepsThawedStage = draft.storageLocation == StorageLocation.REFRIGERATED
+        val purchasedAt = if (current.purchasedAtEpochMillis == current.stageStartedAtEpochMillis) {
+            draft.stageStartedEpochMillis
+        } else {
+            current.purchasedAtEpochMillis
+        }
+        val updated = current.copy(
+            foodDefinitionId = draft.food.id,
+            displayName = draft.food.name,
+            iconKey = draft.food.iconKey,
+            quantityMilli = draft.quantityMilli,
+            quantityUnit = draft.quantityUnit,
+            storageLocation = draft.storageLocation.name,
+            storageSection = draft.storageSection.name,
+            physicalState = draft.physicalState.name,
+            packagingState = draft.packagingState.name,
+            maturityState = draft.maturityState.name,
+            preparation = draft.completedPreparation,
+            purchasedAtEpochMillis = purchasedAt,
+            stageStartedAtEpochMillis = draft.stageStartedEpochMillis,
+            businessZoneId = draft.businessZoneId,
+            labelDateEpochDay = draft.labelDateEpochDay,
+            labelStorageScope = draft.labelDateEpochDay?.let { draft.storageLocation.name },
+            customDeadlineEpochMillis = candidates.firstOrNull { it.kind == DeadlineKind.CUSTOM }?.deadlineEpochMillis,
+            suggestedDeadlineEpochMillis = candidates.firstOrNull { it.kind == DeadlineKind.SUGGESTED }?.deadlineEpochMillis,
+            openedAtEpochMillis = current.openedAtEpochMillis.takeIf { keepsOpenedStage },
+            openedDeadlineEpochMillis = current.openedDeadlineEpochMillis.takeIf { keepsOpenedStage },
+            thawedAtEpochMillis = current.thawedAtEpochMillis.takeIf { keepsThawedStage },
+            thawedDeadlineEpochMillis = current.thawedDeadlineEpochMillis.takeIf { keepsThawedStage },
+            effectiveDeadlineEpochMillis = null,
+            effectiveAnchorEpochMillis = null,
+            effectiveDeadlineKind = null,
+            effectiveDisplayDateEpochDay = null,
+            ruleSnapshot = ExpiryCalculator.suggestedWindow(draft, profile)?.let { json.encodeToString(it) },
+            ruleDataVersion = catalog.dataVersion,
+            requiresDateReview = draft.dateBasis == DateBasis.SUGGESTED && candidates.none { it.kind == DeadlineKind.SUGGESTED },
+            deadlineRevision = current.deadlineRevision + 1,
+            updatedAtEpochMillis = now,
+        ).withRecalculatedEffective(now)
+        dao.updateBatch(updated)
+        dao.insertChange(BatchChangeEntity(batchId = batchId, kind = "EDIT", note = "修改食材信息", changedAtEpochMillis = now))
+    }
+
     suspend fun consume(batchId: Long, quantityMilli: Long) = database.withTransaction {
         val current = dao.batch(batchId) ?: return@withTransaction
         val consumed = quantityMilli.coerceIn(1, current.quantityMilli)

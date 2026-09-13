@@ -1,5 +1,6 @@
 package com.cake.freshenda.ui.picker
 
+import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -74,7 +75,12 @@ fun PickerScreen(
         }
         LazyVerticalGrid(columns = GridCells.Adaptive(88.dp), contentPadding = PaddingValues(12.dp), horizontalArrangement = Arrangement.spacedBy(8.dp), verticalArrangement = Arrangement.spacedBy(8.dp)) {
             items(foods, key = { it.id }) { food ->
-                Surface(modifier = Modifier.clickable { onFood(food.id) }, color = FreshendaColors.Card, shape = RoundedCornerShape(16.dp)) {
+                Surface(
+                    modifier = Modifier.clickable { onFood(food.id) },
+                    color = FreshendaColors.Glass,
+                    shape = RoundedCornerShape(16.dp),
+                    border = BorderStroke(1.dp, FreshendaColors.GlassBorder),
+                ) {
                     Column(Modifier.padding(8.dp), horizontalAlignment = Alignment.CenterHorizontally) {
                         FoodIcon(food.iconKey, food.name, size = 60.dp)
                         Text(food.name, maxLines = 1, overflow = TextOverflow.Ellipsis, textAlign = TextAlign.Center, style = MaterialTheme.typography.labelLarge)

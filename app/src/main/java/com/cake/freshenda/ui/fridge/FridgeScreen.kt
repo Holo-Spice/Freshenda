@@ -1,6 +1,5 @@
 package com.cake.freshenda.ui.fridge
 
-import androidx.compose.animation.animateContentSize
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
@@ -22,6 +21,7 @@ import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.FilterChip
+import androidx.compose.material3.FilterChipDefaults
 import androidx.compose.material3.FloatingActionButton
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
@@ -35,6 +35,7 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.semantics.Role
 import androidx.compose.ui.unit.dp
@@ -127,6 +128,17 @@ private fun StorageFilter(
         selected = selected == value,
         onClick = { onSelect(value) },
         label = { Text(label) },
+        colors = FilterChipDefaults.filterChipColors(
+            containerColor = FreshendaColors.GlassSoft.copy(alpha = .62f),
+            selectedContainerColor = FreshendaColors.SurfaceTint,
+            selectedLabelColor = FreshendaColors.Primary,
+        ),
+        border = FilterChipDefaults.filterChipBorder(
+            enabled = true,
+            selected = selected == value,
+            borderColor = FreshendaColors.GlassBorder,
+            selectedBorderColor = FreshendaColors.Primary.copy(alpha = .24f),
+        ),
     )
 }
 
@@ -171,11 +183,11 @@ private fun RefrigeratorCabinet(
     Surface(
         modifier = Modifier
             .fillMaxWidth()
-            .padding(horizontal = 14.dp, vertical = 10.dp)
-            .animateContentSize(),
-        color = FreshendaColors.Card,
+            .padding(horizontal = 14.dp, vertical = 10.dp),
+        color = FreshendaColors.Glass,
         shape = RoundedCornerShape(28.dp),
-        border = BorderStroke(3.dp, FreshendaColors.Primary),
+        border = BorderStroke(2.dp, FreshendaColors.Primary.copy(alpha = .82f)),
+        shadowElevation = 5.dp,
     ) {
         Box {
             Column(Modifier.padding(8.dp)) {
@@ -235,7 +247,11 @@ private fun FridgeCompartment(
     onBatch: (Long) -> Unit,
     drawer: Boolean = false,
 ) {
-    val background = if (drawer) FreshendaColors.SurfaceTint.copy(alpha = .72f) else FreshendaColors.Background.copy(alpha = .78f)
+    val background = if (drawer) {
+        Brush.verticalGradient(listOf(FreshendaColors.SurfaceTint.copy(alpha = .86f), FreshendaColors.GlassSoft.copy(alpha = .72f)))
+    } else {
+        Brush.verticalGradient(listOf(Color.White.copy(alpha = .68f), FreshendaColors.Background.copy(alpha = .82f)))
+    }
     Column(
         Modifier
             .fillMaxWidth()
@@ -312,9 +328,10 @@ private fun PantryShelf(
 ) {
     Surface(
         modifier = Modifier.fillMaxWidth().padding(horizontal = 14.dp, vertical = 4.dp),
-        color = FreshendaColors.Card,
+        color = FreshendaColors.Glass,
         shape = RoundedCornerShape(22.dp),
-        border = BorderStroke(2.dp, FreshendaColors.Secondary),
+        border = BorderStroke(1.dp, FreshendaColors.GlassBorder),
+        shadowElevation = 3.dp,
     ) {
         Column(Modifier.padding(10.dp)) {
             Text("常温置物架", modifier = Modifier.padding(8.dp), style = MaterialTheme.typography.titleMedium)
@@ -341,10 +358,10 @@ private fun EmptyFridgePrompt(text: String, onClick: () -> Unit, modifier: Modif
         modifier = modifier
             .size(132.dp)
             .clickable(role = Role.Button, onClick = onClick),
-        color = FreshendaColors.Background.copy(alpha = .96f),
+        color = FreshendaColors.Glass.copy(alpha = .96f),
         shape = CircleShape,
-        border = BorderStroke(2.dp, FreshendaColors.Secondary),
-        shadowElevation = 3.dp,
+        border = BorderStroke(1.dp, FreshendaColors.GlassBorder),
+        shadowElevation = 5.dp,
     ) {
         Column(
             horizontalAlignment = Alignment.CenterHorizontally,

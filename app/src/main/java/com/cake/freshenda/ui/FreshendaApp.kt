@@ -4,6 +4,7 @@ import android.Manifest
 import android.os.Build
 import androidx.activity.compose.rememberLauncherForActivityResult
 import androidx.activity.result.contract.ActivityResultContracts
+import androidx.compose.animation.core.FastOutSlowInEasing
 import androidx.compose.animation.core.tween
 import androidx.compose.animation.fadeIn
 import androidx.compose.animation.fadeOut
@@ -11,18 +12,27 @@ import androidx.compose.animation.slideInHorizontally
 import androidx.compose.animation.slideOutHorizontally
 import androidx.compose.animation.togetherWith
 import androidx.compose.foundation.Canvas
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.RowScope
+import androidx.compose.foundation.layout.WindowInsets
+import androidx.compose.foundation.layout.WindowInsetsSides
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.navigationBars
+import androidx.compose.foundation.layout.only
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.material3.AlertDialog
 import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.NavigationBar
 import androidx.compose.material3.NavigationBarItem
+import androidx.compose.material3.NavigationBarItemDefaults
+import androidx.compose.material3.LocalContentColor
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.SnackbarHost
 import androidx.compose.material3.SnackbarHostState
+import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
@@ -30,11 +40,15 @@ import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
+import androidx.compose.ui.FrameRateCategory
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clipToBounds
 import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.geometry.Size
 import androidx.compose.ui.graphics.StrokeCap
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.drawscope.Stroke
+import androidx.compose.ui.preferredFrameRate
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
@@ -65,6 +79,7 @@ data class AppDeepLink(val destination: String, val batchId: Long?)
 @Serializable data object SettingsRoute : NavKey
 @Serializable data object PickerRoute : NavKey
 @Serializable data class EditorRoute(val foodId: String, val customName: String? = null) : NavKey
+@Serializable data class EditRoute(val batchId: Long) : NavKey
 @Serializable data class DetailRoute(val batchId: Long) : NavKey
 
 @Composable
@@ -110,13 +125,27 @@ fun FreshendaApp(container: AppContainer, deepLink: AppDeepLink?, onDeepLinkCons
     val showBottomBar = current is FridgeRoute || current is DueRoute || current is SettingsRoute
 
     Scaffold(
+        modifier = Modifier.fillMaxSize(),
+        containerColor = FreshendaColors.Background,
         snackbarHost = { SnackbarHost(snackbarHost) },
         bottomBar = {
             if (showBottomBar) {
-                NavigationBar(containerColor = FreshendaColors.Card) {
-                    RootNavItem("冰箱", NavMarkKind.FRIDGE, current is FridgeRoute) { backStack.clear(); backStack.add(FridgeRoute) }
-                    RootNavItem("待吃", NavMarkKind.DUE, current is DueRoute) { backStack.clear(); backStack.add(DueRoute) }
-                    RootNavItem("我的", NavMarkKind.USER, current is SettingsRoute) { backStack.clear(); backStack.add(SettingsRoute) }
+                Surface(
+                    modifier = Modifier.fillMaxWidth(),
+                    color = FreshendaColors.Card,
+                    shadowElevation = 0.dp,
+                ) {
+                    NavigationBar(
+                        containerColor = Color.Transparent,
+                        tonalElevation = 0.dp,
+                        windowInsets = WindowInsets.navigationBars.only(
+                            WindowInsetsSides.Horizontal + WindowInsetsSides.Bottom,
+                        ),
+                    ) {
+                        RootNavItem("冰箱", NavMarkKind.FRIDGE, current is FridgeRoute) { if (current !is FridgeRoute) showRoot(backStack, FridgeRoute) }
+                        RootNavItem("待吃", NavMarkKind.DUE, current is DueRoute) { if (current !is DueRoute) showRoot(backStack, DueRoute) }
+                        RootNavItem("我的", NavMarkKind.USER, current is SettingsRoute) { if (current !is SettingsRoute) showRoot(backStack, SettingsRoute) }
+                    }
                 }
             }
         },
@@ -124,72 +153,107 @@ fun FreshendaApp(container: AppContainer, deepLink: AppDeepLink?, onDeepLinkCons
         NavDisplay(
             backStack = backStack,
             onBack = { pop(backStack) },
-            modifier = Modifier.padding(padding),
+            modifier = Modifier
+                .fillMaxSize()
+                .padding(padding)
+                .background(Color.Black)
+                .clipToBounds()
+                .preferredFrameRate(FrameRateCategory.High),
             transitionSpec = {
-                (fadeIn(tween(160)) + slideInHorizontally(tween(180)) { it / 12 }) togetherWith
-                    (fadeOut(tween(120)) + slideOutHorizontally(tween(160)) { -it / 16 })
+                slideInHorizontally(tween(280, easing = FastOutSlowInEasing)) { it } togetherWith
+                    fadeOut(tween(280, easing = FastOutSlowInEasing), targetAlpha = .48f)
             },
             popTransitionSpec = {
-                (fadeIn(tween(160)) + slideInHorizontally(tween(180)) { -it / 12 }) togetherWith
-                    (fadeOut(tween(120)) + slideOutHorizontally(tween(160)) { it / 16 })
+                fadeIn(tween(240, easing = FastOutSlowInEasing), initialAlpha = .48f) togetherWith
+                    slideOutHorizontally(tween(280, easing = FastOutSlowInEasing)) { it }
             },
             entryProvider = entryProvider {
-                entry<FridgeRoute> { FridgeScreen(ui.batches, now, { backStack.add(PickerRoute) }) { backStack.add(DetailRoute(it)) } }
-                entry<DueRoute> { DueScreen(ui.batches, now) { backStack.add(DetailRoute(it)) } }
+                entry<FridgeRoute> { ScreenFrame { FridgeScreen(ui.batches, now, { backStack.add(PickerRoute) }) { backStack.add(DetailRoute(it)) } } }
+                entry<DueRoute> { ScreenFrame { DueScreen(ui.batches, now) { backStack.add(DetailRoute(it)) } } }
                 entry<SettingsRoute> {
-                    SettingsScreen(
-                        ui.settings,
-                        catalog,
-                        container.notificationPublisher.canPublish(),
-                        viewModel::setRemindersEnabled,
-                        { if (Build.VERSION.SDK_INT >= 33) permissionLauncher.launch(Manifest.permission.POST_NOTIFICATIONS) },
-                        viewModel::setDailySummary,
-                        viewModel::setOpenedReminders,
-                        viewModel::setCustomDateReminders,
-                        viewModel::setReminderHour,
-                        viewModel::sendTestNotification,
-                        { exportLauncher.launch("鲜序备份-${Instant.now().atZone(ZoneId.systemDefault()).format(DateTimeFormatter.ISO_LOCAL_DATE)}.json") },
-                        { importLauncher.launch(arrayOf("application/json", "text/plain")) },
-                    )
+                    ScreenFrame {
+                        SettingsScreen(
+                            ui.settings,
+                            catalog,
+                            container.notificationPublisher.canPublish(),
+                            viewModel::setRemindersEnabled,
+                            { if (Build.VERSION.SDK_INT >= 33) permissionLauncher.launch(Manifest.permission.POST_NOTIFICATIONS) },
+                            viewModel::setDailySummary,
+                            viewModel::setOpenedReminders,
+                            viewModel::setCustomDateReminders,
+                            viewModel::setReminderHour,
+                            viewModel::sendTestNotification,
+                            { exportLauncher.launch("鲜序备份-${Instant.now().atZone(ZoneId.systemDefault()).format(DateTimeFormatter.ISO_LOCAL_DATE)}.json") },
+                            { importLauncher.launch(arrayOf("application/json", "text/plain")) },
+                        )
+                    }
                 }
                 entry<PickerRoute> {
-                    PickerScreen(catalog, ui.customFoods, ui.settings.recentFoodIds, { pop(backStack) }, { backStack.add(EditorRoute(it)) }, { backStack.add(EditorRoute("__custom__", it)) })
+                    ScreenFrame {
+                        PickerScreen(catalog, ui.customFoods, ui.settings.recentFoodIds, { pop(backStack) }, { backStack.add(EditorRoute(it)) }, { backStack.add(EditorRoute("__custom__", it)) })
+                    }
                 }
                 entry<EditorRoute> { route ->
-                    val savedCustom = ui.customFoods.firstOrNull { it.id == route.foodId }
-                    val food = catalog.foods.firstOrNull { it.id == route.foodId } ?: savedCustom?.let(::customDefinition) ?: customDefinition(route.customName ?: "自定义食材")
-                    EditorScreen(food, catalog, savedCustom, { pop(backStack) }) { draft ->
-                        viewModel.addBatch(draft) { showRoot(backStack, FridgeRoute) }
+                    ScreenFrame {
+                        val savedCustom = ui.customFoods.firstOrNull { it.id == route.foodId }
+                        val food = catalog.foods.firstOrNull { it.id == route.foodId } ?: savedCustom?.let(::customDefinition) ?: customDefinition(route.customName ?: "自定义食材")
+                        EditorScreen(food, catalog, savedCustom, onBack = { pop(backStack) }) { draft ->
+                            viewModel.addBatch(draft) { showRoot(backStack, FridgeRoute) }
+                        }
+                    }
+                }
+                entry<EditRoute> { route ->
+                    ScreenFrame {
+                        val batch = ui.batches.firstOrNull { it.id == route.batchId }
+                        if (batch == null) {
+                            Box(Modifier.fillMaxSize(), contentAlignment = Alignment.Center) { Text("食材不存在或已移出冰箱") }
+                        } else {
+                            val savedCustom = ui.customFoods.firstOrNull { it.id == batch.foodDefinitionId }
+                            val food = catalog.foods.firstOrNull { it.id == batch.foodDefinitionId }
+                                ?: savedCustom?.let(::customDefinition)
+                                ?: customDefinition(batch.displayName).copy(
+                                    id = batch.foodDefinitionId,
+                                    iconKey = batch.iconKey,
+                                    defaultStorage = batch.storageLocation,
+                                    defaultQuantityUnit = batch.quantityUnit,
+                                )
+                            EditorScreen(food, catalog, savedCustom, batch, { pop(backStack) }) { draft ->
+                                viewModel.updateBatch(route.batchId, draft) { pop(backStack) }
+                            }
+                        }
                     }
                 }
                 entry<DetailRoute> { route ->
-                    val selectedBatch by viewModel.selectedBatch.collectAsStateWithLifecycle()
-                    val recentChanges by viewModel.recentChanges.collectAsStateWithLifecycle()
-                    LaunchedEffect(route.batchId) { viewModel.selectBatch(route.batchId) }
-                    DetailScreen(
-                        selectedBatch?.takeIf { it.id == route.batchId },
-                        recentChanges,
-                        now,
-                        { viewModel.selectBatch(null); pop(backStack) },
-                        { quantity, consumeAll ->
-                            viewModel.consume(route.batchId, quantity) {
-                                if (consumeAll) {
+                    ScreenFrame {
+                        val selectedBatch by viewModel.selectedBatch.collectAsStateWithLifecycle()
+                        val recentChanges by viewModel.recentChanges.collectAsStateWithLifecycle()
+                        LaunchedEffect(route.batchId) { viewModel.selectBatch(route.batchId) }
+                        DetailScreen(
+                            selectedBatch?.takeIf { it.id == route.batchId },
+                            recentChanges,
+                            now,
+                            { viewModel.selectBatch(null); pop(backStack) },
+                            { backStack.add(EditRoute(route.batchId)) },
+                            { quantity, consumeAll ->
+                                viewModel.consume(route.batchId, quantity) {
+                                    if (consumeAll) {
+                                        viewModel.selectBatch(null)
+                                        showRoot(backStack, FridgeRoute)
+                                    }
+                                }
+                            },
+                            { viewModel.markOpened(route.batchId) },
+                            {
+                                viewModel.discard(route.batchId) {
                                     viewModel.selectBatch(null)
                                     showRoot(backStack, FridgeRoute)
                                 }
-                            }
-                        },
-                        { viewModel.markOpened(route.batchId) },
-                        {
-                            viewModel.discard(route.batchId) {
-                                viewModel.selectBatch(null)
-                                showRoot(backStack, FridgeRoute)
-                            }
-                        },
-                        { viewModel.moveBatch(route.batchId, it) },
-                        { quantity, target -> viewModel.splitAndMove(route.batchId, quantity, target) { childId -> backStack.add(DetailRoute(childId)) } },
-                        { viewModel.setCustomDate(route.batchId, it) },
-                    )
+                            },
+                            { viewModel.moveBatch(route.batchId, it) },
+                            { quantity, target -> viewModel.splitAndMove(route.batchId, quantity, target) { childId -> backStack.add(DetailRoute(childId)) } },
+                            { viewModel.setCustomDate(route.batchId, it) },
+                        )
+                    }
                 }
             },
         )
@@ -206,6 +270,18 @@ fun FreshendaApp(container: AppContainer, deepLink: AppDeepLink?, onDeepLinkCons
     }
 }
 
+@Composable
+private fun ScreenFrame(content: @Composable () -> Unit) {
+    Box(
+        Modifier
+            .fillMaxSize()
+            .background(FreshendaColors.Background)
+            .clipToBounds(),
+    ) {
+        content()
+    }
+}
+
 private fun pop(backStack: MutableList<NavKey>) {
     if (backStack.size > 1) backStack.removeAt(backStack.lastIndex)
 }
@@ -217,27 +293,40 @@ private fun showRoot(backStack: MutableList<NavKey>, route: NavKey) {
 
 @Composable
 private fun RowScope.RootNavItem(label: String, kind: NavMarkKind, selected: Boolean, onClick: () -> Unit) {
-    NavigationBarItem(selected = selected, onClick = onClick, icon = { NavMark(kind) }, label = { Text(label) })
+    NavigationBarItem(
+        selected = selected,
+        onClick = onClick,
+        icon = { NavMark(kind) },
+        label = { Text(label) },
+        colors = NavigationBarItemDefaults.colors(
+            selectedIconColor = FreshendaColors.Primary,
+            selectedTextColor = FreshendaColors.Primary,
+            indicatorColor = FreshendaColors.SurfaceTint.copy(alpha = .72f),
+            unselectedIconColor = FreshendaColors.Unknown,
+            unselectedTextColor = FreshendaColors.Unknown,
+        ),
+    )
 }
 
 private enum class NavMarkKind { FRIDGE, DUE, USER }
 
 @Composable
 private fun NavMark(kind: NavMarkKind) {
+    val color = LocalContentColor.current
     Canvas(Modifier.size(24.dp)) {
         val stroke = 2.dp.toPx()
         when (kind) {
             NavMarkKind.FRIDGE -> {
-                drawRoundRect(FreshendaColors.Primary, style = Stroke(stroke))
-                drawLine(FreshendaColors.Primary, Offset(size.width * .12f, size.height * .45f), Offset(size.width * .88f, size.height * .45f), stroke)
+                drawRoundRect(color, style = Stroke(stroke))
+                drawLine(color, Offset(size.width * .12f, size.height * .45f), Offset(size.width * .88f, size.height * .45f), stroke)
             }
             NavMarkKind.DUE -> {
-                drawArc(FreshendaColors.Primary, 20f, 140f, false, style = Stroke(stroke, cap = StrokeCap.Round))
-                drawArc(FreshendaColors.Primary, 200f, 140f, false, style = Stroke(stroke, cap = StrokeCap.Round))
+                drawArc(color, 20f, 140f, false, style = Stroke(stroke, cap = StrokeCap.Round))
+                drawArc(color, 200f, 140f, false, style = Stroke(stroke, cap = StrokeCap.Round))
             }
             NavMarkKind.USER -> {
-                drawCircle(FreshendaColors.Primary, size.minDimension * .18f, Offset(size.width / 2, size.height * .3f), style = Stroke(stroke))
-                drawArc(FreshendaColors.Primary, 190f, 160f, false, topLeft = Offset(size.width * .2f, size.height * .45f), size = Size(size.width * .6f, size.height * .45f), style = Stroke(stroke, cap = StrokeCap.Round))
+                drawCircle(color, size.minDimension * .18f, Offset(size.width / 2, size.height * .3f), style = Stroke(stroke))
+                drawArc(color, 190f, 160f, false, topLeft = Offset(size.width * .2f, size.height * .45f), size = Size(size.width * .6f, size.height * .45f), style = Stroke(stroke, cap = StrokeCap.Round))
             }
         }
     }

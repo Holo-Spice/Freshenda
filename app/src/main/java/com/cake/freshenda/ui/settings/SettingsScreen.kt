@@ -1,5 +1,6 @@
 package com.cake.freshenda.ui.settings
 
+import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.ColumnScope
@@ -92,7 +93,12 @@ fun SettingsScreen(
 private fun SettingCard(title: String, content: @Composable ColumnScope.() -> Unit) {
     Column(Modifier.fillMaxWidth().padding(horizontal = 14.dp, vertical = 7.dp)) {
         Text(title, modifier = Modifier.padding(horizontal = 4.dp, vertical = 6.dp), style = MaterialTheme.typography.titleMedium)
-        Surface(color = FreshendaColors.Card, shape = MaterialTheme.shapes.large) {
+        Surface(
+            color = FreshendaColors.Glass,
+            shape = MaterialTheme.shapes.large,
+            border = BorderStroke(1.dp, FreshendaColors.GlassBorder),
+            shadowElevation = 2.dp,
+        ) {
             Column(Modifier.fillMaxWidth().padding(14.dp), verticalArrangement = Arrangement.spacedBy(12.dp)) { content() }
         }
     }

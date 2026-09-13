@@ -1,6 +1,7 @@
 package com.cake.freshenda.ui.detail
 
 import androidx.compose.foundation.Canvas
+import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -50,6 +51,7 @@ fun DetailScreen(
     changes: List<BatchChangeEntity>,
     now: Long,
     onBack: () -> Unit,
+    onEdit: () -> Unit,
     onConsume: (quantityMilli: Long, consumeAll: Boolean) -> Unit,
     onOpen: () -> Unit,
     onDiscard: () -> Unit,
@@ -77,13 +79,20 @@ fun DetailScreen(
         InfoCard("剩余数量", "${quantityText(batch.quantityMilli)} ${batch.quantityUnit}")
         InfoCard("存放位置", "${locationText(batch.storageLocation)} · ${sectionText(batch.storageSection)}")
         InfoCard("包装状态", packagingText(batch.packagingState) + if (batch.requiresDateReview) " · 日期待确认" else "")
-        Surface(Modifier.fillMaxWidth().padding(horizontal = 16.dp, vertical = 6.dp), color = FreshendaColors.Card, shape = RoundedCornerShape(16.dp)) {
+        Surface(
+            Modifier.fillMaxWidth().padding(horizontal = 16.dp, vertical = 6.dp),
+            color = FreshendaColors.Glass,
+            shape = RoundedCornerShape(16.dp),
+            border = BorderStroke(1.dp, FreshendaColors.GlassBorder),
+            shadowElevation = 2.dp,
+        ) {
             Column(Modifier.padding(14.dp)) {
                 TextButton(onClick = { showSource = !showSource }) { Text(if (showSource) "收起储存依据" else "查看储存依据与条件") }
                 if (showSource) Text(batch.ruleSnapshot ?: "本批次没有自动采用储存参考；请按包装或自己设定。", style = MaterialTheme.typography.bodyMedium)
             }
         }
         Column(Modifier.padding(16.dp), verticalArrangement = Arrangement.spacedBy(8.dp)) {
+            OutlinedButton(onClick = onEdit, modifier = Modifier.fillMaxWidth()) { Text("修改食材信息") }
             Button(
                 onClick = {
                     val quantity = minOf(1000L, batch.quantityMilli)
@@ -132,7 +141,13 @@ private fun Timeline(batch: FoodBatchEntity, now: Long) {
     val start = Instant.ofEpochMilli(batch.stageStartedAtEpochMillis).atZone(zone).toLocalDate()
     val today = Instant.ofEpochMilli(now).atZone(zone).toLocalDate()
     val target = batch.effectiveDisplayDateEpochDay?.let(LocalDate::ofEpochDay)
-    Surface(Modifier.fillMaxWidth().padding(horizontal = 16.dp, vertical = 6.dp), color = FreshendaColors.Card, shape = RoundedCornerShape(16.dp)) {
+    Surface(
+        Modifier.fillMaxWidth().padding(horizontal = 16.dp, vertical = 6.dp),
+        color = FreshendaColors.Glass,
+        shape = RoundedCornerShape(16.dp),
+        border = BorderStroke(1.dp, FreshendaColors.GlassBorder),
+        shadowElevation = 2.dp,
+    ) {
         Column(Modifier.padding(16.dp)) {
             Canvas(Modifier.fillMaxWidth().height(18.dp)) {
                 drawLine(FreshendaColors.Secondary, Offset(12.dp.toPx(), center.y), Offset(size.width - 12.dp.toPx(), center.y), 3.dp.toPx())
@@ -151,7 +166,13 @@ private fun Timeline(batch: FoodBatchEntity, now: Long) {
 
 @Composable
 private fun InfoCard(label: String, value: String) {
-    Surface(Modifier.fillMaxWidth().padding(horizontal = 16.dp, vertical = 4.dp), color = FreshendaColors.Card, shape = RoundedCornerShape(16.dp)) {
+    Surface(
+        Modifier.fillMaxWidth().padding(horizontal = 16.dp, vertical = 4.dp),
+        color = FreshendaColors.Glass,
+        shape = RoundedCornerShape(16.dp),
+        border = BorderStroke(1.dp, FreshendaColors.GlassBorder),
+        shadowElevation = 1.dp,
+    ) {
         Row(Modifier.padding(14.dp), horizontalArrangement = Arrangement.SpaceBetween) { Text(label); Text(value, style = MaterialTheme.typography.labelLarge) }
     }
 }

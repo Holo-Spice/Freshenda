@@ -14,7 +14,7 @@ private val FreshendaColorScheme = lightColorScheme(
     onBackground = FreshendaColors.OnSurface,
     surface = FreshendaColors.Background,
     onSurface = FreshendaColors.OnSurface,
-    surfaceVariant = FreshendaColors.Card,
+    surfaceVariant = FreshendaColors.Glass,
     onSurfaceVariant = FreshendaColors.OnSurface,
     error = FreshendaColors.Overdue,
 )

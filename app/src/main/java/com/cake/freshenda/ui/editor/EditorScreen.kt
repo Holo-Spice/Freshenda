@@ -1,15 +1,21 @@
 package com.cake.freshenda.ui.editor
 
+import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.ColumnScope
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.WindowInsets
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.ime
+import androidx.compose.foundation.layout.imePadding
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.relocation.BringIntoViewRequester
+import androidx.compose.foundation.relocation.bringIntoViewRequester
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.Button
 import androidx.compose.material3.FilterChip
@@ -20,15 +26,20 @@ import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.focus.onFocusChanged
+import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.unit.dp
 import com.cake.freshenda.expiry.ExpiryCalculator
 import com.cake.freshenda.data.local.CustomFoodEntity
+import com.cake.freshenda.data.local.FoodBatchEntity
 import com.cake.freshenda.model.AddBatchDraft
 import com.cake.freshenda.model.DateBasis
 import com.cake.freshenda.model.FoodCatalog
@@ -43,32 +54,48 @@ import com.cake.freshenda.ui.components.FoodIcon
 import com.cake.freshenda.ui.theme.FreshendaColors
 import java.math.BigDecimal
 import java.math.RoundingMode
+import java.time.Instant
 import java.time.LocalDate
 import java.time.ZoneId
 
 @Composable
-fun EditorScreen(food: FoodDefinition, catalog: FoodCatalog, customFood: CustomFoodEntity?, onBack: () -> Unit, onSave: (AddBatchDraft) -> Unit) {
+fun EditorScreen(
+    food: FoodDefinition,
+    catalog: FoodCatalog,
+    customFood: CustomFoodEntity?,
+    batch: FoodBatchEntity? = null,
+    onBack: () -> Unit,
+    onSave: (AddBatchDraft) -> Unit,
+) {
     val profile = catalog.profiles.firstOrNull { it.id == food.profileId } ?: catalog.profiles.first { it.id == "unknown" }
-    var storage by rememberSaveable(food.id) { mutableStateOf(runCatching { StorageLocation.valueOf(food.defaultStorage) }.getOrDefault(StorageLocation.REFRIGERATED)) }
-    var quantity by rememberSaveable(food.id) { mutableStateOf("1") }
-    var unit by rememberSaveable(food.id) { mutableStateOf(food.defaultQuantityUnit) }
-    var startDate by rememberSaveable(food.id) { mutableStateOf(LocalDate.now().toString()) }
-    var basis by rememberSaveable(food.id) { mutableStateOf(if (food.id.startsWith("custom-")) DateBasis.CUSTOM else if (food.profileId in setOf("packaged", "milk", "yogurt")) DateBasis.LABEL else DateBasis.SUGGESTED) }
-    var targetDate by rememberSaveable(food.id) { mutableStateOf(LocalDate.now().plusDays(customFood?.refrigeratedDays?.toLong() ?: 3).toString()) }
-    var packaging by rememberSaveable(food.id) { mutableStateOf(if (food.profileId in setOf("packaged", "milk", "yogurt", "hard_cheese")) PackagingState.UNOPENED else PackagingState.LOOSE) }
-    var physical by rememberSaveable(food.id) { mutableStateOf(defaultPhysical(food.profileId)) }
-    var maturity by rememberSaveable(food.id) { mutableStateOf(if (requiresMaturity(food.profileId)) MaturityState.UNKNOWN else MaturityState.NOT_APPLICABLE) }
+    val editorKey = batch?.id ?: food.id
+    val initialBasis = batch?.let(::dateBasis) ?: if (food.id.startsWith("custom-")) DateBasis.CUSTOM else if (food.profileId in setOf("packaged", "milk", "yogurt")) DateBasis.LABEL else DateBasis.SUGGESTED
+    var storage by rememberSaveable(editorKey) { mutableStateOf(batch?.storageLocation?.let { runCatching { StorageLocation.valueOf(it) }.getOrNull() } ?: runCatching { StorageLocation.valueOf(food.defaultStorage) }.getOrDefault(StorageLocation.REFRIGERATED)) }
+    var quantity by rememberSaveable(editorKey) { mutableStateOf(batch?.quantityMilli?.let(::quantityInput) ?: "1") }
+    var unit by rememberSaveable(editorKey) { mutableStateOf(batch?.quantityUnit ?: food.defaultQuantityUnit) }
+    var startDate by rememberSaveable(editorKey) { mutableStateOf(batch?.let(::startDate) ?: LocalDate.now().toString()) }
+    var basis by rememberSaveable(editorKey) { mutableStateOf(initialBasis) }
+    var targetDate by rememberSaveable(editorKey) { mutableStateOf(batch?.let { targetDate(it, initialBasis) } ?: LocalDate.now().plusDays(customFood?.refrigeratedDays?.toLong() ?: 3).toString()) }
+    var packaging by rememberSaveable(editorKey) { mutableStateOf(batch?.packagingState?.let { runCatching { PackagingState.valueOf(it) }.getOrNull() } ?: if (food.profileId in setOf("packaged", "milk", "yogurt", "hard_cheese")) PackagingState.UNOPENED else PackagingState.LOOSE) }
+    var physical by rememberSaveable(editorKey) { mutableStateOf(batch?.physicalState?.let { runCatching { FoodPhysicalState.valueOf(it) }.getOrNull() } ?: defaultPhysical(food.profileId)) }
+    var maturity by rememberSaveable(editorKey) { mutableStateOf(batch?.maturityState?.let { runCatching { MaturityState.valueOf(it) }.getOrNull() } ?: if (requiresMaturity(food.profileId)) MaturityState.UNKNOWN else MaturityState.NOT_APPLICABLE) }
     val rawWindow = when (storage) {
         StorageLocation.REFRIGERATED -> if (packaging == PackagingState.OPENED) profile.openedRefrigerated ?: profile.refrigerated else profile.refrigerated
         StorageLocation.FROZEN -> profile.frozen
         StorageLocation.PANTRY -> profile.pantry
     }
-    var preparation by rememberSaveable(food.id, storage.name) { mutableStateOf("NONE") }
+    var preparation by rememberSaveable(editorKey, storage.name) { mutableStateOf(batch?.preparation ?: "NONE") }
     var error by rememberSaveable { mutableStateOf<String?>(null) }
 
-    Column(Modifier.fillMaxSize().verticalScroll(rememberScrollState())) {
-        BrandHeader("添加食材", "食材与位置 → 数量 → 起算点 → 日期依据", leading = { TextButton(onClick = onBack) { Text("‹ 返回", color = FreshendaColors.OnPrimary) } })
-        Surface(Modifier.fillMaxWidth().padding(14.dp), color = FreshendaColors.Card, shape = MaterialTheme.shapes.large) {
+    Column(Modifier.fillMaxSize().imePadding().verticalScroll(rememberScrollState())) {
+        BrandHeader(if (batch == null) "添加食材" else "修改食材", "食材与位置 → 数量 → 起算点 → 日期依据", leading = { TextButton(onClick = onBack) { Text("‹ 返回", color = FreshendaColors.OnPrimary) } })
+        Surface(
+            Modifier.fillMaxWidth().padding(14.dp),
+            color = FreshendaColors.Glass,
+            shape = MaterialTheme.shapes.large,
+            border = BorderStroke(1.dp, FreshendaColors.GlassBorder),
+            shadowElevation = 2.dp,
+        ) {
             Row(Modifier.padding(14.dp), verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.spacedBy(14.dp)) {
                 FoodIcon(food.iconKey, food.name, size = 72.dp)
                 Column { Text(food.name, style = MaterialTheme.typography.titleLarge); Text(catalog.categories.firstOrNull { it.id == food.categoryId }?.name ?: "自定义", color = FreshendaColors.Unknown) }
@@ -81,8 +108,8 @@ fun EditorScreen(food: FoodDefinition, catalog: FoodCatalog, customFood: CustomF
         FormSection("数量") {
             Row(horizontalArrangement = Arrangement.spacedBy(8.dp), verticalAlignment = Alignment.CenterVertically) {
                 OutlinedButton(onClick = { quantity = adjustQuantity(quantity, -1) }) { Text("−") }
-                OutlinedTextField(value = quantity, onValueChange = { quantity = it.filter { char -> char.isDigit() || char == '.' }.take(12) }, label = { Text("数量") }, singleLine = true, modifier = Modifier.weight(1f))
-                OutlinedTextField(value = unit, onValueChange = { unit = it.take(6) }, label = { Text("单位") }, singleLine = true, modifier = Modifier.weight(1f))
+                OutlinedTextField(value = quantity, onValueChange = { quantity = it.filter { char -> char.isDigit() || char == '.' }.take(12) }, label = { Text("数量") }, singleLine = true, modifier = Modifier.weight(1f).keepVisibleWithIme())
+                OutlinedTextField(value = unit, onValueChange = { unit = it.take(6) }, label = { Text("单位") }, singleLine = true, modifier = Modifier.weight(1f).keepVisibleWithIme())
                 OutlinedButton(onClick = { quantity = adjustQuantity(quantity, 1) }) { Text("＋") }
             }
         }
@@ -102,13 +129,13 @@ fun EditorScreen(food: FoodDefinition, catalog: FoodCatalog, customFood: CustomF
             }
         }
         FormSection("购买／本阶段起点") {
-            OutlinedTextField(value = startDate, onValueChange = { startDate = it.take(10) }, label = { Text("日期（yyyy-MM-dd）") }, singleLine = true, modifier = Modifier.fillMaxWidth())
+            OutlinedTextField(value = startDate, onValueChange = { startDate = it.take(10) }, label = { Text("日期（yyyy-MM-dd）") }, singleLine = true, modifier = Modifier.fillMaxWidth().keepVisibleWithIme())
             Text("只知道日期时按当天 00:00 起算，不按录入时刻刷新。", style = MaterialTheme.typography.bodyMedium, color = FreshendaColors.Unknown)
         }
         FormSection("日期依据") {
             ChoiceRow(DateBasis.entries.toList(), basis, { basis = it }) { when (it) { DateBasis.SUGGESTED -> "储存参考"; DateBasis.LABEL -> "包装日期"; DateBasis.CUSTOM -> "自己设定"; DateBasis.NONE -> "暂不设置" } }
             if (basis == DateBasis.LABEL || basis == DateBasis.CUSTOM) {
-                OutlinedTextField(value = targetDate, onValueChange = { targetDate = it.take(10) }, label = { Text(if (basis == DateBasis.LABEL) "包装标注日期" else "计划食用日期") }, singleLine = true, modifier = Modifier.fillMaxWidth())
+                OutlinedTextField(value = targetDate, onValueChange = { targetDate = it.take(10) }, label = { Text(if (basis == DateBasis.LABEL) "包装标注日期" else "计划食用日期") }, singleLine = true, modifier = Modifier.fillMaxWidth().keepVisibleWithIme())
             }
             if (basis == DateBasis.SUGGESTED) {
                 val draft = previewDraft(food, storage, quantity, unit, startDate, basis, packaging, physical, maturity, preparation)
@@ -126,9 +153,20 @@ fun EditorScreen(food: FoodDefinition, catalog: FoodCatalog, customFood: CustomF
         Button(onClick = {
             val draft = previewDraft(food, storage, quantity, unit, startDate, basis, packaging, physical, maturity, preparation, targetDate)
             if (draft == null) error = "请检查数量和日期格式" else { error = null; onSave(draft) }
-        }, modifier = Modifier.fillMaxWidth().padding(16.dp).height(54.dp)) { Text("放进冰箱") }
+        }, modifier = Modifier.fillMaxWidth().padding(16.dp).height(54.dp)) { Text(if (batch == null) "放进冰箱" else "保存修改") }
         Spacer(Modifier.height(18.dp))
     }
+}
+
+@Composable
+private fun Modifier.keepVisibleWithIme(): Modifier {
+    val requester = remember { BringIntoViewRequester() }
+    var focused by remember { mutableStateOf(false) }
+    val imeBottom = WindowInsets.ime.getBottom(LocalDensity.current)
+    LaunchedEffect(focused, imeBottom) {
+        if (focused) requester.bringIntoView()
+    }
+    return bringIntoViewRequester(requester).onFocusChanged { focused = it.isFocused }
 }
 
 @Composable
@@ -189,6 +227,24 @@ private fun defaultSection(storage: StorageLocation, category: String): StorageS
 }
 
 private fun adjustQuantity(value: String, delta: Int): String = ((value.toBigDecimalOrNull() ?: BigDecimal.ONE) + BigDecimal(delta)).coerceAtLeast(BigDecimal.ONE).stripTrailingZeros().toPlainString()
+private fun quantityInput(quantityMilli: Long) = BigDecimal.valueOf(quantityMilli, 3).stripTrailingZeros().toPlainString()
+private fun startDate(batch: FoodBatchEntity) = Instant.ofEpochMilli(batch.stageStartedAtEpochMillis).atZone(ZoneId.of(batch.businessZoneId)).toLocalDate().toString()
+private fun dateBasis(batch: FoodBatchEntity) = when (batch.effectiveDeadlineKind) {
+    "LABEL" -> DateBasis.LABEL
+    "CUSTOM" -> DateBasis.CUSTOM
+    "SUGGESTED" -> DateBasis.SUGGESTED
+    else -> when {
+        batch.labelDateEpochDay != null -> DateBasis.LABEL
+        batch.customDeadlineEpochMillis != null -> DateBasis.CUSTOM
+        batch.suggestedDeadlineEpochMillis != null || batch.requiresDateReview -> DateBasis.SUGGESTED
+        else -> DateBasis.NONE
+    }
+}
+private fun targetDate(batch: FoodBatchEntity, basis: DateBasis) = when (basis) {
+    DateBasis.LABEL -> batch.labelDateEpochDay?.let { LocalDate.ofEpochDay(it).toString() }
+    DateBasis.CUSTOM -> batch.customDeadlineEpochMillis?.let { LocalDate.ofEpochDay(ExpiryCalculator.displayDate(it, batch.businessZoneId)).toString() }
+    else -> null
+} ?: LocalDate.now().plusDays(3).toString()
 private fun requiresMaturity(profileId: String) = profileId in setOf("pear", "peach", "nectarine", "plum", "apricot", "kiwi", "mango", "papaya", "banana_ripe", "avocado", "guava")
 private fun defaultPhysical(profileId: String) = when (profileId) { "ground" -> FoodPhysicalState.GROUND; "red_stew" -> FoodPhysicalState.CUT; "egg_boiled", "leftover_meat", "soup" -> FoodPhysicalState.COOKED; else -> FoodPhysicalState.WHOLE }
 private fun physicalChoices(category: String) = if (category == "prepared") listOf(FoodPhysicalState.COOKED, FoodPhysicalState.WHOLE) else listOf(FoodPhysicalState.WHOLE, FoodPhysicalState.CUT, FoodPhysicalState.GROUND, FoodPhysicalState.COOKED)

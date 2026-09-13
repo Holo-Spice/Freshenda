@@ -1,6 +1,7 @@
 package com.cake.freshenda.ui.components
 
 import androidx.compose.foundation.Canvas
+import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
@@ -19,7 +20,10 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
 import androidx.compose.ui.geometry.Offset
+import androidx.compose.ui.graphics.Brush
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.StrokeCap
 import androidx.compose.ui.graphics.drawscope.Stroke
 import androidx.compose.ui.semantics.Role
@@ -32,15 +36,34 @@ import com.cake.freshenda.ui.theme.FreshendaColors
 
 @Composable
 fun BrandHeader(title: String, subtitle: String, modifier: Modifier = Modifier, leading: (@Composable () -> Unit)? = null) {
-    Column(modifier.fillMaxWidth().background(FreshendaColors.Primary).padding(horizontal = 20.dp, vertical = 20.dp)) {
-        if (leading != null) {
-            leading()
-            Spacer(Modifier.height(8.dp))
-        } else {
-            Text("鲜序", color = FreshendaColors.OnPrimary, style = MaterialTheme.typography.labelLarge)
+    val shape = RoundedCornerShape(bottomStart = 30.dp, bottomEnd = 30.dp)
+    Box(
+        modifier
+            .fillMaxWidth()
+            .clip(shape)
+            .background(
+                Brush.linearGradient(
+                    colors = listOf(FreshendaColors.Primary, FreshendaColors.HeaderAccent),
+                    start = Offset.Zero,
+                    end = Offset.Infinite,
+                ),
+            ),
+    ) {
+        Canvas(Modifier.matchParentSize()) {
+            drawCircle(Color.White.copy(alpha = .07f), radius = size.minDimension * .8f, center = Offset(size.width * .96f, -size.height * .12f))
+            drawCircle(FreshendaColors.SurfaceTint.copy(alpha = .09f), radius = size.minDimension * .48f, center = Offset(size.width * .72f, size.height * 1.08f))
+            drawLine(FreshendaColors.GlassBorder.copy(alpha = .4f), Offset(0f, size.height - 1.dp.toPx()), Offset(size.width, size.height - 1.dp.toPx()), 1.dp.toPx())
         }
-        Text(title, color = FreshendaColors.OnPrimary, style = MaterialTheme.typography.headlineLarge)
-        Text(subtitle, color = FreshendaColors.SurfaceTint, style = MaterialTheme.typography.bodyMedium)
+        Column(Modifier.fillMaxWidth().padding(horizontal = 20.dp, vertical = 18.dp)) {
+            if (leading != null) {
+                leading()
+                Spacer(Modifier.height(6.dp))
+            } else {
+                Text("鲜序", color = FreshendaColors.OnPrimary.copy(alpha = .82f), style = MaterialTheme.typography.labelLarge)
+            }
+            Text(title, color = FreshendaColors.OnPrimary, style = MaterialTheme.typography.headlineLarge)
+            Text(subtitle, color = FreshendaColors.SurfaceTint, style = MaterialTheme.typography.bodyMedium)
+        }
     }
 }
 
@@ -48,8 +71,10 @@ fun BrandHeader(title: String, subtitle: String, modifier: Modifier = Modifier, 
 fun BatchRow(batch: FoodBatchEntity, result: ExpiryResult, onClick: () -> Unit, modifier: Modifier = Modifier) {
     Surface(
         modifier = modifier.fillMaxWidth().clickable(role = Role.Button, onClick = onClick),
-        color = FreshendaColors.Card,
+        color = FreshendaColors.Glass,
         shape = RoundedCornerShape(18.dp),
+        border = BorderStroke(1.dp, FreshendaColors.GlassBorder),
+        shadowElevation = 2.dp,
     ) {
         Row(Modifier.padding(12.dp), verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.spacedBy(12.dp)) {
             FoodIcon(batch.iconKey, batch.displayName, size = 62.dp, fraction = result.fractionRemaining, status = result.status)

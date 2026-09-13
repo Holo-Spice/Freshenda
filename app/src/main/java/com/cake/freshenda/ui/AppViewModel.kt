@@ -90,6 +90,13 @@ class AppViewModel(private val container: AppContainer) : ViewModel() {
         }
     }
 
+    fun updateBatch(id: Long, draft: AddBatchDraft, onSuccess: () -> Unit) {
+        val currentCatalog = catalog.value ?: return
+        launchAction("已保存修改", onSuccess) {
+            container.foodRepository.updateBatch(id, draft, currentCatalog)
+        }
+    }
+
     fun consume(id: Long, quantityMilli: Long, onSuccess: () -> Unit = {}) =
         launchAction("已更新剩余数量", onSuccess) { container.foodRepository.consume(id, quantityMilli) }
     fun markOpened(id: Long) = launchAction("已记录开封") {
