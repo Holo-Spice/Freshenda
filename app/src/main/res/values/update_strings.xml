@@ -1,0 +1,18 @@
+<resources>
+    <string name="update_section">应用更新</string>
+    <string name="update_current_version">当前版本：%1$s</string>
+    <string name="update_check">检查更新</string>
+    <string name="update_checking">正在检查…</string>
+    <string name="update_description">进入应用时每天最多联网检查一次更新，食材管理仍可离线使用。下载与安装由浏览器和系统完成。</string>
+    <string name="update_latest">当前已是最新版本</string>
+    <string name="update_incompatible">新版本需要 Android API %1$d 或更高版本，当前系统暂不支持。</string>
+    <string name="update_unavailable">暂未提供更新信息，请稍后重试。</string>
+    <string name="update_failed">检查失败，请检查网络后重试。</string>
+    <string name="update_ignore_failed">未能保存忽略设置，请稍后重试。</string>
+    <string name="update_title">发现新版本 %1$s</string>
+    <string name="update_notes_empty">此版本未提供更新说明。</string>
+    <string name="update_download">前往下载</string>
+    <string name="update_later">稍后</string>
+    <string name="update_ignore">忽略此版本</string>
+    <string name="update_browser_failed">无法打开下载页面，请确认已安装可用的浏览器。</string>
+</resources>

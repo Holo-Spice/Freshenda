@@ -21,6 +21,11 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.res.stringResource
+import com.cake.freshenda.BuildConfig
+import com.cake.freshenda.R
+import com.cake.freshenda.update.UpdateFeedback
+import com.cake.freshenda.update.UpdateUiState
 import com.cake.freshenda.data.UserSettings
 import com.cake.freshenda.model.FoodCatalog
 import com.cake.freshenda.ui.components.BrandHeader
@@ -40,6 +45,8 @@ fun SettingsScreen(
     onTest: () -> Unit,
     onExport: () -> Unit,
     onImport: () -> Unit,
+    updateState: UpdateUiState,
+    onCheckUpdate: () -> Unit,
 ) {
     LazyColumn(Modifier.fillMaxSize()) {
         item { BrandHeader("提醒与偏好", "在合适的时候，轻轻提醒") }
@@ -83,6 +90,24 @@ fun SettingsScreen(
             SettingCard("资料说明") {
                 Text("随 App 离线提供 ${catalog?.foods?.size ?: 322} 个食材条目、${catalog?.profiles?.size ?: 81} 个规则档案和 ${catalog?.sources?.size ?: 21} 个资料来源。日期是储存与安排提醒，不是对实物安全的保证。", style = MaterialTheme.typography.bodyMedium)
                 Text("数据版本：${catalog?.dataVersion ?: "加载中"}", style = MaterialTheme.typography.bodyMedium, color = FreshendaColors.Unknown)
+            }
+        }
+        item {
+            SettingCard(stringResource(R.string.update_section)) {
+                Text(stringResource(R.string.update_current_version, BuildConfig.VERSION_NAME))
+                OutlinedButton(onClick = onCheckUpdate, enabled = !updateState.checking, modifier = Modifier.fillMaxWidth()) {
+                    Text(stringResource(if (updateState.checking) R.string.update_checking else R.string.update_check))
+                }
+                val feedback = when (updateState.feedback) {
+                    UpdateFeedback.UP_TO_DATE -> stringResource(R.string.update_latest)
+                    UpdateFeedback.INCOMPATIBLE -> stringResource(R.string.update_incompatible, updateState.requiredSdk ?: 0)
+                    UpdateFeedback.UNAVAILABLE -> stringResource(R.string.update_unavailable)
+                    UpdateFeedback.FAILED -> stringResource(R.string.update_failed)
+                    UpdateFeedback.IGNORE_FAILED -> stringResource(R.string.update_ignore_failed)
+                    null -> null
+                }
+                feedback?.let { Text(it, style = MaterialTheme.typography.bodyMedium) }
+                Text(stringResource(R.string.update_description), style = MaterialTheme.typography.bodyMedium, color = FreshendaColors.Unknown)
             }
         }
         item { Spacer(Modifier.height(20.dp)) }

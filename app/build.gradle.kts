@@ -15,8 +15,8 @@ android {
         applicationId = "com.cake.freshenda"
         minSdk = 26
         targetSdk = 37
-        versionCode = 4
-        versionName = "1.1.0"
+        versionCode = 5
+        versionName = "1.1.1"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
@@ -34,6 +34,38 @@ android {
     }
     buildFeatures {
         compose = true
+        buildConfig = true
+    }
+}
+
+tasks.register("generateUpdateMetadata") {
+    val updateMetadata = layout.buildDirectory.file("outputs/update/update.json").get().asFile
+    val updateNotes = layout.projectDirectory.file("update-notes.txt").asFile
+    val updateVersionCode = requireNotNull(android.defaultConfig.versionCode)
+    val updateVersionName = requireNotNull(android.defaultConfig.versionName)
+    val updateMinSdk = requireNotNull(android.defaultConfig.minSdk)
+    group = "distribution"
+    description = "Generate update.json to upload alongside the APK in the matching GitHub Release."
+    inputs.property("versionCode", updateVersionCode)
+    inputs.property("versionName", updateVersionName)
+    inputs.property("minSdk", updateMinSdk)
+    inputs.file(updateNotes)
+    outputs.file(updateMetadata)
+    doLast {
+        val notes = updateNotes.readLines().map(String::trim).filter(String::isNotEmpty)
+        require(notes.size <= 50 && notes.all { it.length <= 2_000 }) { "Update notes exceed supported limits" }
+        val metadata = linkedMapOf(
+            "schemaVersion" to 1,
+            "versionCode" to updateVersionCode,
+            "versionName" to updateVersionName,
+            "minSdk" to updateMinSdk,
+            "releaseUrl" to "https://github.com/Holo-Spice/Freshenda/releases/tag/v$updateVersionName",
+            "notes" to notes,
+        )
+        updateMetadata.apply {
+            parentFile.mkdirs()
+            writeText(groovy.json.JsonOutput.prettyPrint(groovy.json.JsonOutput.toJson(metadata)) + "\n")
+        }
     }
 }
 

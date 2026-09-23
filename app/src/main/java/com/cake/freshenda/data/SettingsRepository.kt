@@ -4,10 +4,12 @@ import android.content.Context
 import androidx.datastore.preferences.core.booleanPreferencesKey
 import androidx.datastore.preferences.core.edit
 import androidx.datastore.preferences.core.intPreferencesKey
+import androidx.datastore.preferences.core.longPreferencesKey
 import androidx.datastore.preferences.core.stringPreferencesKey
 import androidx.datastore.preferences.preferencesDataStore
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
+import com.cake.freshenda.update.UpdatePreferences
 
 private val Context.settingsDataStore by preferencesDataStore(name = "settings")
 
@@ -24,6 +26,13 @@ data class UserSettings(
 )
 
 class SettingsRepository(private val context: Context) {
+    val updatePreferences: Flow<UpdatePreferences> = context.settingsDataStore.data.map { preferences ->
+        UpdatePreferences(preferences[KEY_UPDATE_CHECK] ?: 0, preferences[KEY_IGNORED_VERSION] ?: 0)
+    }
+
+    suspend fun recordUpdateCheck(time: Long) = context.settingsDataStore.edit { it[KEY_UPDATE_CHECK] = time }
+    suspend fun ignoreUpdateVersion(version: Long) = context.settingsDataStore.edit { it[KEY_IGNORED_VERSION] = version }
+
     val settings: Flow<UserSettings> = context.settingsDataStore.data.map { preferences ->
         UserSettings(
             remindersEnabled = preferences[KEY_ENABLED] ?: false,
@@ -49,6 +58,8 @@ class SettingsRepository(private val context: Context) {
     }
 
     private companion object {
+        val KEY_UPDATE_CHECK = longPreferencesKey("update_last_check")
+        val KEY_IGNORED_VERSION = longPreferencesKey("update_ignored_version")
         val KEY_ENABLED = booleanPreferencesKey("reminders_enabled")
         val KEY_DAILY = booleanPreferencesKey("daily_summary")
         val KEY_HOUR = intPreferencesKey("reminder_hour")

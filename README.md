@@ -9,7 +9,8 @@
 - 同一种食材可以分批记录，也可以部分吃掉、开封、拆分、转冷冻或标记丢弃。
 - 日期可按包装日期、储存参考或自己的计划设置；没有合适资料时也可以先不设日期。
 - 支持系统通知、优先食用清单，以及本地 JSON 导入和导出。
-- 不需要账号和网络，库存、设置与提醒记录都保存在本机。
+- 食材管理不需要账号和网络，库存、设置与提醒记录都保存在本机。
+- 支持应用更新检查；仅检查更新时联网，下载与安装由浏览器和系统完成。
 
 日期提示用于帮助安排储存和食用，不代表 App 能判断食物实际是否安全或新鲜；有包装说明时请优先按包装要求处理。
 
@@ -39,3 +40,7 @@
 生成的安装包位于 `app/build/outputs/apk/debug/app-debug.apk`。
 
 项目使用 Kotlin、Jetpack Compose、Navigation 3、Room、DataStore 和 WorkManager。
+
+## 发布更新信息
+
+修改版本号和 `app/update-notes.txt` 后，执行 `./gradlew.bat :app:generateUpdateMetadata`，将生成的 `app/build/outputs/update/update.json` 与对应 APK 一起上传到同一个正式 GitHub Release，标签使用 `v` 加版本名称，并设为 Latest。更新检查只读取这个文件，不上传库存数据。

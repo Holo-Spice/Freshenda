@@ -39,6 +39,12 @@ import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.DisposableEffect
+import androidx.lifecycle.Lifecycle
+import androidx.lifecycle.LifecycleEventObserver
+import androidx.lifecycle.compose.LocalLifecycleOwner
+import com.cake.freshenda.update.UpdateViewModel
+import com.cake.freshenda.ui.components.UpdateDialog
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.remember
@@ -91,6 +97,18 @@ data class AppDeepLink(val destination: String, val batchId: Long?)
 fun FreshendaApp(container: AppContainer, deepLink: AppDeepLink?, onDeepLinkConsumed: () -> Unit) {
     val viewModel: AppViewModel = viewModel(factory = AppViewModel.Factory(container))
     val ui by viewModel.uiState.collectAsStateWithLifecycle()
+    val updateViewModel: UpdateViewModel = viewModel(factory = UpdateViewModel.Factory(container))
+    val updateState by updateViewModel.uiState.collectAsStateWithLifecycle()
+    val lifecycleOwner = LocalLifecycleOwner.current
+    DisposableEffect(lifecycleOwner, updateViewModel) {
+        val lifecycle = lifecycleOwner.lifecycle
+        val observer = LifecycleEventObserver { _, event ->
+            if (event == Lifecycle.Event.ON_START) updateViewModel.check()
+        }
+        lifecycle.addObserver(observer)
+        if (lifecycle.currentState.isAtLeast(Lifecycle.State.STARTED)) updateViewModel.check()
+        onDispose { lifecycle.removeObserver(observer) }
+    }
     val message by viewModel.snackbarMessage.collectAsStateWithLifecycle()
     val pendingImport by viewModel.pendingImport.collectAsStateWithLifecycle()
     val backStack = rememberNavBackStack(FridgeRoute)
@@ -194,6 +212,8 @@ fun FreshendaApp(container: AppContainer, deepLink: AppDeepLink?, onDeepLinkCons
                             viewModel::sendTestNotification,
                             { exportLauncher.launch("鲜序备份-${Instant.now().atZone(ZoneId.systemDefault()).format(DateTimeFormatter.ISO_LOCAL_DATE)}.json") },
                             { importLauncher.launch(arrayOf("application/json", "text/plain")) },
+                            updateState = updateState,
+                            onCheckUpdate = { updateViewModel.check(manual = true) },
                         )
                     }
                 }
@@ -266,6 +286,12 @@ fun FreshendaApp(container: AppContainer, deepLink: AppDeepLink?, onDeepLinkCons
                 }
             },
         )
+    }
+
+    if (pendingImport == null) {
+        updateState.available?.let { info ->
+            UpdateDialog(info, updateViewModel::dismissUpdate, updateViewModel::ignoreUpdate)
+        }
     }
 
     pendingImport?.let { pending ->
