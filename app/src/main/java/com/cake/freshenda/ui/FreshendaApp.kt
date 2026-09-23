@@ -6,10 +6,13 @@ import androidx.activity.compose.rememberLauncherForActivityResult
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.compose.animation.core.FastOutSlowInEasing
 import androidx.compose.animation.core.tween
+import androidx.compose.animation.core.animateFloat
+import androidx.compose.animation.EnterExitState
 import androidx.compose.animation.fadeIn
 import androidx.compose.animation.fadeOut
 import androidx.compose.animation.slideInHorizontally
 import androidx.compose.animation.slideOutHorizontally
+import androidx.compose.animation.scaleOut
 import androidx.compose.animation.togetherWith
 import androidx.compose.foundation.Canvas
 import androidx.compose.foundation.background
@@ -43,6 +46,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.FrameRateCategory
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clipToBounds
+import androidx.compose.ui.draw.blur
 import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.geometry.Size
 import androidx.compose.ui.graphics.StrokeCap
@@ -56,6 +60,7 @@ import androidx.navigation3.runtime.NavKey
 import androidx.navigation3.runtime.entryProvider
 import androidx.navigation3.runtime.rememberNavBackStack
 import androidx.navigation3.ui.NavDisplay
+import androidx.navigation3.ui.LocalNavAnimatedContentScope
 import com.cake.freshenda.AppContainer
 import com.cake.freshenda.data.local.CustomFoodEntity
 import com.cake.freshenda.model.EvidenceSummary
@@ -167,6 +172,10 @@ fun FreshendaApp(container: AppContainer, deepLink: AppDeepLink?, onDeepLinkCons
                 fadeIn(tween(240, easing = FastOutSlowInEasing), initialAlpha = .48f) togetherWith
                     slideOutHorizontally(tween(280, easing = FastOutSlowInEasing)) { it }
             },
+            predictivePopTransitionSpec = {
+                fadeIn(tween(280, easing = FastOutSlowInEasing), initialAlpha = .48f) togetherWith
+                    scaleOut(targetScale = .54f, animationSpec = tween(280, easing = FastOutSlowInEasing))
+            },
             entryProvider = entryProvider {
                 entry<FridgeRoute> { ScreenFrame { FridgeScreen(ui.batches, now, { backStack.add(PickerRoute) }) { backStack.add(DetailRoute(it)) } } }
                 entry<DueRoute> { ScreenFrame { DueScreen(ui.batches, now) { backStack.add(DetailRoute(it)) } } }
@@ -272,11 +281,16 @@ fun FreshendaApp(container: AppContainer, deepLink: AppDeepLink?, onDeepLinkCons
 
 @Composable
 private fun ScreenFrame(content: @Composable () -> Unit) {
+    val blurRadius by LocalNavAnimatedContentScope.current.transition.animateFloat(
+        transitionSpec = { tween(280, easing = FastOutSlowInEasing) },
+        label = "screenExitBlur",
+    ) { state -> if (state == EnterExitState.PostExit) 18f else 0f }
     Box(
         Modifier
             .fillMaxSize()
             .background(FreshendaColors.Background)
-            .clipToBounds(),
+            .clipToBounds()
+            .blur(blurRadius.dp),
     ) {
         content()
     }

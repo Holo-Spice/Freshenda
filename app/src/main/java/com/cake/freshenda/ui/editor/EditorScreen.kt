@@ -1,9 +1,13 @@
 package com.cake.freshenda.ui.editor
 
 import androidx.compose.foundation.BorderStroke
+import androidx.compose.foundation.clickable
+import androidx.compose.foundation.gestures.snapping.rememberSnapFlingBehavior
 import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.ColumnScope
+import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.WindowInsets
@@ -13,7 +17,11 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.ime
 import androidx.compose.foundation.layout.imePadding
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.itemsIndexed
+import androidx.compose.foundation.lazy.rememberLazyListState
 import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.relocation.BringIntoViewRequester
 import androidx.compose.foundation.relocation.bringIntoViewRequester
 import androidx.compose.foundation.verticalScroll
@@ -27,16 +35,21 @@ import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.derivedStateOf
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.saveable.rememberSaveable
+import androidx.compose.runtime.snapshotFlow
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.focus.onFocusChanged
 import androidx.compose.ui.platform.LocalDensity
+import androidx.compose.ui.semantics.Role
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.window.Dialog
 import com.cake.freshenda.expiry.ExpiryCalculator
 import com.cake.freshenda.data.local.CustomFoodEntity
 import com.cake.freshenda.data.local.FoodBatchEntity
@@ -56,7 +69,12 @@ import java.math.BigDecimal
 import java.math.RoundingMode
 import java.time.Instant
 import java.time.LocalDate
+import java.time.YearMonth
 import java.time.ZoneId
+import java.time.format.DateTimeFormatter
+import java.util.Locale
+import kotlin.math.abs
+import kotlinx.coroutines.flow.collect
 
 @Composable
 fun EditorScreen(
@@ -86,6 +104,7 @@ fun EditorScreen(
     }
     var preparation by rememberSaveable(editorKey, storage.name) { mutableStateOf(batch?.preparation ?: "NONE") }
     var error by rememberSaveable { mutableStateOf<String?>(null) }
+    var datePickerTarget by rememberSaveable(editorKey) { mutableStateOf<String?>(null) }
 
     Column(Modifier.fillMaxSize().imePadding().verticalScroll(rememberScrollState())) {
         BrandHeader(if (batch == null) "添加食材" else "修改食材", "食材与位置 → 数量 → 起算点 → 日期依据", leading = { TextButton(onClick = onBack) { Text("‹ 返回", color = FreshendaColors.OnPrimary) } })
@@ -129,13 +148,16 @@ fun EditorScreen(
             }
         }
         FormSection("购买／本阶段起点") {
-            OutlinedTextField(value = startDate, onValueChange = { startDate = it.take(10) }, label = { Text("日期（yyyy-MM-dd）") }, singleLine = true, modifier = Modifier.fillMaxWidth().keepVisibleWithIme())
+            DateWheelField("起算日期", LocalDate.parse(startDate)) { datePickerTarget = "start" }
             Text("只知道日期时按当天 00:00 起算，不按录入时刻刷新。", style = MaterialTheme.typography.bodyMedium, color = FreshendaColors.Unknown)
         }
         FormSection("日期依据") {
             ChoiceRow(DateBasis.entries.toList(), basis, { basis = it }) { when (it) { DateBasis.SUGGESTED -> "储存参考"; DateBasis.LABEL -> "包装日期"; DateBasis.CUSTOM -> "自己设定"; DateBasis.NONE -> "暂不设置" } }
             if (basis == DateBasis.LABEL || basis == DateBasis.CUSTOM) {
-                OutlinedTextField(value = targetDate, onValueChange = { targetDate = it.take(10) }, label = { Text(if (basis == DateBasis.LABEL) "包装标注日期" else "计划食用日期") }, singleLine = true, modifier = Modifier.fillMaxWidth().keepVisibleWithIme())
+                DateWheelField(
+                    if (basis == DateBasis.LABEL) "包装标注日期" else "计划食用日期",
+                    LocalDate.parse(targetDate),
+                ) { datePickerTarget = "target" }
             }
             if (basis == DateBasis.SUGGESTED) {
                 val draft = previewDraft(food, storage, quantity, unit, startDate, basis, packaging, physical, maturity, preparation)
@@ -155,6 +177,17 @@ fun EditorScreen(
             if (draft == null) error = "请检查数量和日期格式" else { error = null; onSave(draft) }
         }, modifier = Modifier.fillMaxWidth().padding(16.dp).height(54.dp)) { Text(if (batch == null) "放进冰箱" else "保存修改") }
         Spacer(Modifier.height(18.dp))
+    }
+
+    datePickerTarget?.let { target ->
+        WheelDatePickerDialog(
+            selectedDate = LocalDate.parse(if (target == "start") startDate else targetDate),
+            onDismissRequest = { datePickerTarget = null },
+            onConfirm = { selectedDate ->
+                if (target == "start") startDate = selectedDate.toString() else targetDate = selectedDate.toString()
+                datePickerTarget = null
+            },
+        )
     }
 }
 
@@ -251,3 +284,161 @@ private fun physicalChoices(category: String) = if (category == "prepared") list
 private fun physicalLabel(value: FoodPhysicalState) = when (value) { FoodPhysicalState.WHOLE -> "完整"; FoodPhysicalState.CUT -> "切开"; FoodPhysicalState.GROUND -> "肉馅"; FoodPhysicalState.COOKED -> "熟食"; FoodPhysicalState.PREPARED_FOR_FREEZING -> "已处理" }
 private fun unitLabel(unit: String?) = when (unit) { "DAY" -> "天"; "WEEK" -> "周"; "MONTH" -> "个月"; else -> "" }
 private fun evidenceLabel(food: FoodDefinition, storage: StorageLocation) = when (storage) { StorageLocation.REFRIGERATED -> food.evidence.refrigerated; StorageLocation.FROZEN -> food.evidence.frozen; StorageLocation.PANTRY -> food.evidence.pantry }.let { if (it == "CATEGORY") "同类参考" else if (it == "DIRECT") "直接资料" else "条件参考" }
+
+@Composable
+private fun DateWheelField(label: String, date: LocalDate, onClick: () -> Unit) {
+    Surface(
+        modifier = Modifier.fillMaxWidth().clickable(role = Role.Button, onClick = onClick),
+        color = FreshendaColors.Glass,
+        shape = MaterialTheme.shapes.large,
+        border = BorderStroke(1.dp, FreshendaColors.GlassBorder),
+    ) {
+        Row(
+            Modifier.padding(horizontal = 16.dp, vertical = 13.dp),
+            verticalAlignment = Alignment.CenterVertically,
+            horizontalArrangement = Arrangement.spacedBy(12.dp),
+        ) {
+            Column(Modifier.weight(1f), verticalArrangement = Arrangement.spacedBy(3.dp)) {
+                Text(label, style = MaterialTheme.typography.labelMedium, color = FreshendaColors.Unknown)
+                Text(date.format(DateTimeFormatter.ofPattern("yyyy年M月d日", Locale.CHINA)), style = MaterialTheme.typography.titleMedium)
+            }
+            Text("调整  ›", style = MaterialTheme.typography.labelLarge, color = FreshendaColors.Primary)
+        }
+    }
+}
+
+@Composable
+private fun WheelDatePickerDialog(
+    selectedDate: LocalDate,
+    onDismissRequest: () -> Unit,
+    onConfirm: (LocalDate) -> Unit,
+) {
+    var draftDate by remember(selectedDate) { mutableStateOf(selectedDate) }
+    val years = remember(selectedDate.year) {
+        (minOf(1900, selectedDate.year)..maxOf(2100, selectedDate.year)).toList()
+    }
+
+    Dialog(onDismissRequest = onDismissRequest) {
+        Surface(
+            modifier = Modifier.fillMaxWidth(),
+            color = FreshendaColors.Card,
+            shape = RoundedCornerShape(28.dp),
+            border = BorderStroke(1.dp, FreshendaColors.GlassBorder),
+            shadowElevation = 12.dp,
+        ) {
+            Column(
+                Modifier.padding(20.dp),
+                verticalArrangement = Arrangement.spacedBy(14.dp),
+            ) {
+                Text("选择日期", style = MaterialTheme.typography.titleLarge)
+                Text(
+                    draftDate.format(DateTimeFormatter.ofPattern("yyyy年M月d日 EEEE", Locale.CHINA)),
+                    style = MaterialTheme.typography.headlineSmall,
+                    color = FreshendaColors.Primary,
+                )
+                Box(Modifier.fillMaxWidth().height(240.dp)) {
+                    Surface(
+                        modifier = Modifier.align(Alignment.Center).fillMaxWidth().height(48.dp),
+                        color = FreshendaColors.Primary.copy(alpha = .09f),
+                        shape = RoundedCornerShape(14.dp),
+                    ) {}
+                    Row(
+                        Modifier.fillMaxSize(),
+                        horizontalArrangement = Arrangement.spacedBy(4.dp),
+                        verticalAlignment = Alignment.CenterVertically,
+                    ) {
+                        WheelDateColumn(
+                            values = years,
+                            selectedIndex = years.indexOf(draftDate.year),
+                            label = { "$it 年" },
+                            modifier = Modifier.weight(1.35f),
+                        ) { index ->
+                            val nextYear = years[index]
+                            val maxDay = YearMonth.of(nextYear, draftDate.monthValue).lengthOfMonth()
+                            draftDate = LocalDate.of(nextYear, draftDate.monthValue, draftDate.dayOfMonth.coerceAtMost(maxDay))
+                        }
+                        WheelDateColumn(
+                            values = (1..12).toList(),
+                            selectedIndex = draftDate.monthValue - 1,
+                            label = { "$it 月" },
+                            modifier = Modifier.weight(1f),
+                        ) { index ->
+                            val nextMonth = index + 1
+                            val maxDay = YearMonth.of(draftDate.year, nextMonth).lengthOfMonth()
+                            draftDate = LocalDate.of(draftDate.year, nextMonth, draftDate.dayOfMonth.coerceAtMost(maxDay))
+                        }
+                        WheelDateColumn(
+                            values = (1..draftDate.lengthOfMonth()).toList(),
+                            selectedIndex = draftDate.dayOfMonth - 1,
+                            label = { "$it 日" },
+                            modifier = Modifier.weight(1f),
+                        ) { index -> draftDate = draftDate.withDayOfMonth(index + 1) }
+                    }
+                }
+                Row(
+                    Modifier.fillMaxWidth(),
+                    horizontalArrangement = Arrangement.End,
+                    verticalAlignment = Alignment.CenterVertically,
+                ) {
+                    TextButton(onClick = onDismissRequest) { Text("取消") }
+                    Button(onClick = { onConfirm(draftDate) }) { Text("确定") }
+                }
+            }
+        }
+    }
+}
+
+@Composable
+private fun <T> WheelDateColumn(
+    values: List<T>,
+    selectedIndex: Int,
+    label: (T) -> String,
+    modifier: Modifier = Modifier,
+    onSelectedIndexChange: (Int) -> Unit,
+) {
+    val listState = rememberLazyListState(initialFirstVisibleItemIndex = selectedIndex)
+    val centeredIndex by remember {
+        derivedStateOf {
+            val layout = listState.layoutInfo
+            val center = layout.viewportSize.height / 2f
+            layout.visibleItemsInfo.minByOrNull { abs(it.offset + it.size / 2f - center) }?.index ?: selectedIndex
+        }
+    }
+    val flingBehavior = rememberSnapFlingBehavior(lazyListState = listState)
+
+    LaunchedEffect(selectedIndex, values.size) {
+        if (!listState.isScrollInProgress && centeredIndex != selectedIndex) {
+            listState.animateScrollToItem(selectedIndex)
+        }
+    }
+    LaunchedEffect(listState, values.size) {
+        snapshotFlow { listState.isScrollInProgress to centeredIndex }
+            .collect { (scrolling, index) ->
+                if (!scrolling && index in values.indices) onSelectedIndexChange(index)
+            }
+    }
+
+    LazyColumn(
+        state = listState,
+        modifier = modifier.height(240.dp),
+        contentPadding = PaddingValues(vertical = 96.dp),
+        flingBehavior = flingBehavior,
+        horizontalAlignment = Alignment.CenterHorizontally,
+    ) {
+        itemsIndexed(values) { index, value ->
+            val selected = index == centeredIndex
+            Box(
+                Modifier.fillMaxWidth().height(48.dp).clickable { onSelectedIndexChange(index) },
+                contentAlignment = Alignment.Center,
+            ) {
+                Text(
+                    label(value),
+                    style = if (selected) MaterialTheme.typography.titleMedium else MaterialTheme.typography.bodyLarge,
+                    color = if (selected) FreshendaColors.Primary else FreshendaColors.Unknown,
+                    textAlign = TextAlign.Center,
+                    maxLines = 1,
+                )
+            }
+        }
+    }
+}
