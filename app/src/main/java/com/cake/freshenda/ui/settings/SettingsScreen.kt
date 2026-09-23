@@ -107,7 +107,6 @@ fun SettingsScreen(
                     null -> null
                 }
                 feedback?.let { Text(it, style = MaterialTheme.typography.bodyMedium) }
-                Text(stringResource(R.string.update_description), style = MaterialTheme.typography.bodyMedium, color = FreshendaColors.Unknown)
             }
         }
         item { Spacer(Modifier.height(20.dp)) }
