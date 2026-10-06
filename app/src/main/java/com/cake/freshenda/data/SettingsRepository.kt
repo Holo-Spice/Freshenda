@@ -10,6 +10,9 @@ import androidx.datastore.preferences.preferencesDataStore
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
 import com.cake.freshenda.update.UpdatePreferences
+import com.cake.freshenda.update.PendingUpdate
+import kotlinx.serialization.encodeToString
+import kotlinx.serialization.json.Json
 
 private val Context.settingsDataStore by preferencesDataStore(name = "settings")
 
@@ -26,6 +29,15 @@ data class UserSettings(
 )
 
 class SettingsRepository(private val context: Context) {
+    private val json = Json { ignoreUnknownKeys = true }
+    val pendingUpdate: Flow<PendingUpdate?> = context.settingsDataStore.data.map { preferences ->
+        preferences[KEY_PENDING_UPDATE]?.let { json.decodeFromString<PendingUpdate>(it) }
+    }
+
+    suspend fun setPendingUpdate(update: PendingUpdate?) = context.settingsDataStore.edit {
+        if (update == null) it.remove(KEY_PENDING_UPDATE) else it[KEY_PENDING_UPDATE] = json.encodeToString(update)
+    }
+
     val updatePreferences: Flow<UpdatePreferences> = context.settingsDataStore.data.map { preferences ->
         UpdatePreferences(preferences[KEY_UPDATE_CHECK] ?: 0, preferences[KEY_IGNORED_VERSION] ?: 0)
     }
@@ -58,6 +70,7 @@ class SettingsRepository(private val context: Context) {
     }
 
     private companion object {
+        val KEY_PENDING_UPDATE = stringPreferencesKey("pending_app_update")
         val KEY_UPDATE_CHECK = longPreferencesKey("update_last_check")
         val KEY_IGNORED_VERSION = longPreferencesKey("update_ignored_version")
         val KEY_ENABLED = booleanPreferencesKey("reminders_enabled")

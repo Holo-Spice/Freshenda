@@ -33,6 +33,7 @@ import com.cake.freshenda.R
 import com.cake.freshenda.ui.components.BrandHeader
 import com.cake.freshenda.ui.theme.FreshendaColors
 import com.cake.freshenda.update.UpdateFeedback
+import com.cake.freshenda.update.DownloadStatus
 import com.cake.freshenda.update.UpdateUiState
 
 @Composable
@@ -98,12 +99,19 @@ fun SettingsScreen(
             SettingCard(stringResource(R.string.update_section)) {
                 Text(stringResource(R.string.update_current_version, BuildConfig.VERSION_NAME))
                 OutlinedButton(onClick = onCheckUpdate, enabled = !updateState.checking, modifier = Modifier.fillMaxWidth()) {
-                    Text(stringResource(if (updateState.checking) R.string.update_checking else R.string.update_check))
+                    Text(stringResource(when {
+                        updateState.checking -> R.string.update_checking
+                        updateState.download.active -> R.string.update_view_progress
+                        updateState.download.status == DownloadStatus.READY -> R.string.update_install
+                        else -> R.string.update_check
+                    }))
                 }
                 val feedback = when (updateState.feedback) {
                     UpdateFeedback.UNAVAILABLE -> stringResource(R.string.update_unavailable)
                     UpdateFeedback.FAILED -> stringResource(R.string.update_failed)
                     UpdateFeedback.IGNORE_FAILED -> stringResource(R.string.update_ignore_failed)
+                    UpdateFeedback.INSTALL_PERMISSION -> stringResource(R.string.update_install_permission)
+                    UpdateFeedback.INSTALL_FAILED -> stringResource(R.string.update_install_failed)
                     null -> null
                 }
                 feedback?.let { Text(it, style = MaterialTheme.typography.bodyMedium) }

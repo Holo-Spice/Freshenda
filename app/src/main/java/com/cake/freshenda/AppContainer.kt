@@ -9,9 +9,11 @@ import com.cake.freshenda.data.catalog.CatalogLoader
 import com.cake.freshenda.data.local.FreshendaDatabase
 import com.cake.freshenda.reminder.NotificationPublisher
 import com.cake.freshenda.update.UpdateChecker
+import com.cake.freshenda.update.UpdateDownloader
 
 class AppContainer(context: Context) {
     val updateChecker = UpdateChecker()
+    val updateDownloader = UpdateDownloader(context)
     val database: FreshendaDatabase = Room.databaseBuilder(context, FreshendaDatabase::class.java, "freshenda.db").build()
     val catalogLoader = CatalogLoader(context)
     val foodRepository = FoodRepository(database)

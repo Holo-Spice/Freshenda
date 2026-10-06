@@ -114,6 +114,15 @@ class UpdateTest {
         assertEquals(info, UpdateChecker { FakeConnection(200, body) }.check())
     }
 
+    @Test fun apkLinkMustBelongToThisRepositoryButOlderMetadataStillWorks() {
+        assertNull(Json.decodeFromString<UpdateInfo>(Json.encodeToString(info)).validate().apkUrl)
+        val url = "https://github.com/Holo-Spice/Freshenda/releases/download/v1.2.1/Freshenda-v1.2.1-release.apk"
+        assertEquals(url, info.copy(apkUrl = url).validate().apkUrl)
+        listOf(url.replace("https:", "http:"), url.replace("Holo-Spice", "other"), "$url?redirect=other").forEach {
+            assertThrows(IllegalArgumentException::class.java) { info.copy(apkUrl = it).validate() }
+        }
+    }
+
     @Test fun cancellationIsNotConvertedToAnUpdateResult() {
         assertThrows(CancellationException::class.java) {
             runBlocking { UpdateChecker { throw CancellationException() }.check() }

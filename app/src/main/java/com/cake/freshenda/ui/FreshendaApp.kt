@@ -3,7 +3,11 @@ package com.cake.freshenda.ui
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.setValue
 import android.Manifest
+import android.content.ActivityNotFoundException
+import android.content.Intent
+import android.net.Uri
 import android.os.Build
+import android.provider.Settings
 import androidx.activity.compose.rememberLauncherForActivityResult
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.compose.animation.AnimatedVisibility
@@ -44,6 +48,7 @@ import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.mutableLongStateOf
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.runtime.saveable.rememberSaveableStateHolder
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.draw.clipToBounds
@@ -53,12 +58,14 @@ import androidx.compose.ui.geometry.Size
 import androidx.compose.ui.graphics.drawscope.Stroke
 import androidx.compose.ui.graphics.StrokeCap
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.lifecycle.compose.LocalLifecycleOwner
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.LifecycleEventObserver
 import androidx.lifecycle.repeatOnLifecycle
+import androidx.lifecycle.withResumed
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation3.runtime.entryProvider
 import androidx.navigation3.runtime.NavKey
@@ -78,11 +85,13 @@ import com.cake.freshenda.ui.settings.SettingsScreen
 import com.cake.freshenda.ui.theme.FreshendaColors
 import com.cake.freshenda.ui.theme.MotionEase
 import com.cake.freshenda.update.UpdateViewModel
+import com.cake.freshenda.update.UpdateFeedback
 import java.time.format.DateTimeFormatter
 import java.time.Instant
 import java.time.ZoneId
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.isActive
+import kotlinx.coroutines.launch
 import kotlinx.serialization.Serializable
 
 data class AppDeepLink(val destination: String, val batchId: Long?)
@@ -102,18 +111,64 @@ fun FreshendaApp(container: AppContainer, deepLink: AppDeepLink?, onDeepLinkCons
     val updateViewModel: UpdateViewModel = viewModel(factory = UpdateViewModel.Factory(container))
     val updateState by updateViewModel.uiState.collectAsStateWithLifecycle()
     val lifecycleOwner = LocalLifecycleOwner.current
+    val context = LocalContext.current
+    val scope = rememberCoroutineScope()
+    fun launchInstaller() {
+        scope.launch {
+            try {
+                val intent = updateViewModel.installIntent()
+                if (intent == null) updateViewModel.installFeedback(UpdateFeedback.INSTALL_FAILED)
+                else lifecycleOwner.lifecycle.withResumed { context.startActivity(intent) }
+            } catch (_: ActivityNotFoundException) {
+                updateViewModel.installFeedback(UpdateFeedback.INSTALL_FAILED)
+            } catch (_: SecurityException) {
+                updateViewModel.installFeedback(UpdateFeedback.INSTALL_FAILED)
+            }
+        }
+    }
+    val installPermissionLauncher = rememberLauncherForActivityResult(ActivityResultContracts.StartActivityForResult()) {
+        if (context.packageManager.canRequestPackageInstalls()) {
+            updateViewModel.consumeInstallRequest()
+            launchInstaller()
+        } else updateViewModel.installFeedback(UpdateFeedback.INSTALL_PERMISSION)
+    }
+    fun requestInstall() {
+        updateViewModel.consumeInstallRequest()
+        if (context.packageManager.canRequestPackageInstalls()) {
+            launchInstaller()
+        } else {
+            updateViewModel.installFeedback(UpdateFeedback.INSTALL_PERMISSION)
+            try {
+                installPermissionLauncher.launch(Intent(Settings.ACTION_MANAGE_UNKNOWN_APP_SOURCES, Uri.parse("package:${context.packageName}")))
+            } catch (_: ActivityNotFoundException) {
+                updateViewModel.installFeedback(UpdateFeedback.INSTALL_FAILED)
+            }
+        }
+    }
+    LaunchedEffect(updateState.installRequested) {
+        if (updateState.installRequested) lifecycleOwner.lifecycle.withResumed { requestInstall() }
+    }
     var notificationsAllowed by remember { mutableStateOf(container.notificationPublisher.canPublish()) }
     DisposableEffect(lifecycleOwner, updateViewModel) {
         val lifecycle = lifecycleOwner.lifecycle
         val observer = LifecycleEventObserver { _, event ->
             if (event == Lifecycle.Event.ON_START) {
+                updateViewModel.setForeground(true)
                 updateViewModel.check()
                 notificationsAllowed = container.notificationPublisher.canPublish()
+            } else if (event == Lifecycle.Event.ON_STOP) {
+                updateViewModel.setForeground(false)
             }
         }
         lifecycle.addObserver(observer)
-        if (lifecycle.currentState.isAtLeast(Lifecycle.State.STARTED)) updateViewModel.check()
-        onDispose { lifecycle.removeObserver(observer) }
+        if (lifecycle.currentState.isAtLeast(Lifecycle.State.STARTED)) {
+            updateViewModel.setForeground(true)
+            updateViewModel.check()
+        }
+        onDispose {
+            lifecycle.removeObserver(observer)
+            updateViewModel.setForeground(false)
+        }
     }
     val message by viewModel.snackbarMessage.collectAsStateWithLifecycle()
     val pendingImport by viewModel.pendingImport.collectAsStateWithLifecycle()
@@ -326,6 +381,9 @@ fun FreshendaApp(container: AppContainer, deepLink: AppDeepLink?, onDeepLinkCons
             onDismiss = updateViewModel::dismissUpdate,
             onIgnore = updateViewModel::ignoreUpdate,
             onRetry = { updateViewModel.check(manual = true) },
+            onDownload = updateViewModel::downloadUpdate,
+            onCancelDownload = updateViewModel::cancelDownload,
+            onInstall = ::requestInstall,
         )
     }
 

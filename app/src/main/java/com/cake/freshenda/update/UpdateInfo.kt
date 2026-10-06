@@ -12,6 +12,7 @@ data class UpdateInfo(
     val releaseUrl: String,
     val notes: List<String> = emptyList(),
     val details: List<String> = emptyList(),
+    val apkUrl: String? = null,
 ) {
     fun validate(): UpdateInfo {
         require(schemaVersion == 1 && versionCode > 0 && minSdk > 0)
@@ -23,9 +24,18 @@ data class UpdateInfo(
         require(uri.rawPath.startsWith("/Holo-Spice/Freshenda/releases/tag/") &&
             uri.rawPath.removePrefix("/Holo-Spice/Freshenda/releases/tag/").isNotBlank())
         require(uri.query == null && uri.fragment == null)
+        apkUrl?.let {
+            val apk = URI(it)
+            require(apk.scheme == "https" && apk.host == "github.com" && apk.port == -1 && apk.userInfo == null)
+            require(apk.rawPath.startsWith("/Holo-Spice/Freshenda/releases/download/") && apk.rawPath.endsWith(".apk"))
+            require(apk.query == null && apk.fragment == null)
+        }
         return this
     }
 }
+
+@Serializable
+data class PendingUpdate(val downloadId: Long, val info: UpdateInfo)
 
 data class UpdatePreferences(
     val lastCheckEpochMillis: Long = 0,

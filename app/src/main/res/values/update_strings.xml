@@ -10,7 +10,7 @@
     <string name="update_ignore_failed">未能保存忽略设置，请稍后重试。</string>
     <string name="update_title">发现新版本 %1$s</string>
     <string name="update_notes_empty">此版本未提供更新说明。</string>
-    <string name="update_download">下载更新</string>
+    <string name="update_download">下载并安装</string>
     <string name="update_found">新版本已就绪</string>
     <string name="update_installed_label">当前版本</string>
     <string name="update_latest_label">最新版本</string>
@@ -21,5 +21,25 @@
     <string name="update_close">关闭</string>
     <string name="update_later">稍后</string>
     <string name="update_ignore">忽略此版本</string>
-    <string name="update_browser_failed">无法打开下载页面，请确认已安装可用的浏览器。</string>
+    <string name="update_downloading">正在下载更新</string>
+    <string name="update_ready">准备安装更新</string>
+    <string name="update_connecting">正在连接…</string>
+    <string name="update_waiting">等待下载…</string>
+    <string name="update_transferring">下载安装包</string>
+    <string name="update_download_complete">下载完成</string>
+    <string name="update_background">后台下载</string>
+    <string name="update_download_cancel">取消下载</string>
+    <string name="update_download_retry">重新下载</string>
+    <string name="update_back_to_notes">返回说明</string>
+    <string name="update_download_unavailable">暂未提供安装包</string>
+    <string name="update_download_failed_title">下载未完成</string>
+    <string name="update_download_failed">下载失败，请检查网络后重试。</string>
+    <string name="update_storage_failed">存储空间不足或不可用，请清理空间后重试。</string>
+    <string name="update_file_missing">安装包已被移除，请重新下载。</string>
+    <string name="update_download_hint">可暂时离开此窗口，下载会在后台继续。</string>
+    <string name="update_install_hint">安装包已准备好，接下来由系统确认安装。</string>
+    <string name="update_install">安装更新</string>
+    <string name="update_install_permission">需要允许鲜序安装应用，授权后即可继续。</string>
+    <string name="update_install_failed">无法打开安装包，请重试或重新下载。</string>
+    <string name="update_view_progress">查看下载进度</string>
 </resources>

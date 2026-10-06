@@ -22,8 +22,8 @@ android {
         applicationId = "com.cake.freshenda"
         minSdk = 26
         targetSdk = 37
-        versionCode = 7
-        versionName = "1.2.0"
+        versionCode = 8
+        versionName = "1.2.1"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
@@ -81,6 +81,7 @@ tasks.register("generateUpdateMetadata") {
             "versionName" to updateVersionName,
             "minSdk" to updateMinSdk,
             "releaseUrl" to "https://github.com/Holo-Spice/Freshenda/releases/tag/v$updateVersionName",
+            "apkUrl" to "https://github.com/Holo-Spice/Freshenda/releases/download/v$updateVersionName/Freshenda-v$updateVersionName-release.apk",
             "notes" to notes,
             "details" to details,
         )
