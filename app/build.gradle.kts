@@ -1,8 +1,15 @@
+import java.util.Properties
+
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.compose)
     alias(libs.plugins.kotlin.serialization)
     alias(libs.plugins.ksp)
+}
+
+val releaseSigning = Properties().apply {
+    val propertiesFile = rootProject.file("signing.properties")
+    if (propertiesFile.exists()) propertiesFile.inputStream().use(::load)
 }
 
 android {
@@ -15,16 +22,26 @@ android {
         applicationId = "com.cake.freshenda"
         minSdk = 26
         targetSdk = 37
-        versionCode = 6
-        versionName = "1.1.2"
+        versionCode = 7
+        versionName = "1.2.0"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
 
+    signingConfigs {
+        create("release") {
+            storeFile = releaseSigning.getProperty("storeFile")?.let { rootProject.file(it) }
+            storePassword = releaseSigning.getProperty("storePassword")
+            keyAlias = releaseSigning.getProperty("keyAlias")
+            keyPassword = releaseSigning.getProperty("keyPassword")
+        }
+    }
+
     buildTypes {
         release {
+            signingConfig = signingConfigs.getByName("release")
             optimization {
-                enable = false
+                enable = true
             }
         }
     }
@@ -41,6 +58,7 @@ android {
 tasks.register("generateUpdateMetadata") {
     val updateMetadata = layout.buildDirectory.file("outputs/update/update.json").get().asFile
     val updateNotes = layout.projectDirectory.file("update-notes.txt").asFile
+    val updateDetails = layout.projectDirectory.file("update-details.txt").asFile
     val updateVersionCode = requireNotNull(android.defaultConfig.versionCode)
     val updateVersionName = requireNotNull(android.defaultConfig.versionName)
     val updateMinSdk = requireNotNull(android.defaultConfig.minSdk)
@@ -50,10 +68,13 @@ tasks.register("generateUpdateMetadata") {
     inputs.property("versionName", updateVersionName)
     inputs.property("minSdk", updateMinSdk)
     inputs.file(updateNotes)
+    inputs.file(updateDetails)
     outputs.file(updateMetadata)
     doLast {
         val notes = updateNotes.readLines().map(String::trim).filter(String::isNotEmpty)
+        val details = updateDetails.readLines().map(String::trim).filter(String::isNotEmpty)
         require(notes.size <= 50 && notes.all { it.length <= 2_000 }) { "Update notes exceed supported limits" }
+        require(details.size <= 50 && details.all { it.length <= 4_000 }) { "Update details exceed supported limits" }
         val metadata = linkedMapOf(
             "schemaVersion" to 1,
             "versionCode" to updateVersionCode,
@@ -61,6 +82,7 @@ tasks.register("generateUpdateMetadata") {
             "minSdk" to updateMinSdk,
             "releaseUrl" to "https://github.com/Holo-Spice/Freshenda/releases/tag/v$updateVersionName",
             "notes" to notes,
+            "details" to details,
         )
         updateMetadata.apply {
             parentFile.mkdirs()

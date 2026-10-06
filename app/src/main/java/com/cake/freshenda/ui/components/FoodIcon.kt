@@ -1,5 +1,7 @@
 package com.cake.freshenda.ui.components
 
+import androidx.compose.animation.SharedTransitionScope
+import androidx.compose.animation.core.tween
 import androidx.compose.foundation.Canvas
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Box
@@ -19,8 +21,28 @@ import androidx.compose.ui.semantics.contentDescription
 import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
+import androidx.navigation3.ui.LocalNavAnimatedContentScope
+import com.cake.freshenda.data.local.FoodBatchEntity
+import com.cake.freshenda.model.ExpiryResult
 import com.cake.freshenda.model.FreshnessStatus
 import com.cake.freshenda.ui.theme.FreshendaColors
+import com.cake.freshenda.ui.theme.MotionEase
+
+@Composable
+fun SharedTransitionScope.BatchIcon(batch: FoodBatchEntity, result: ExpiryResult, source: String, size: Dp) {
+    FoodIcon(
+        batch.iconKey,
+        batch.displayName,
+        modifier = Modifier.sharedElement(
+            sharedContentState = rememberSharedContentState("$source/${batch.id}"),
+            animatedVisibilityScope = LocalNavAnimatedContentScope.current,
+            boundsTransform = { _, _ -> tween(260, easing = MotionEase) },
+        ),
+        size = size,
+        fraction = result.fractionRemaining,
+        status = result.status,
+    )
+}
 
 @Composable
 fun FoodIcon(

@@ -1,393 +1,216 @@
 package com.cake.freshenda.ui.fridge
 
-import androidx.compose.foundation.BorderStroke
+import androidx.compose.animation.SharedTransitionScope
+import androidx.compose.animation.core.tween
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.setValue
 import androidx.compose.foundation.background
-import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.PaddingValues
-import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.PaddingValues
+import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.LazyRow
-import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material3.Button
+import androidx.compose.material3.ExtendedFloatingActionButton
 import androidx.compose.material3.FilterChip
 import androidx.compose.material3.FilterChipDefaults
-import androidx.compose.material3.FloatingActionButton
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.saveable.rememberSaveable
-import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.draw.clip
-import androidx.compose.ui.graphics.Brush
-import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.semantics.Role
+import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import com.cake.freshenda.data.local.FoodBatchEntity
 import com.cake.freshenda.model.FreshnessStatus
-import com.cake.freshenda.ui.components.BrandHeader
-import com.cake.freshenda.ui.components.FoodIcon
 import com.cake.freshenda.ui.components.batchExpiry
+import com.cake.freshenda.ui.components.BatchIcon
+import com.cake.freshenda.ui.components.BrandHeader
+import com.cake.freshenda.ui.components.EmptyState
+import com.cake.freshenda.ui.components.FoodIcon
+import com.cake.freshenda.ui.components.freshnessColor
+import com.cake.freshenda.ui.components.PressableSurface
 import com.cake.freshenda.ui.theme.FreshendaColors
+import com.cake.freshenda.ui.theme.MotionEase
 
 @Composable
-fun FridgeScreen(
+fun SharedTransitionScope.FridgeScreen(
     batches: List<FoodBatchEntity>,
     now: Long,
     onAdd: () -> Unit,
+    onDue: () -> Unit,
     onBatch: (Long) -> Unit,
 ) {
-    var filter by rememberSaveable { mutableStateOf(ALL) }
-    val visibleBatches = remember(batches, filter) {
-        if (filter == ALL) batches else batches.filter { it.storageLocation == filter }
-    }
+    var filter by rememberSaveable { mutableStateOf("ALL") }
+    val grouped = remember(batches) { batches.groupBy(::sectionOf) }
     val urgent = remember(batches, now) {
-        batches.count {
-            batchExpiry(it, now).status in setOf(
-                FreshnessStatus.OVERDUE,
-                FreshnessStatus.TODAY,
-                FreshnessStatus.DUE_SOON,
-            )
+        batches.count { batchExpiry(it, now).status in URGENT_STATUSES }
+    }
+    val sections = remember(filter, grouped) {
+        SECTIONS.filter { section ->
+            if (filter == "ALL") !grouped[section.id].isNullOrEmpty() else section.location == filter
         }
     }
-
     Box(Modifier.fillMaxSize()) {
         LazyColumn(
             modifier = Modifier.fillMaxSize(),
-            contentPadding = PaddingValues(bottom = 96.dp),
+            contentPadding = PaddingValues(bottom = 100.dp),
+            verticalArrangement = Arrangement.spacedBy(16.dp),
         ) {
-            item(contentType = "header") {
-                BrandHeader("我的冰箱", "${batches.size} 份食材 · $urgent 份优先安排")
-                LazyRow(
-                    contentPadding = PaddingValues(horizontal = 16.dp, vertical = 10.dp),
-                    horizontalArrangement = Arrangement.spacedBy(8.dp),
-                ) {
-                    items(STORAGE_FILTERS, key = { it.second }) { option ->
-                        StorageFilter(option.first, option.second, filter) { filter = it }
+            item(key = "header", contentType = "header") {
+                BrandHeader("我的冰箱", "好好储存，也好好吃饭。")
+                InventorySummary(batches.size, urgent, onDue)
+            }
+            item(key = "filters", contentType = "filters") {
+                LazyRow(contentPadding = PaddingValues(horizontal = 24.dp), horizontalArrangement = Arrangement.spacedBy(8.dp)) {
+                    items(STORAGE_FILTERS, key = { it.second }) { (label, value) ->
+                        FilterChip(
+                            selected = filter == value,
+                            onClick = { filter = value },
+                            label = { Text(label, modifier = Modifier.padding(horizontal = 6.dp)) },
+                            shape = CircleShape,
+                            border = null,
+                            colors = FilterChipDefaults.filterChipColors(
+                                containerColor = FreshendaColors.GlassSoft,
+                                selectedContainerColor = FreshendaColors.Primary,
+                                selectedLabelColor = FreshendaColors.OnPrimary,
+                            ),
+                        )
                     }
                 }
-                FreshnessLegend()
             }
-            if (filter != PANTRY) {
-                item(contentType = "fridge") {
-                    RefrigeratorCabinet(
-                        batches = visibleBatches,
-                        now = now,
-                        showRefrigerated = filter != FROZEN,
-                        showFrozen = filter != REFRIGERATED,
-                        onAdd = onAdd,
-                        onBatch = onBatch,
-                    )
-                }
-            }
-            if (filter == ALL || filter == PANTRY) {
-                item(contentType = "pantry") {
-                    PantryShelf(
-                        batches = visibleBatches.filter { it.storageLocation == PANTRY },
-                        now = now,
-                        onAdd = onAdd,
-                        onBatch = onBatch,
-                    )
-                }
-            }
-        }
-        FloatingActionButton(
-            onClick = onAdd,
-            modifier = Modifier.align(Alignment.BottomEnd).padding(20.dp),
-            containerColor = FreshendaColors.Primary,
-            contentColor = FreshendaColors.OnPrimary,
-            shape = CircleShape,
-        ) { Text("+", style = MaterialTheme.typography.headlineMedium) }
-    }
-}
-
-@Composable
-private fun StorageFilter(
-    label: String,
-    value: String,
-    selected: String,
-    onSelect: (String) -> Unit,
-) {
-    FilterChip(
-        selected = selected == value,
-        onClick = { onSelect(value) },
-        label = { Text(label) },
-        colors = FilterChipDefaults.filterChipColors(
-            containerColor = FreshendaColors.GlassSoft.copy(alpha = .62f),
-            selectedContainerColor = FreshendaColors.SurfaceTint,
-            selectedLabelColor = FreshendaColors.Primary,
-        ),
-        border = FilterChipDefaults.filterChipBorder(
-            enabled = true,
-            selected = selected == value,
-            borderColor = FreshendaColors.GlassBorder,
-            selectedBorderColor = FreshendaColors.Primary.copy(alpha = .24f),
-        ),
-    )
-}
-
-@Composable
-private fun FreshnessLegend() {
-    LazyRow(
-        contentPadding = PaddingValues(horizontal = 20.dp, vertical = 2.dp),
-        horizontalArrangement = Arrangement.spacedBy(14.dp),
-        verticalAlignment = Alignment.CenterVertically,
-    ) {
-        item { LegendItem(FreshendaColors.Primary, "新鲜") }
-        item { LegendItem(FreshendaColors.DueSoon, "临期") }
-        item { LegendItem(FreshendaColors.Overdue, "已过期") }
-        item { LegendItem(FreshendaColors.Unknown, "未设日期") }
-    }
-}
-
-@Composable
-private fun LegendItem(color: Color, label: String) {
-    Row(
-        horizontalArrangement = Arrangement.spacedBy(5.dp),
-        verticalAlignment = Alignment.CenterVertically,
-    ) {
-        Box(Modifier.size(8.dp).background(color, CircleShape))
-        Text(label, maxLines = 1, style = MaterialTheme.typography.labelSmall)
-    }
-}
-
-@Composable
-private fun RefrigeratorCabinet(
-    batches: List<FoodBatchEntity>,
-    now: Long,
-    showRefrigerated: Boolean,
-    showFrozen: Boolean,
-    onAdd: () -> Unit,
-    onBatch: (Long) -> Unit,
-) {
-    val cabinetBatches = batches.filter {
-        (showRefrigerated && it.storageLocation == REFRIGERATED) ||
-            (showFrozen && it.storageLocation == FROZEN)
-    }
-    Surface(
-        modifier = Modifier
-            .fillMaxWidth()
-            .padding(horizontal = 14.dp, vertical = 10.dp),
-        color = FreshendaColors.Glass,
-        shape = RoundedCornerShape(28.dp),
-        border = BorderStroke(2.dp, FreshendaColors.Primary.copy(alpha = .82f)),
-        shadowElevation = 5.dp,
-    ) {
-        Box {
-            Column(Modifier.padding(8.dp)) {
-                CabinetCap()
-                if (showRefrigerated) {
-                    FridgeCompartment("冷藏上层", cabinetBatches.forSection("UPPER"), now, onBatch)
-                    ShelfDivider()
-                    FridgeCompartment("冷藏下层", cabinetBatches.forSection("LOWER"), now, onBatch)
-                    ShelfDivider()
-                    FridgeCompartment("果蔬抽屉", cabinetBatches.forSection("CRISPER"), now, onBatch, drawer = true)
-                }
-                if (showFrozen) {
-                    if (showRefrigerated) ShelfDivider(thick = true)
-                    FridgeCompartment(
-                        "冷冻抽屉",
-                        cabinetBatches.filter { it.storageLocation == FROZEN },
-                        now,
-                        onBatch,
-                        drawer = true,
-                    )
-                }
-            }
-            if (cabinetBatches.isEmpty()) {
-                EmptyFridgePrompt(
-                    text = if (batches.isEmpty()) "冰箱还是空的" else "这个位置还没有食材",
-                    onClick = onAdd,
-                    modifier = Modifier.align(Alignment.Center),
-                )
-            }
-        }
-    }
-}
-
-@Composable
-private fun CabinetCap() {
-    Row(
-        Modifier.fillMaxWidth().height(42.dp).padding(horizontal = 10.dp),
-        verticalAlignment = Alignment.CenterVertically,
-        horizontalArrangement = Arrangement.SpaceBetween,
-    ) {
-        Text("鲜序", color = FreshendaColors.Primary, style = MaterialTheme.typography.titleMedium)
-        Box(
-            Modifier
-                .width(54.dp)
-                .height(7.dp)
-                .clip(RoundedCornerShape(50))
-                .background(FreshendaColors.Secondary),
-        )
-    }
-}
-
-@Composable
-private fun FridgeCompartment(
-    title: String,
-    batches: List<FoodBatchEntity>,
-    now: Long,
-    onBatch: (Long) -> Unit,
-    drawer: Boolean = false,
-) {
-    val background = if (drawer) {
-        Brush.verticalGradient(listOf(FreshendaColors.SurfaceTint.copy(alpha = .86f), FreshendaColors.GlassSoft.copy(alpha = .72f)))
-    } else {
-        Brush.verticalGradient(listOf(Color.White.copy(alpha = .68f), FreshendaColors.Background.copy(alpha = .82f)))
-    }
-    Column(
-        Modifier
-            .fillMaxWidth()
-            .height(if (drawer) 116.dp else 104.dp)
-            .background(background, RoundedCornerShape(14.dp))
-            .padding(vertical = 7.dp),
-    ) {
-        Row(
-            Modifier.fillMaxWidth().padding(horizontal = 12.dp),
-            horizontalArrangement = Arrangement.SpaceBetween,
-            verticalAlignment = Alignment.CenterVertically,
-        ) {
-            Text(title, style = MaterialTheme.typography.labelLarge)
-            if (drawer) {
-                Box(
-                    Modifier
-                        .width(42.dp)
-                        .height(5.dp)
-                        .clip(RoundedCornerShape(50))
-                        .background(FreshendaColors.Secondary),
-                )
-            }
-        }
-        Spacer(Modifier.height(4.dp))
-        if (batches.isNotEmpty()) {
-            LazyRow(
-                contentPadding = PaddingValues(horizontal = 10.dp),
-                horizontalArrangement = Arrangement.spacedBy(8.dp),
-            ) {
-                items(batches, key = { it.id }, contentType = { "food" }) { batch ->
-                    CabinetFood(batch, now, onBatch)
-                }
-            }
-        }
-    }
-}
-
-@Composable
-private fun CabinetFood(batch: FoodBatchEntity, now: Long, onBatch: (Long) -> Unit) {
-    val result = remember(batch, now) { batchExpiry(batch, now) }
-    Box(
-        modifier = Modifier
-            .size(62.dp)
-            .clickable(role = Role.Button) { onBatch(batch.id) },
-        contentAlignment = Alignment.Center,
-    ) {
-        FoodIcon(
-            iconKey = batch.iconKey,
-            name = "${batch.displayName}，${result.statusText}",
-            size = 52.dp,
-            fraction = result.fractionRemaining ?: 0f,
-            status = result.status,
-        )
-    }
-}
-
-@Composable
-private fun ShelfDivider(thick: Boolean = false) {
-    Box(
-        Modifier
-            .fillMaxWidth()
-            .height(if (thick) 12.dp else 8.dp)
-            .padding(horizontal = 5.dp, vertical = 2.dp)
-            .background(FreshendaColors.Primary.copy(alpha = if (thick) .55f else .30f), RoundedCornerShape(50)),
-    )
-}
-
-@Composable
-private fun PantryShelf(
-    batches: List<FoodBatchEntity>,
-    now: Long,
-    onAdd: () -> Unit,
-    onBatch: (Long) -> Unit,
-) {
-    Surface(
-        modifier = Modifier.fillMaxWidth().padding(horizontal = 14.dp, vertical = 4.dp),
-        color = FreshendaColors.Glass,
-        shape = RoundedCornerShape(22.dp),
-        border = BorderStroke(1.dp, FreshendaColors.GlassBorder),
-        shadowElevation = 3.dp,
-    ) {
-        Column(Modifier.padding(10.dp)) {
-            Text("常温置物架", modifier = Modifier.padding(8.dp), style = MaterialTheme.typography.titleMedium)
             if (batches.isEmpty()) {
-                EmptyFridgePrompt("置物架还是空的", onAdd, Modifier.align(Alignment.CenterHorizontally))
-            } else {
-                LazyRow(
-                    contentPadding = PaddingValues(horizontal = 4.dp, vertical = 6.dp),
-                    horizontalArrangement = Arrangement.spacedBy(8.dp),
-                ) {
-                    items(batches, key = { it.id }, contentType = { "food" }) { batch ->
-                        CabinetFood(batch, now, onBatch)
+                item(key = "empty", contentType = "empty") {
+                    Column(horizontalAlignment = Alignment.CenterHorizontally) {
+                        EmptyState("新鲜生活，从这里开始", "记下刚买的食材，\n下一餐吃什么，就更有数了。")
+                        Button(onClick = onAdd) { Text("添加第一份食材") }
                     }
                 }
+            } else {
+                items(sections, key = { it.id }, contentType = { "shelf" }) { section ->
+                    StorageShelf(
+                        section, grouped[section.id].orEmpty(), now, onAdd, onBatch,
+                        Modifier.animateItem(tween(160), tween(240, easing = MotionEase), tween(100)),
+                    )
+                }
             }
-            ShelfDivider()
+        }
+        if (batches.isNotEmpty()) {
+            ExtendedFloatingActionButton(
+                onClick = onAdd,
+                modifier = Modifier.align(Alignment.BottomEnd).padding(20.dp),
+                containerColor = FreshendaColors.Primary,
+                contentColor = FreshendaColors.OnPrimary,
+                icon = { Text("+", style = MaterialTheme.typography.headlineSmall) },
+                text = { Text("添加食材") },
+            )
         }
     }
 }
 
 @Composable
-private fun EmptyFridgePrompt(text: String, onClick: () -> Unit, modifier: Modifier = Modifier) {
+private fun InventorySummary(count: Int, urgent: Int, onDue: () -> Unit) {
     Surface(
-        modifier = modifier
-            .size(132.dp)
-            .clickable(role = Role.Button, onClick = onClick),
-        color = FreshendaColors.Glass.copy(alpha = .96f),
-        shape = CircleShape,
-        border = BorderStroke(1.dp, FreshendaColors.GlassBorder),
-        shadowElevation = 5.dp,
+        modifier = Modifier.fillMaxWidth().padding(horizontal = 24.dp),
+        shape = RoundedCornerShape(28.dp),
+        color = FreshendaColors.Primary,
+        contentColor = FreshendaColors.OnPrimary,
     ) {
-        Column(
-            horizontalAlignment = Alignment.CenterHorizontally,
-            verticalArrangement = Arrangement.Center,
-        ) {
-            Text("+", color = FreshendaColors.Primary, style = MaterialTheme.typography.displaySmall)
-            Text(text, style = MaterialTheme.typography.labelLarge)
-            Text("点击添加食材", color = FreshendaColors.Unknown, style = MaterialTheme.typography.bodySmall)
+        Column(Modifier.padding(20.dp), verticalArrangement = Arrangement.spacedBy(16.dp)) {
+            Row(Modifier.fillMaxWidth(), verticalAlignment = Alignment.CenterVertically) {
+                Column(Modifier.weight(1f), verticalArrangement = Arrangement.spacedBy(6.dp)) {
+                    Text("新鲜有序 · 每一餐都有数", style = MaterialTheme.typography.labelMedium, color = FreshendaColors.SurfaceTint)
+                    Row(verticalAlignment = Alignment.Bottom, horizontalArrangement = Arrangement.spacedBy(8.dp)) {
+                        Text(count.toString().padStart(2, '0'), style = MaterialTheme.typography.displayMedium)
+                        Text("份食材在库", modifier = Modifier.padding(bottom = 7.dp), style = MaterialTheme.typography.bodyMedium)
+                    }
+                }
+                FoodIcon("food_broccoli", "", size = 66.dp)
+            }
+            PressableSurface(onDue, Modifier.fillMaxWidth(), color = FreshendaColors.HeaderAccent, shape = RoundedCornerShape(14.dp)) {
+                Row(Modifier.padding(14.dp), verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.spacedBy(10.dp)) {
+                    Box(Modifier.size(6.dp).background(FreshendaColors.SurfaceTint, CircleShape))
+                    Text(
+                        if (urgent > 0) "$urgent 份食材需要留意" else "查看食材日期与食用顺序",
+                        modifier = Modifier.weight(1f),
+                        color = FreshendaColors.OnPrimary,
+                        style = MaterialTheme.typography.labelLarge,
+                    )
+                    Text("→", color = FreshendaColors.OnPrimary)
+                }
+            }
         }
     }
 }
 
-private fun List<FoodBatchEntity>.forSection(section: String): List<FoodBatchEntity> =
-    filter {
-        it.storageLocation == REFRIGERATED &&
-            (it.storageSection == section || section == "UPPER" && it.storageSection !in REFRIGERATED_SECTIONS)
+@Composable
+private fun SharedTransitionScope.StorageShelf(section: StorageShelf, batches: List<FoodBatchEntity>, now: Long, onAdd: () -> Unit, onBatch: (Long) -> Unit, modifier: Modifier = Modifier) {
+    Surface(modifier.fillMaxWidth().padding(horizontal = 24.dp), color = FreshendaColors.Card, shape = RoundedCornerShape(24.dp)) {
+        Column(Modifier.padding(vertical = 18.dp), verticalArrangement = Arrangement.spacedBy(14.dp)) {
+            Row(Modifier.fillMaxWidth().padding(horizontal = 18.dp), verticalAlignment = Alignment.CenterVertically) {
+                Box(Modifier.width(3.dp).height(16.dp).background(FreshendaColors.Secondary, CircleShape))
+                Text(section.title, Modifier.weight(1f).padding(start = 10.dp), style = MaterialTheme.typography.titleMedium)
+                Text("${batches.size} 份", style = MaterialTheme.typography.labelMedium, color = FreshendaColors.Unknown)
+            }
+            if (batches.isEmpty()) {
+                PressableSurface(onAdd, Modifier.fillMaxWidth().padding(horizontal = 14.dp), color = FreshendaColors.GlassSoft, shape = RoundedCornerShape(12.dp)) {
+                    Text("＋  这里还空着，放点食材", Modifier.padding(16.dp), style = MaterialTheme.typography.bodyMedium, color = FreshendaColors.Unknown)
+                }
+            } else {
+                LazyRow(contentPadding = PaddingValues(horizontal = 14.dp), horizontalArrangement = Arrangement.spacedBy(8.dp)) {
+                    items(batches, key = { it.id }, contentType = { "food" }) { batch ->
+                        val result = remember(batch, now) { batchExpiry(batch, now) }
+                        PressableSurface(
+                            { onBatch(batch.id) },
+                            Modifier.width(88.dp).animateItem(tween(160), tween(240, easing = MotionEase), tween(100)),
+                            color = FreshendaColors.GlassSoft,
+                            shape = RoundedCornerShape(16.dp),
+                        ) {
+                            Column(Modifier.padding(horizontal = 6.dp, vertical = 10.dp), horizontalAlignment = Alignment.CenterHorizontally) {
+                                BatchIcon(batch, result, source = "fridge", size = 64.dp)
+                                Spacer(Modifier.height(8.dp))
+                                Text(batch.displayName, style = MaterialTheme.typography.labelLarge, maxLines = 2, overflow = TextOverflow.Ellipsis, textAlign = TextAlign.Center)
+                                Spacer(Modifier.height(3.dp))
+                                Text(result.statusText, style = MaterialTheme.typography.labelSmall, color = freshnessColor(result.status), textAlign = TextAlign.Center)
+                            }
+                        }
+                    }
+                }
+            }
+        }
     }
+}
 
-private val STORAGE_FILTERS = listOf(
-    "全部" to ALL,
-    "冷藏" to REFRIGERATED,
-    "冷冻" to FROZEN,
-    "常温" to PANTRY,
+private data class StorageShelf(val id: String, val title: String, val location: String)
+private val SECTIONS = listOf(
+    StorageShelf("UPPER", "冷藏上层", "REFRIGERATED"),
+    StorageShelf("LOWER", "冷藏下层", "REFRIGERATED"),
+    StorageShelf("CRISPER", "果蔬抽屉", "REFRIGERATED"),
+    StorageShelf("FREEZER_DRAWER", "冷冻抽屉", "FROZEN"),
+    StorageShelf("SHELF", "常温置物架", "PANTRY"),
 )
-private val REFRIGERATED_SECTIONS = setOf("UPPER", "LOWER", "CRISPER")
-private const val ALL = "ALL"
-private const val REFRIGERATED = "REFRIGERATED"
-private const val FROZEN = "FROZEN"
-private const val PANTRY = "PANTRY"
+private fun sectionOf(batch: FoodBatchEntity): String = when (batch.storageLocation) {
+    "FROZEN" -> "FREEZER_DRAWER"
+    "PANTRY" -> "SHELF"
+    else -> batch.storageSection.takeIf { it in setOf("UPPER", "LOWER", "CRISPER") } ?: "UPPER"
+}
+private val STORAGE_FILTERS = listOf("全部" to "ALL", "冷藏" to "REFRIGERATED", "冷冻" to "FROZEN", "常温" to "PANTRY")
+private val URGENT_STATUSES = setOf(FreshnessStatus.OVERDUE, FreshnessStatus.TODAY, FreshnessStatus.DUE_SOON)
+

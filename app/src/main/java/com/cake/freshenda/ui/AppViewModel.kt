@@ -6,19 +6,21 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.viewModelScope
 import com.cake.freshenda.AppContainer
 import com.cake.freshenda.data.BackupEnvelope
-import com.cake.freshenda.data.UserSettings
 import com.cake.freshenda.data.local.BatchChangeEntity
 import com.cake.freshenda.data.local.CustomFoodEntity
 import com.cake.freshenda.data.local.FoodBatchEntity
+import com.cake.freshenda.data.UserSettings
 import com.cake.freshenda.model.AddBatchDraft
 import com.cake.freshenda.model.FoodCatalog
 import com.cake.freshenda.model.StorageLocation
-import kotlinx.coroutines.flow.MutableStateFlow
-import kotlinx.coroutines.flow.SharingStarted
-import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.CancellationException
+import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.combine
 import kotlinx.coroutines.flow.flatMapLatest
 import kotlinx.coroutines.flow.flowOf
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.SharingStarted
+import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.launch
 
@@ -39,6 +41,8 @@ class AppViewModel(private val container: AppContainer) : ViewModel() {
     private val loadError = MutableStateFlow<String?>(null)
     private val selectedId = MutableStateFlow<Long?>(null)
     private val message = MutableStateFlow<String?>(null)
+    private val saveInProgress = MutableStateFlow(false)
+    val saving = saveInProgress.asStateFlow()
     val pendingImport = MutableStateFlow<PendingImport?>(null)
 
     private val catalogAndInventory = combine(
@@ -69,6 +73,8 @@ class AppViewModel(private val container: AppContainer) : ViewModel() {
         viewModelScope.launch {
             try {
                 catalog.value = container.catalogLoader.load()
+            } catch (cancelled: CancellationException) {
+                throw cancelled
             } catch (error: Exception) {
                 loadError.value = "目录加载失败：${error.message ?: "未知错误"}"
             }
@@ -79,24 +85,37 @@ class AppViewModel(private val container: AppContainer) : ViewModel() {
 
     fun addBatch(draft: AddBatchDraft, onSaved: (Long) -> Unit) {
         val currentCatalog = catalog.value ?: return
-        viewModelScope.launch {
-            try {
-                val id = container.foodRepository.addBatch(draft, currentCatalog)
-                container.settingsRepository.recordRecent(draft.food.id)
-                onSaved(id)
-            } catch (error: Exception) {
-                message.value = "保存失败：${error.message ?: "请检查输入"}"
-            }
+        save {
+            val id = container.foodRepository.addBatch(draft, currentCatalog)
+            container.settingsRepository.recordRecent(draft.food.id)
+            onSaved(id)
         }
     }
 
     fun updateBatch(id: Long, draft: AddBatchDraft, onSuccess: () -> Unit) {
         val currentCatalog = catalog.value ?: return
-        launchAction("已保存修改", onSuccess) {
+        save {
             container.foodRepository.updateBatch(id, draft, currentCatalog)
+            message.value = "已保存修改"
+            onSuccess()
         }
     }
 
+    private fun save(block: suspend () -> Unit) {
+        if (saveInProgress.value) return
+        saveInProgress.value = true
+        viewModelScope.launch {
+            try {
+                block()
+            } catch (cancelled: CancellationException) {
+                throw cancelled
+            } catch (error: Exception) {
+                message.value = "保存失败：${error.message ?: "请检查输入"}"
+            } finally {
+                saveInProgress.value = false
+            }
+        }
+    }
     fun consume(id: Long, quantityMilli: Long, onSuccess: () -> Unit = {}) =
         launchAction("已更新剩余数量", onSuccess) { container.foodRepository.consume(id, quantityMilli) }
     fun markOpened(id: Long) = launchAction("已记录开封") {
@@ -113,6 +132,8 @@ class AppViewModel(private val container: AppContainer) : ViewModel() {
                 message.value = "已拆分批次并记录新位置"
                 selectedId.value = childId
                 onSaved(childId)
+            } catch (cancelled: CancellationException) {
+                throw cancelled
             } catch (error: Exception) {
                 message.value = error.message ?: "拆分失败"
             }
@@ -134,6 +155,8 @@ class AppViewModel(private val container: AppContainer) : ViewModel() {
     fun inspectBackup(uri: Uri) = viewModelScope.launch {
         try {
             pendingImport.value = PendingImport(container.backupManager.inspect(uri))
+        } catch (cancelled: CancellationException) {
+            throw cancelled
         } catch (error: Exception) {
             message.value = "导入失败：${error.message ?: "文件格式不正确"}"
         }
@@ -145,6 +168,8 @@ class AppViewModel(private val container: AppContainer) : ViewModel() {
             val count = container.backupManager.replaceWith(pending.envelope)
             pendingImport.value = null
             message.value = "已恢复 $count 个在库批次"
+        } catch (cancelled: CancellationException) {
+            throw cancelled
         } catch (error: Exception) {
             message.value = "恢复失败：${error.message ?: "请重试"}"
         }
@@ -159,6 +184,8 @@ class AppViewModel(private val container: AppContainer) : ViewModel() {
             block()
             if (success != null) message.value = success
             onSuccess()
+        } catch (cancelled: CancellationException) {
+            throw cancelled
         } catch (error: Exception) {
             message.value = error.message ?: "操作失败"
         }

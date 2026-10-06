@@ -15,13 +15,14 @@ import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 
-enum class UpdateFeedback { UP_TO_DATE, INCOMPATIBLE, UNAVAILABLE, FAILED, IGNORE_FAILED }
+enum class UpdateFeedback { UNAVAILABLE, FAILED, IGNORE_FAILED }
 
 data class UpdateUiState(
     val checking: Boolean = false,
-    val available: UpdateInfo? = null,
+    val latest: UpdateInfo? = null,
+    val result: UpdateResult? = null,
+    val dialogVisible: Boolean = false,
     val feedback: UpdateFeedback? = null,
-    val requiredSdk: Int? = null,
 )
 
 class UpdateViewModel(
@@ -33,21 +34,24 @@ class UpdateViewModel(
     private var checkJob: Job? = null
 
     fun check(manual: Boolean = false) {
-        if (checkJob?.isActive == true || (!manual && state.value.available != null)) return
+        if (checkJob?.isActive == true || (!manual && state.value.dialogVisible)) return
+        if (manual) state.value = UpdateUiState(checking = true, dialogVisible = true)
         checkJob = viewModelScope.launch {
             try {
                 val preferences = settings.updatePreferences.first()
                 val now = System.currentTimeMillis()
                 if (!manual && !UpdatePolicy.shouldCheck(now, preferences.lastCheckEpochMillis)) return@launch
-                state.update { it.copy(checking = true, feedback = null, requiredSdk = null) }
+                state.update { it.copy(checking = true, feedback = null) }
                 // 失败也记录检查时间，避免离线时反复重试；手动检查不受此限制。
                 settings.recordUpdateCheck(now)
                 val info = checker.check()
-                when (UpdatePolicy.evaluate(info, BuildConfig.VERSION_CODE.toLong(), Build.VERSION.SDK_INT, preferences.ignoredVersionCode, manual)) {
-                    UpdateResult.AVAILABLE -> state.update { it.copy(available = info) }
-                    UpdateResult.UP_TO_DATE -> if (manual) state.update { it.copy(feedback = UpdateFeedback.UP_TO_DATE) }
-                    UpdateResult.INCOMPATIBLE -> if (manual) state.update { it.copy(feedback = UpdateFeedback.INCOMPATIBLE, requiredSdk = info.minSdk) }
-                    UpdateResult.IGNORED -> Unit
+                val result = UpdatePolicy.evaluate(info, BuildConfig.VERSION_CODE.toLong(), Build.VERSION.SDK_INT, preferences.ignoredVersionCode, manual)
+                state.update {
+                    it.copy(
+                        latest = info,
+                        result = result,
+                        dialogVisible = it.dialogVisible || (!manual && result == UpdateResult.AVAILABLE),
+                    )
                 }
             } catch (cancelled: CancellationException) {
                 throw cancelled
@@ -61,10 +65,10 @@ class UpdateViewModel(
         }
     }
 
-    fun dismissUpdate() { state.update { it.copy(available = null) } }
+    fun dismissUpdate() { state.update { it.copy(dialogVisible = false) } }
 
     fun ignoreUpdate() {
-        val version = state.value.available?.versionCode ?: return
+        val version = state.value.latest?.versionCode ?: return
         dismissUpdate()
         viewModelScope.launch {
             try {

@@ -15,6 +15,12 @@
 .cxx
 local.properties
 
+# Local toolchain and UI verification artifacts.
+/.local-tools/
+/verification/
+/signing.properties
+/signing/
+
 # The public source repository intentionally excludes project documentation.
 /docs/
 README.md
