@@ -20,7 +20,7 @@ import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.AlertDialog
-import androidx.compose.material3.Button
+import com.cake.freshenda.ui.components.FreshendaButton as Button
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
@@ -46,6 +46,11 @@ import com.cake.freshenda.ui.components.quantityText
 import com.cake.freshenda.ui.components.StatusBadge
 import com.cake.freshenda.ui.theme.FreshendaColors
 import com.cake.freshenda.ui.theme.MotionEase
+import com.cake.freshenda.ui.theme.FreshendaSpacing
+import com.cake.freshenda.ui.components.BackButton
+import com.cake.freshenda.ui.components.SectionCard
+import com.cake.freshenda.ui.components.UiIcon
+import com.cake.freshenda.ui.components.UiSymbol
 import java.time.format.DateTimeFormatter
 import java.time.Instant
 import java.time.LocalDate
@@ -68,7 +73,7 @@ fun SharedTransitionScope.DetailScreen(
     onSetDate: (Long) -> Unit,
 ) {
     if (batch == null) {
-        BrandHeader("食材详情", "正在读取批次", leading = { TextButton(onClick = onBack) { Text("‹ 返回") } })
+        BrandHeader("食材详情", "正在读取批次", leading = { BackButton(onBack) })
         return
     }
     val result = remember(batch, now) { ExpiryCalculator.result(batch, now) }
@@ -82,12 +87,12 @@ fun SharedTransitionScope.DetailScreen(
 
     Column(Modifier.fillMaxSize()) {
         Column(Modifier.weight(1f).verticalScroll(rememberScrollState())) {
-            Row(Modifier.fillMaxWidth().padding(horizontal = 16.dp, vertical = 8.dp), verticalAlignment = Alignment.CenterVertically) {
-                TextButton(onClick = onBack) { Text("‹ 返回") }
+            Row(Modifier.fillMaxWidth().padding(horizontal = FreshendaSpacing.Page, vertical = 8.dp), verticalAlignment = Alignment.CenterVertically) {
+                BackButton(onBack)
                 Text("食材详情", Modifier.weight(1f), style = MaterialTheme.typography.labelLarge, color = FreshendaColors.Unknown, textAlign = TextAlign.Center)
                 TextButton(onClick = onEdit) { Text("编辑") }
             }
-            Row(Modifier.fillMaxWidth().padding(24.dp), horizontalArrangement = Arrangement.spacedBy(20.dp), verticalAlignment = Alignment.CenterVertically) {
+            Row(Modifier.fillMaxWidth().padding(FreshendaSpacing.Page), horizontalArrangement = Arrangement.spacedBy(16.dp), verticalAlignment = Alignment.CenterVertically) {
                 BatchIcon(batch, result, source = source, size = 96.dp)
                 Column(Modifier.weight(1f), verticalArrangement = Arrangement.spacedBy(10.dp)) {
                     Text(batch.displayName, style = MaterialTheme.typography.headlineMedium)
@@ -134,7 +139,7 @@ fun SharedTransitionScope.DetailScreen(
                     }
                 }
             }
-            TextButton(onClick = { showDiscardDialog = true }, modifier = Modifier.fillMaxWidth().padding(horizontal = 24.dp, vertical = 8.dp)) {
+            TextButton(onClick = { showDiscardDialog = true }, modifier = Modifier.fillMaxWidth().padding(horizontal = FreshendaSpacing.Page, vertical = 8.dp)) {
                 Text("标记丢弃", color = FreshendaColors.Overdue)
             }
         }
@@ -144,7 +149,7 @@ fun SharedTransitionScope.DetailScreen(
                     val quantity = minOf(1000L, batch.quantityMilli)
                     onConsume(quantity, quantity == batch.quantityMilli)
                 },
-                modifier = Modifier.fillMaxWidth().padding(horizontal = 24.dp, vertical = 12.dp).heightIn(min = 54.dp),
+                modifier = Modifier.fillMaxWidth().padding(horizontal = FreshendaSpacing.Page, vertical = 12.dp),
             ) { Text(if (batch.quantityMilli <= 1000L) "全部吃完" else "吃掉 1 ${batch.quantityUnit}") }
         }
     }
@@ -167,12 +172,7 @@ fun SharedTransitionScope.DetailScreen(
 
 @Composable
 private fun DetailCard(title: String, content: @Composable ColumnScope.() -> Unit) {
-    Column(Modifier.fillMaxWidth().padding(horizontal = 24.dp, vertical = 8.dp)) {
-        Text(title, Modifier.padding(start = 2.dp, bottom = 10.dp), style = MaterialTheme.typography.titleMedium)
-        Surface(shape = MaterialTheme.shapes.large, color = FreshendaColors.Card) {
-            Column(Modifier.fillMaxWidth().padding(18.dp), verticalArrangement = Arrangement.spacedBy(14.dp), content = content)
-        }
-    }
+    SectionCard(title, content)
 }
 
 @Composable
@@ -187,7 +187,7 @@ private fun InfoRow(label: String, value: String) {
 private fun DetailAction(label: String, onClick: () -> Unit) {
     TextButton(onClick = onClick, modifier = Modifier.fillMaxWidth().heightIn(min = 48.dp)) {
         Text(label, Modifier.weight(1f), textAlign = TextAlign.Start)
-        Text("›")
+        UiIcon(UiSymbol.NEXT)
     }
 }
 

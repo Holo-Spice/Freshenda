@@ -22,10 +22,9 @@ import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material3.Button
+import com.cake.freshenda.ui.components.FreshendaButton as Button
 import androidx.compose.material3.ExtendedFloatingActionButton
-import androidx.compose.material3.FilterChip
-import androidx.compose.material3.FilterChipDefaults
+import com.cake.freshenda.ui.components.ChoiceChip as FilterChip
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
@@ -49,6 +48,13 @@ import com.cake.freshenda.ui.components.freshnessColor
 import com.cake.freshenda.ui.components.PressableSurface
 import com.cake.freshenda.ui.theme.FreshendaColors
 import com.cake.freshenda.ui.theme.MotionEase
+import com.cake.freshenda.ui.theme.FreshendaMotion
+import com.cake.freshenda.ui.theme.FreshendaShapes
+import com.cake.freshenda.ui.theme.FreshendaSpacing
+import com.cake.freshenda.ui.theme.MotionMoveEase
+import com.cake.freshenda.ui.components.SectionHeader
+import com.cake.freshenda.ui.components.UiIcon
+import com.cake.freshenda.ui.components.UiSymbol
 
 @Composable
 fun SharedTransitionScope.FridgeScreen(
@@ -79,19 +85,12 @@ fun SharedTransitionScope.FridgeScreen(
                 InventorySummary(batches.size, urgent, onDue)
             }
             item(key = "filters", contentType = "filters") {
-                LazyRow(contentPadding = PaddingValues(horizontal = 24.dp), horizontalArrangement = Arrangement.spacedBy(8.dp)) {
+                LazyRow(contentPadding = PaddingValues(horizontal = FreshendaSpacing.Page), horizontalArrangement = Arrangement.spacedBy(8.dp)) {
                     items(STORAGE_FILTERS, key = { it.second }) { (label, value) ->
                         FilterChip(
                             selected = filter == value,
                             onClick = { filter = value },
-                            label = { Text(label, modifier = Modifier.padding(horizontal = 6.dp)) },
-                            shape = CircleShape,
-                            border = null,
-                            colors = FilterChipDefaults.filterChipColors(
-                                containerColor = FreshendaColors.GlassSoft,
-                                selectedContainerColor = FreshendaColors.Primary,
-                                selectedLabelColor = FreshendaColors.OnPrimary,
-                            ),
+                            label = { Text(label) },
                         )
                     }
                 }
@@ -107,7 +106,7 @@ fun SharedTransitionScope.FridgeScreen(
                 items(sections, key = { it.id }, contentType = { "shelf" }) { section ->
                     StorageShelf(
                         section, grouped[section.id].orEmpty(), now, onAdd, onBatch,
-                        Modifier.animateItem(tween(160), tween(240, easing = MotionEase), tween(100)),
+                        Modifier.animateItem(tween(FreshendaMotion.Enter), tween(FreshendaMotion.Move, easing = MotionMoveEase), tween(FreshendaMotion.Exit)),
                     )
                 }
             }
@@ -115,10 +114,11 @@ fun SharedTransitionScope.FridgeScreen(
         if (batches.isNotEmpty()) {
             ExtendedFloatingActionButton(
                 onClick = onAdd,
-                modifier = Modifier.align(Alignment.BottomEnd).padding(20.dp),
+                modifier = Modifier.align(Alignment.BottomEnd).padding(FreshendaSpacing.Page),
                 containerColor = FreshendaColors.Primary,
                 contentColor = FreshendaColors.OnPrimary,
-                icon = { Text("+", style = MaterialTheme.typography.headlineSmall) },
+                shape = FreshendaShapes.Control,
+                icon = { UiIcon(UiSymbol.ADD) },
                 text = { Text("添加食材") },
             )
         }
@@ -128,8 +128,8 @@ fun SharedTransitionScope.FridgeScreen(
 @Composable
 private fun InventorySummary(count: Int, urgent: Int, onDue: () -> Unit) {
     Surface(
-        modifier = Modifier.fillMaxWidth().padding(horizontal = 24.dp),
-        shape = RoundedCornerShape(28.dp),
+        modifier = Modifier.fillMaxWidth().padding(horizontal = FreshendaSpacing.Page),
+        shape = FreshendaShapes.Card,
         color = FreshendaColors.Primary,
         contentColor = FreshendaColors.OnPrimary,
     ) {
@@ -138,13 +138,13 @@ private fun InventorySummary(count: Int, urgent: Int, onDue: () -> Unit) {
                 Column(Modifier.weight(1f), verticalArrangement = Arrangement.spacedBy(6.dp)) {
                     Text("新鲜有序 · 每一餐都有数", style = MaterialTheme.typography.labelMedium, color = FreshendaColors.SurfaceTint)
                     Row(verticalAlignment = Alignment.Bottom, horizontalArrangement = Arrangement.spacedBy(8.dp)) {
-                        Text(count.toString().padStart(2, '0'), style = MaterialTheme.typography.displayMedium)
+                        Text(count.toString().padStart(2, '0'), style = MaterialTheme.typography.displayMedium.copy(fontFeatureSettings = "tnum"))
                         Text("份食材在库", modifier = Modifier.padding(bottom = 7.dp), style = MaterialTheme.typography.bodyMedium)
                     }
                 }
                 FoodIcon("food_broccoli", "", size = 66.dp)
             }
-            PressableSurface(onDue, Modifier.fillMaxWidth(), color = FreshendaColors.HeaderAccent, shape = RoundedCornerShape(14.dp)) {
+            PressableSurface(onDue, Modifier.fillMaxWidth(), color = FreshendaColors.HeaderAccent, shape = FreshendaShapes.Inset) {
                 Row(Modifier.padding(14.dp), verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.spacedBy(10.dp)) {
                     Box(Modifier.size(6.dp).background(FreshendaColors.SurfaceTint, CircleShape))
                     Text(
@@ -153,7 +153,7 @@ private fun InventorySummary(count: Int, urgent: Int, onDue: () -> Unit) {
                         color = FreshendaColors.OnPrimary,
                         style = MaterialTheme.typography.labelLarge,
                     )
-                    Text("→", color = FreshendaColors.OnPrimary)
+                    UiIcon(UiSymbol.NEXT, color = FreshendaColors.OnPrimary)
                 }
             }
         }
@@ -162,31 +162,30 @@ private fun InventorySummary(count: Int, urgent: Int, onDue: () -> Unit) {
 
 @Composable
 private fun SharedTransitionScope.StorageShelf(section: StorageShelf, batches: List<FoodBatchEntity>, now: Long, onAdd: () -> Unit, onBatch: (Long) -> Unit, modifier: Modifier = Modifier) {
-    Surface(modifier.fillMaxWidth().padding(horizontal = 24.dp), color = FreshendaColors.Card, shape = RoundedCornerShape(24.dp)) {
-        Column(Modifier.padding(vertical = 18.dp), verticalArrangement = Arrangement.spacedBy(14.dp)) {
-            Row(Modifier.fillMaxWidth().padding(horizontal = 18.dp), verticalAlignment = Alignment.CenterVertically) {
-                Box(Modifier.width(3.dp).height(16.dp).background(FreshendaColors.Secondary, CircleShape))
-                Text(section.title, Modifier.weight(1f).padding(start = 10.dp), style = MaterialTheme.typography.titleMedium)
-                Text("${batches.size} 份", style = MaterialTheme.typography.labelMedium, color = FreshendaColors.Unknown)
-            }
+    Surface(modifier.fillMaxWidth().padding(horizontal = FreshendaSpacing.Page), color = FreshendaColors.Card, shape = FreshendaShapes.Card, shadowElevation = 1.dp) {
+        Column(Modifier.padding(vertical = FreshendaSpacing.CardInset), verticalArrangement = Arrangement.spacedBy(8.dp)) {
+            SectionHeader(section.title, Modifier.padding(horizontal = FreshendaSpacing.CardInset), "${batches.size} 份", FreshendaColors.Secondary)
             if (batches.isEmpty()) {
-                PressableSurface(onAdd, Modifier.fillMaxWidth().padding(horizontal = 14.dp), color = FreshendaColors.GlassSoft, shape = RoundedCornerShape(12.dp)) {
-                    Text("＋  这里还空着，放点食材", Modifier.padding(16.dp), style = MaterialTheme.typography.bodyMedium, color = FreshendaColors.Unknown)
+                PressableSurface(onAdd, Modifier.fillMaxWidth().padding(horizontal = FreshendaSpacing.CardInset), color = FreshendaColors.GlassSoft, shape = FreshendaShapes.Control) {
+                    Row(Modifier.padding(16.dp), verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.spacedBy(8.dp)) {
+                        UiIcon(UiSymbol.ADD, color = FreshendaColors.Primary)
+                        Text("这里还空着，放点食材", style = MaterialTheme.typography.bodyMedium, color = FreshendaColors.Unknown)
+                    }
                 }
             } else {
-                LazyRow(contentPadding = PaddingValues(horizontal = 14.dp), horizontalArrangement = Arrangement.spacedBy(8.dp)) {
+                LazyRow(contentPadding = PaddingValues(horizontal = FreshendaSpacing.CardInset), horizontalArrangement = Arrangement.spacedBy(8.dp)) {
                     items(batches, key = { it.id }, contentType = { "food" }) { batch ->
                         val result = remember(batch, now) { batchExpiry(batch, now) }
                         PressableSurface(
                             { onBatch(batch.id) },
-                            Modifier.width(88.dp).animateItem(tween(160), tween(240, easing = MotionEase), tween(100)),
+                            Modifier.width(96.dp).animateItem(tween(FreshendaMotion.Enter), tween(FreshendaMotion.Move, easing = MotionMoveEase), tween(FreshendaMotion.Exit)),
                             color = FreshendaColors.GlassSoft,
-                            shape = RoundedCornerShape(16.dp),
+                            shape = FreshendaShapes.Control,
                         ) {
                             Column(Modifier.padding(horizontal = 6.dp, vertical = 10.dp), horizontalAlignment = Alignment.CenterHorizontally) {
                                 BatchIcon(batch, result, source = "fridge", size = 64.dp)
                                 Spacer(Modifier.height(8.dp))
-                                Text(batch.displayName, style = MaterialTheme.typography.labelLarge, maxLines = 2, overflow = TextOverflow.Ellipsis, textAlign = TextAlign.Center)
+                                Text(batch.displayName, style = MaterialTheme.typography.labelLarge, minLines = 2, maxLines = 2, overflow = TextOverflow.Ellipsis, textAlign = TextAlign.Center)
                                 Spacer(Modifier.height(3.dp))
                                 Text(result.statusText, style = MaterialTheme.typography.labelSmall, color = freshnessColor(result.status), textAlign = TextAlign.Center)
                             }

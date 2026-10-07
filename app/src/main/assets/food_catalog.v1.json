@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "dataVersion": "2026.09.08-1",
+  "dataVersion": "2026.10.07-1",
   "checkedAt": "2026-09-08",
   "purpose": "开发交付数据；有条件的家庭储存提醒，不是每件食品的安全保证。图标仅提供制作清单，尚未绘制。",
   "categories": [
@@ -4991,7 +4991,8 @@
       "aliases": [
         "包菜",
         "卷心菜",
-        "莲花白"
+        "莲花白",
+        "洋白菜"
       ],
       "categoryId": "roots",
       "profileId": "cabbage",
@@ -6289,7 +6290,8 @@
       "id": "shiitake",
       "name": "鲜香菇",
       "aliases": [
-        "冬菇"
+        "冬菇",
+        "香菇"
       ],
       "categoryId": "mushrooms",
       "profileId": "mushroom",
@@ -7651,7 +7653,10 @@
     {
       "id": "pork_loin",
       "name": "猪里脊",
-      "aliases": [],
+      "aliases": [
+        "猪里脊肉",
+        "里脊肉"
+      ],
       "categoryId": "meat",
       "profileId": "red_whole",
       "iconKey": "food_pork_loin",
@@ -7667,9 +7672,56 @@
       "requiredState": "MATCH_RULE_CONDITIONS"
     },
     {
+      "id": "pork_trotters",
+      "name": "猪蹄",
+      "aliases": [
+        "猪脚",
+        "鲜猪蹄",
+        "生猪蹄"
+      ],
+      "categoryId": "meat",
+      "profileId": "unknown",
+      "iconKey": "food_pork_trotters",
+      "iconBrief": "带有双瓣蹄尖的粉色猪蹄",
+      "iconDeliveryStatus": "AUTHORED",
+      "defaultStorage": "REFRIGERATED",
+      "defaultQuantityUnit": "份",
+      "evidence": {
+        "refrigerated": "UNVERIFIED",
+        "frozen": "UNVERIFIED",
+        "pantry": "UNVERIFIED"
+      },
+      "requiredState": "MATCH_RULE_CONDITIONS"
+    },
+    {
+      "id": "lean_pork",
+      "name": "猪瘦肉",
+      "aliases": [
+        "瘦肉",
+        "精瘦肉",
+        "猪精肉"
+      ],
+      "categoryId": "meat",
+      "profileId": "red_whole",
+      "iconKey": "food_lean_pork",
+      "iconBrief": "粉红长肉块，窄脂肪边与清晰肌理",
+      "iconDeliveryStatus": "AUTHORED",
+      "defaultStorage": "REFRIGERATED",
+      "defaultQuantityUnit": "份",
+      "evidence": {
+        "refrigerated": "CATEGORY",
+        "frozen": "CATEGORY",
+        "pantry": "UNVERIFIED"
+      },
+      "requiredState": "MATCH_RULE_CONDITIONS"
+    },
+    {
       "id": "pork_belly",
       "name": "五花肉",
-      "aliases": [],
+      "aliases": [
+        "猪五花肉",
+        "五花"
+      ],
       "categoryId": "meat",
       "profileId": "red_whole",
       "iconKey": "food_pork_belly",
@@ -7688,7 +7740,8 @@
       "id": "pork_shoulder",
       "name": "猪肩肉",
       "aliases": [
-        "梅花肉"
+        "梅花肉",
+        "前腿肉"
       ],
       "categoryId": "meat",
       "profileId": "red_whole",
@@ -7726,7 +7779,9 @@
       "id": "pork_ribs",
       "name": "猪肋排",
       "aliases": [
-        "排骨"
+        "排骨",
+        "猪排骨",
+        "小排"
       ],
       "categoryId": "meat",
       "profileId": "red_whole",
@@ -7745,7 +7800,11 @@
     {
       "id": "pork_cubes",
       "name": "猪肉丁",
-      "aliases": [],
+      "aliases": [
+        "肉丁",
+        "猪肉粒",
+        "瘦肉丁"
+      ],
       "categoryId": "meat",
       "profileId": "red_stew",
       "iconKey": "food_pork_cubes",
@@ -7763,7 +7822,12 @@
     {
       "id": "pork_strips",
       "name": "猪肉丝",
-      "aliases": [],
+      "aliases": [
+        "肉丝",
+        "瘦肉丝",
+        "猪瘦肉丝",
+        "里脊丝"
+      ],
       "categoryId": "meat",
       "profileId": "red_stew",
       "iconKey": "food_pork_strips",
@@ -7779,10 +7843,58 @@
       "requiredState": "MATCH_RULE_CONDITIONS"
     },
     {
+      "id": "beef_strips",
+      "name": "牛肉丝",
+      "aliases": [
+        "牛里脊丝",
+        "牛柳丝"
+      ],
+      "categoryId": "meat",
+      "profileId": "red_stew",
+      "iconKey": "food_beef_strips",
+      "iconBrief": "深红色细肉条，交错成一小堆",
+      "iconDeliveryStatus": "AUTHORED",
+      "defaultStorage": "REFRIGERATED",
+      "defaultQuantityUnit": "份",
+      "evidence": {
+        "refrigerated": "CATEGORY",
+        "frozen": "CATEGORY",
+        "pantry": "UNVERIFIED"
+      },
+      "requiredState": "MATCH_RULE_CONDITIONS"
+    },
+    {
+      "id": "pork_slices",
+      "name": "猪肉片",
+      "aliases": [
+        "肉片",
+        "瘦肉片",
+        "里脊片"
+      ],
+      "categoryId": "meat",
+      "profileId": "red_stew",
+      "iconKey": "food_pork_slices",
+      "iconBrief": "薄切粉色肉片，展开的切面与少量白色脂肪",
+      "iconDeliveryStatus": "AUTHORED",
+      "defaultStorage": "REFRIGERATED",
+      "defaultQuantityUnit": "份",
+      "evidence": {
+        "refrigerated": "CATEGORY",
+        "frozen": "CATEGORY",
+        "pantry": "UNVERIFIED"
+      },
+      "requiredState": "MATCH_RULE_CONDITIONS"
+    },
+    {
       "id": "pork_mince",
       "name": "猪肉馅",
       "aliases": [
-        "猪肉末"
+        "猪肉末",
+        "肉末",
+        "肉沫",
+        "猪肉沫",
+        "肉馅",
+        "绞肉"
       ],
       "categoryId": "meat",
       "profileId": "ground",
@@ -7874,7 +7986,9 @@
       "id": "beef_cubes",
       "name": "牛肉块",
       "aliases": [
-        "炖牛肉块"
+        "炖牛肉块",
+        "牛肉丁",
+        "牛肉粒"
       ],
       "categoryId": "meat",
       "profileId": "red_stew",
@@ -7894,7 +8008,8 @@
       "id": "beef_mince",
       "name": "牛肉馅",
       "aliases": [
-        "牛肉末"
+        "牛肉末",
+        "牛肉沫"
       ],
       "categoryId": "meat",
       "profileId": "ground",
@@ -7913,7 +8028,12 @@
     {
       "id": "beef_hotpot",
       "name": "鲜牛肉片",
-      "aliases": [],
+      "aliases": [
+        "牛肉片",
+        "肥牛",
+        "肥牛卷",
+        "火锅牛肉片"
+      ],
       "categoryId": "meat",
       "profileId": "red_stew",
       "iconKey": "food_beef_hotpot",
@@ -8003,7 +8123,11 @@
     {
       "id": "lamb_hotpot",
       "name": "鲜羊肉片",
-      "aliases": [],
+      "aliases": [
+        "羊肉片",
+        "羊肉卷",
+        "肥羊卷"
+      ],
       "categoryId": "meat",
       "profileId": "red_stew",
       "iconKey": "food_lamb_hotpot",
@@ -8039,7 +8163,10 @@
     {
       "id": "chicken_breast",
       "name": "鸡胸肉",
-      "aliases": [],
+      "aliases": [
+        "鸡胸",
+        "鸡脯肉"
+      ],
       "categoryId": "meat",
       "profileId": "chicken_parts",
       "iconKey": "food_chicken_breast",
@@ -8053,6 +8180,73 @@
         "pantry": "UNVERIFIED"
       },
       "requiredState": "MATCH_RULE_CONDITIONS"
+    },
+    {
+      "id": "chicken_slices",
+      "name": "鸡肉片",
+      "aliases": [
+        "鸡片",
+        "鸡胸肉片"
+      ],
+      "categoryId": "meat",
+      "profileId": "chicken_parts",
+      "iconKey": "food_chicken_slices",
+      "iconBrief": "浅粉色扇形鸡肉薄片",
+      "iconDeliveryStatus": "AUTHORED",
+      "defaultStorage": "REFRIGERATED",
+      "defaultQuantityUnit": "份",
+      "evidence": {
+        "refrigerated": "DIRECT",
+        "frozen": "DIRECT",
+        "pantry": "UNVERIFIED"
+      },
+      "requiredState": "MATCH_RULE_CONDITIONS",
+      "defaultPhysicalState": "CUT"
+    },
+    {
+      "id": "chicken_cubes",
+      "name": "鸡肉丁",
+      "aliases": [
+        "鸡丁",
+        "鸡胸肉丁",
+        "鸡肉粒"
+      ],
+      "categoryId": "meat",
+      "profileId": "chicken_parts",
+      "iconKey": "food_chicken_cubes",
+      "iconBrief": "浅桃色切丁，六块错落的方形切面",
+      "iconDeliveryStatus": "AUTHORED",
+      "defaultStorage": "REFRIGERATED",
+      "defaultQuantityUnit": "份",
+      "evidence": {
+        "refrigerated": "DIRECT",
+        "frozen": "DIRECT",
+        "pantry": "UNVERIFIED"
+      },
+      "requiredState": "MATCH_RULE_CONDITIONS",
+      "defaultPhysicalState": "CUT"
+    },
+    {
+      "id": "chicken_strips",
+      "name": "鸡肉丝",
+      "aliases": [
+        "鸡丝",
+        "鸡胸肉丝"
+      ],
+      "categoryId": "meat",
+      "profileId": "chicken_parts",
+      "iconKey": "food_chicken_strips",
+      "iconBrief": "浅桃色细长鸡肉丝",
+      "iconDeliveryStatus": "AUTHORED",
+      "defaultStorage": "REFRIGERATED",
+      "defaultQuantityUnit": "份",
+      "evidence": {
+        "refrigerated": "DIRECT",
+        "frozen": "DIRECT",
+        "pantry": "UNVERIFIED"
+      },
+      "requiredState": "MATCH_RULE_CONDITIONS",
+      "defaultPhysicalState": "CUT"
     },
     {
       "id": "chicken_thigh",
@@ -8111,9 +8305,54 @@
       "requiredState": "MATCH_RULE_CONDITIONS"
     },
     {
+      "id": "chicken_wing_root",
+      "name": "鸡翅根",
+      "aliases": [
+        "翅根",
+        "小翅根"
+      ],
+      "categoryId": "meat",
+      "profileId": "chicken_parts",
+      "iconKey": "food_chicken_wing_root",
+      "iconBrief": "短圆肉头与小骨柄",
+      "iconDeliveryStatus": "AUTHORED",
+      "defaultStorage": "REFRIGERATED",
+      "defaultQuantityUnit": "份",
+      "evidence": {
+        "refrigerated": "CATEGORY",
+        "frozen": "CATEGORY",
+        "pantry": "UNVERIFIED"
+      },
+      "requiredState": "MATCH_RULE_CONDITIONS"
+    },
+    {
+      "id": "chicken_wing_mid",
+      "name": "鸡翅中",
+      "aliases": [
+        "翅中",
+        "鸡中翅"
+      ],
+      "categoryId": "meat",
+      "profileId": "chicken_parts",
+      "iconKey": "food_chicken_wing_mid",
+      "iconBrief": "并排双骨、饱满椭圆中翅",
+      "iconDeliveryStatus": "AUTHORED",
+      "defaultStorage": "REFRIGERATED",
+      "defaultQuantityUnit": "份",
+      "evidence": {
+        "refrigerated": "CATEGORY",
+        "frozen": "CATEGORY",
+        "pantry": "UNVERIFIED"
+      },
+      "requiredState": "MATCH_RULE_CONDITIONS"
+    },
+    {
       "id": "chicken_tender",
       "name": "鸡里脊",
-      "aliases": [],
+      "aliases": [
+        "鸡柳",
+        "鸡小胸"
+      ],
       "categoryId": "meat",
       "profileId": "chicken_parts",
       "iconKey": "food_chicken_tender",
@@ -8227,6 +8466,27 @@
       "iconKey": "food_duck_leg",
       "iconBrief": "较细长的深色禽腿",
       "iconDeliveryStatus": "TO_BE_AUTHORED",
+      "defaultStorage": "REFRIGERATED",
+      "defaultQuantityUnit": "份",
+      "evidence": {
+        "refrigerated": "CATEGORY",
+        "frozen": "CATEGORY",
+        "pantry": "UNVERIFIED"
+      },
+      "requiredState": "MATCH_RULE_CONDITIONS"
+    },
+    {
+      "id": "duck_neck",
+      "name": "鸭脖",
+      "aliases": [
+        "鸭脖子",
+        "生鸭脖"
+      ],
+      "categoryId": "meat",
+      "profileId": "duck_goose",
+      "iconKey": "food_duck_neck",
+      "iconBrief": "弯曲长颈与分节切面",
+      "iconDeliveryStatus": "AUTHORED",
       "defaultStorage": "REFRIGERATED",
       "defaultQuantityUnit": "份",
       "evidence": {
@@ -8417,6 +8677,27 @@
       "requiredState": "MATCH_RULE_CONDITIONS"
     },
     {
+      "id": "chicken_feet",
+      "name": "鸡爪",
+      "aliases": [
+        "凤爪",
+        "鸡脚"
+      ],
+      "categoryId": "meat",
+      "profileId": "unknown",
+      "iconKey": "food_chicken_feet",
+      "iconBrief": "两只浅黄色分趾鸡爪",
+      "iconDeliveryStatus": "AUTHORED",
+      "defaultStorage": "REFRIGERATED",
+      "defaultQuantityUnit": "份",
+      "evidence": {
+        "refrigerated": "UNVERIFIED",
+        "frozen": "UNVERIFIED",
+        "pantry": "UNVERIFIED"
+      },
+      "requiredState": "MATCH_RULE_CONDITIONS"
+    },
+    {
       "id": "duck_gizzard",
       "name": "鸭胗",
       "aliases": [],
@@ -8583,6 +8864,29 @@
       "requiredState": "MATCH_RULE_CONDITIONS"
     },
     {
+      "id": "fish_slices",
+      "name": "鲜鱼片",
+      "aliases": [
+        "鱼片",
+        "生鱼片",
+        "火锅鱼片"
+      ],
+      "categoryId": "seafood",
+      "profileId": "fish_generic",
+      "iconKey": "food_fish_slices",
+      "iconBrief": "珍珠白色鱼片、灰蓝皮边与肌理",
+      "iconDeliveryStatus": "AUTHORED",
+      "defaultStorage": "REFRIGERATED",
+      "defaultQuantityUnit": "份",
+      "evidence": {
+        "refrigerated": "CATEGORY",
+        "frozen": "CATEGORY",
+        "pantry": "UNVERIFIED"
+      },
+      "requiredState": "MATCH_RULE_CONDITIONS",
+      "defaultPhysicalState": "CUT"
+    },
+    {
       "id": "crucian_carp",
       "name": "鲫鱼",
       "aliases": [],
@@ -8732,7 +9036,10 @@
     {
       "id": "peeled_shrimp",
       "name": "生虾仁",
-      "aliases": [],
+      "aliases": [
+        "虾仁",
+        "鲜虾仁"
+      ],
       "categoryId": "seafood",
       "profileId": "shrimp",
       "iconKey": "food_peeled_shrimp",
@@ -9328,7 +9635,8 @@
       "id": "firm_tofu",
       "name": "北豆腐",
       "aliases": [
-        "老豆腐"
+        "老豆腐",
+        "硬豆腐"
       ],
       "categoryId": "soy",
       "profileId": "packaged",
@@ -9348,7 +9656,8 @@
       "id": "soft_tofu",
       "name": "南豆腐",
       "aliases": [
-        "嫩豆腐"
+        "嫩豆腐",
+        "水豆腐"
       ],
       "categoryId": "soy",
       "profileId": "packaged",
@@ -9422,7 +9731,9 @@
       "id": "dried_tofu",
       "name": "鲜豆干",
       "aliases": [
-        "豆腐干"
+        "豆腐干",
+        "豆干",
+        "香干"
       ],
       "categoryId": "soy",
       "profileId": "packaged",
@@ -9443,7 +9754,8 @@
       "name": "鲜豆皮",
       "aliases": [
         "千张",
-        "百叶"
+        "百叶",
+        "豆皮"
       ],
       "categoryId": "soy",
       "profileId": "packaged",
@@ -9456,6 +9768,27 @@
         "refrigerated": "LABEL",
         "frozen": "LABEL",
         "pantry": "LABEL"
+      },
+      "requiredState": "MATCH_RULE_CONDITIONS"
+    },
+    {
+      "id": "dried_tofu_skin",
+      "name": "腐竹",
+      "aliases": [
+        "干腐竹",
+        "豆筋"
+      ],
+      "categoryId": "soy",
+      "profileId": "packaged",
+      "iconKey": "food_dried_tofu_skin",
+      "iconBrief": "金黄色褶皱腐竹段",
+      "iconDeliveryStatus": "AUTHORED",
+      "defaultStorage": "PANTRY",
+      "defaultQuantityUnit": "份",
+      "evidence": {
+        "refrigerated": "UNVERIFIED",
+        "frozen": "UNVERIFIED",
+        "pantry": "UNVERIFIED"
       },
       "requiredState": "MATCH_RULE_CONDITIONS"
     },
@@ -9557,7 +9890,10 @@
       "id": "fresh_noodles",
       "name": "鲜面条",
       "aliases": [
-        "湿面条"
+        "湿面条",
+        "面条",
+        "生面条",
+        "手擀面"
       ],
       "categoryId": "prepared",
       "profileId": "packaged",
@@ -9574,9 +9910,75 @@
       "requiredState": "MATCH_RULE_CONDITIONS"
     },
     {
+      "id": "vermicelli",
+      "name": "粉丝",
+      "aliases": [
+        "干粉丝",
+        "绿豆粉丝"
+      ],
+      "categoryId": "prepared",
+      "profileId": "packaged",
+      "iconKey": "food_vermicelli",
+      "iconBrief": "浅白透明感细粉丝扎束",
+      "iconDeliveryStatus": "AUTHORED",
+      "defaultStorage": "PANTRY",
+      "defaultQuantityUnit": "份",
+      "evidence": {
+        "refrigerated": "UNVERIFIED",
+        "frozen": "UNVERIFIED",
+        "pantry": "UNVERIFIED"
+      },
+      "requiredState": "MATCH_RULE_CONDITIONS"
+    },
+    {
+      "id": "udon",
+      "name": "乌冬面",
+      "aliases": [
+        "乌冬",
+        "粗面"
+      ],
+      "categoryId": "prepared",
+      "profileId": "packaged",
+      "iconKey": "food_udon",
+      "iconBrief": "粗白面条绕成松散面团",
+      "iconDeliveryStatus": "AUTHORED",
+      "defaultStorage": "REFRIGERATED",
+      "defaultQuantityUnit": "份",
+      "evidence": {
+        "refrigerated": "LABEL",
+        "frozen": "LABEL",
+        "pantry": "LABEL"
+      },
+      "requiredState": "MATCH_RULE_CONDITIONS"
+    },
+    {
+      "id": "rice_cake",
+      "name": "年糕",
+      "aliases": [
+        "水磨年糕",
+        "年糕片"
+      ],
+      "categoryId": "prepared",
+      "profileId": "packaged",
+      "iconKey": "food_rice_cake",
+      "iconBrief": "白色斜切年糕条与两枚椭圆切片",
+      "iconDeliveryStatus": "AUTHORED",
+      "defaultStorage": "REFRIGERATED",
+      "defaultQuantityUnit": "份",
+      "evidence": {
+        "refrigerated": "LABEL",
+        "frozen": "LABEL",
+        "pantry": "LABEL"
+      },
+      "requiredState": "MATCH_RULE_CONDITIONS"
+    },
+    {
       "id": "rice_noodles",
       "name": "鲜米线",
-      "aliases": [],
+      "aliases": [
+        "米线",
+        "米粉"
+      ],
       "categoryId": "prepared",
       "profileId": "packaged",
       "iconKey": "food_rice_noodles",
@@ -9636,6 +10038,48 @@
       "iconKey": "food_frozen_dumpling",
       "iconBrief": "带褶半月饺子",
       "iconDeliveryStatus": "TO_BE_AUTHORED",
+      "defaultStorage": "FROZEN",
+      "defaultQuantityUnit": "份",
+      "evidence": {
+        "refrigerated": "LABEL",
+        "frozen": "LABEL",
+        "pantry": "LABEL"
+      },
+      "requiredState": "MATCH_RULE_CONDITIONS"
+    },
+    {
+      "id": "beef_balls",
+      "name": "牛肉丸",
+      "aliases": [
+        "牛丸",
+        "牛筋丸"
+      ],
+      "categoryId": "prepared",
+      "profileId": "packaged",
+      "iconKey": "food_beef_balls",
+      "iconBrief": "褐色肉丸与紧实剖面",
+      "iconDeliveryStatus": "AUTHORED",
+      "defaultStorage": "FROZEN",
+      "defaultQuantityUnit": "份",
+      "evidence": {
+        "refrigerated": "LABEL",
+        "frozen": "LABEL",
+        "pantry": "LABEL"
+      },
+      "requiredState": "MATCH_RULE_CONDITIONS"
+    },
+    {
+      "id": "fish_balls",
+      "name": "鱼丸",
+      "aliases": [
+        "鱼圆",
+        "鱼肉丸"
+      ],
+      "categoryId": "prepared",
+      "profileId": "packaged",
+      "iconKey": "food_fish_balls",
+      "iconBrief": "三个乳白鱼丸与半颗剖面",
+      "iconDeliveryStatus": "AUTHORED",
       "defaultStorage": "FROZEN",
       "defaultQuantityUnit": "份",
       "evidence": {

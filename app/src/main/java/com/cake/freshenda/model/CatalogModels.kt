@@ -31,6 +31,7 @@ data class FoodDefinition(
     val defaultQuantityUnit: String,
     val evidence: EvidenceSummary,
     val requiredState: String,
+    val defaultPhysicalState: String? = null,
 )
 
 @Serializable

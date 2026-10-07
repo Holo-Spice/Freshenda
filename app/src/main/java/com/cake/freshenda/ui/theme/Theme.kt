@@ -53,8 +53,8 @@ fun FreshendaTheme(content: @Composable () -> Unit) {
         typography = Typography,
         shapes = Shapes(
             small = RoundedCornerShape(12.dp),
-            medium = RoundedCornerShape(16.dp),
-            large = RoundedCornerShape(24.dp),
+            medium = FreshendaShapes.Control,
+            large = FreshendaShapes.Card,
             extraLarge = RoundedCornerShape(28.dp),
         ),
         content = content,

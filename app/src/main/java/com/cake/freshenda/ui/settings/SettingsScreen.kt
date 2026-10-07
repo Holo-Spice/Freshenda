@@ -14,7 +14,7 @@ import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.selection.toggleable
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.OutlinedButton
+import com.cake.freshenda.ui.components.SecondaryButton as OutlinedButton
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Switch
 import androidx.compose.material3.Text
@@ -31,6 +31,9 @@ import com.cake.freshenda.data.UserSettings
 import com.cake.freshenda.model.FoodCatalog
 import com.cake.freshenda.R
 import com.cake.freshenda.ui.components.BrandHeader
+import com.cake.freshenda.ui.components.SectionCard
+import com.cake.freshenda.ui.components.UiIcon
+import com.cake.freshenda.ui.components.UiSymbol
 import com.cake.freshenda.ui.theme.FreshendaColors
 import com.cake.freshenda.update.UpdateFeedback
 import com.cake.freshenda.update.DownloadStatus
@@ -68,9 +71,9 @@ fun SettingsScreen(
             SettingCard("提醒时间") {
                 Text("偏好时段", style = MaterialTheme.typography.titleMedium)
                 Row(Modifier.fillMaxWidth(), verticalAlignment = Alignment.CenterVertically) {
-                    IconButton(onClick = { onHour((settings.reminderHour + 23) % 24) }, modifier = Modifier.semantics { contentDescription = "提前一小时" }) { Text("−") }
-                    Text("%02d:00".format(settings.reminderHour), modifier = Modifier.weight(1f), textAlign = androidx.compose.ui.text.style.TextAlign.Center, style = MaterialTheme.typography.headlineMedium)
-                    IconButton(onClick = { onHour((settings.reminderHour + 1) % 24) }, modifier = Modifier.semantics { contentDescription = "推后一小时" }) { Text("＋") }
+                    IconButton(onClick = { onHour((settings.reminderHour + 23) % 24) }, modifier = Modifier.semantics { contentDescription = "提前一小时" }) { UiIcon(UiSymbol.REMOVE) }
+                    Text("%02d:00".format(settings.reminderHour), modifier = Modifier.weight(1f), textAlign = androidx.compose.ui.text.style.TextAlign.Center, style = MaterialTheme.typography.headlineMedium.copy(fontFeatureSettings = "tnum"))
+                    IconButton(onClick = { onHour((settings.reminderHour + 1) % 24) }, modifier = Modifier.semantics { contentDescription = "推后一小时" }) { UiIcon(UiSymbol.ADD) }
                 }
                 Text("普通日期提前 ${settings.normalAdvanceDays} 天，冷冻品质提前 ${settings.frozenAdvanceDays} 天。提醒可能受系统省电限制，无法保证准点。", style = MaterialTheme.typography.bodyMedium)
             }
@@ -91,7 +94,7 @@ fun SettingsScreen(
         }
         item {
             SettingCard("资料说明") {
-                Text("随 App 离线提供 ${catalog?.foods?.size ?: 322} 个食材条目、${catalog?.profiles?.size ?: 81} 个规则档案和 ${catalog?.sources?.size ?: 21} 个资料来源。日期是储存与安排提醒，不是对实物安全的保证。", style = MaterialTheme.typography.bodyMedium)
+                Text(catalog?.let { "随 App 离线提供 ${it.foods.size} 个食材条目、${it.profiles.size} 个规则档案和 ${it.sources.size} 个资料来源。日期是储存与安排提醒，不是对实物安全的保证。" } ?: "正在读取本地食材目录…", style = MaterialTheme.typography.bodyMedium)
                 Text("数据版本：${catalog?.dataVersion ?: "加载中"}", style = MaterialTheme.typography.bodyMedium, color = FreshendaColors.Unknown)
             }
         }
@@ -123,22 +126,13 @@ fun SettingsScreen(
 
 @Composable
 private fun SettingCard(title: String, content: @Composable ColumnScope.() -> Unit) {
-    Column(Modifier.fillMaxWidth().padding(horizontal = 24.dp, vertical = 6.dp)) {
-        Text(title, modifier = Modifier.padding(horizontal = 4.dp, vertical = 6.dp), style = MaterialTheme.typography.titleMedium)
-        Surface(
-            color = FreshendaColors.Glass,
-            shape = MaterialTheme.shapes.large,
-            shadowElevation = 0.dp,
-        ) {
-            Column(Modifier.fillMaxWidth().padding(16.dp), verticalArrangement = Arrangement.spacedBy(8.dp)) { content() }
-        }
-    }
+    SectionCard(title, content)
 }
 
 @Composable
 private fun SettingToggle(title: String, subtitle: String, checked: Boolean, onChecked: (Boolean) -> Unit) {
     Row(Modifier.fillMaxWidth().heightIn(min = 56.dp).toggleable(value = checked, role = Role.Switch, onValueChange = onChecked), verticalAlignment = Alignment.CenterVertically) {
-        Column(Modifier.weight(1f).padding(end = 12.dp)) { Text(title); Text(subtitle, style = MaterialTheme.typography.bodyMedium, color = FreshendaColors.Unknown) }
+        Column(Modifier.weight(1f).padding(end = 12.dp), verticalArrangement = Arrangement.spacedBy(4.dp)) { Text(title, style = MaterialTheme.typography.labelLarge); Text(subtitle, style = MaterialTheme.typography.bodySmall, color = FreshendaColors.Unknown) }
         Switch(checked = checked, onCheckedChange = null)
     }
 }

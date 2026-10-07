@@ -1,11 +1,11 @@
 // 仅使用 SVG 与 VectorDrawable 都能表达的路径和仿射组。
-export const ink='#203F36', cream='#F5EFDC', shade='#D9CFAD', green='#7D9C67', light='#B5C78C', dark='#4E7053', red='#C77459', pink='#D79B88', purple='#876681', brown='#9B7758', yellow='#E2BE68', orange='#DF9B59', blue='#91ABA7';
+export const ink='#405347', cream='#FFF3DA', shade='#E3CDA5', green='#74A465', light='#BCD38B', dark='#477851', red='#D66D5E', pink='#E6A097', purple='#94719C', brown='#AD8056', yellow='#EBC567', orange='#EC9B51', blue='#8FB6B8';
 export const n = v => +v.toFixed(3);
-export const p = (d, fill='none', stroke=ink, width=2.3) => ({d,fill,stroke,width});
+export const p = (d, fill='none', stroke=ink, width=1.8) => ({d,fill,stroke,width});
 export const line=(d,color=ink,width=1)=>p(d,'none',color,width);
-export function ellipse(x,y,rx,ry,fill=cream,stroke=ink,width=2.3){return p(`M ${n(x-rx)} ${y} A ${rx} ${ry} 0 1 0 ${n(x+rx)} ${y} A ${rx} ${ry} 0 1 0 ${n(x-rx)} ${y} Z`,fill,stroke,width);}
+export function ellipse(x,y,rx,ry,fill=cream,stroke=ink,width=1.8){return p(`M ${n(x-rx)} ${y} A ${rx} ${ry} 0 1 0 ${n(x+rx)} ${y} A ${rx} ${ry} 0 1 0 ${n(x-rx)} ${y} Z`,fill,stroke,width);}
 export const dot=(x,y,r,color=ink)=>ellipse(n(x),n(y),r,r,color,'none',0);
-export const rect=(x,y,w,h,r,fill,stroke=ink,width=2.3)=>p(`M ${x+r} ${y} H ${x+w-r} Q ${x+w} ${y} ${x+w} ${y+r} V ${y+h-r} Q ${x+w} ${y+h} ${x+w-r} ${y+h} H ${x+r} Q ${x} ${y+h} ${x} ${y+h-r} V ${y+r} Q ${x} ${y} ${x+r} ${y} Z`,fill,stroke,width);
+export const rect=(x,y,w,h,r,fill,stroke=ink,width=1.8)=>p(`M ${x+r} ${y} H ${x+w-r} Q ${x+w} ${y} ${x+w} ${y+r} V ${y+h-r} Q ${x+w} ${y+h} ${x+w-r} ${y+h} H ${x+r} Q ${x} ${y+h} ${x} ${y+h-r} V ${y+r} Q ${x} ${y} ${x+r} ${y} Z`,fill,stroke,width);
 export const group=(children,x=0,y=0,sx=1,sy=sx,angle=0)=>({children,x,y,sx,sy,angle});
 export function scallop(cx,cy,rx,ry,count=14,depth=.07,fill=green){
   const pts=[]; for(let i=0;i<count*8;i++){const a=i*Math.PI*2/(count*8); const k=1-depth*(.5+.5*Math.cos(a*count));pts.push([cx+Math.cos(a)*rx*k,cy+Math.sin(a)*ry*k]);}

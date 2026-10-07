@@ -26,6 +26,19 @@ class ReminderPolicyTest {
         assertEquals(2, decision!!.batches.size)
     }
 
+    @Test
+    fun notificationLeadTimesRemainIndependentFromTheThreeDayScreenWindow() {
+        val today = java.time.Instant.ofEpochMilli(now).atZone(zone).toLocalDate()
+        fun dated(id: Long, days: Long, storage: String) = batch(id).copy(
+            storageLocation = storage,
+            effectiveDisplayDateEpochDay = today.plusDays(days).toEpochDay(),
+            effectiveDeadlineEpochMillis = today.plusDays(days + 1).atStartOfDay(zone).toInstant().toEpochMilli(),
+        )
+        val settings = UserSettings(remindersEnabled = true, dailySummary = false, normalAdvanceDays = 1, frozenAdvanceDays = 7)
+        val decision = ReminderPolicy.decide(listOf(dated(1, 2, "REFRIGERATED"), dated(2, 5, "FROZEN"), dated(3, 8, "FROZEN")), settings, now, zone)
+        assertEquals(listOf(2L), decision!!.batches.map { it.id })
+    }
+
     private fun batch(id: Long = 1) = FoodBatchEntity(
         id = id,
         foodDefinitionId = "spinach$id",

@@ -63,7 +63,9 @@ object ExpiryCalculator {
             .toInstant()
             .toEpochMilli()
 
-    fun result(batch: FoodBatchEntity, nowEpochMillis: Long, normalAdvanceDays: Int = 1, frozenAdvanceDays: Int = 7): ExpiryResult {
+    // Screen urgency uses the same calendar-day window for every storage location.
+    // Notification lead times are applied separately by ReminderPolicy.
+    fun result(batch: FoodBatchEntity, nowEpochMillis: Long, advanceDays: Int = 3): ExpiryResult {
         val deadline = batch.effectiveDeadlineEpochMillis
         val anchor = batch.effectiveAnchorEpochMillis
         if (deadline == null || anchor == null) {
@@ -84,9 +86,7 @@ object ExpiryCalculator {
         val status = when {
             nowEpochMillis >= deadline -> FreshnessStatus.OVERDUE
             target == today -> FreshnessStatus.TODAY
-            target == today.plusDays(1) -> FreshnessStatus.DUE_SOON
-            nowEpochMillis >= deadline - ChronoUnit.DAYS.duration.toMillis() *
-                if (batch.storageLocation == StorageLocation.FROZEN.name) frozenAdvanceDays else normalAdvanceDays -> FreshnessStatus.DUE_SOON
+            ChronoUnit.DAYS.between(today, target) <= advanceDays.coerceAtLeast(0) -> FreshnessStatus.DUE_SOON
             else -> FreshnessStatus.OK
         }
         val fraction = if (deadline <= anchor) 0f else ((deadline - nowEpochMillis).toDouble() / (deadline - anchor))
@@ -125,7 +125,9 @@ object ExpiryCalculator {
     private fun statusText(status: FreshnessStatus, target: LocalDate, today: LocalDate, kind: DeadlineKind): String = when (status) {
         FreshnessStatus.OVERDUE -> if (kind == DeadlineKind.LABEL) "包装日期已过" else "已过建议日期"
         FreshnessStatus.TODAY -> if (kind == DeadlineKind.LABEL) "今天到期" else "今天安排"
-        FreshnessStatus.DUE_SOON -> if (target == today.plusDays(1)) "明天到期" else "临期 · ${ChronoUnit.DAYS.between(today, target).coerceAtLeast(1)}天"
+        FreshnessStatus.DUE_SOON -> if (target == today.plusDays(1)) {
+            if (kind == DeadlineKind.LABEL) "明天到期" else "明天安排"
+        } else "${ChronoUnit.DAYS.between(today, target).coerceAtLeast(1)}天后"
         FreshnessStatus.OK -> "${ChronoUnit.DAYS.between(today, target).coerceAtLeast(1)}天后"
         FreshnessStatus.UNKNOWN -> "未设日期"
         FreshnessStatus.REVIEW -> "日期待确认"

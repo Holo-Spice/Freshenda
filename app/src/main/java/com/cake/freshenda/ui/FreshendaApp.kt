@@ -84,6 +84,7 @@ import com.cake.freshenda.ui.picker.PickerScreen
 import com.cake.freshenda.ui.settings.SettingsScreen
 import com.cake.freshenda.ui.theme.FreshendaColors
 import com.cake.freshenda.ui.theme.MotionEase
+import com.cake.freshenda.ui.theme.FreshendaMotion
 import com.cake.freshenda.update.UpdateViewModel
 import com.cake.freshenda.update.UpdateFeedback
 import java.time.format.DateTimeFormatter
@@ -234,19 +235,19 @@ fun FreshendaApp(container: AppContainer, deepLink: AppDeepLink?, onDeepLinkCons
                         .clipToBounds(),
                     transitionSpec = {
                         if (initialState.entries.last().metadata["root"] == true && targetState.entries.last().metadata["root"] == true) {
-                            fadeIn(tween(140, easing = MotionEase)) togetherWith fadeOut(tween(100))
+                            fadeIn(tween(FreshendaMotion.Release, easing = MotionEase)) togetherWith fadeOut(tween(FreshendaMotion.Exit))
                         } else {
-                            (slideInHorizontally(tween(260, easing = MotionEase)) { it / 12 } + fadeIn(tween(180))) togetherWith
-                                (slideOutHorizontally(tween(260, easing = MotionEase)) { -it / 24 } + fadeOut(tween(140)))
+                            (slideInHorizontally(tween(FreshendaMotion.Move, easing = MotionEase)) { it / 12 } + fadeIn(tween(FreshendaMotion.Enter))) togetherWith
+                                (slideOutHorizontally(tween(FreshendaMotion.Move, easing = MotionEase)) { -it / 24 } + fadeOut(tween(FreshendaMotion.Exit)))
                         }
                     },
                     popTransitionSpec = {
-                        (slideInHorizontally(tween(260, easing = MotionEase)) { -it / 24 } + fadeIn(tween(180))) togetherWith
-                            (slideOutHorizontally(tween(260, easing = MotionEase)) { it / 12 } + fadeOut(tween(180)))
+                        (slideInHorizontally(tween(FreshendaMotion.Move, easing = MotionEase)) { -it / 24 } + fadeIn(tween(FreshendaMotion.Enter))) togetherWith
+                            (slideOutHorizontally(tween(FreshendaMotion.Move, easing = MotionEase)) { it / 12 } + fadeOut(tween(FreshendaMotion.Exit)))
                     },
                     predictivePopTransitionSpec = {
-                        (slideInHorizontally(tween(260, easing = MotionEase)) { -it / 24 } + fadeIn(tween(180))) togetherWith
-                            (slideOutHorizontally(tween(260, easing = MotionEase)) { it / 12 } + fadeOut(tween(180)))
+                        (slideInHorizontally(tween(FreshendaMotion.Move, easing = MotionEase)) { -it / 24 } + fadeIn(tween(FreshendaMotion.Enter))) togetherWith
+                            (slideOutHorizontally(tween(FreshendaMotion.Move, easing = MotionEase)) { it / 12 } + fadeOut(tween(FreshendaMotion.Exit)))
                     },
                     entryProvider = entryProvider {
                         entry<FridgeRoute>(metadata = RootMetadata) {
@@ -357,8 +358,8 @@ fun FreshendaApp(container: AppContainer, deepLink: AppDeepLink?, onDeepLinkCons
                 AnimatedVisibility(
                     visible = showBottomBar,
                     modifier = Modifier.align(Alignment.BottomCenter),
-                    enter = fadeIn(tween(180)) + slideInVertically(tween(200, easing = MotionEase)) { it / 6 },
-                    exit = fadeOut(tween(100)) + slideOutVertically(tween(200, easing = MotionEase)) { it / 6 },
+                    enter = fadeIn(tween(FreshendaMotion.Enter)) + slideInVertically(tween(FreshendaMotion.Move, easing = MotionEase)) { it / 6 },
+                    exit = fadeOut(tween(FreshendaMotion.Exit)) + slideOutVertically(tween(FreshendaMotion.Move, easing = MotionEase)) { it / 6 },
                 ) {
                     NavigationBar(
                         modifier = Modifier.fillMaxWidth().height(80.dp),

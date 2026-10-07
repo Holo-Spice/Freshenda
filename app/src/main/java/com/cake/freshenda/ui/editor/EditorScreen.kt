@@ -21,8 +21,8 @@ import androidx.compose.foundation.relocation.BringIntoViewRequester
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.foundation.verticalScroll
-import androidx.compose.material3.Button
-import androidx.compose.material3.FilterChip
+import com.cake.freshenda.ui.components.FreshendaButton as Button
+import com.cake.freshenda.ui.components.ChoiceChip as FilterChip
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedTextField
@@ -58,6 +58,13 @@ import com.cake.freshenda.ui.components.BrandHeader
 import com.cake.freshenda.ui.components.FoodDatePicker
 import com.cake.freshenda.ui.components.FoodIcon
 import com.cake.freshenda.ui.theme.FreshendaColors
+import com.cake.freshenda.ui.theme.FreshendaShapes
+import com.cake.freshenda.ui.theme.FreshendaSpacing
+import com.cake.freshenda.ui.components.BackButton
+import com.cake.freshenda.ui.components.SectionCard
+import com.cake.freshenda.ui.components.UiIcon
+import com.cake.freshenda.ui.components.UiSymbol
+import com.cake.freshenda.ui.components.freshendaFieldColors
 import java.math.BigDecimal
 import java.math.RoundingMode
 import java.time.format.DateTimeFormatter
@@ -86,7 +93,7 @@ fun EditorScreen(
     var basis by rememberSaveable(editorKey) { mutableStateOf(initialBasis) }
     var targetDate by rememberSaveable(editorKey) { mutableStateOf(batch?.let { targetDate(it, initialBasis) } ?: LocalDate.now().plusDays(customFood?.refrigeratedDays?.toLong() ?: 3).toString()) }
     var packaging by rememberSaveable(editorKey) { mutableStateOf(batch?.packagingState?.let { runCatching { PackagingState.valueOf(it) }.getOrNull() } ?: if (food.profileId in setOf("packaged", "milk", "yogurt", "hard_cheese")) PackagingState.UNOPENED else PackagingState.LOOSE) }
-    var physical by rememberSaveable(editorKey) { mutableStateOf(batch?.physicalState?.let { runCatching { FoodPhysicalState.valueOf(it) }.getOrNull() } ?: defaultPhysical(food.profileId)) }
+    var physical by rememberSaveable(editorKey) { mutableStateOf((batch?.physicalState ?: food.defaultPhysicalState)?.let { runCatching { FoodPhysicalState.valueOf(it) }.getOrNull() } ?: defaultPhysical(food.profileId)) }
     var maturity by rememberSaveable(editorKey) { mutableStateOf(batch?.maturityState?.let { runCatching { MaturityState.valueOf(it) }.getOrNull() } ?: if (requiresMaturity(food.profileId)) MaturityState.UNKNOWN else MaturityState.NOT_APPLICABLE) }
     val rawWindow = when (storage) {
         StorageLocation.REFRIGERATED -> if (packaging == PackagingState.OPENED) profile.openedRefrigerated ?: profile.refrigerated else profile.refrigerated
@@ -99,17 +106,16 @@ fun EditorScreen(
 
     Column(Modifier.fillMaxSize().imePadding()) {
         Column(Modifier.weight(1f).verticalScroll(rememberScrollState())) {
-            BrandHeader(if (batch == null) "添加食材" else "修改食材", "记下位置和日期，把新鲜安排好", leading = { TextButton(onClick = onBack) { Text("‹ 返回", color = FreshendaColors.Primary) } })
+            BrandHeader(if (batch == null) "添加食材" else "修改食材", "记下位置和日期，把新鲜安排好", leading = { BackButton(onBack) })
             Surface(
-                Modifier.fillMaxWidth().padding(horizontal = 24.dp, vertical = 8.dp),
-                color = FreshendaColors.Glass,
-                shape = MaterialTheme.shapes.large,
-                border = BorderStroke(1.dp, FreshendaColors.GlassBorder),
-                shadowElevation = 0.dp,
+                Modifier.fillMaxWidth().padding(horizontal = FreshendaSpacing.Page, vertical = 8.dp),
+                color = FreshendaColors.Card,
+                shape = FreshendaShapes.Card,
+                shadowElevation = 1.dp,
             ) {
-                Row(Modifier.padding(14.dp), verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.spacedBy(14.dp)) {
+                Row(Modifier.padding(FreshendaSpacing.CardInset), verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.spacedBy(FreshendaSpacing.Gap)) {
                     FoodIcon(food.iconKey, food.name, size = 72.dp)
-                    Column { Text(food.name, style = MaterialTheme.typography.titleLarge); Text(catalog.categories.firstOrNull { it.id == food.categoryId }?.name ?: "自定义", color = FreshendaColors.Unknown) }
+                    Column(verticalArrangement = Arrangement.spacedBy(4.dp)) { Text(food.name, style = MaterialTheme.typography.titleLarge); Text(catalog.categories.firstOrNull { it.id == food.categoryId }?.name ?: "自定义", style = MaterialTheme.typography.bodyMedium, color = FreshendaColors.Unknown) }
                 }
             }
             FormSection("存放位置") {
@@ -118,11 +124,11 @@ fun EditorScreen(
             }
             FormSection("数量") {
                 Row(horizontalArrangement = Arrangement.spacedBy(8.dp), verticalAlignment = Alignment.CenterVertically) {
-                    IconButton(onClick = { quantity = adjustQuantity(quantity, -1) }, modifier = Modifier.semantics { contentDescription = "减少数量" }) { Text("−") }
-                    OutlinedTextField(value = quantity, onValueChange = { quantity = it.filter { char -> char.isDigit() || char == '.' }.take(12) }, label = { Text("数量") }, singleLine = true, keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Decimal), modifier = Modifier.weight(1f).keepVisibleWithIme())
-                    OutlinedTextField(value = unit, onValueChange = { unit = it.take(6) }, label = { Text("单位") }, singleLine = true, modifier = Modifier.weight(1f).keepVisibleWithIme())
-                    IconButton(onClick = { quantity = adjustQuantity(quantity, 1) }, modifier = Modifier.semantics { contentDescription = "增加数量" }) { Text("＋") }
+                    IconButton(onClick = { quantity = adjustQuantity(quantity, -1) }, modifier = Modifier.semantics { contentDescription = "减少数量" }) { UiIcon(UiSymbol.REMOVE) }
+                    OutlinedTextField(value = quantity, onValueChange = { quantity = it.filter { char -> char.isDigit() || char == '.' }.take(12) }, label = { Text("数量") }, singleLine = true, shape = FreshendaShapes.Control, colors = freshendaFieldColors(), keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Decimal), modifier = Modifier.weight(1f).keepVisibleWithIme())
+                    IconButton(onClick = { quantity = adjustQuantity(quantity, 1) }, modifier = Modifier.semantics { contentDescription = "增加数量" }) { UiIcon(UiSymbol.ADD) }
                 }
+                OutlinedTextField(value = unit, onValueChange = { unit = it.take(6) }, label = { Text("单位，如份、盒、克") }, singleLine = true, shape = FreshendaShapes.Control, colors = freshendaFieldColors(), modifier = Modifier.fillMaxWidth().keepVisibleWithIme())
             }
             FormSection("必要状态") {
                 Text("包装", style = MaterialTheme.typography.labelLarge)
@@ -164,11 +170,11 @@ fun EditorScreen(
                 }
             }
         }
-        error?.let { Text(it, color = MaterialTheme.colorScheme.error, modifier = Modifier.padding(horizontal = 24.dp)) }
+        error?.let { Text(it, color = MaterialTheme.colorScheme.error, modifier = Modifier.padding(horizontal = FreshendaSpacing.Page)) }
         Button(onClick = {
             val draft = previewDraft(food, storage, quantity, unit, startDate, basis, packaging, physical, maturity, preparation, targetDate)
             if (draft == null) error = "请检查数量和日期格式" else { error = null; onSave(draft) }
-        }, enabled = !saving, modifier = Modifier.fillMaxWidth().padding(horizontal = 24.dp, vertical = 12.dp).heightIn(min = 54.dp)) { Text(if (saving) "正在保存…" else if (batch == null) "放进冰箱" else "保存修改") }
+        }, enabled = !saving, modifier = Modifier.fillMaxWidth().padding(horizontal = FreshendaSpacing.Page, vertical = 12.dp)) { Text(if (saving) "正在保存…" else if (batch == null) "放进冰箱" else "保存修改") }
     }
 
     datePickerTarget?.let { target ->
@@ -196,10 +202,7 @@ private fun Modifier.keepVisibleWithIme(): Modifier {
 
 @Composable
 private fun FormSection(title: String, content: @Composable ColumnScope.() -> Unit) {
-    Column(Modifier.fillMaxWidth().padding(horizontal = 24.dp, vertical = 12.dp), verticalArrangement = Arrangement.spacedBy(10.dp)) {
-        Text(title, style = MaterialTheme.typography.titleMedium)
-        content()
-    }
+    SectionCard(title, content)
 }
 
 @OptIn(ExperimentalLayoutApi::class)
@@ -283,20 +286,20 @@ private fun DateField(label: String, date: LocalDate, onClick: () -> Unit) {
     Surface(
         modifier = Modifier.fillMaxWidth(),
         onClick = onClick,
-        color = FreshendaColors.Glass,
-        shape = MaterialTheme.shapes.large,
-        border = BorderStroke(1.dp, FreshendaColors.GlassBorder),
+        color = FreshendaColors.GlassSoft,
+        shape = FreshendaShapes.Control,
     ) {
         Row(
             Modifier.padding(horizontal = 16.dp, vertical = 13.dp),
             verticalAlignment = Alignment.CenterVertically,
             horizontalArrangement = Arrangement.spacedBy(12.dp),
         ) {
+            UiIcon(UiSymbol.CALENDAR, color = FreshendaColors.Primary)
             Column(Modifier.weight(1f), verticalArrangement = Arrangement.spacedBy(3.dp)) {
                 Text(label, style = MaterialTheme.typography.labelMedium, color = FreshendaColors.Unknown)
                 Text(date.format(DateTimeFormatter.ofPattern("yyyy年M月d日", Locale.CHINA)), style = MaterialTheme.typography.titleMedium)
             }
-            Text("调整  ›", style = MaterialTheme.typography.labelLarge, color = FreshendaColors.Primary)
+            UiIcon(UiSymbol.NEXT, color = FreshendaColors.Primary)
         }
     }
 }

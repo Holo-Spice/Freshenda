@@ -17,8 +17,8 @@ import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.AlertDialog
-import androidx.compose.material3.Button
-import androidx.compose.material3.FilterChip
+import com.cake.freshenda.ui.components.FreshendaButton as Button
+import com.cake.freshenda.ui.components.ChoiceChip as FilterChip
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedTextField
@@ -36,6 +36,7 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import com.cake.freshenda.data.local.CustomFoodEntity
+import com.cake.freshenda.data.catalog.FoodSearch
 import com.cake.freshenda.model.EvidenceSummary
 import com.cake.freshenda.model.FoodCatalog
 import com.cake.freshenda.model.FoodDefinition
@@ -43,6 +44,12 @@ import com.cake.freshenda.ui.components.BrandHeader
 import com.cake.freshenda.ui.components.FoodIcon
 import com.cake.freshenda.ui.components.PressableSurface
 import com.cake.freshenda.ui.theme.FreshendaColors
+import com.cake.freshenda.ui.theme.FreshendaShapes
+import com.cake.freshenda.ui.theme.FreshendaSpacing
+import com.cake.freshenda.ui.components.BackButton
+import com.cake.freshenda.ui.components.UiIcon
+import com.cake.freshenda.ui.components.UiSymbol
+import com.cake.freshenda.ui.components.freshendaFieldColors
 
 @Composable
 fun PickerScreen(
@@ -63,37 +70,37 @@ fun PickerScreen(
         )
     }
     val foods = remember(allFoods, query, category) {
-        val term = query.trim()
-        allFoods.filter { food ->
-            (category == "ALL" || food.categoryId == category) &&
-                (term.isEmpty() || food.name.contains(term, ignoreCase = true) ||
-                    food.aliases.any { it.contains(term, ignoreCase = true) } || food.id.contains(term, ignoreCase = true))
-        }
+        FoodSearch.find(allFoods, query, category)
     }
     Column(Modifier.fillMaxSize().imePadding()) {
-        BrandHeader("添加食材", "选一种食材，开始记录新鲜", leading = { TextButton(onClick = onBack) { Text("‹ 返回", color = FreshendaColors.Primary) } })
+        BrandHeader("添加食材", "选一种食材，开始记录新鲜", leading = { BackButton(onBack) })
         OutlinedTextField(
             value = query,
-            onValueChange = { query = it },
-            placeholder = { Text("搜索食材名称或别名") },
+            onValueChange = {
+                query = it
+                if (it.isNotBlank()) category = "ALL"
+            },
+            placeholder = { Text("搜索食材，如肉丝、鸡丁、土豆") },
             singleLine = true,
-            shape = RoundedCornerShape(18.dp),
+            shape = FreshendaShapes.Control,
+            colors = freshendaFieldColors(),
+            leadingIcon = { UiIcon(UiSymbol.SEARCH, color = FreshendaColors.Unknown) },
             trailingIcon = {
                 if (query.isNotEmpty()) {
-                    IconButton(onClick = { query = "" }, modifier = Modifier.semantics { contentDescription = "清空搜索" }) { Text("×") }
+                    IconButton(onClick = { query = "" }, modifier = Modifier.semantics { contentDescription = "清空搜索" }) { UiIcon(UiSymbol.CLOSE) }
                 }
             },
-            modifier = Modifier.fillMaxWidth().padding(horizontal = 24.dp, vertical = 8.dp),
+            modifier = Modifier.fillMaxWidth().padding(horizontal = FreshendaSpacing.Page, vertical = 8.dp),
         )
-        LazyRow(contentPadding = PaddingValues(horizontal = 24.dp), horizontalArrangement = Arrangement.spacedBy(8.dp)) {
+        LazyRow(contentPadding = PaddingValues(horizontal = FreshendaSpacing.Page), horizontalArrangement = Arrangement.spacedBy(8.dp)) {
             item { FilterChip(selected = category == "ALL", onClick = { category = "ALL" }, label = { Text("全部") }) }
             items(catalog.categories, key = { it.id }) { item ->
                 FilterChip(selected = category == item.id, onClick = { category = item.id }, label = { Text(item.name) })
             }
         }
-        Row(Modifier.fillMaxWidth().padding(horizontal = 24.dp, vertical = 8.dp), verticalAlignment = Alignment.CenterVertically) {
-            Text("找到 ${foods.size} 项", modifier = Modifier.weight(1f), style = MaterialTheme.typography.bodyMedium)
-            TextButton(onClick = { showCustom = true }) { Text("＋ 自定义食材") }
+        Row(Modifier.fillMaxWidth().padding(horizontal = FreshendaSpacing.Page, vertical = 4.dp), verticalAlignment = Alignment.CenterVertically) {
+            Text("找到 ${foods.size} 项", modifier = Modifier.weight(1f), style = MaterialTheme.typography.labelMedium, color = FreshendaColors.Unknown)
+            TextButton(onClick = { showCustom = true }) { UiIcon(UiSymbol.ADD); Text(" 自定义食材") }
         }
         if (foods.isEmpty()) {
             Column(
@@ -108,15 +115,15 @@ fun PickerScreen(
             LazyVerticalGrid(
                 columns = GridCells.Adaptive(96.dp),
                 modifier = Modifier.weight(1f),
-                contentPadding = PaddingValues(start = 24.dp, end = 24.dp, bottom = 24.dp),
-                horizontalArrangement = Arrangement.spacedBy(10.dp),
-                verticalArrangement = Arrangement.spacedBy(10.dp),
+                contentPadding = PaddingValues(start = FreshendaSpacing.Page, end = FreshendaSpacing.Page, bottom = 24.dp),
+                horizontalArrangement = Arrangement.spacedBy(FreshendaSpacing.Gap),
+                verticalArrangement = Arrangement.spacedBy(FreshendaSpacing.Gap),
             ) {
                 items(foods, key = { it.id }, contentType = { "food" }) { food ->
-                    PressableSurface(onClick = { onFood(food.id) }, shape = RoundedCornerShape(20.dp)) {
-                        Column(Modifier.padding(horizontal = 8.dp, vertical = 16.dp), horizontalAlignment = Alignment.CenterHorizontally) {
-                            FoodIcon(food.iconKey, food.name, size = 64.dp)
-                            Text(food.name, maxLines = 2, overflow = TextOverflow.Ellipsis, textAlign = TextAlign.Center, style = MaterialTheme.typography.labelLarge)
+                    PressableSurface(onClick = { onFood(food.id) }) {
+                        Column(Modifier.fillMaxWidth().padding(horizontal = 8.dp, vertical = 16.dp), horizontalAlignment = Alignment.CenterHorizontally, verticalArrangement = Arrangement.spacedBy(8.dp)) {
+                            FoodIcon(food.iconKey, food.name, size = 68.dp)
+                            Text(food.name, minLines = 2, maxLines = 2, overflow = TextOverflow.Ellipsis, textAlign = TextAlign.Center, style = MaterialTheme.typography.labelLarge)
                         }
                     }
                 }
@@ -151,7 +158,7 @@ private fun CustomFoodDialog(onDismiss: () -> Unit, onConfirm: (String) -> Unit)
     AlertDialog(
         onDismissRequest = onDismiss,
         title = { Text("自定义食材") },
-        text = { OutlinedTextField(value = name, onValueChange = { name = it.take(30) }, label = { Text("名称") }, singleLine = true) },
+        text = { OutlinedTextField(value = name, onValueChange = { name = it.take(30) }, label = { Text("名称") }, singleLine = true, shape = FreshendaShapes.Control, colors = freshendaFieldColors()) },
         confirmButton = { Button(onClick = { onConfirm(name.trim()) }, enabled = name.isNotBlank()) { Text("下一步") } },
         dismissButton = { TextButton(onClick = onDismiss) { Text("取消") } },
     )

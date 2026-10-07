@@ -25,7 +25,8 @@ object ReminderPolicy {
         val preferred = LocalTime.of(settings.reminderHour, settings.reminderMinute)
         val periodDate = if (now.toLocalTime() >= preferred) now.toLocalDate() else now.toLocalDate().minusDays(1)
         val selected = batches.filter { batch ->
-            val result = ExpiryCalculator.result(batch, nowEpochMillis, settings.normalAdvanceDays, settings.frozenAdvanceDays)
+            val advanceDays = if (batch.storageLocation == "FROZEN") settings.frozenAdvanceDays else settings.normalAdvanceDays
+            val result = ExpiryCalculator.result(batch, nowEpochMillis, advanceDays)
             val dateAllowed = when (batch.effectiveDeadlineKind) {
                 "OPENED" -> settings.openedReminders
                 "CUSTOM" -> settings.customDateReminders

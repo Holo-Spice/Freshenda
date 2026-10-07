@@ -27,6 +27,7 @@ import com.cake.freshenda.model.ExpiryResult
 import com.cake.freshenda.model.FreshnessStatus
 import com.cake.freshenda.ui.theme.FreshendaColors
 import com.cake.freshenda.ui.theme.MotionEase
+import com.cake.freshenda.ui.theme.FreshendaMotion
 
 @Composable
 fun SharedTransitionScope.BatchIcon(batch: FoodBatchEntity, result: ExpiryResult, source: String, size: Dp) {
@@ -36,7 +37,7 @@ fun SharedTransitionScope.BatchIcon(batch: FoodBatchEntity, result: ExpiryResult
         modifier = Modifier.sharedElement(
             sharedContentState = rememberSharedContentState("$source/${batch.id}"),
             animatedVisibilityScope = LocalNavAnimatedContentScope.current,
-            boundsTransform = { _, _ -> tween(260, easing = MotionEase) },
+            boundsTransform = { _, _ -> tween(FreshendaMotion.Move, easing = MotionEase) },
         ),
         size = size,
         fraction = result.fractionRemaining,
@@ -56,7 +57,7 @@ fun FoodIcon(
     Box(modifier = modifier.size(size).semantics { contentDescription = name }, contentAlignment = Alignment.Center) {
         if (fraction != null) {
             Canvas(Modifier.fillMaxSize()) {
-                val stroke = 2.5.dp.toPx()
+                val stroke = 2.dp.toPx()
                 drawArc(
                     color = FreshendaColors.RingTrack,
                     startAngle = -90f,
@@ -80,7 +81,7 @@ fun FoodIcon(
         Image(
             painter = painterResource(FoodIconRegistry.resolve(iconKey)),
             contentDescription = null,
-            modifier = Modifier.fillMaxSize().padding(if (fraction == null) 2.dp else 7.dp),
+            modifier = Modifier.fillMaxSize().padding(if (fraction == null) 0.dp else 5.dp),
         )
     }
 }
